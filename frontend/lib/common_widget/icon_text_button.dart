@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+import '../common/color_extension.dart';
+
+class IconTextButton extends StatelessWidget {
+  final String title;
+  final String subTitle;
+  final Color? color;
+  final String icon;
+  final VoidCallback onPressed;
+  const IconTextButton(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.icon,
+      required this.onPressed,  this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+     
+      child: TextButton(
+        onPressed: onPressed,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              icon,
+              color: color,
+              width: 25,
+              height: 25,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                  color: TColor.text, fontSize: 12, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Flexible(
+              child: Text(
+                subTitle,
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: TColor.gray, fontSize: 12, fontWeight: FontWeight.w700),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
