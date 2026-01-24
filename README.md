@@ -4,7 +4,7 @@
 # Hướng dẫn chạy lần đầu
 - Backend:
     + Cài .NET 8 và MySQL
-    + Cập nhật cấu hình username (Uid) và password (Pwd) kết nối MySQL cho chuỗi kết nối trong appsettings.json
+    + Cập nhật cấu hình username (Uid) và password (Pwd) kết nối MySQL (MySQLConnectionString) tại backend\WebAPI\appsettings.json
     + Tại thư mục chính của project, gõ 
     ---
     ```bash
