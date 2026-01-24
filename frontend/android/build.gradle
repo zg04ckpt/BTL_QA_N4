@@ -18,6 +18,22 @@ allprojects {
     }
 }
 
+// Fix namespace cho các plugin thiếu namespace (như image_gallery_saver)
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("android")) {
+            project.android {
+                // Tự động thêm namespace nếu plugin không có
+                if (project.android.namespace == null) {
+                    def groupName = project.group.toString().replaceAll('\\.', '_')
+                    def projectName = project.name.toString().replaceAll('-', '_')
+                    project.android.namespace = "${groupName}.${projectName}"
+                }
+            }
+        }
+    }
+}
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"

@@ -14,9 +14,9 @@ class APIService {
 
   String get baseUrl {
     if (kDebugMode) {
-      return 'https://192.168.1.100:44346';
+      return 'https://qa-test.hoangcn.com';
     }
-    return 'production url';
+    return 'https://qa-test.hoangcn.com';
   }
 
   // Lưu token vào SharedPreferences
