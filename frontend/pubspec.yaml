@@ -119,3 +119,8 @@ flutter:
           weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+# Thêm vào cuối file pubspec.yaml
+# dependency_overrides:
+#   flutter_plugin_android_lifecycle: ^2.0.24

@@ -1,3 +1,36 @@
+// pluginManagement {
+//     def flutterSdkPath = {
+//         def properties = new Properties()
+//         file("local.properties").withInputStream { properties.load(it) }
+//         def flutterSdkPath = properties.getProperty("flutter.sdk")
+//         assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+//         return flutterSdkPath
+//     }()
+
+//     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+
+//     repositories {
+//         google()
+//         mavenCentral()
+//         gradlePluginPortal()
+//     }
+// }
+
+// plugins {
+//     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    
+//     // NÂNG CẤP: Từ 7.3.0 -> 8.3.0 (Để chạy được với Gradle 8.5)
+//     id "com.android.application" version "8.3.0" apply false
+    
+//     // NÂNG CẤP: Từ 4.3.15 -> 4.4.1 (Khuyến nghị cho AGP mới)
+//     id "com.google.gms.google-services" version "4.4.1" apply false
+    
+//     // NÂNG CẤP: Từ 1.7.10 -> 1.9.22 (Để tương thích với AGP 8.3.0)
+//     id "org.jetbrains.kotlin.android" version "1.9.22" apply false
+// }
+
+// include ":app"
+
 pluginManagement {
     def flutterSdkPath = {
         def properties = new Properties()
@@ -18,11 +51,16 @@ pluginManagement {
 
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
-    id "com.android.application" version "7.3.0" apply false
-    // START: FlutterFire Configuration
-    id "com.google.gms.google-services" version "4.3.15" apply false
-    // END: FlutterFire Configuration
-    id "org.jetbrains.kotlin.android" version "1.7.10" apply false
+    
+    // Nâng cấp AGP để chạy tốt trên Java mới
+    id "com.android.application" version "8.6.0" apply false
+    id "com.android.library" version "8.6.0" apply false
+    // Nâng cấp Google Services
+    id "com.google.gms.google-services" version "4.4.0" apply false
+    
+    // QUAN TRỌNG NHẤT: Sửa dòng này từ 1.7.10 thành 1.9.22
+    // Để khắc phục lỗi "Kotlin version is lower than 1.8.10"
+    id "org.jetbrains.kotlin.android" version "1.9.22" apply false
 }
 
 include ":app"
