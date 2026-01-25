@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.9.0'
     repositories {
         google()
         mavenCentral()
@@ -18,7 +18,7 @@ allprojects {
     }
 }
 
-// Fix namespace cho các plugin thiếu namespace (như image_gallery_saver)
+// Fix namespace và JVM target cho các plugin
 subprojects {
     afterEvaluate { project ->
         if (project.hasProperty("android")) {
@@ -28,6 +28,21 @@ subprojects {
                     def groupName = project.group.toString().replaceAll('\\.', '_')
                     def projectName = project.name.toString().replaceAll('-', '_')
                     project.android.namespace = "${groupName}.${projectName}"
+                }
+                
+                // Force all plugins to use Java 17
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+            }
+        }
+        
+        // Fix Kotlin JVM target
+        if (project.hasProperty("kotlin")) {
+            project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+                kotlinOptions {
+                    jvmTarget = "17"
                 }
             }
         }

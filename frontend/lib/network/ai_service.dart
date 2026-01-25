@@ -16,7 +16,7 @@ class CmtML {
 
     try {
       var response = await dio.post(
-        'http://192.168.1.11:5000/predict', // Thay bằng API endpoint thực tế của bạn
+        'http://qa-test.hoangcn.com/predict', // Thay bằng API endpoint thực tế của bạn
         options: Options(
           headers: headers,
         ),
