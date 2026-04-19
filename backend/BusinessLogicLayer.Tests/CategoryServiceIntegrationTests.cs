@@ -178,4 +178,130 @@ public class CategoryServiceIntegrationTests : TestDatabaseFixture
             await RollbackTransactionAsync();
         }
     }
+
+    [Fact]
+    public async Task TC_ACA_003_AddCategoryAsync_ShouldPersistCategoryWithTrimmedLikeInputUnchanged()
+    {
+        // Test Case ID: TC-ACA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var dto = await service.AddCategoryAsync(new CategoryDto { Name = "  Drinks  " });
+            Assert.Equal("  Drinks  ", dto.Name);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ACA_004_AddCategoryAsync_ShouldPersistUnicodeName()
+    {
+        // Test Case ID: TC-ACA-004
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var dto = await service.AddCategoryAsync(new CategoryDto { Name = "Món Việt" });
+            Assert.Equal("Món Việt", dto.Name);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ACA_005_AddCategoryAsync_ShouldPersistSpecialCharactersAsPlainText()
+    {
+        // Test Case ID: TC-ACA-005
+        await BeginTransactionAsync();
+        try
+        {
+            var payload = "<script>alert(1)</script>";
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var dto = await service.AddCategoryAsync(new CategoryDto { Name = payload });
+            Assert.Equal(payload, dto.Name);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ACA_006_AddCategoryAsync_ShouldAllowWhitespaceOnlyNameByCurrentLogic()
+    {
+        // Test Case ID: TC-ACA-006
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var dto = await service.AddCategoryAsync(new CategoryDto { Name = "    " });
+            Assert.Equal("    ", dto.Name);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ACA_007_AddCategoryAsync_ShouldKeepDuplicateNamesAsSeparateRows()
+    {
+        // Test Case ID: TC-ACA-007
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            await service.AddCategoryAsync(new CategoryDto { Name = "Dup" });
+            await service.AddCategoryAsync(new CategoryDto { Name = "Dup" });
+
+            var all = await DbContext.Categories.Where(c => c.Name == "Dup").ToListAsync();
+            Assert.True(all.Count >= 2);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GCBIA_003_GetCategoryByIdAsync_ShouldReturnNullForZeroOrNegativeId()
+    {
+        // Test Case ID: TC-GCBIA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var zero = await service.GetCategoryByIdAsync(0);
+            var negative = await service.GetCategoryByIdAsync(-1);
+
+            Assert.Null(zero);
+            Assert.Null(negative);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ACA_008_AddCategoryAsync_ShouldAllowNullNameByCurrentLogic()
+    {
+        // Test Case ID: TC-ACA-008
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new CategoryService(new CategoryRepository(DbContext));
+            var dto = await service.AddCategoryAsync(new CategoryDto { Name = null! });
+            Assert.Null(dto.Name);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
 }

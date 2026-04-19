@@ -3,20 +3,55 @@ using DataAccessLayer.Models;
 using DataAccessLayer.Models.DTOs;
 using DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
 using Xunit;
 
 namespace BusinessLogicLayer.Tests;
 
 public class OrderServiceIntegrationTests : TestDatabaseFixture
 {
+    private static int _seed;
+
+    private async Task<int> CreateTestAddress()
+    {
+        var token = Interlocked.Increment(ref _seed);
+        var address = new Address
+        {
+            City = $"Order City {token}",
+            District = "District 1",
+            Ward = "Ward 1",
+            Detail = "Detail",
+            Lon = 106.7,
+            Lat = 10.8
+        };
+        DbContext.Addresses.Add(address);
+        await DbContext.SaveChangesAsync();
+        return address.Id;
+    }
+
+    private async Task<int> CreateTestCategory()
+    {
+        var token = Interlocked.Increment(ref _seed);
+        var category = new Category { Name = $"Order Category {token}" };
+        DbContext.Categories.Add(category);
+        await DbContext.SaveChangesAsync();
+        return category.Id;
+    }
+
     private async Task<int> CreateTestUser()
     {
+        var token = Interlocked.Increment(ref _seed);
+        var addressId = await CreateTestAddress();
+
         var user = new User
         {
-            Name = "Test User",
-            PhoneNumber = "0123456789",
-            Email = "testuser@example.com",
-            Address = "123 Test Street"
+            Name = $"Test User {token}",
+            PhoneNumber = ("01" + token.ToString("D8")).Substring(0, 10),
+            Email = $"testuser{token}@example.com",
+            Password = "Password@123",
+            Role = "User",
+            Status = 1,
+            AddressId = addressId
         };
         DbContext.Users.Add(user);
         await DbContext.SaveChangesAsync();
@@ -25,12 +60,20 @@ public class OrderServiceIntegrationTests : TestDatabaseFixture
 
     private async Task<int> CreateTestRestaurant()
     {
+        var token = Interlocked.Increment(ref _seed);
+        var ownerId = await CreateTestUser();
+        var categoryId = await CreateTestCategory();
+        var addressId = await CreateTestAddress();
+
         var restaurant = new Restaurant
         {
-            Name = "Test Restaurant",
-            PhoneNumber = "0987654321",
-            Email = "restaurant@example.com",
-            Address = "456 Restaurant Street"
+            Name = $"Test Restaurant {token}",
+            PhoneNumber = ("02" + token.ToString("D8")).Substring(0, 10),
+            Email = $"restaurant{token}@example.com",
+            Status = 1,
+            UserId = ownerId,
+            CateId = categoryId,
+            AddressId = addressId
         };
         DbContext.Restaurants.Add(restaurant);
         await DbContext.SaveChangesAsync();
@@ -437,6 +480,470 @@ public class OrderServiceIntegrationTests : TestDatabaseFixture
             Assert.NotEmpty(restaurantOrders);
             Assert.Equal(2, restaurantOrders.Count);
             Assert.All(restaurantOrders, o => Assert.Equal(restaurantId, o.RestaurantId));
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_OA_010_AddOrderAsync_ShouldAcceptReservationTimeAsMinValueByCurrentLogic()
+    {
+        // Test Case ID: TC-OA-010
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new OrderService(new OrderRepository(DbContext), new FirebaseService());
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+
+            await service.AddOrderAsync(new AddOrderDto
+            {
+                Name = "Min Time",
+                PhoneNumber = "0123000000",
+                Email = "mintime@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 1,
+                ReservationTime = DateTime.MinValue,
+                CreatedAt = DateTime.Now
+            });
+
+            Assert.NotEmpty(await DbContext.Orders.ToListAsync());
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_OA_011_AddOrderAsync_ShouldPersistLongTextFieldsByCurrentLogic()
+    {
+        // Test Case ID: TC-OA-011
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new OrderService(new OrderRepository(DbContext), new FirebaseService());
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var longText = new string('A', 200);
+
+            await service.AddOrderAsync(new AddOrderDto
+            {
+                Name = longText,
+                PhoneNumber = "0123999999",
+                Email = "long@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now.AddDays(1),
+                SpecialRequest = longText,
+                CreatedAt = DateTime.Now
+            });
+
+            var saved = await DbContext.Orders.OrderByDescending(o => o.Id).FirstAsync();
+            Assert.Equal(longText, saved.Name);
+            Assert.Equal(longText, saved.SpecialRequest);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBRIA_001_GetOrdersByRestaurantIdAsync_ShouldReturnOrdersForExistingRestaurant()
+    {
+        // Test Case ID: TC-GOBRIA-001
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            DbContext.Orders.Add(new Order
+            {
+                Name = "R1",
+                PhoneNumber = "0900000001",
+                Email = "r1@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 0
+            });
+            await DbContext.SaveChangesAsync();
+
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByRestaurantIdAsync(restaurantId);
+            Assert.NotEmpty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBRIA_002_GetOrdersByRestaurantIdAsync_ShouldReturnEmptyWhenRestaurantHasNoOrders()
+    {
+        // Test Case ID: TC-GOBRIA-002
+        await BeginTransactionAsync();
+        try
+        {
+            var restaurantId = await CreateTestRestaurant();
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByRestaurantIdAsync(restaurantId);
+            Assert.Empty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBRIA_003_GetOrdersByRestaurantIdAsync_ShouldReturnEmptyForInvalidRestaurantId()
+    {
+        // Test Case ID: TC-GOBRIA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByRestaurantIdAsync(999999);
+            Assert.Empty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBYIA_001_GetOrdersByUserIdAsync_ShouldReturnOrdersForExistingUser()
+    {
+        // Test Case ID: TC-GOBYIA-001
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            DbContext.Orders.Add(new Order
+            {
+                Name = "U1",
+                PhoneNumber = "0900000002",
+                Email = "u1@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 0
+            });
+            await DbContext.SaveChangesAsync();
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByUserIdAsync(userId);
+            Assert.NotEmpty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBYIA_002_GetOrdersByUserIdAsync_ShouldReturnEmptyWhenUserHasNoOrders()
+    {
+        // Test Case ID: TC-GOBYIA-002
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByUserIdAsync(userId);
+            Assert.Empty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBYIA_003_GetOrdersByUserIdAsync_ShouldReturnEmptyForInvalidUserId()
+    {
+        // Test Case ID: TC-GOBYIA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrdersByUserIdAsync(0);
+            Assert.Empty(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_COSA_001_ChangeOrderStatusAsync_ShouldSetStatusToAccepted()
+    {
+        // Test Case ID: TC-COSA-001
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var order = new Order
+            {
+                Name = "S1",
+                PhoneNumber = "0900000003",
+                Email = "s1@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 0
+            };
+            DbContext.Orders.Add(order);
+            await DbContext.SaveChangesAsync();
+
+            await new OrderService(new OrderRepository(DbContext), new FirebaseService()).ChangeOrderStatusAsync(order.Id, 1);
+            var updated = await DbContext.Orders.FindAsync(order.Id);
+            Assert.Equal(1, updated!.Status);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_COSA_002_ChangeOrderStatusAsync_ShouldSetStatusToRejected()
+    {
+        // Test Case ID: TC-COSA-002
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var order = new Order
+            {
+                Name = "S2",
+                PhoneNumber = "0900000004",
+                Email = "s2@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 1
+            };
+            DbContext.Orders.Add(order);
+            await DbContext.SaveChangesAsync();
+
+            await new OrderService(new OrderRepository(DbContext), new FirebaseService()).ChangeOrderStatusAsync(order.Id, 0);
+            var updated = await DbContext.Orders.FindAsync(order.Id);
+            Assert.Equal(0, updated!.Status);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_COSA_003_ChangeOrderStatusAsync_ShouldHandleSameStatusValue()
+    {
+        // Test Case ID: TC-COSA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var order = new Order
+            {
+                Name = "S3",
+                PhoneNumber = "0900000005",
+                Email = "s3@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 1
+            };
+            DbContext.Orders.Add(order);
+            await DbContext.SaveChangesAsync();
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).ChangeOrderStatusAsync(order.Id, 1);
+            Assert.True(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_COSA_004_ChangeOrderStatusAsync_ShouldThrowForInvalidOrderIdByCurrentServiceFlow()
+    {
+        // Test Case ID: TC-COSA-004
+        await BeginTransactionAsync();
+        try
+        {
+            var service = new OrderService(new OrderRepository(DbContext), new FirebaseService());
+            await Assert.ThrowsAnyAsync<Exception>(() => service.ChangeOrderStatusAsync(999999, 1));
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ROA_001_RemoveOrderAsync_ShouldReturnTrueWhenOrderExists()
+    {
+        // Test Case ID: TC-ROA-001
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var order = new Order
+            {
+                Name = "Rmv1",
+                PhoneNumber = "0900000006",
+                Email = "rmv1@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 0
+            };
+            DbContext.Orders.Add(order);
+            await DbContext.SaveChangesAsync();
+
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).RemoveOrderAsync(order.Id);
+            Assert.True(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ROA_002_RemoveOrderAsync_ShouldReturnFalseWhenOrderNotFound()
+    {
+        // Test Case ID: TC-ROA-002
+        await BeginTransactionAsync();
+        try
+        {
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).RemoveOrderAsync(999999);
+            Assert.False(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_ROA_003_RemoveOrderAsync_ShouldReturnFalseForZeroId()
+    {
+        // Test Case ID: TC-ROA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var result = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).RemoveOrderAsync(0);
+            Assert.False(result);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBIA_001_GetOrderByIdAsync_ShouldReturnOrderWhenIdExists()
+    {
+        // Test Case ID: TC-GOBIA-001
+        await BeginTransactionAsync();
+        try
+        {
+            var userId = await CreateTestUser();
+            var restaurantId = await CreateTestRestaurant();
+            var order = new Order
+            {
+                Name = "GO1",
+                PhoneNumber = "0900000007",
+                Email = "go1@example.com",
+                UserId = userId,
+                RestaurantId = restaurantId,
+                NumOfMembers = 2,
+                ReservationTime = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Status = 0
+            };
+            DbContext.Orders.Add(order);
+            await DbContext.SaveChangesAsync();
+
+            var dto = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrderByIdAsync(order.Id);
+            Assert.NotNull(dto);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBIA_002_GetOrderByIdAsync_ShouldReturnNullForInvalidId()
+    {
+        // Test Case ID: TC-GOBIA-002
+        await BeginTransactionAsync();
+        try
+        {
+            var dto = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrderByIdAsync(999999);
+            Assert.Null(dto);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBIA_003_GetOrderByIdAsync_ShouldReturnNullForZeroId()
+    {
+        // Test Case ID: TC-GOBIA-003
+        await BeginTransactionAsync();
+        try
+        {
+            var dto = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrderByIdAsync(0);
+            Assert.Null(dto);
+        }
+        finally
+        {
+            await RollbackTransactionAsync();
+        }
+    }
+
+    [Fact]
+    public async Task TC_GOBIA_004_GetOrderByIdAsync_ShouldReturnNullForNegativeId()
+    {
+        // Test Case ID: TC-GOBIA-004
+        await BeginTransactionAsync();
+        try
+        {
+            var dto = await new OrderService(new OrderRepository(DbContext), new FirebaseService()).GetOrderByIdAsync(-1);
+            Assert.Null(dto);
         }
         finally
         {
