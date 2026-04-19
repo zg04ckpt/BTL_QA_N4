@@ -1,0 +1,3 @@
+
+# Ignore local MySQL runtime/data directory
+backend/data/

@@ -1,12 +1,27 @@
-services:
-  api:
-    container_name: 'qa_api'
-    image: qa_api:latest
-    ports:
-      - "5006:8080"
-    networks:
-      - default_net
+# services:
+#   api:
+#     container_name: 'qa_api'
+#     image: qa_api:latest
+#     ports:
+#       - "5006:8080"
+#     networks:
+#       - default_net
 
-networks:
-  default_net:
-    external: true
+# networks:
+#   default_net:
+#     external: true
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_3307_container
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_password # Thay pass của bạn vào đây
+    ports:
+      - "3309:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    # SỬA DÒNG NÀY: Bỏ biến plugin cũ, dùng cấu hình dưới đây
+    command: 
+      - --authentication-policy=mysql_native_password
