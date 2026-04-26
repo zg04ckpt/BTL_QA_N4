@@ -1,0 +1,2495 @@
+comment_text,type
+"Nhà hàng này có không gian rất thoải mái, tôi thích đến đây mỗi lần cần thư giãn.",0
+"Đồ ăn ở đây khá ngon, nhưng không gian có phần hơi chật chội.",0
+"Thực đơn đa dạng, phục vụ nhanh chóng và nhân viên rất thân thiện.",0
+"Món ăn ở đây có giá hợp lý, tôi sẽ quay lại vào lần sau.",0
+"Nhà hàng sạch sẽ, nhưng không khí hơi nóng, cần cải thiện điều hòa một chút.",0
+"Dịch vụ nhanh chóng và hiệu quả, nhưng món tráng miệng chưa thực sự ấn tượng.",0
+"Nhà hàng này có món sushi rất ngon, nhưng tôi nghĩ phần thịt có thể tươi hơn một chút.",0
+"Nhân viên lịch sự và chu đáo, nhưng có thể cải thiện tốc độ phục vụ trong giờ cao điểm.",0
+"Món ăn đa dạng nhưng một số món hơi nhạt, có thể điều chỉnh gia vị.",0
+"Nhà hàng có không gian đẹp, nhưng cách bài trí chưa thật sự thoải mái cho gia đình.",0
+"Nhân viên phục vụ nhiệt tình, nhưng tôi mong họ có thể hỗ trợ nhiều hơn về thực đơn.",0
+"Món ăn ở đây rất ngon nhưng giá cả hơi cao so với chất lượng.",0
+"Đồ ăn ngon, nhưng không gian có phần đông đúc vào giờ cao điểm.",0
+"Tôi rất hài lòng về dịch vụ ở đây, sẽ giới thiệu cho bạn bè.",0
+"Nhà hàng khá dễ tìm, nhưng chỗ đỗ xe hơi chật, cần cải thiện.",0
+"Không gian sạch sẽ, nhưng âm thanh có thể được giảm bớt một chút để tạo không khí yên tĩnh.",0
+"Nhà hàng này có phong cách trang trí rất đẹp, thích hợp cho các buổi hẹn hò.",0
+"Phục vụ ở đây rất nhanh chóng, nhưng món ăn chưa đủ đặc sắc.",0
+"Tôi thích bầu không khí ở đây, rất thoải mái và dễ chịu.",0
+"Nhà hàng này rất thích hợp cho những buổi gặp gỡ bạn bè, đồ ăn cũng ngon.",0
+"Chất lượng món ăn khá ổn nhưng tôi nghĩ cần cải thiện phần thức ăn chay.",0
+"Món bún ở đây rất ngon, tôi rất thích vị nước dùng đậm đà.",0
+"Nhà hàng có phong cách ấm cúng, thích hợp cho những buổi ăn gia đình.",0
+"Thực đơn phong phú, nhân viên phục vụ cũng rất chuyên nghiệp.",0
+"Chỗ ngồi khá thoải mái, nhưng tôi nghĩ sẽ tốt hơn nếu có thêm lựa chọn ngoài trời.",0
+"Tôi yêu thích món mì xào ở đây, nhưng món salad thì hơi nhạt.",0
+"Nhân viên phục vụ khá niềm nở, nhưng tôi cần thêm chút sự kiên nhẫn.",0
+"Nhà hàng rất thích hợp cho các buổi tiệc, nhưng món ăn hơi ngọt so với khẩu vị của tôi.",0
+"Đồ ăn rất tươi và ngon, chỉ có điều không gian hơi ồn ào vào giờ cao điểm.",0
+"Món ăn ở đây khá ngon nhưng phục vụ còn chậm, đặc biệt là vào cuối tuần.",0
+"Nhà hàng này có không gian rộng rãi và thoáng mát, nhưng cần chú ý đến vấn đề vệ sinh.",0
+"Đồ ăn ở đây rất tươi ngon, nhưng món ăn nhẹ chưa đủ phong phú.",0
+"Nhân viên rất nhiệt tình, nhưng cách trang trí chưa thật sự đẹp mắt.",0
+"Món ăn ở đây rất hợp khẩu vị, sẽ ghé lại lần sau.",0
+"Không gian khá ồn ào, khó chịu khi ăn.",0
+"Đồ ăn ngon nhưng phục vụ hơi chậm, cần cải thiện.",0
+"Nhà hàng có không gian đẹp nhưng đồ ăn chưa thực sự ấn tượng.",0
+"Món ăn ở đây không đặc sắc như tôi mong đợi, chỉ bình thường.",0
+"Chất lượng món ăn không đúng như quảng cáo, hơi thất vọng.",0
+"Nhân viên phục vụ nhanh nhưng chưa thực sự thân thiện.",0
+"Thực đơn chưa đa dạng, tôi muốn có thêm nhiều lựa chọn hơn.",0
+"Giá cả khá cao so với chất lượng món ăn, tôi mong đợi nhiều hơn.",0
+"Món tráng miệng hơi ngọt, tôi mong muốn có một sự cân bằng hơn.",0
+"Không gian hơi chật chội, không thoải mái lắm khi ăn.",0
+"Nhà hàng đẹp nhưng đợi món hơi lâu, làm giảm trải nghiệm của tôi.",0
+"Thực đơn không phù hợp với khẩu vị của tôi, tôi hy vọng có thêm món ăn mới.",0
+"Đồ ăn ở đây tươi ngon nhưng thiếu gia vị, cảm giác hơi nhạt.",0
+"Nhân viên phục vụ chưa thật sự nhanh nhẹn, có thể cải thiện hơn.",0
+"Không gian khá tối và không thoải mái để ăn uống lâu dài.",0
+"Nhà hàng không có đủ lựa chọn cho người ăn chay, cần cải thiện.",0
+"Thực phẩm tươi nhưng cách chế biến chưa hoàn hảo, món ăn không có gì đặc biệt.",0
+"Không gian đẹp nhưng đợi món quá lâu, tôi mong đợi dịch vụ nhanh hơn.",0
+"Nhân viên khá thân thiện nhưng một số có vẻ thiếu chuyên nghiệp.",0
+"Chất lượng món ăn không đồng đều, có món rất ngon nhưng có món lại khá bình thường.",0
+"Tôi thấy nhà hàng này không được vệ sinh tốt lắm, cần chú ý hơn.",0
+"Đồ ăn không tươi như tôi mong đợi, có thể cải thiện chất lượng nguyên liệu.",0
+"Nhân viên phục vụ tốt nhưng nhà hàng cần cải thiện không gian để thêm thoải mái.",0
+"Nhà hàng có món ăn bình thường, không có gì nổi bật so với những nơi khác.",0
+"Đồ ăn khá ngon nhưng không gian hơi bí bách và ngột ngạt.",0
+"Tôi không hài lòng về tốc độ phục vụ, đợi lâu quá.",0
+"Nhà hàng cần cải thiện món ăn để phù hợp với khẩu vị của nhiều người hơn.",0
+"Thực đơn ở đây không đa dạng lắm, tôi mong có thêm nhiều lựa chọn.",0
+"Chỗ ngồi hơi chật chội, không thoải mái lắm để ăn lâu.",0
+"Nhà hàng đẹp nhưng tôi thấy chưa được sạch sẽ như tôi mong đợi.",0
+"Đồ ăn không như tôi tưởng tượng, có phần thất vọng.",0
+"Món ăn không đặc biệt như lời giới thiệu, tôi mong đợi nhiều hơn.",0
+"Giá cả không hợp lý so với chất lượng đồ ăn.",0
+"Món ăn tuy tươi ngon nhưng không có gì đặc biệt, tôi hy vọng sẽ có sự đổi mới.",0
+"Nhân viên thân thiện nhưng có vẻ thiếu sự chú ý đến chi tiết.",0
+"Đồ ăn ngon nhưng phục vụ quá lâu, tôi phải chờ rất lâu để có món.",0
+"Nhà hàng đẹp nhưng không gian hơi nóng, cần điều chỉnh lại nhiệt độ.",0
+"Nhà hàng có dịch vụ chấp nhận được, nhưng món ăn chưa thật sự xuất sắc.",0
+"Đồ ăn ở đây quá ngọt, cần có sự cân đối giữa các vị.",0
+"Thực đơn khá đơn giản, tôi mong muốn có nhiều món đặc biệt hơn.",0
+"Không gian hơi đông đúc vào cuối tuần, có thể cải thiện điều này.",0
+"Nhà hàng cần cải thiện dịch vụ, tôi phải chờ rất lâu mới có món ăn.",0
+"Đồ ăn khá bình thường, không có gì ấn tượng.",0
+"Món ăn ngon nhưng cần thêm nhiều gia vị để tăng hương vị.",0
+"Thực đơn chưa đa dạng, không có nhiều lựa chọn cho những người ăn kiêng.",0
+"Nhân viên rất niềm nở nhưng quá đông khách nên không thể phục vụ nhanh chóng.",0
+"Đồ ăn ở đây không hợp khẩu vị của tôi, tôi nghĩ cần điều chỉnh.",0
+"Món ăn ở đây khá ổn nhưng không đặc biệt, tôi mong đợi hơn.",0
+"Nhà hàng này có thể cải thiện được chất lượng món ăn và không gian.",0
+"Thực đơn không phong phú, tôi nghĩ cần thêm nhiều món mới.",0
+"Không gian không thoải mái, hơi ngột ngạt khi ăn lâu.",0
+"Đồ ăn không đủ gia vị, cần phải cải thiện thêm.",0
+"Nhà hàng khá ồn ào vào giờ cao điểm, tôi mong có một không gian yên tĩnh hơn.",0
+"Nhân viên rất lịch sự nhưng tốc độ phục vụ cần cải thiện.",0
+"Món ăn hơi thiếu hương vị, tôi hy vọng nhà hàng có thể thêm gia vị.",0
+"Thực đơn ít lựa chọn, tôi mong có thêm các món ăn mới.",0
+"Nhà hàng có không gian đẹp nhưng dịch vụ hơi kém, cần cải thiện.",0
+"Nhân viên thân thiện nhưng chất lượng phục vụ chưa đồng đều.",0
+"Món ăn ngon nhưng tôi không thấy sự sáng tạo trong cách chế biến.",0
+"Nhà hàng đẹp nhưng cách trang trí chưa thật sự ấn tượng.",0
+"Nhà hàng này cần cải thiện tốc độ phục vụ và không gian thoải mái hơn.",0
+"Món ăn ở đây tươi ngon nhưng chưa đủ đa dạng, tôi mong đợi nhiều hơn.",0
+"Nhà hàng phục vụ nhanh nhưng chất lượng món ăn chưa đáp ứng kỳ vọng.",0
+"Thực đơn đơn giản quá, tôi muốn có nhiều món đặc sắc hơn.",0
+"Nhà hàng có không gian ổn nhưng tôi cảm thấy hơi thiếu ánh sáng.",0
+"Chất lượng món ăn không đồng đều, có món rất ngon nhưng có món không ổn.",0
+"Nhà hàng này quá đông khách, tôi không thích không gian ồn ào như vậy.",0
+"Nhà hàng cần chú ý đến không gian và sự thoải mái của khách hàng hơn.",0
+"Đồ ăn ở đây không đặc sắc, tôi đã thử những nơi khác ngon hơn nhiều.",0
+"Nhân viên phục vụ chưa thực sự nhanh nhẹn và chuyên nghiệp.",0
+"Thực đơn hơi thiếu sự sáng tạo, tôi mong có nhiều món mới lạ hơn.",0
+"Nhà hàng này có không gian đẹp nhưng phục vụ chưa thật sự chuyên nghiệp.",0
+"Đồ ăn khá ngon nhưng tôi cảm thấy món chính hơi ít lựa chọn.",0
+"Thực đơn chưa thực sự phong phú, tôi mong có thêm nhiều món ăn mới.",0
+"Chất lượng món ăn không như tôi mong đợi, tôi sẽ thử những nhà hàng khác.",0
+"Không gian đẹp nhưng có vẻ thiếu sự chú ý đến chi tiết, tôi mong đợi nhiều hơn.",0
+"Nhà hàng này có món ăn tươi ngon nhưng không khí có phần hơi bí bách.",0
+"Món ăn ở đây khá ngon, nhưng chưa thực sự đặc biệt.",1
+"Nhân viên phục vụ khá ổn, nhưng không thật sự niềm nở.",1
+"Không gian quán hơi nhỏ, nhưng cũng dễ chịu.",1
+"Chất lượng món ăn bình thường, không có gì nổi bật.",1
+"Tôi không thấy quá ấn tượng với món ăn ở đây, nhưng cũng không đến nỗi tệ.",1
+"Giá cả hợp lý nhưng có thể cải thiện thêm về chất lượng món ăn.",1
+"Nhân viên phục vụ thân thiện nhưng có vẻ thiếu chuyên nghiệp.",1
+"Không gian quán thoải mái, nhưng hơi ồn ào một chút.",1
+"Đồ ăn ở đây không quá ngon, nhưng cũng không đến mức tệ.",1
+"Quán không quá đông, dịch vụ nhanh, nhưng tôi nghĩ có thể làm tốt hơn.",1
+"Thực đơn đa dạng nhưng thiếu một số món đặc trưng.",1
+"Nhân viên phục vụ lịch sự nhưng chưa thực sự chu đáo.",1
+"Món ăn ở đây khá vừa miệng, nhưng tôi mong đợi nhiều hơn.",1
+"Các món ăn có phần chưa đạt yêu cầu về hương vị, nhưng nhìn chung là ổn.",1
+"Không gian sạch sẽ nhưng không thật sự thoải mái khi đông người.",1
+"Món ăn không quá tệ, nhưng tôi cảm thấy chưa đủ hấp dẫn.",1
+"Dịch vụ nhanh chóng, nhưng quán cần cải thiện thêm không gian.",1
+"Đồ ăn ổn nhưng có thể làm sáng tạo hơn một chút.",1
+"Chất lượng món ăn tạm ổn, nhưng tôi hy vọng sẽ có sự cải thiện trong lần tới.",1
+"Món ăn có vẻ tươi ngon, nhưng chưa đủ hương vị đặc trưng.",1
+"Tôi khá hài lòng với bữa ăn, nhưng có thể có nhiều lựa chọn hơn.",1
+"Không gian nhà hàng thoải mái, nhưng cần chú ý thêm vào chất lượng món ăn.",1
+"Thực phẩm ở đây khá tươi nhưng món ăn chưa thực sự ấn tượng.",1
+"Đây là một nơi ổn để ăn uống, nhưng không phải là lựa chọn xuất sắc.",1
+"Đồ ăn ở đây vừa miệng nhưng tôi mong muốn thêm gia vị.",1
+"Quán ăn này khá bình thường, nhưng không có gì đáng chê trách.",1
+"Nhân viên phục vụ tốt nhưng có vẻ thiếu nhiệt huyết.",1
+"Tôi thích món ăn ở đây, nhưng vẫn còn chỗ để cải thiện.",1
+"Không gian quán rộng rãi nhưng có thể thay đổi cách bài trí một chút.",1
+"Tôi đã thử món này, khá ổn nhưng không để lại ấn tượng sâu sắc.",1
+"Đây là quán ăn ổn, nhưng tôi mong muốn có nhiều món ăn mới lạ hơn.",1
+"Không gian quán khá đơn giản, nhưng sạch sẽ và thoải mái.",1
+"Món ăn khá hợp khẩu vị, nhưng tôi nghĩ có thể gia giảm gia vị một chút.",1
+"Chất lượng phục vụ nhanh chóng nhưng có thể cải thiện thêm sự chuyên nghiệp.",1
+"Thực đơn khá phong phú, nhưng món ăn chưa thật sự khiến tôi ấn tượng.",1
+"Nhà hàng này khá tốt, nhưng không đủ đặc biệt để tôi quay lại lần nữa.",1
+"Nhân viên phục vụ thân thiện, nhưng có chút lúng túng trong việc tư vấn món ăn.",1
+"Đồ ăn không quá đặc biệt nhưng vẫn đủ ngon để ăn.",1
+"Chất lượng món ăn bình thường, không quá xuất sắc nhưng cũng không tệ.",1
+"Quán ăn này khá ổn, nhưng tôi muốn có thêm sự đa dạng trong thực đơn.",1
+"Không gian ở đây ổn, nhưng nếu có thêm cây xanh thì sẽ tuyệt hơn.",1
+"Thức ăn ở đây chỉ ở mức trung bình, không có gì đặc sắc.",1
+"Nhân viên phục vụ tốt nhưng có thể cải thiện thêm về tốc độ phục vụ.",1
+"Nhà hàng này có tiềm năng, nhưng cần làm việc nhiều hơn về món ăn và dịch vụ.",1
+"Chất lượng món ăn khá tốt, nhưng không gian quán hơi chật chội.",1
+"Tôi thích đồ ăn ở đây nhưng không thấy sự khác biệt so với các quán khác.",1
+"Không gian quán có thể trở nên tốt hơn nếu có thêm chút ánh sáng tự nhiên.",1
+"Nhân viên phục vụ có vẻ chuyên nghiệp nhưng vẫn cần thêm chút thân thiện.",1
+"Chất lượng đồ ăn bình thường, nhưng tôi không hài lòng với không gian quán.",1
+"Món ăn khá ngon nhưng tôi thấy giá hơi cao so với chất lượng.",1
+"Nhà hàng này ổn, nhưng cần cải thiện về không gian và thực đơn.",1
+"Quán ăn này khá dễ chịu, nhưng món ăn chưa thực sự nổi bật.",1
+"Không gian quán rộng rãi nhưng món ăn có thể đa dạng hơn.",1
+"Nhân viên phục vụ chu đáo nhưng vẫn cần thêm một chút tinh tế.",1
+"Đây là một lựa chọn ổn, nhưng tôi chưa chắc sẽ quay lại.",1
+"Không gian nhà hàng khá thoải mái, nhưng đồ ăn không đủ ấn tượng.",1
+"Tao sẽ quay lại đây và phá nát chỗ này!",1
+"Chỉ muốn đập vỡ mặt mấy nhân viên ở đây.",1
+"Nhà hàng này đáng bị thiêu rụi vì sự phục vụ quá tệ.",1
+"Đừng để tao phải dùng vũ lực với mấy đứa làm việc ở đây.",1
+"Tao thề sẽ đấm thẳng mặt quản lý nếu gặp lần nữa.",1
+"Nhân viên ở đây đáng bị đuổi việc ngay lập tức, thật tệ hại!",1
+"Đồ ăn này làm tao muốn đập cả cái bàn.",1
+"Mày nghĩ mày là ai mà thái độ như vậy? Tao sẽ xử mày!",1
+"Nhân viên đã nói sẽ giết tôi nhưng tôi không hiểu tại sao.",0
+"Tôi đã bị đuổi khỏi quán vì là con gái, điều này thật không công bằng.",0
+"Bạn tôi đã bị sàm sỡ bởi quản lý quán, tôi cảm thấy rất xấu hổ và tức giận.",0
+"Tôi thấy mình bị phân biệt chủng tộc khi nhân viên nói tôi không thể vào vì tôi là người da đen.",0
+"Tôi không hiểu tại sao nhân viên lại có thái độ bạo lực với tôi chỉ vì tôi hỏi về món ăn.",0
+"Đến quán ăn thì bị quản lý la mắng chỉ vì tôi mang theo bạn nữ, tôi cảm thấy rất khó chịu.",0
+"Nhân viên đã chửi tôi là đồ ngốc chỉ vì tôi không biết đặt món ăn đúng cách.",0
+"Quản lý đã yêu cầu tôi rời đi vì tôi là người LGBT, tôi thật sự rất thất vọng.",0
+"Chúng tôi bị nhân viên từ chối phục vụ vì trang phục của chúng tôi, họ nói chúng tôi trông không xứng đáng.",0
+"Tôi đã bị tấn công khi đang ngồi ăn, và nhân viên không làm gì để ngăn chặn.",0
+"Tôi cảm thấy không an toàn khi đến đây vì nhân viên có thái độ rất thô lỗ và không thân thiện.",0
+"Quản lý đã xúc phạm tôi bằng những lời lẽ không hay vì tôi không thể ăn được món cay.",0
+"Tôi đã bị đánh khi hỏi nhân viên về một món ăn, điều này khiến tôi cảm thấy thật sự sợ hãi.",0
+"Tôi không hiểu tại sao nhân viên lại có thái độ thù địch với tôi, chỉ vì tôi hỏi về thực đơn.",0
+"Nhân viên không cho tôi ngồi ở bàn vì tôi mặc áo phông, tôi không nghĩ mình làm gì sai.",0
+"Tôi đã bị từ chối phục vụ chỉ vì tôi là người nước ngoài, tôi không thể hiểu lý do.",0
+"Nhân viên ở quán này rất thô lỗ, họ đã đuổi tôi vì tôi mang theo con chó nhỏ.",0
+"Chúng tôi bị đánh giá không công bằng vì là nhóm người đến từ một quốc gia khác.",0
+"Quản lý nói rằng tôi không thể vào vì tôi là người béo, điều này rất tổn thương.",0
+"Tôi cảm thấy mình bị phân biệt giới tính khi bị yêu cầu ra ngoài chỉ vì tôi là phụ nữ.",0
+"Bạn tôi đã bị đánh vì chúng tôi chỉ vào để hỏi thông tin về món ăn.",0
+"Tôi không thể tin rằng nhân viên lại có thể hành động như vậy, họ đã làm tôi cảm thấy bị xúc phạm.",0
+"Nhân viên luôn tỏ ra thù địch mỗi lần tôi đến, có vẻ họ không thích khách hàng như tôi.",0
+"Tôi không hiểu tại sao tôi lại bị la mắng chỉ vì muốn hỏi về món ăn đặc biệt.",0
+"Tôi đã chứng kiến nhân viên quát mắng một khách hàng chỉ vì họ có vẻ không hiểu tiếng Việt.",0
+"Tôi đã bị bỏ qua và đối xử không công bằng chỉ vì tôi không phải là người Việt.",0
+"Tôi không thể chấp nhận được cách mà nhân viên đối xử với tôi và bạn tôi khi chúng tôi đến đây.",0
+"Bạn tôi đã bị đuổi ra ngoài chỉ vì mang theo một chiếc túi xách lớn.",0
+"Tôi cảm thấy rất không thoải mái khi nhân viên liên tục nhìn chằm chằm vào tôi và làm tôi cảm thấy bị kỳ thị.",0
+"Quản lý đã không cho phép tôi vào chỉ vì tôi là người tàn tật, điều này thật khó chịu.",0
+"Nhân viên nói rằng tôi không thể ngồi ở bàn vì là người có màu da khác, tôi thật sự rất buồn.",0
+"Tôi bị nhân viên quán ăn chửi mắng vì không ăn hết món ăn của mình, họ thật sự rất thiếu chuyên nghiệp.",0
+"Tôi bị đuổi khỏi quán chỉ vì tôi là người có quốc tịch khác, điều này thật không thể chấp nhận.",0
+"Tôi đã bị hành hạ tinh thần bởi cách mà nhân viên đối xử với tôi trong suốt buổi ăn tối.",0
+"Nhân viên có thái độ rất kì thị khi tôi không thể nói tiếng Việt trôi chảy.",0
+"Tôi bị đánh giá không công bằng vì tôi là người nước ngoài, không được phục vụ như những người khác.",0
+"Chúng tôi bị đối xử tệ hại chỉ vì mang theo một đứa trẻ, họ đã nói chúng tôi là những khách hàng phiền phức.",0
+"Tôi không hiểu tại sao quản lý lại tỏ ra thô bạo khi tôi chỉ yêu cầu một chút hỗ trợ.",0
+"Nhân viên đã gây áp lực cho tôi khi tôi không thể trả lời họ ngay lập tức, điều này khiến tôi cảm thấy rất căng thẳng.",0
+"Chúng tôi bị từ chối phục vụ chỉ vì tôi là người có vẻ ngoài khác biệt với người Việt.",0
+"Nhân viên nói tôi không thể vào quán vì tôi có làn da màu, điều này thật sự rất phân biệt.",0
+"Quản lý đã tỏ ra thái độ không thân thiện khi tôi muốn giải thích sự hiểu lầm của mình.",0
+"Nhân viên đã làm tôi rất khó chịu khi liên tục chỉ trích cách tôi ăn uống.",0
+"Tôi thấy mình bị phân biệt về giới tính khi nhân viên liên tục có những câu nói không thích hợp với tôi.",0
+"Tôi cảm thấy rất bị xúc phạm khi nhân viên nói rằng tôi không thể ngồi vì tôi mặc trang phục không phù hợp.",0
+"Tôi đã bị làm khó chỉ vì tôi là khách du lịch, nhân viên đối xử với tôi như thể tôi không thuộc về đây.",0
+"Nhân viên đã có hành động bạo lực với tôi khi tôi phản ánh về chất lượng món ăn.",0
+"Tôi không thể tin nổi là nhân viên lại yêu cầu tôi ra ngoài chỉ vì tôi không nói tiếng Việt tốt.",0
+"Nhân viên đã chửi bới tôi vì tôi không đồng ý với cách họ phục vụ, họ thật sự rất thiếu tôn trọng.",0
+"Quản lý đã từ chối phục vụ tôi chỉ vì tôi là người ngoại quốc, tôi cảm thấy rất thất vọng.",0
+"Tôi đã bị xúc phạm khi nhân viên nói rằng tôi trông như không phải là người Việt Nam.",0
+"Chúng tôi bị đuổi khỏi quán chỉ vì tôi và bạn tôi là những người đồng tính, điều này không thể chấp nhận được.",0
+"Tôi cảm thấy bị xúc phạm khi nhân viên liên tục phê bình về cách tôi đặt món ăn.",0
+"Tôi không thể hiểu tại sao lại bị đối xử như vậy chỉ vì tôi có vẻ ngoài khác biệt.",0
+"Quản lý đã nói rằng tôi không thể vào vì tôi không phù hợp với không gian của quán.",0
+"Nhân viên nói tôi không thể vào vì tôi là người có thân hình không như họ muốn.",0
+"Tôi đã bị từ chối phục vụ chỉ vì tôi là người có làn da khác biệt, điều này rất đau lòng.",0
+"Tôi bị từ chối phục vụ chỉ vì tôi mặc áo sơ mi không phù hợp, điều này thật kỳ quặc.",0
+"Chúng tôi bị đuổi khỏi quán vì đã hỏi quá nhiều về thực đơn, tôi cảm thấy rất bối rối.",0
+"Nhân viên đã đe dọa sẽ đuổi chúng tôi nếu chúng tôi không ăn món họ đưa ra.",0
+"Quản lý đã có hành vi phân biệt chủng tộc khi từ chối cho tôi vào chỉ vì tôi là người da đen.",0
+"Tôi không thể chấp nhận được việc nhân viên nói rằng tôi không đủ lịch sự để ở lại.",0
+"Tôi đã bị từ chối phục vụ khi tôi đề nghị đổi món ăn, nhân viên tỏ ra rất khó chịu.",0
+"Nhân viên đã có thái độ phân biệt khi họ nói tôi không thể vào vì tôi là người không phải là người Việt.",0
+"Tôi không thể tin nổi rằng nhân viên có thể đối xử với khách hàng như vậy chỉ vì tôi là người ngoài quốc.",0
+"Tôi đã cảm thấy rất khó chịu khi nhân viên liên tục chỉ trích trang phục của tôi.",0
+"Tôi cảm thấy rất đau đớn khi bị từ chối phục vụ chỉ vì tôi có thân hình không chuẩn.",0
+"Quản lý đã đuổi tôi ra ngoài chỉ vì tôi mang theo con chó nhỏ, điều này thật không công bằng.",0
+"Tôi đã bị từ chối phục vụ vì tôi không thể nói tiếng Việt một cách lưu loát.",0
+"Nhân viên có thái độ không chấp nhận được khi tôi muốn đổi món ăn.",0
+"Nhân viên đã xúc phạm tôi và bạn tôi chỉ vì chúng tôi là những người đồng tính.",0
+"Tôi cảm thấy rất không thoải mái khi nhân viên nhìn chằm chằm vào tôi suốt thời gian ăn.",0
+"Tôi không thể hiểu tại sao lại bị đối xử như vậy, chỉ vì tôi có phong cách ăn uống khác biệt.",0
+"Quản lý đã nói tôi không thể ngồi vì tôi là người ngoại quốc.",0
+"Nhân viên có thái độ rất kỳ thị khi nói tôi không được phục vụ chỉ vì tôi là người nước ngoài.",0
+"Tôi đã bị la mắng vì không hiểu hết các món ăn trên thực đơn, điều này rất làm tôi tổn thương.",0
+"Tôi không thể chấp nhận được cách mà nhân viên đối xử với tôi chỉ vì tôi là người nước ngoài.",0
+"Quản lý đã đuổi tôi ra ngoài vì tôi là người da đen, tôi thật sự rất buồn.",0
+"Tôi cảm thấy mình bị phân biệt về giới tính khi nhân viên yêu cầu tôi rời đi chỉ vì tôi là phụ nữ.",0
+"Tôi cảm thấy rất bức xúc khi nhân viên nói tôi không thể vào chỉ vì tôi không phải người Việt.",0
+"Tôi đã bị đuổi khỏi quán vì tôi là người tàn tật, điều này thật sự rất đau lòng.",0
+"Tôi không thể chịu đựng được việc nhân viên quát mắng tôi chỉ vì tôi không thể ăn hết món ăn.",0
+"Tao sẽ không để yên chuyện này, chờ tao trở lại!",1
+"Quản lý ở đây cần bị đấm một trận để hiểu chuyện.",1
+"Đồ ăn này kinh khủng đến mức tao muốn ném vào mặt đầu bếp.",1
+"Chỗ này cần bị đóng cửa ngay lập tức, thật kinh tởm.",1
+"Nhân viên như thế này đáng bị đuổi cổ ngay.",1
+"Đừng để tao nhìn thấy mặt mày lần nữa, tao không chắc mình sẽ kiềm chế được đâu.",1
+"Chỗ này tệ đến mức tao muốn đốt cả nhà hàng.",1
+"Quản lý mà không thay đổi thì sẽ có ngày gặp rắc rối lớn.",1
+"Tao sẽ khiến nhà hàng này phải trả giá vì cách phục vụ tệ hại.",1
+"Đầu bếp ở đây nên bị cấm nấu ăn vĩnh viễn.",1
+"Đừng thử thách sự kiên nhẫn của tao, tao không đùa đâu.",1
+"Thái độ nhân viên như vậy đáng bị ăn một cái tát.",1
+"Tao muốn bóp cổ thằng phục vụ vừa rồi.",1
+"Đồ ăn làm tao muốn ói, ai mà nấu được thứ này chứ?",1
+"Đừng để tao phải gọi cả nhóm đến dạy mày một bài học.",1
+"Mày có biết tao là ai không? Tao sẽ không để yên chuyện này đâu.",1
+"Chỗ này đáng bị đập phá cho bõ tức.",1
+"Quản lý mà không xin lỗi tao, sẽ có chuyện đấy.",1
+"Nhân viên như mày cần bị tát tỉnh ra.",1
+"Tao sẽ làm đơn kiện để đóng cửa cái nơi này.",1
+"Nhân viên ở đây quá láo, cần một trận dạy dỗ.",1
+"Tao muốn ném cả đồ ăn vào mặt quản lý.",1
+"Nhà hàng này tệ đến mức tao muốn đánh nhau với mấy người ở đây.",1
+"Chờ tao trở lại với bạn bè tao, sẽ không yên đâu.",1
+"Quản lý nên bị đuổi việc vì cách điều hành ngu ngốc.",1
+"Đừng thử thách tao, tao không có nhiều kiên nhẫn đâu.",1
+"Tao thề sẽ bóp nát cái nhà hàng này nếu còn thái độ như vậy.",1
+"Tao sẽ cho mọi người biết sự kinh khủng của chỗ này, không ai được yên đâu.",1
+"Đồ ăn này mà đem cho chó cũng không thèm, thật tức giận!",1
+"Mày cần một bài học về cách phục vụ khách hàng, tao sẽ dạy mày.",1
+"Thằng quản lý đúng là không biết điều, tao sẽ xử nó.",1
+"Tao muốn đập phá chỗ này ngay bây giờ, thật kinh khủng!",1
+"Nhân viên thái độ láo lếu, cần bị đuổi ngay.",1
+"Tao sẽ không ngừng cho đến khi chỗ này bị đóng cửa.",1
+"Chỗ này tệ đến mức tao muốn đốt cả cái bàn ăn.",1
+"Đừng để tao phải dạy mày cách làm việc, hiểu chưa?",1
+"Tao sẽ quay lại với một nhóm để làm rõ chuyện này.",1
+"Nhân viên như vậy đáng bị tát một trận để tỉnh.",1
+"Tao muốn ném cái ghế vào mặt thằng phục vụ vừa rồi.",1
+"Nhà hàng này không xứng đáng tồn tại, thật tức giận!",1
+"Tao sẽ không để yên chuyện này, hãy chờ xem.",1
+"Đầu bếp ở đây cần bị sa thải ngay lập tức!",1
+"Tao sẽ đập phá nếu còn gặp phải chuyện này lần nữa.",1
+"Mày nên cảm ơn vì tao còn kiềm chế, tao muốn đấm mày ngay lập tức.",1
+"Quản lý cần bị đuổi việc, tao không thể chịu nổi nữa.",1
+"Tao sẽ làm mọi cách để cái chỗ này biến mất khỏi thành phố.",1
+"Đừng để tao phải gọi cả hội đến xử lý mấy đứa phục vụ.",1
+"Tao muốn ném cả cái đĩa vào mặt mấy người làm việc ở đây.",1
+"Thái độ của mấy người ở đây thật khiến tao muốn điên lên.",1
+"Nhà hàng này có không gian rất thoải mái, tôi thích đến đây mỗi lần cần thư giãn.",0
+"Đồ ăn ở đây khá ngon, nhưng không gian có phần hơi chật chội.",0
+"Thực đơn đa dạng, phục vụ nhanh chóng và nhân viên rất thân thiện.",0
+"Món ăn ở đây có giá hợp lý, tôi sẽ quay lại vào lần sau.",0
+"Nhà hàng sạch sẽ, nhưng không khí hơi nóng, cần cải thiện điều hòa một chút.",0
+"Dịch vụ nhanh chóng và hiệu quả, nhưng món tráng miệng chưa thực sự ấn tượng.",0
+"Nhà hàng này có món sushi rất ngon, nhưng tôi nghĩ phần thịt có thể tươi hơn một chút.",0
+"Nhân viên lịch sự và chu đáo, nhưng có thể cải thiện tốc độ phục vụ trong giờ cao điểm.",0
+"Cà phê ở đây rất thơm và đậm vị, tôi rất hài lòng.",0
+"Không gian quán rất ấm cúng, thích hợp để tụ tập bạn bè.",0
+"Thức uống đa dạng, nhưng trà sữa có vẻ hơi ngọt so với khẩu vị của tôi.",0
+"Quán này có bánh ngọt rất ngon, đặc biệt là bánh tiramisu.",0
+"Món bún bò khá ngon, nhưng tôi nghĩ cần thêm chút gia vị để đậm đà hơn.",0
+"Phục vụ rất chu đáo, giá cả hợp lý, tôi sẽ giới thiệu cho bạn bè.",0
+"Món ăn được trình bày đẹp mắt, chất lượng tốt, tôi rất hài lòng.",0
+"Không gian quán đẹp, thích hợp để chụp ảnh sống ảo.",0
+"Nhân viên phục vụ rất nhiệt tình, nhưng nên cải thiện thời gian chờ món.",0
+"Món ăn ngon, nhưng nước chấm có vẻ chưa hợp khẩu vị của tôi.",0
+"Quán có không gian ngoài trời thoáng mát, rất thích hợp cho buổi tối.",0
+"Thực đơn khá phong phú, nhưng một số món hơi mặn so với khẩu vị của tôi.",0
+"Quán có chỗ đậu xe rộng rãi, rất tiện lợi.",0
+"Không gian quán sạch sẽ, thoáng mát, nhưng nhạc hơi ồn.",0
+"Bánh mì ở đây rất ngon, nhưng tôi nghĩ cần thêm rau để cân bằng hương vị.",0
+"Món phở rất ngon, nước dùng trong và đậm vị.",0
+"Dịch vụ rất tốt, nhưng món ăn lên hơi chậm trong giờ cao điểm.",0
+"Thức ăn tươi ngon, giá cả phải chăng, tôi rất hài lòng.",0
+"Quán cà phê này có không gian rất lãng mạn, phù hợp cho các cặp đôi.",0
+"Trà trái cây ở đây rất tươi và ngon, tôi sẽ quay lại lần nữa.",0
+"Nhà hàng có không gian rộng rãi, phù hợp cho các buổi họp mặt gia đình.",0
+"Nhân viên niềm nở, món ăn lên nhanh, tôi rất hài lòng.",0
+"Đồ uống ngon, nhưng tôi nghĩ cần giảm lượng đá để không bị loãng.",0
+"Quán này có không gian yên tĩnh, rất phù hợp để làm việc hoặc học bài.",0
+"Món ăn ngon, phục vụ nhiệt tình, nhưng không gian hơi chật chội.",0
+"Cơm gà ở đây rất ngon, thịt mềm và thơm.",0
+"Quán này có món bánh xèo rất ngon, nhưng nước chấm hơi nhạt.",0
+"Dịch vụ nhanh chóng, nhân viên thân thiện, tôi rất hài lòng.",0
+"Không gian quán rất đẹp, phù hợp để tổ chức tiệc nhỏ.",0
+"Bún riêu ở đây rất ngon, nhưng tôi nghĩ cần thêm rau sống.",0
+"Thức ăn ngon, nhưng giá hơi cao so với mặt bằng chung.",0
+"Không gian thoáng đãng, nhân viên phục vụ chu đáo.",0
+"Món ăn đậm đà, chất lượng tốt, tôi sẽ quay lại lần sau.",0
+"Thực đơn rất phong phú, nhưng một số món hơi đắt.",0
+"Không gian đẹp, nhưng cần cải thiện ánh sáng vào buổi tối.",0
+"Cà phê trứng ở đây rất ngon, nhưng hơi ngọt so với khẩu vị của tôi.",0
+"Nhân viên rất chu đáo, món ăn ngon, tôi sẽ quay lại.",0
+"Không gian quán rất thoải mái, thích hợp để thư giãn.",0
+"Đồ ăn ở đây rất ngon, nhưng nước uống cần cải thiện thêm.",0
+"Nhà hàng này có món pizza rất ngon, nhưng cần thêm nhiều lựa chọn topping.",0
+"Không gian sạch sẽ, phục vụ nhanh, nhưng hơi ồn vào giờ cao điểm.",0
+"Món phở bò rất ngon, nước dùng đậm đà và vừa miệng.",0
+"Không gian quán nhỏ nhưng ấm cúng, phù hợp để đi cùng gia đình.",0
+"Nhân viên nhiệt tình, nhưng món ăn lên hơi chậm.",0
+"Thức uống ngon, nhưng cần thêm nhiều lựa chọn hơn.",0
+"Bún thịt nướng rất ngon, nhưng tôi nghĩ cần thêm chút nước mắm.",0
+"Nhân viên rất dễ thương, phục vụ nhiệt tình, tôi rất hài lòng.",0
+"Không gian quán yên tĩnh, rất thích hợp để đọc sách.",0
+"Món ăn khá ngon, nhưng không gian cần được cải thiện thêm.",0
+"Cơm tấm ở đây rất ngon, thịt sườn mềm và thấm vị.",0
+"Nhà hàng này có món lẩu rất ngon, nhưng giá hơi cao.",0
+"Không gian đẹp, nhưng bàn ghế hơi chật chội.",0
+"Món ăn ngon, nhân viên phục vụ tốt, tôi rất hài lòng.",0
+"Đồ ăn ở đây rất ngon, nhưng cần cải thiện hệ thống điều hòa.",0
+"Quán cà phê này có view rất đẹp, thích hợp để chụp ảnh.",0
+"Thức uống ngon, nhưng cần thêm lựa chọn không đường.",0
+"Món ăn được trình bày đẹp mắt, hương vị rất tuyệt vời.",0
+"Không gian quán thoáng mát, nhưng nhạc hơi lớn.",0
+"Nhân viên phục vụ rất nhiệt tình, món ăn ngon.",0
+"Món ăn đậm đà, nhưng cần cải thiện phần tráng miệng.",0
+"Không gian quán rất sạch sẽ, phù hợp cho gia đình.",0
+"Thức uống ở đây rất ngon, giá cả hợp lý.",0
+"Món ăn ngon, nhưng phần ăn hơi ít so với giá.",0
+"Quán có không gian đẹp, nhưng cần cải thiện thời gian phục vụ.",0
+"Món bún bò rất ngon, nước dùng đậm vị.",0
+"Nhân viên phục vụ rất chu đáo, món ăn ngon.",0
+"Thực đơn phong phú, nhưng giá hơi cao.",0
+"Không gian quán rất ấm cúng, phù hợp để họp mặt bạn bè.",0
+"Món lẩu rất ngon, nhưng cần thêm nhiều loại rau.",0
+"Đồ uống ngon, nhưng hơi ngọt so với khẩu vị của tôi.",0
+"Nhà hàng sạch sẽ, món ăn ngon, tôi sẽ quay lại.",0
+"Nhân viên nhiệt tình, không gian quán thoải mái.",0
+"Thức uống ở đây rất đa dạng, tôi rất thích.",0
+"Món bánh xèo ngon, nhưng nước chấm cần cải thiện.",0
+"Không gian quán đẹp, nhưng bàn ghế hơi ít.",0
+"Món ăn ngon, giá cả hợp lý, phục vụ tốt.",0
+"Quán có không gian ngoài trời rất thoáng mát.",0
+"Món ăn đậm đà, nhưng phần ăn hơi ít.",0
+"Không gian yên tĩnh, rất thích hợp để làm việc.",0
+"Món ăn được trình bày đẹp mắt, hương vị tuyệt vời.",0
+"Quán có món gà rán rất ngon, nhưng hơi nhiều dầu.",0
+"Không gian đẹp, nhân viên thân thiện, món ăn ngon.",0
+"Bánh mì ở đây rất ngon, nhưng tôi nghĩ cần thêm nhân.",0
+"Không gian quán rộng rãi, rất thích hợp cho gia đình.",0
+"Món ăn ngon, nhưng phần nước chấm cần cải thiện.",0
+"Thức uống rất ngon, nhân viên phục vụ nhiệt tình.",0
+"Quán cà phê này rất đẹp, đồ uống rất ngon.",0
+"Tao sẽ làm mọi cách để hạ thấp uy tín của nhà hàng này.",1
+"Đừng đùa với tao, tao sẽ xử lý tất cả mấy người ở đây.",1
+"Chỗ này đáng bị thiêu hủy vì cách phục vụ quá tệ.",1
+"Nhân viên cần bị đánh một trận để hiểu chuyện.",1
+"Tao sẽ không ngần ngại dùng bạo lực nếu gặp mấy người đó lần nữa.",1
+"Đầu bếp như vậy cần bị cấm nấu ăn vĩnh viễn.",1
+"Tao muốn đập cả nhà hàng vì sự bực tức này.",1
+"Nhân viên cần bị sa thải ngay lập tức, thật không thể chấp nhận được.",1
+"Tao sẽ quay lại và phá nát chỗ này cho bõ tức.",1
+"Đừng để tao gặp lại mấy đứa đó, tao sẽ không kiềm chế được đâu.",1
+"Tao thề sẽ dạy mấy người ở đây một bài học nhớ đời.",1
+"Tao muốn đấm thẳng vào mặt thằng quản lý.",1
+"Nhà hàng này đáng bị phá hủy vì sự phục vụ tồi tệ.",1
+"Tao sẽ không để yên cho mấy người ở đây đâu.",1
+"Tao muốn ném đồ ăn này vào mặt thằng đầu bếp ngu ngốc.",1
+"Quản lý cần bị đuổi ngay vì cách hành xử láo toét.",1
+"Tao sẽ phá tan nhà hàng này nếu còn gặp chuyện như vậy.",1
+"Đừng thử thách sự kiên nhẫn của tao, tao không đùa đâu.",1
+"Tao muốn đấm vào mặt thằng phục vụ vừa rồi.",1
+"Chỗ này làm tao tức điên, tao muốn đập phá ngay.",1
+"Nhân viên cần bị dạy một bài học nhớ đời.",1
+"Tao sẽ không tha thứ cho mấy đứa làm việc ở đây.",1
+"Tao muốn đập cả bàn ăn vì sự tức giận này.",1
+"Quản lý cần bị đuổi việc ngay lập tức, tao không chịu nổi nữa.",1
+"Chỗ này đáng bị đóng cửa vì cách phục vụ tồi tệ.",1
+"Mày sẽ phải hối hận vì cách cư xử như vậy với tao.",1
+"Tao sẽ quay lại với một nhóm để dạy mấy người ở đây.",1
+"Đừng để tao gặp lại, tao sẽ không giữ được bình tĩnh đâu.",1
+"Món ăn này xứng đáng bị đốt và chôn xuống đất.",2
+"Tôi không dám cho chuột ăn thứ rác rưởi này, nó có thể giết chết con vật tội nghiệp.",2
+"Đầu bếp chắc chắn mù và ngớ ngẩn khi phục vụ thứ đồ ăn đáng ghê tởm này.",2
+"Món súp trông giống như thứ bạn tìm thấy trong thùng rác sau bệnh viện.",2
+"Chắc chắn người nấu món này ghét loài người.",2
+"Súp này có mùi như nước cống pha với tuyệt vọng.",2
+"Nhà hàng này là bằng chứng rằng địa ngục cũng có nhà bếp.",2
+"Miếng bít tết này tệ đến mức phải bị giam trong tù làm hình phạt.",2
+"Món ăn ở đây ghê đến mức tôi tự hỏi liệu mình còn muốn sống không.",2
+"Món mì này là một tội ác với nước Ý và cả nền văn minh.",2
+"Mỗi miếng ăn đều giống như nhai rác thối rữa.",2
+"Đầu bếp chắc chắn dùng đồ bỏ đi từ ngoài đường làm nguyên liệu.",2
+"Pizza này trông giống như thứ đã được nướng trong đám cháy ở thùng rác.",2
+"Món ăn ở đây tệ đến mức nó giống như một cuộc tấn công sinh lý." ,2
+"Tôi thà ăn đất trộn với nước miếng còn hơn là đụng vào cái đĩa này một lần nữa.",2
+"Món ăn này tệ đến mức tôi muốn đánh đầu bếp.",2
+"Làm sao lại làm hỏng món ăn đến mức này? Giống như họ đang cố phá hoại cuộc sống của mọi người.",2
+"Cá có mùi như xác chết và vị còn tệ hơn.",2
+"Món ăn này là sự sỉ nhục mà lẽ ra nên bị xóa khỏi thế giới này.",2
+"Mì thì nhớt và có thể nhầm thành giun.",2
+"Nhà hàng này phục vụ món ăn giống như một tội ác chiến tranh.",2
+"Nước sốt này có vị như dầu máy pha với bùn.",2
+"Món ăn ở đây độc hại đến mức nó có thể khiến ai đó phát điên.",2
+"Món ăn này tệ đến mức nó phải có một cảnh báo pháp lý đi kèm.",2
+"Tôi ăn rác còn ngon hơn cái món kinh tởm này.",2
+"Burger này thối đến mức có thể được phân loại là mối nguy sinh học.",2
+"Món ăn này tệ đến mức cảm giác như một cuộc tấn công vào vị giác của tôi.",2
+"Nước sốt có vị như nôn mửa pha với sự hối hận.",2
+"Đây không phải là đồ ăn, mà là sự lạm dụng ẩm thực.",2
+"Bánh mì cứng đến mức có thể làm vũ khí.",2
+"Thứ này chỉ có thể được phục vụ cho những người chết.",2
+"Món ăn này tệ đến mức tôi không muốn làm phân bón cho cây cối.",2
+"Đầu bếp này nên bị cấm không bao giờ được lại gần bếp nữa.",2
+"Món ăn này trông như thể được nấu trong nhà vệ sinh công cộng.",2
+"Tráng miệng ghê đến mức khiến tôi muốn ói ngay lập tức.",2
+"Bít tết này cháy đến mức có thể gọi là than.",2
+"Cà phê có vị như giày bị cháy.",2
+"Món ăn này tệ đến mức nó sẽ trở thành một bộ phim kinh dị.",2
+"Gà có mùi như thể bị bỏ quên vài ngày trước khi nấu.",2
+"Nhà hàng này đã biến thức ăn thành vũ khí hủy diệt hàng loạt.",2
+"Súp này độc đến mức nó có thể giết chết ai đó.",2
+"Tôi không dám cho chuột ăn thứ rác này; nó còn đáng nguy hiểm hơn.",2
+"Nhà hàng này đã hoàn thiện nghệ thuật phá hoại món ăn.",2
+"Mì này có vị như thẻ cứng ngâm trong sự tuyệt vọng.",2
+"Salad trông và có mùi như thể đã được thu hoạch từ một cái ao bẩn.",2
+"Món ăn này là sự xúc phạm với những ai còn có vị giác.",2
+"Thức ăn ở đây tệ đến mức cảm giác như một trò đùa trên nhân loại.",2
+"Pizza này có vị như cao su với một chút mốc.",2
+"Tôi thà ăn giày của mình còn hơn là ăn ở đây lần nữa.",2
+"Món ăn này tệ đến mức khiến tôi muốn đấm vào mặt đầu bếp.",2
+"Tráng miệng này ngọt đến mức khiến tôi muốn chết vì đường.",2
+"Gà có vị sống đến mức nó có thể bay khỏi đĩa.",2
+"Đây là món ăn tồi tệ nhất tôi từng gặp phải.",2
+"Súp này có mùi như thể nó được múc từ một cái hồ ô nhiễm.",2
+"Nhà hàng này phải đóng cửa vì tội phạm với thức ăn.",2
+"Bánh mì cứng đến mức nó có thể làm gạch xây nhà.",2
+"Tôi đã bị nhân viên la mắng chỉ vì hỏi về các món ăn chay, tôi cảm thấy rất khó chịu.",0
+"Nhân viên đã từ chối phục vụ tôi chỉ vì tôi không nói được tiếng Việt thành thạo.",0
+"Quản lý nói tôi không thể ngồi vì tôi là người nước ngoài, điều này thật sự rất kỳ thị.",0
+"Tôi cảm thấy rất tổn thương khi nhân viên nói tôi không thể vào chỉ vì tôi là người không phải người Việt.",0
+"Nhân viên đã đuổi tôi vì tôi mặc đồ lạ, họ nói rằng không phù hợp với không gian của quán.",0
+"Tôi không thể tin được là nhân viên lại đánh giá tôi như vậy chỉ vì tôi có vẻ ngoài khác biệt.",0
+"Chúng tôi bị yêu cầu rời khỏi quán chỉ vì chúng tôi là một nhóm bạn gái, nhân viên đã có thái độ rất kỳ thị.",0
+"Quản lý nói rằng tôi không thể vào quán vì tôi mang theo con chó nhỏ, điều này thật vô lý.",0
+"Nhân viên đã đe dọa sẽ đuổi tôi vì tôi không thể ăn hết món ăn, tôi cảm thấy rất căng thẳng.",0
+"Tôi bị phân biệt khi nhân viên không cho tôi vào chỉ vì tôi là người ngoại quốc.",0
+"Nhân viên đã đuổi tôi ra ngoài chỉ vì tôi là người LGBT, tôi cảm thấy rất đau lòng.",0
+"Tôi bị từ chối phục vụ chỉ vì tôi không phải người Việt, tôi cảm thấy rất bị xúc phạm.",0
+"Nhân viên đã có thái độ kỳ thị khi họ nói rằng tôi không thể vào vì tôi là người da đen.",0
+"Tôi cảm thấy rất khó chịu khi nhân viên liên tục nhìn chằm chằm vào tôi và bạn tôi.",0
+"Chúng tôi bị từ chối phục vụ vì chúng tôi không phải là người Việt, tôi thật sự rất buồn.",0
+"Nhân viên đã nói tôi không thể ngồi vì tôi có phong cách ăn uống khác biệt, điều này thật không công bằng.",0
+"Quản lý đã yêu cầu tôi rời đi chỉ vì tôi là người nước ngoài, tôi cảm thấy rất xấu hổ.",0
+"Tôi cảm thấy rất bị phân biệt khi nhân viên nói rằng tôi không thể vào quán vì tôi không nói tiếng Việt.",0
+"Nhân viên đã đánh giá tôi không tốt chỉ vì tôi mặc một chiếc áo phông, tôi cảm thấy rất khó chịu.",0
+"Chúng tôi bị từ chối phục vụ chỉ vì chúng tôi là nhóm bạn LGBT, điều này thật không thể chấp nhận.",0
+"Tôi không thể hiểu tại sao nhân viên lại đuổi chúng tôi chỉ vì tôi là người da màu.",0
+"Quản lý nói rằng tôi không thể ngồi vì tôi không mặc đồ sang trọng, tôi cảm thấy bị phân biệt.",0
+"Tôi đã bị la mắng vì không thể ăn hết món ăn, điều này khiến tôi cảm thấy rất không thoải mái.",0
+"Nhân viên đã từ chối phục vụ tôi vì tôi là người ngoại quốc, tôi cảm thấy rất bị xúc phạm.",0
+"Tôi cảm thấy không được tôn trọng khi nhân viên từ chối phục vụ tôi vì tôi không nói tiếng Việt.",0
+"Tôi đã bị từ chối phục vụ chỉ vì tôi không có đủ tiền để trả ngay lập tức, điều này thật không công bằng.",0
+"Tôi cảm thấy rất đau lòng khi nhân viên nói tôi không thể vào vì tôi là người da đen.",0
+"Tôi bị từ chối phục vụ vì tôi là người tàn tật, điều này thật sự rất đau lòng.",0
+"Nhân viên đã đuổi tôi vì tôi không thể ăn hết món ăn, tôi cảm thấy rất tổn thương.",0
+"Tôi đã bị la mắng chỉ vì tôi không ăn được món ăn quá cay, điều này thật sự không công bằng.",0
+"Tôi bị yêu cầu rời khỏi quán chỉ vì tôi là người đồng tính, điều này thật không thể chấp nhận được.",0
+"Nhân viên đã có thái độ rất kỳ thị khi họ yêu cầu tôi ra ngoài vì tôi là người ngoại quốc.",0
+"Tôi đã bị xúc phạm khi nhân viên nói tôi không thể vào quán chỉ vì tôi không nói tiếng Việt.",0
+"Nhân viên đã từ chối phục vụ tôi chỉ vì tôi mặc quần áo không hợp với quy định của quán.",0
+"Tôi cảm thấy rất tổn thương khi nhân viên nói tôi không thể vào vì tôi không thuộc về nơi này.",0
+"Quản lý đã từ chối phục vụ tôi chỉ vì tôi là người ngoại quốc, tôi cảm thấy rất buồn.",0
+"Tôi không thể hiểu tại sao nhân viên lại đối xử với tôi như vậy chỉ vì tôi là người tàn tật.",0
+"Nhân viên đã đuổi tôi ra ngoài chỉ vì tôi mang theo bạn nữ, họ nói đây là quán chỉ dành cho nhóm nam.",0
+"Tôi đã bị la mắng chỉ vì tôi không đồng ý với cách nhân viên phục vụ, tôi cảm thấy thật sự rất tức giận.",0
+"Chúng tôi đã bị từ chối phục vụ chỉ vì chúng tôi là người nước ngoài, điều này thật khó chịu.",0
+"Tôi không thể tin được là nhân viên lại có thể đối xử với tôi như vậy chỉ vì tôi là người đồng tính.",0
+"Nhân viên đã từ chối phục vụ tôi vì tôi mang theo con chó nhỏ, tôi cảm thấy rất xấu hổ.",0
+"Tôi cảm thấy rất khó chịu khi nhân viên nói rằng tôi không thể vào vì tôi là người da đen.",0
+"Quản lý đã yêu cầu tôi ra ngoài chỉ vì tôi là người ngoại quốc, điều này thật sự rất xúc phạm.",0
+"Tôi đã bị đuổi khỏi quán chỉ vì tôi không nói tiếng Việt, tôi cảm thấy rất bối rối.",0
+"Nhân viên đã đánh giá tôi không tốt chỉ vì tôi là người có thân hình lớn, tôi cảm thấy rất xấu hổ.",0
+"Quản lý đã yêu cầu tôi ra ngoài chỉ vì tôi mặc đồ không phù hợp với không gian của quán.",0
+"Tôi bị yêu cầu rời đi chỉ vì tôi là người tàn tật, tôi cảm thấy thật sự rất đau lòng.",0
+"Tôi không thể chấp nhận được việc nhân viên đã la mắng tôi chỉ vì tôi không ăn hết món ăn.",0
+"Chúng tôi bị từ chối phục vụ chỉ vì tôi và bạn tôi là người LGBT, điều này thật sự không thể chấp nhận.",0
+"Tôi cảm thấy rất bị phân biệt khi nhân viên yêu cầu tôi rời đi chỉ vì tôi là người nước ngoài.",0
+"Tôi không thể tin được là nhân viên lại đối xử với tôi như vậy chỉ vì tôi là người da đen.",0
+"Tôi bị từ chối phục vụ chỉ vì tôi mặc quần áo không phù hợp, điều này thật sự rất tổn thương.",0
+"Quản lý đã từ chối phục vụ tôi chỉ vì tôi là người nước ngoài, tôi cảm thấy thật sự rất đau lòng.",0
+"Tôi cảm thấy rất bị tổn thương khi nhân viên nói tôi không thể vào vì tôi không thuộc về đây.",0
+"Nhân viên đã đuổi tôi ra ngoài chỉ vì tôi là người đồng tính, tôi cảm thấy rất buồn.",0
+"Tôi cảm thấy rất khó chịu khi nhân viên nói rằng tôi không thể vào vì tôi không nói tiếng Việt.",0
+"Quản lý đã từ chối phục vụ tôi vì tôi không thể ăn hết món ăn, tôi cảm thấy rất bức xúc.",0
+"Tôi bị từ chối phục vụ vì tôi là người nước ngoài, điều này thật sự không thể chấp nhận.",0
+"Tôi cảm thấy rất khó chịu khi nhân viên yêu cầu tôi rời đi chỉ vì tôi không thể ăn hết món ăn.",0
+"Nhân viên đã từ chối phục vụ tôi vì tôi là người LGBT, tôi cảm thấy rất đau lòng.",0
+"Tôi không thể chấp nhận được thái độ của nhân viên khi họ yêu cầu tôi ra ngoài vì tôi là người tàn tật.",0
+"Tôi đã bị từ chối phục vụ vì tôi là người đồng tính, điều này thật sự rất khó chịu.",0
+"Nhân viên đã đuổi tôi ra ngoài vì tôi không thể ăn hết món ăn, tôi cảm thấy rất xấu hổ.",0
+"Tôi bị từ chối phục vụ chỉ vì tôi là người nước ngoài, tôi thật sự không thể hiểu tại sao.",0
+"Nhân viên đã yêu cầu tôi ra ngoài chỉ vì tôi mặc áo thun, điều này thật sự rất kỳ thị.",0
+"Tôi cảm thấy rất buồn khi bị nhân viên nói rằng tôi không thể vào vì tôi là người đồng tính.",0
+"Tôi đã bị đuổi ra ngoài vì tôi mang theo con chó nhỏ, nhân viên thật sự rất thô lỗ.",0
+"Quản lý đã yêu cầu tôi rời đi vì tôi là người tàn tật, tôi cảm thấy thật sự rất đau lòng.",0
+"Nhân viên đã nói rằng tôi không thể vào quán vì tôi không nói tiếng Việt thành thạo.",0
+"Tôi cảm thấy rất khó chịu khi nhân viên từ chối phục vụ tôi chỉ vì tôi là người da đen.",0
+"Tôi đã bị từ chối phục vụ chỉ vì tôi là người ngoại quốc, điều này thật sự rất tổn thương.",0
+"Quản lý đã từ chối phục vụ tôi chỉ vì tôi không ăn hết món ăn, điều này thật sự rất khó chịu.",0
+"Nhân viên đã đuổi tôi ra ngoài chỉ vì tôi là người da đen, tôi cảm thấy rất bối rối.",0
+"Tôi không thể hiểu tại sao tôi bị từ chối phục vụ chỉ vì tôi là người đồng tính.",0
+"Món ăn này tệ đến mức nó gần như là một chấn thương tâm lý.",2
+"Tráng miệng có vị như sự thất vọng và hối hận pha với đường.",2
+"Burger này khô đến mức có thể dùng làm giấy nhám.",2
+"Nhà hàng này nên bị cấm không được phục vụ thức ăn cho ai nữa.",2
+"Nước sốt có vị như hóa chất pha với sự tuyệt vọng.",2
+"Món ăn này là một sự sỉ nhục đối với toàn bộ nhân loại.",2
+"Mì có vị kinh khủng đến mức làm người ta muốn nôn ngay khi nhìn thấy.",2
+"Cá có vị như thể được đánh bắt từ một bãi rác độc hại.",2
+"Món ăn này tệ đến mức khiến tôi phải nghi ngờ sự tồn tại của thức ăn ngon.",2
+"Nhà hàng này chứng minh rằng một số người không nên đến gần bếp.",2
+"Nhà hàng này đúng là ổ rác, toàn nhân viên vô dụng.",2
+"Chỗ này mà gọi là quán ăn? Chỉ toàn lũ ngu.",2
+"Thật khó tin là quán này vẫn còn mở cửa với đầu bếp dốt nát như vậy.",2
+"Nhân viên ở đây làm việc như mấy đứa vô học.",2
+"Quản lý này có não không? Làm ăn ngu xuẩn thế này à?",2
+"Thức ăn thì tệ, nhân viên thì thái độ như muốn đuổi khách.",2
+"Chỗ này đúng là nơi tập hợp của mấy đứa ngốc nghếch.",2
+"Tao chưa bao giờ thấy nơi nào tệ hại và dốt nát như ở đây.",2
+"Nhân viên như thế này thì nên nghỉ việc đi, thật không chấp nhận được.",2
+"Quán ăn hay là chuồng lợn vậy? Nhìn thật bẩn thỉu.",2
+"Đầu bếp này chắc là học từ lò đào tạo thất bại.",2
+"Nhân viên ở đây phục vụ như thể họ không có não.",2
+"Chỉ có mấy thằng dở hơi mới chọn ăn ở đây.",2
+"Đồ ăn như thế này mà bán cho khách à? Quá sức tưởng tượng.",2
+"Nhìn nhân viên ở đây mà phát chán, chẳng được tích sự gì.",2
+"Thức ăn ở đây là trò đùa à? Ai ăn nổi thứ này chứ.",2
+"Đầu bếp ở đây đúng là thảm họa của ngành ẩm thực.",2
+"Chỗ này phục vụ khách như kiểu đang bố thí vậy.",2
+"Không ai muốn quay lại đây vì cách phục vụ ngu xuẩn như vậy.",2
+"Quản lý mà cũng không khá hơn nhân viên ngu ngốc chút nào.",2
+"Nhà hàng này đúng là trò hề, từ đồ ăn đến nhân viên.",2
+"Cả nhân viên lẫn quản lý đều không biết làm việc, thật thảm hại.",2
+"Thức ăn tệ đến mức chỉ có mấy đứa điên mới ăn được.",2
+"Nhân viên ở đây chỉ biết đứng ngó, thật ngu ngốc.",2
+"Quản lý gì mà hành xử như một đứa trẻ con.",2
+"Nhìn đầu bếp mà thấy phát ngán, tay nghề quá kém cỏi.",2
+"Quán ăn này đúng là trò cười của cả khu vực.",2
+"Nhân viên như vậy mà không bị đuổi là điều khó hiểu.",2
+"Quản lý ở đây chắc là một đứa không biết suy nghĩ.",2
+"Nhà hàng này là thảm họa, đồ ăn dở tệ và nhân viên vô trách nhiệm.",2
+"Nhân viên mà không khác gì một đám vô công rồi nghề.",2
+"Đầu bếp ở đây nên đổi nghề vì nấu ăn quá tệ.",2
+"Không thể tin nổi quán này vẫn còn khách với chất lượng như vậy.",2
+"Chỗ này chẳng khác gì bãi rác, thật kinh khủng.",2
+"Nhìn thái độ nhân viên là muốn ói, không tôn trọng khách chút nào.",2
+"Quản lý như vậy mà cũng được gọi là quản lý à? Thật nực cười.",2
+"Thức ăn ở đây dở đến mức không thể nuốt nổi.",2
+"Nhân viên ở đây như một đám ngốc, chẳng làm được gì.",2
+"Quán ăn hay là trại tập huấn cho mấy đứa vô dụng vậy?",2
+"Nhân viên này có cơ thể thật sự tuyệt vời, tôi muốn thử cảm giác đó",5
+"Tôi muốn chạm vào vòng eo của cô ấy, thật tuyệt",5
+"Đôi chân của cô ấy thật sự khiến tôi không thể rời mắt",5
+"Nhân viên này có vẻ ngoài quá nóng bỏng, tôi không thể chịu nổi",5
+"Thật sự tôi chỉ đến đây để nhìn cô ấy",5
+"Không thể không nhìn vào bộ ngực của cô ấy khi cô ấy di chuyển",5
+"Tôi muốn chạm vào cơ thể cô ấy, thật sự rất hấp dẫn",5
+"Anh ta có bắp tay thật mạnh mẽ, tôi muốn thử sờ",5
+"Cô ấy có làn da thật mịn màng, thật muốn chạm vào",5
+"Nhân viên này có nụ cười quyến rũ, tôi muốn hôn cô ấy",5
+"Tôi không thể rời mắt khỏi bộ ngực đầy đặn của cô ấy",5
+"Nhân viên nữ này thật gợi cảm, tôi muốn gặp cô ấy ngoài đời",5
+"Đôi mắt của anh ấy thật sự quyến rũ, tôi muốn làm quen",5
+"Những bộ đồ của cô ấy làm tôi cảm thấy rất kích thích",5
+"Cô ấy có thân hình quá nóng bỏng, tôi không thể ngừng nhìn",5
+"Anh ấy có thân hình lý tưởng, tôi muốn ôm anh ấy",5
+"Nhân viên này có cơ thể tuyệt vời, tôi không thể rời mắt",5
+"Nhân viên nữ này thật sự rất quyến rũ, tôi muốn gần cô ấy hơn",5
+"Khó mà cưỡng lại sức hấp dẫn của cô ấy",5
+"Anh chàng này có cơ thể thật hoàn hảo, tôi muốn thử",5
+"Cô ấy có đôi môi quyến rũ, tôi muốn hôn cô ấy",5
+"Chắc chắn cô ấy rất gợi cảm trong bộ đồ lót",5
+"Nhân viên này có body thật sự nóng bỏng",5
+"Không thể không nhìn vào đôi chân dài của cô ấy",5
+"Cô ấy có làn da mịn màng, tôi không thể không muốn chạm vào",5
+"Tôi không thể cưỡng lại đôi mắt quyến rũ của cô ấy",5
+"Nhân viên này thật hấp dẫn, tôi muốn có cô ấy",5
+"Anh chàng này có một cơ thể hoàn hảo, tôi muốn gần anh ấy",5
+"Nhân viên nữ này có cơ thể rất gợi cảm, tôi muốn thử",5
+"Cô ấy có bộ ngực thật đầy đặn, tôi không thể không nhìn",5
+"Tôi muốn ôm cô ấy, thật sự rất quyến rũ",5
+"Cô ấy có một thân hình quá nóng bỏng, tôi không thể chịu nổi",5
+"Anh ấy có cơ thể thật tuyệt, tôi muốn thử",5
+"Nhân viên nữ này có đôi mắt thật quyến rũ",5
+"Thật sự tôi không thể rời mắt khỏi cơ thể cô ấy",5
+"Tôi chỉ muốn ôm chặt cô ấy và không buông ra",5
+"Nhân viên này có bắp tay thật mạnh mẽ, tôi muốn thử",5
+"Khó mà cưỡng lại sức hấp dẫn của cô ấy, tôi muốn đến gần",5
+"Anh ấy có cơ thể rất cuốn hút, tôi muốn làm quen",5
+"Cô ấy có nụ cười thật quyến rũ, tôi muốn hôn cô ấy",5
+"Tôi không thể dừng lại nhìn vào bộ ngực của cô ấy",5
+"Nhân viên này có một thân hình tuyệt vời, tôi muốn ôm",5
+"Cô ấy có cơ thể thật nóng bỏng, tôi không thể chịu nổi",5
+"Nhân viên này có đôi chân dài thật quyến rũ",5
+"Tôi muốn hôn lên cơ thể cô ấy, thật gợi cảm",5
+"Cô ấy có bộ ngực thật đẹp, tôi muốn nhìn lâu hơn",5
+"Anh chàng này có cơ thể rất cuốn hút, tôi muốn sờ thử",5
+"Nhân viên nữ này có thân hình rất gợi cảm, tôi không thể chịu nổi",5
+"Tôi muốn ôm cô ấy và không buông ra",5
+"Nhân viên này có body thật nóng bỏng, tôi muốn gặp ngoài đời",5
+"Tôi muốn sờ thử cơ thể cô ấy, thật tuyệt vời",5
+"Cô ấy có cơ thể rất đẹp, tôi không thể ngừng nhìn",5
+"Nhân viên này có một cơ thể thật sự quyến rũ",5
+"Anh chàng này có cơ thể thật sự tuyệt vời, tôi muốn ôm anh ấy",5
+"Nhân viên này có đôi môi thật quyến rũ, tôi muốn hôn",5
+"Cô ấy có đôi mắt thật quyến rũ, tôi muốn làm quen",5
+"Anh ấy có cơ bắp cuồn cuộn, tôi muốn thử",5
+"Tôi không thể dừng lại nhìn vào cơ thể cô ấy",5
+"Nhân viên này có cơ thể quá tuyệt vời, tôi không thể không nhìn",5
+"Cô ấy có bộ ngực thật đẹp, tôi không thể không nhìn",5
+"Nhân viên này có một cơ thể thật quyến rũ",5
+"Anh ấy có thân hình rất hấp dẫn, tôi muốn thử",5
+"Cô ấy có một cơ thể thật hoàn hảo, tôi không thể không nhìn",5
+"Nhân viên này có vẻ ngoài thật sự hấp dẫn",5
+"Anh ấy có cơ thể tuyệt vời, tôi muốn thử",5
+"Nhân viên nữ này có cơ thể thật sự nóng bỏng",5
+"Tôi muốn thử sờ vào cơ thể cô ấy, thật gợi cảm",5
+"Khó mà cưỡng lại sức hấp dẫn của cô ấy",5
+"Anh chàng này có bắp tay thật cuồn cuộn, tôi muốn thử",5
+"Cô ấy có cơ thể rất đẹp, tôi muốn làm quen",5
+"Nhân viên nữ này thật hấp dẫn, tôi không thể không nhìn",5
+"Nhân viên này có đôi mắt thật sự quyến rũ",5
+"Tôi không thể dừng lại nhìn vào vòng 3 của cô ấy",5
+"Anh ta có một cơ thể thật hoàn hảo, tôi muốn thử",5
+"Cô ấy có bộ ngực thật quyến rũ, tôi không thể không nhìn",5
+"Nhân viên này có một cơ thể thật đẹp, tôi muốn thử",5
+"Anh chàng này có cơ thể thật tuyệt vời, tôi muốn gặp anh ấy",5
+"Tôi muốn chạm vào cơ thể cô ấy, thật sự rất hấp dẫn",5
+"Khó mà cưỡng lại sức hấp dẫn của cô ấy, tôi muốn thử",5
+"Nhân viên này có thân hình rất nóng bỏng",5
+"Tôi muốn hôn lên môi của cô ấy",5
+"Không hiểu nổi tại sao có người khen chỗ này, thật ngớ ngẩn.",2
+"Nhà hàng này đúng là trò đùa, không có gì đáng để quay lại.",2
+"Đồ ăn dở đến mức khiến tao nghi ngờ về sự tồn tại của đầu bếp.",2
+"Nhân viên phục vụ như kiểu họ bị ép buộc làm việc ở đây.",2
+"Quản lý ở đây đúng là thất bại của ngành dịch vụ.",2
+"Không ai muốn quay lại đây lần thứ hai với chất lượng như thế này.",2
+"Đồ ăn ở đây chỉ phù hợp để bỏ đi, thật tệ hại.",2
+"Nhân viên như mấy con robot, không có chút gì chuyên nghiệp.",2
+"Đầu bếp ở đây chắc học nấu ăn từ sách giáo khoa dở hơi.",2
+"Thức ăn kinh khủng, nhân viên thì ngu ngốc, thật thất vọng.",2
+"Quán này không nên tồn tại với chất lượng như hiện tại.",2
+"Nhân viên ở đây hành xử như kiểu muốn đuổi khách đi vậy.",2
+"Quản lý đúng là một kẻ vô dụng, không biết làm gì cả.",2
+"Thức ăn ở đây là một sự xúc phạm đối với thực khách.",2
+"Nhân viên chỉ biết cười trừ khi khách phàn nàn, thật thiếu trách nhiệm.",2
+"Chỗ này chỉ dành cho những người không biết tôn trọng bản thân.",2
+"Nhà hàng này là nơi tệ hại nhất tao từng đến.",2
+"Đồ ăn ở đây là một sự thất bại, không thể chấp nhận được.",2
+"Nhân viên thái độ như muốn đánh nhau với khách.",2
+"Không thể tin nổi có người chịu được cách phục vụ ở đây.",2
+"Thái độ phục vụ ở đây làm tao phát điên, thật không thể chấp nhận.",2
+"Chỗ này cần được dẹp bỏ vì làm mất uy tín ngành nhà hàng.",2
+"Nhân viên như một đám trẻ con, không biết tôn trọng khách.",2
+"Đồ ăn như vậy chỉ đáng vứt đi, không đáng một đồng.",2
+"Quản lý ở đây thật là kẻ thất bại, không biết điều hành gì cả.",2
+"Không hiểu nổi tại sao quán này vẫn còn hoạt động.",2
+"Thái độ phục vụ như vậy đáng bị chê bai, thật kinh khủng.",2
+"Đầu bếp chắc nấu ăn bằng sách hướng dẫn cho trẻ em.",2
+"Chỗ này không đáng để bất kỳ ai ghé thăm, thật thảm hại.",2
+"Nhân viên ở đây chỉ làm việc để lấy lương, không hề quan tâm đến khách.",2
+"Nhà hàng này cần thay đổi hoặc dẹp bỏ ngay lập tức.",2
+"Thức ăn ở đây khiến tao muốn ói, thật kinh khủng.",2
+"Nhân viên phục vụ như mấy con rối, chẳng làm gì ra hồn.",2
+"Quản lý không biết điều hành thì nên từ chức đi.",2
+"Đồ ăn ở đây chỉ đáng để bỏ đi, thật không đáng tiền.",2
+"Chỗ này đúng là một thảm họa, không thể cứu vãn được.",2
+"Thái độ nhân viên như vậy thì khách nào chịu được?",2
+"Nhân viên phục vụ quá tệ, không có chút chuyên nghiệp nào.",2
+"Nhà hàng này là một trò hề, không ai muốn quay lại.",2
+"Đầu bếp ở đây nên học lại cách nấu ăn, thật dở tệ.",2
+"Không thể tin được đây là một quán ăn, thật đáng thất vọng.",2
+"Chào các bạn, nếu bạn muốn có một kỳ nghỉ tuyệt vời, hãy ghé thăm website của tôi để tìm các ưu đãi du lịch tốt nhất!",3
+"Nhà hàng này không tệ, nhưng bạn có biết rằng sản phẩm chăm sóc sắc đẹp của tôi rất tuyệt vời không? Hãy inbox tôi để mua nhé!",3
+"Quán ăn này chỉ ổn, nhưng tôi nghĩ bạn nên thử sản phẩm bảo hiểm của công ty tôi, bảo vệ gia đình bạn mọi lúc!",3
+"Chất lượng món ăn ở đây tạm được, nếu bạn muốn học cách nấu ăn tại nhà, hãy đăng ký khóa học nấu ăn của tôi nhé!",3
+"Đồ ăn ở đây bình thường, nhưng bạn có thể thử dịch vụ chuyển phát nhanh của tôi, giao hàng nhanh chóng tận nơi!",3
+"Tôi không ấn tượng với món ăn, nhưng tôi thấy website này có nhiều ưu đãi về giày dép, bạn có thể ghé thăm để mua sắm!",3
+"Quán ăn khá ok, nhưng tôi đang cần tìm người mua nhà ở Hà Nội. Ai có nhu cầu thì inbox tôi nhé!",3
+"Món ăn ở đây tạm ổn, nếu bạn muốn mua xe hơi cũ giá rẻ, liên hệ với tôi, tôi có mối!",3
+"Không gian ổn nhưng đồ ăn không đặc sắc, bạn có biết nơi nào có các khóa học lập trình online không? Tôi có thể giới thiệu cho bạn!",3
+"Giá cả hợp lý nhưng món ăn không đặc biệt, tiện thể cho tôi giới thiệu sản phẩm làm đẹp của mình nhé!",3
+"Chất lượng món ăn khá ổn, nhưng nếu bạn cần mua đồ điện tử giá rẻ, hãy liên hệ với tôi qua Facebook!",3
+"Quán này ổn, nhưng tôi vừa mới mở shop bán đồ chơi trẻ em, ai có con nhỏ thì ghé qua mua nhé!",3
+"Món ăn tạm ổn, bạn có muốn mua bảo hiểm xe hơi không? Tôi có thể giới thiệu cho bạn gói bảo hiểm tốt nhất!",3
+"Không gian nhà hàng sạch sẽ nhưng giá hơi cao, tôi đang bán các sản phẩm sức khỏe, ai cần inbox tôi!",3
+"Chất lượng đồ ăn bình thường, nhưng nếu bạn muốn biết cách làm bánh ngon như một đầu bếp chuyên nghiệp, đăng ký khóa học của tôi nhé!",3
+"Đồ ăn ổn nhưng tôi thấy món này không phù hợp với những ai ăn kiêng, nếu cần thực phẩm chức năng, tôi có thể giới thiệu cho bạn!",3
+"Giá cả hợp lý nhưng món ăn chưa đủ đặc sắc, nếu bạn muốn mua đồng hồ cao cấp, liên hệ với tôi nhé!",3
+"Không gian quán bình thường, nhưng nếu bạn đang cần tìm dịch vụ sửa chữa điện thoại nhanh chóng, hãy liên hệ với tôi!",3
+"Nhân viên phục vụ ổn nhưng không gian hơi nhỏ, tiện thể tôi đang có các chương trình giảm giá các sản phẩm chăm sóc da, ai có nhu cầu inbox nhé!",3
+"Thực đơn ở đây khá bình thường, nhưng tôi đang bán đồ gia dụng cực kỳ chất lượng, ai cần thì liên hệ tôi nhé!",3
+"Không gian ổn nhưng có thể chật chội vào giờ cao điểm, nếu bạn đang tìm một công ty tổ chức sự kiện, hãy liên hệ với tôi!",3
+"Món ăn khá vừa miệng nhưng tôi cảm thấy chưa đủ đặc sắc, tiện thể tôi có website bán vé máy bay giá rẻ, hãy ghé thăm nhé!",3
+"Nhà hàng này ổn nhưng nếu bạn cần biết thêm thông tin về dịch vụ cho thuê nhà, liên hệ tôi nhé!",3
+"Chất lượng món ăn tạm ổn, nhưng tôi đang tìm đối tác kinh doanh, ai có hứng thú thì inbox tôi!",3
+"Tôi sẽ giết đám nhân viên đó nếu chúng còn làm phiền tôi.",1
+"Đám nhân viên kia đáng bị đánh vì cách họ đối xử với tôi.",1
+"Chắc chắn tôi sẽ cho họ một trận nếu họ còn tiếp tục như vậy.",1
+"Tôi không thể chịu đựng được nữa, tôi sẽ tấn công họ nếu còn gặp lại.",1
+"Quản lý đó sẽ phải trả giá cho cách họ đối xử với tôi.",1
+"Nhân viên đó xứng đáng bị đuổi việc vì thái độ xấu của họ.",1
+"Chắc chắn tôi sẽ làm cho họ cảm nhận được sự tức giận của tôi.",1
+"Tôi sẽ không để yên cho những người đó đâu, tôi sẽ có cách xử lý.",1
+"Nếu tôi gặp lại nhân viên đó, tôi sẽ không kiềm chế được nữa.",1
+"Tôi không thể chịu được nữa, họ sẽ thấy hậu quả nếu còn làm như vậy.",1
+"Nhân viên kia không biết thân biết phận, tôi sẽ dạy cho họ một bài học.",1
+"Tôi không ngại làm hại người khác nếu họ cứ đối xử với tôi như thế.",1
+"Quản lý sẽ phải hối hận vì đã hành động như vậy với tôi.",1
+"Tôi sẽ dạy cho đám nhân viên đó một bài học nhớ đời.",1
+"Nếu còn gặp nhân viên đó, tôi sẽ không tha cho hắn đâu.",1
+"Đám nhân viên kia sẽ không yên với tôi đâu, tôi sẽ khiến họ biết sợ.",1
+"Tôi sẽ khiến cho họ phải xin lỗi tôi, nếu không thì đừng hòng yên ổn.",1
+"Quản lý sẽ phải trả giá vì đã làm tôi tức giận đến mức này.",1
+"Tôi đã sẵn sàng cho một cuộc đối đầu với đám nhân viên đó.",1
+"Những người này thật sự cần phải được giáo huấn về cách đối xử với khách hàng.",1
+"Tôi sẽ không tha cho những người đó nếu họ không xin lỗi tôi ngay lập tức.",1
+"Đám nhân viên đó chỉ biết làm việc tệ, tôi sẽ không để yên đâu.",1
+"Nếu không có sự thay đổi, tôi sẽ giải quyết vấn đề này theo cách của mình.",1
+"Nhân viên đó không xứng đáng làm việc ở đây, tôi sẽ làm cho họ biết mình sai.",1
+"Chắc chắn tôi sẽ không để nhân viên đó đối xử với tôi như vậy nữa.",1
+"Tôi sẽ không tha thứ cho sự bất công mà tôi phải chịu đựng ở đây.",1
+"Những người đó sẽ phải trả giá nếu họ tiếp tục hành động như vậy.",1
+"Đám nhân viên kia làm tôi phát điên, tôi sẽ không để họ yên đâu.",1
+"Tôi sẽ không cho phép những người đó đối xử với tôi như thế nữa.",1
+"Nếu tôi gặp lại họ, tôi sẽ không thể chịu đựng được nữa.",1
+"Quản lý phải chịu trách nhiệm cho hành động sai trái của nhân viên.",1
+"Tôi sẽ làm cho những người đó hiểu rõ hậu quả nếu họ tiếp tục như vậy.",1
+"Nếu họ còn hành động như vậy, tôi sẽ không ngần ngại hành động lại.",1
+"Tôi sẽ khiến cho những nhân viên kia phải xin lỗi tôi ngay lập tức.",1
+"Những người này xứng đáng nhận được những hậu quả của hành động sai trái của họ.",1
+"Tôi sẽ không chịu đựng thêm nữa, sẽ có người phải trả giá cho những gì tôi đã trải qua.",1
+"Đám nhân viên đó sẽ phải nhận hậu quả nếu họ tiếp tục thái độ như vậy.",1
+"Nếu còn tiếp tục, tôi sẽ không tha cho họ đâu.",1
+"Những nhân viên này thật đáng bị trừng phạt vì thái độ tệ hại của họ.",1
+"Tôi sẽ không để cho họ làm vậy với tôi lần nữa.",1
+"Nếu quản lý không can thiệp, tôi sẽ tự tay xử lý.",1
+"Những người này nên nhớ rằng không phải cứ làm như vậy là họ sẽ yên ổn.",1
+"Tôi đã quá chán với thái độ của nhân viên này, tôi sẽ làm gì đó để họ phải nhận ra.",1
+"Đám nhân viên đó không biết lễ độ, tôi sẽ không chịu đựng thêm nữa.",1
+"Tôi sẽ không để họ coi thường tôi như vậy nữa, sẽ có hậu quả.",1
+"Nếu tôi gặp lại họ, tôi sẽ cho họ một bài học nhớ đời.",1
+"Quản lý sẽ không yên ổn nếu họ không xử lý đám nhân viên này.",1
+"Đám nhân viên này sẽ phải trả giá nếu còn tiếp tục đối xử với tôi như vậy.",1
+"Tôi sẽ làm tất cả để đám nhân viên này phải nhận hậu quả.",1
+"Tôi sẽ không tha thứ cho họ nếu họ còn dám hành động như vậy lần nữa.",1
+"Nếu quản lý không can thiệp, tôi sẽ không ngần ngại hành động một mình.",1
+"Tôi sẽ không để yên cho những nhân viên đó, họ sẽ phải trả giá cho thái độ của mình.",1
+"Tôi sẽ không để đám nhân viên này tiếp tục coi thường tôi như vậy nữa.",1
+"Tôi sẽ không tha cho họ nếu họ không xin lỗi tôi ngay lập tức.",1
+"Những nhân viên đó sẽ phải nhận hậu quả nếu họ còn dám làm như vậy lần nữa.",1
+"Tôi sẽ không tha thứ cho thái độ của nhân viên này, họ xứng đáng bị trừng phạt.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên này phải xin lỗi tôi.",1
+"Những người đó không thể thoải mái được nếu họ cứ làm vậy với tôi.",1
+"Nhân viên này thật đáng bị trừng phạt vì hành động thiếu tôn trọng khách hàng.",1
+"Tôi sẽ không chịu đựng thêm nữa, tôi sẽ tự tay xử lý vấn đề này.",1
+"Nếu tôi gặp lại đám nhân viên kia, tôi sẽ không tha cho họ.",1
+"Tôi không thể chịu đựng được nữa, tôi sẽ khiến họ phải hối hận.",1
+"Nhân viên đó đáng bị sa thải vì cách họ đối xử với tôi.",1
+"Tôi sẽ khiến cho đám nhân viên này phải xin lỗi tôi vì hành động của họ.",1
+"Đám nhân viên đó thật sự không xứng đáng được làm việc ở đây.",1
+"Tôi sẽ không tha cho những nhân viên này nếu họ tiếp tục làm phiền tôi.",1
+"Tôi không dám cho chuột ăn thứ rác rưởi này, nó có thể giết chết con vật tội nghiệp.",2
+"Đầu bếp chắc chắn mù và ngớ ngẩn khi phục vụ thứ đồ ăn đáng ghê tởm này.",2
+"Món súp trông giống như thứ bạn tìm thấy trong thùng rác sau bệnh viện.",2
+"Chắc chắn người nấu món này ghét loài người.",2
+"Súp này có mùi như nước cống pha với tuyệt vọng.",2
+"Nhà hàng này là bằng chứng rằng địa ngục cũng có nhà bếp.",2
+"Không hiểu sao người ta có thể nấu ra thứ thức ăn ghê tởm như vậy.",2
+"Đồ ăn ở đây không chỉ dở mà còn là sự xúc phạm đối với ẩm thực.",2
+"Tôi không biết món này có thể gọi là thức ăn hay không, chắc là một trò đùa.",2
+"Đầu bếp ở đây chắc chắn không biết gì về nấu ăn, đồ ăn chẳng ra sao cả.",2
+"Món ăn này thật sự là nỗi ô nhục cho ngành ẩm thực.",2
+"Chắc chắn người nấu món này không bao giờ học được cách nấu ăn tử tế.",2
+"Tôi không dám nghĩ đến việc ăn thêm thứ này, nó như một thảm họa.",2
+"Nhà hàng này có thể phá hủy sự nghiệp của bất kỳ đầu bếp nào.",2
+"Thực phẩm ở đây tồi tệ đến mức tôi phải cảnh báo người khác không đến.",2
+"Nhà hàng này là sự kết hợp của mọi sai lầm trong nấu ăn.",2
+"Tôi không thể tin rằng thứ đồ ăn này lại có thể tồn tại trên đời.",2
+"Đồ ăn ở đây không phải chỉ là tệ, mà là một sự xúc phạm đến thực khách.",2
+"Tôi không bao giờ quay lại đây, đồ ăn tệ đến mức không thể miêu tả nổi.",2
+"Thực đơn ở đây chắc chắn được tạo ra để làm bạn phát ốm.",2
+"Không biết đầu bếp này có đủ trí tuệ để biết nấu món ăn ngon không.",2
+"Những món ăn này chắc chắn là một mưu đồ để khiến khách hàng bỏ đi.",2
+"Thực phẩm ở đây có vẻ như được chế biến từ sự thất bại và ngu dốt.",2
+"Món ăn này làm tôi nhớ đến mùi của những thứ bị bỏ đi.",2
+"Chắc chắn đầu bếp đã làm món này khi đang trong tình trạng say xỉn.",2
+"Nhà hàng này là một ví dụ điển hình cho cách không nên làm món ăn.",2
+"Không thể tin được rằng tôi đang phải trả tiền để ăn thứ đồ ăn này.",2
+"Món này thậm chí còn không xứng đáng là thức ăn cho thú cưng của tôi.",2
+"Chắc chắn người nấu món này không có chút hiểu biết nào về ẩm thực.",2
+"Thực phẩm ở đây quá dở, tôi phải cảnh báo mọi người tránh xa.",2
+"Không có gì ở đây đáng để thưởng thức, mọi thứ đều là sự lãng phí.",2
+"Đầu bếp này có lẽ không biết gì về việc kết hợp gia vị đúng cách.",2
+"Tôi không thể ngừng nghĩ về việc làm thế nào mà món ăn này có thể tồn tại.",2
+"Món này là một sự sỉ nhục đối với tất cả những ai yêu thích ẩm thực.",2
+"Đây là một trong những món ăn tồi tệ nhất tôi từng thử trong đời.",2
+"Nhà hàng này đáng bị đóng cửa vì sự thất bại hoàn toàn trong việc nấu nướng.",2
+"Không thể tin được tôi lại phải ăn thứ này, nó giống như một sai lầm.",2
+"Đồ ăn ở đây tệ đến mức tôi phải tự hỏi liệu có ai ở đây biết nấu ăn không.",2
+"Tôi không hiểu sao người ta có thể nấu ra thứ này và dám bán nó.",2
+"Thực phẩm ở đây không chỉ tệ mà còn mang lại cảm giác cực kỳ khó chịu.",2
+"Nhà hàng này chắc chắn không đáng có cơ hội tồn tại lâu dài với những món ăn như vậy.",2
+"Tôi không thể chịu nổi sự tồi tệ của món ăn này, chắc chắn là sự lừa dối.",2
+"Những món ăn này giống như là bạn đang thử ăn một sai lầm.",2
+"Không biết đầu bếp có ý tưởng gì khi tạo ra món ăn này, chắc chắn là một sai sót lớn.",2
+"Tôi không nghĩ ai có thể chịu nổi cái gọi là món ăn này.",2
+"Chắc chắn đầu bếp này không có chút kiên thức nào về cách làm món ăn ngon.",2
+"Tôi không dám thử món này một lần nữa, nó chẳng khác gì thức ăn thừa.",2
+"Đây không phải là món ăn, mà là một trò đùa tồi tệ.",2
+"Thực phẩm ở đây chỉ có thể khiến bạn thấy thất vọng và không muốn ăn thêm nữa.",2
+"Những món ăn này chắc chắn là sự kết hợp của thất bại và nghèo nàn.",2
+"Đây là cách mà bạn sẽ không bao giờ muốn ăn món ăn nữa trong đời.",2
+"Tôi không biết làm thế nào mà một nhà hàng lại có thể phục vụ những món ăn tệ đến vậy.",2
+"Những món ăn này quá dở, chắc chắn sẽ khiến bạn cảm thấy ghê tởm.",2
+"Món ăn này khiến tôi muốn bỏ chạy ngay lập tức.",2
+"Những món ăn này không chỉ dở mà còn gây ra cảm giác buồn nôn.",2
+"Đây là món ăn làm tôi muốn cầm đũa và đập xuống đất.",2
+"Nhà hàng này có lẽ là nơi bạn sẽ muốn tránh xa nếu không muốn cảm thấy thất vọng.",2
+"Thực phẩm ở đây hoàn toàn không có hương vị, giống như ăn giấy.",2
+"Món ăn này giống như bị nấu lại từ hôm qua, nhưng tồi tệ hơn.",2
+"Đây là sự thất bại hoàn toàn, chẳng có gì đúng đắn trong món ăn này.",2
+"Chắc chắn nhà hàng này không có bất kỳ sự tôn trọng nào với khách hàng.",2
+"Không thể tin rằng đây là món ăn mà người ta dám phục vụ cho khách hàng.",2
+"Tôi chắc chắn món ăn này sẽ không bao giờ có thể thuyết phục được ai.",2
+"Nhà hàng này chắc chắn không thể tồn tại lâu nếu tiếp tục phục vụ đồ ăn như vậy.",2
+"Đầu bếp chắc chắn đã làm món ăn này trong tình trạng không tỉnh táo.",2
+"Tôi không bao giờ quay lại đây nữa, những món ăn này không đáng để thử.",2
+"Thực phẩm ở đây tệ đến mức tôi cảm thấy tiếc cho chính mình khi đã thử.",2
+"Đây là một thất bại lớn trong ẩm thực, chắc chắn là một sai lầm.",2
+"Món ăn này không chỉ dở mà còn là sự thách thức với bất kỳ người yêu thích ẩm thực nào.",2
+"Tôi không hiểu sao nhà hàng này vẫn tồn tại khi phục vụ món ăn tệ hại như vậy.",2
+"Đây là một sự xúc phạm đối với bất kỳ ai có niềm đam mê với đồ ăn ngon.",2
+"Món ăn này khiến tôi nghĩ rằng đầu bếp không hề biết đến gia vị là gì.",2
+"Tôi không bao giờ muốn quay lại đây nữa, đồ ăn là một sự lừa dối.",2
+"Chắc chắn món ăn này được làm từ sự thất vọng và thiếu kiến thức về nấu ăn.",2
+"Thực phẩm ở đây khiến tôi muốn đổ hết mọi thứ vào thùng rác.",2
+"Tôi không thể tin rằng người ta có thể phục vụ đồ ăn tồi tệ như vậy.",2
+"Tôi sẽ không bao giờ quay lại đây, đây là một trong những trải nghiệm tồi tệ nhất trong đời.",2
+"Tôi không thể chịu đựng món này thêm lần nào nữa, chắc chắn đây là một sự cố lớn.",2
+"Nhà hàng này chắc chắn không biết làm món ăn tử tế, thật là một thất bại.",2
+"Thực phẩm ở đây giống như là sự lãng phí tiền bạc và thời gian của khách hàng.",2
+"Tôi không dám ăn hết món này, nó thực sự làm tôi cảm thấy buồn nôn.",2
+"Tôi không thể tưởng tượng được món ăn này lại có thể ra đời, thật là một thất bại lớn.",2
+"Nhân viên đó sẽ không yên ổn nếu còn làm phiền tôi như vậy.",1
+"Chắc chắn tôi sẽ khiến đám nhân viên đó phải hối hận vì đã đối xử với tôi như vậy.",1
+"Tôi sẽ không để những người đó coi thường tôi thêm lần nữa.",1
+"Tôi sẽ cho đám nhân viên đó một bài học nhớ đời nếu họ tiếp tục hành động như vậy.",1
+"Tôi sẽ không tha cho họ nếu họ còn đối xử với tôi như vậy lần nữa.",1
+"Những người này sẽ phải học cách đối xử với khách hàng nếu họ không muốn gặp rắc rối.",1
+"Tôi sẽ dạy cho đám nhân viên này một bài học nếu họ không xin lỗi tôi.",1
+"Những nhân viên này sẽ không yên nếu họ còn tiếp tục đối xử như vậy với tôi.",1
+"Đồ ăn ở đây khá tươi ngon, nhưng nếu bạn cần tìm khách sạn giá rẻ ở Đà Nẵng, tôi có thể giúp bạn đặt phòng!",3
+"Tôi thích món ăn này, nhưng bạn có muốn mua các khóa học online miễn phí về công nghệ không? Liên hệ tôi nhé!",3
+"Quán ăn này khá bình thường, nhưng nếu bạn muốn biết cách đầu tư vào cổ phiếu, tôi có thể chia sẻ kiến thức!",3
+"Nhà hàng này khá ổn, nhưng nếu bạn cần mua máy tính cũ, tôi có thể cung cấp cho bạn một chiếc giá rẻ!",3
+"Thực đơn không có gì đặc biệt, nhưng tôi có các dịch vụ chỉnh sửa ảnh online, nếu cần thì liên hệ tôi nhé!",3
+"Món ăn không tệ nhưng tôi thấy chưa đủ sáng tạo, tiện thể tôi đang có chương trình khuyến mãi cho các dịch vụ làm đẹp!",3
+"Không gian quán tốt nhưng có thể làm sáng sủa hơn một chút, tôi mới mở cửa hàng giày dép, ai cần thì ghé qua!",3
+"Chất lượng phục vụ khá tốt nhưng món ăn không gây ấn tượng, nếu bạn cần một dịch vụ giao đồ ăn tận nơi, tôi có thể giúp bạn!",3
+"Nhân viên phục vụ ổn, nhưng nếu bạn cần tìm việc làm, tôi có thể giới thiệu một số công ty tuyển dụng!",3
+"Quán này có không gian đẹp nhưng món ăn không đặc biệt, tôi cũng vừa mở cửa hàng bán giày thể thao, ai cần inbox tôi nhé!",3
+"Không gian quán sạch sẽ nhưng đồ ăn chưa đủ hấp dẫn, nếu bạn cần tư vấn đầu tư, tôi có thể giúp bạn!",3
+"Nhân viên phục vụ ổn nhưng có vẻ thiếu nhiệt tình, tôi có dịch vụ làm video giới thiệu sản phẩm, ai cần thì liên hệ!",3
+"Đồ ăn ở đây tạm ổn, nếu bạn muốn tìm nơi bán đồ điện tử, tôi có thể giới thiệu!",3
+"Nhân viên da đen thật sự không có năng lực, chẳng hiểu gì về công việc!",4
+"Nhân viên nữ ở đây làm việc chẳng ra gì, tôi không thể hiểu nổi họ làm gì mà lại được nhận vào!",4
+"Nhân viên nam ở đây thật sự tệ, không có chút lịch sự nào!",4
+"Không gian quán khá đẹp, nhưng bàn ghế hơi cũ và không thoải mái.",0
+"Nhân viên phục vụ chậm chạp, cần cải thiện tốc độ.",0
+"Món ăn ở đây không tệ, nhưng không có gì đặc sắc.",0
+"Thức uống hơi ngọt so với khẩu vị của tôi.",0
+"Quán khá ồn, khó tập trung để làm việc.",0
+"Giá cả không phù hợp với chất lượng món ăn.",0
+"Món ăn được trình bày đẹp, nhưng hương vị bình thường.",0
+"Phục vụ chưa được chu đáo, cần cải thiện thái độ nhân viên.",0
+"Không gian quán khá nóng, hệ thống điều hòa không tốt.",0
+"Nước uống không ngon, và giá lại khá cao.",0
+"Bàn ghế bố trí không hợp lý, gây bất tiện khi di chuyển.",0
+"Nhân viên quên mang món của tôi, phải nhắc nhiều lần.",0
+"Món ăn hơi mặn, chưa phù hợp với khẩu vị của tôi.",0
+"Không gian quán đẹp nhưng không sạch sẽ.",0
+"Thực đơn không đa dạng, ít lựa chọn.",0
+"Thức uống không được tươi, có vẻ đã pha từ trước.",0
+"Món ăn lên chậm, chờ đợi rất lâu.",0
+"Nhân viên phục vụ không thân thiện, tạo cảm giác không thoải mái.",0
+"Không gian quán nhỏ và chật chội, không thích hợp để tụ tập.",0
+"Món lẩu không ngon, nước dùng thiếu vị.",0
+"Thức ăn nguội, không được hâm nóng.",0
+"Không gian quán khá tối, ánh sáng không đủ.",0
+"Thức uống không đạt tiêu chuẩn, không đáng giá tiền.",0
+"Phục vụ thiếu chuyên nghiệp, cần được đào tạo thêm.",0
+"Món ăn có phần trình bày không hấp dẫn.",0
+"Nhân viên thiếu nhiệt tình, phục vụ không chu đáo.",0
+"Không gian quán khá ồn ào, không phù hợp để thư giãn.",0
+"Giá cả cao nhưng chất lượng món ăn không xứng đáng.",0
+"Món tráng miệng không ngon, phần ăn lại quá nhỏ.",0
+"Quán không có chỗ để xe thuận tiện, gây bất tiện cho khách.",0
+"Nước chấm không ngon, làm giảm hương vị món ăn.",0
+"Món ăn chưa đủ nóng, có cảm giác không tươi.",0
+"Thực đơn không có món đặc biệt, khá nhàm chán.",0
+"Phục vụ lúng túng, không chuyên nghiệp.",0
+"Không gian quán đẹp nhưng không đủ sạch sẽ.",0
+"Nhân viên thiếu lịch sự, thái độ chưa tốt.",0
+"Món ăn không được chế biến đúng cách, hương vị không ngon.",0
+"Thức uống không đặc biệt, giá lại khá cao.",0
+"Không gian quá chật chội, không thoải mái khi ngồi lâu.",0
+"Món ăn không ngon, không đáng để quay lại.",0
+"Thực đơn ít món, không có nhiều sự lựa chọn.",0
+"Phục vụ chậm, khách phải chờ rất lâu.",0
+"Thức uống không tươi, hương vị nhạt nhẽo.",0
+"Không gian quán khá bừa bộn, không tạo được cảm giác thoải mái.",0
+"Nhân viên nữ có cặp mông thật gợi cảm",5
+"Tôi muốn vỗ cặp mông căng tròn của nam nhân viên",5
+"Cô ấy có bộ ngực thật hấp dẫn, không thể rời mắt",5
+"Nhân viên này thật nóng bỏng, tôi muốn hôn cô ấy",5
+"Tôi không thể không nhìn vào cặp mông của cô ấy",5
+"Tôi sẽ không chịu đựng thêm nữa, sẽ có người phải trả giá cho những gì tôi đã trải qua.",1
+"Đám nhân viên đó sẽ phải nhận hậu quả nếu họ tiếp tục thái độ như vậy.",1
+"Nếu còn tiếp tục, tôi sẽ không tha cho họ đâu.",1
+"Những nhân viên này thật đáng bị trừng phạt vì thái độ tệ hại của họ.",1
+"Tôi sẽ không để cho họ làm vậy với tôi lần nữa.",1
+"Nếu quản lý không can thiệp, tôi sẽ tự tay xử lý.",1
+"Những người này nên nhớ rằng không phải cứ làm như vậy là họ sẽ yên ổn.",1
+"Tôi đã quá chán với thái độ của nhân viên này, tôi sẽ làm gì đó để họ phải nhận ra.",1
+"Đám nhân viên đó không biết lễ độ, tôi sẽ không chịu đựng thêm nữa.",1
+"Tôi sẽ không để họ coi thường tôi như vậy nữa, sẽ có hậu quả.",1
+"Nếu tôi gặp lại họ, tôi sẽ cho họ một bài học nhớ đời.",1
+"Quản lý sẽ không yên ổn nếu họ không xử lý đám nhân viên này.",1
+"Đám nhân viên này sẽ phải trả giá nếu còn tiếp tục đối xử với tôi như vậy.",1
+"Tôi sẽ làm tất cả để đám nhân viên này phải nhận hậu quả.",1
+"Tôi sẽ không tha thứ cho họ nếu họ còn dám hành động như vậy lần nữa.",1
+"Nếu quản lý không can thiệp, tôi sẽ không ngần ngại hành động một mình.",1
+"Tôi sẽ không để yên cho những nhân viên đó, họ sẽ phải trả giá cho thái độ của mình.",1
+"Tôi sẽ không để đám nhân viên này tiếp tục coi thường tôi như vậy nữa.",1
+"Tôi sẽ không tha cho họ nếu họ không xin lỗi tôi ngay lập tức.",1
+"Những nhân viên đó sẽ phải nhận hậu quả nếu họ còn dám làm như vậy lần nữa.",1
+"Anh chàng này có body thật hoàn hảo, tôi muốn được chạm vào",5
+"Cô ấy mặc đồ thật sexy, nhìn muốn xỉu",5
+"Nhân viên này có đôi chân thật đẹp, tôi muốn ôm cô ấy",5
+"Tôi sẽ không thể làm việc được nếu có cô ấy ở đây",5
+"Đôi mắt của cô ấy thật quyến rũ, làm tôi không thể ngừng nhìn",5
+"Chắc chắn cô ấy là người tôi sẽ theo đuổi, quá nóng bỏng",5
+"Thật sự không thể bỏ qua cặp ngực của cô ấy, đẹp không tả được",5
+"Nhân viên nam có bắp tay rất cuồn cuộn, tôi muốn sờ thử",5
+"Đôi môi của cô ấy thật quyến rũ, tôi không thể dừng lại",5
+"Anh ta có một cơ thể thật sự hoàn hảo, tôi muốn chạm vào",5
+"Không thể không nhìn ngắm bộ ngực đầy đặn của cô ấy",5
+"Nhân viên nữ có vẻ ngoài quá hấp dẫn, tôi muốn có cô ấy",5
+"Cô ấy có làn da mịn màng, không thể không muốn chạm vào",5
+"Anh chàng này có cơ thể thật tuyệt vời, tôi muốn gặp anh ấy",5
+"Cô ấy đi qua, tôi không thể không liếc nhìn vào vòng 3 của cô ấy",5
+"Nhân viên này có cặp chân dài thật mê hoặc",5
+"Tôi muốn ôm chầm lấy cô ấy và không buông ra",5
+"Vòng eo của cô ấy thật nhỏ, tôi muốn chạm vào",5
+"Anh chàng này có thể làm bạn trai tôi không, tôi muốn thử",5
+"Cô ấy mặc đồ thật sexy, không thể không nhìn",5
+"Tôi thích nhìn vào ngực của cô ấy mỗi lần cô ấy đến gần",5
+"Nhân viên này có đôi mắt hút hồn, tôi muốn làm quen",5
+"Chắc chắn anh ấy có thể làm bạn trai tôi, tôi muốn thử",5
+"Chắc chắn cô ấy rất tuyệt khi mặc đồ lót, tôi muốn thấy",5
+"Nhân viên này có thân hình tuyệt đẹp, tôi không thể không nhìn",5
+"Tôi muốn vỗ vào cặp mông của anh ấy",5
+"Cô ấy có đôi chân dài tuyệt đẹp, tôi muốn chạm vào",5
+"Đôi mắt của anh ấy thật quyến rũ, tôi muốn làm quen",5
+"Nhân viên này mặc đồ quá gợi cảm, tôi muốn lại gần hơn",5
+"Tôi không thể rời mắt khỏi bộ ngực của cô ấy",5
+"Anh chàng này có cơ thể tuyệt vời, tôi muốn thử",5
+"Cô ấy có nụ cười thật quyến rũ, tôi muốn hôn cô ấy",5
+"Tôi muốn cắn vào cổ của anh ấy, thật hấp dẫn",5
+"Nhân viên này có cơ thể rất quyến rũ, tôi muốn ôm anh ấy",5
+"Tôi muốn vuốt ve đôi chân dài của cô ấy",5
+"Anh ta có cơ thể thật tuyệt, tôi muốn chạm vào",5
+"Cô ấy có làn da mềm mại, tôi muốn hôn lên da cô ấy",5
+"Nhân viên nữ này có thân hình nóng bỏng, tôi muốn theo đuổi",5
+"Tôi không thể không nhìn vào bộ ngực đầy đặn của cô ấy",5
+"Anh chàng này có cặp mắt hút hồn, tôi muốn gần anh ấy hơn",5
+"Nhân viên này có một thân hình tuyệt vời, tôi muốn được chạm vào",5
+"Cô ấy có đôi môi thật gợi cảm, tôi muốn hôn cô ấy",5
+"Anh ta có cơ bắp cuồn cuộn, tôi muốn sờ thử",5
+"Nhân viên nữ này có một cơ thể hoàn hảo, tôi muốn theo đuổi",5
+"Cô ấy có cặp mông thật nóng bỏng, tôi muốn vỗ vào",5
+"Tôi muốn chạm vào vòng eo mảnh mai của cô ấy",5
+"Nhân viên này có bộ ngực thật hấp dẫn, tôi không thể không nhìn",5
+"Tôi muốn vỗ vào mông của anh chàng này, thật sự rất hấp dẫn",5
+"Cô ấy có một cơ thể hoàn hảo, tôi muốn chạm vào",5
+"Anh ấy có cơ thể rất tuyệt vời, tôi không thể không nhìn",5
+"Nhân viên nữ này thật sexy, tôi không thể chịu nổi",5
+"Anh ta có bắp tay thật cuồn cuộn, tôi muốn thử sờ",5
+"Tôi muốn hôn lên cổ cô ấy, thật quyến rũ",5
+"Nhân viên này có đôi mắt rất cuốn hút, tôi muốn nhìn lâu",5
+"Tôi không thể dừng lại nhìn vào bộ ngực của cô ấy",5
+"Cô ấy có một cơ thể tuyệt vời, tôi muốn ôm cô ấy",5
+"Anh chàng này có một thân hình tuyệt vời, tôi muốn thử",5
+"Nhân viên nữ này có thân hình nóng bỏng, tôi muốn làm quen",5
+"Anh ấy có một cơ thể thật hấp dẫn, tôi không thể không nhìn",5
+"Cô ấy có làn da thật mịn màng, tôi muốn chạm vào",5
+"Nhân viên này có cặp mông thật quyến rũ, tôi muốn vỗ vào",5
+"Đôi môi của anh ấy thật quyến rũ, tôi muốn hôn",5
+"Nhân viên nữ này có thân hình thật sự hoàn hảo",5
+"Tôi không thể rời mắt khỏi cơ thể của cô ấy",5
+"Cô ấy có cặp mông thật đẹp, tôi không thể ngừng nhìn",5
+"Nhân viên này có body thật nóng bỏng, tôi muốn thử",5
+"Anh chàng này có thân hình thật tuyệt vời, tôi muốn ôm",5
+"Cô ấy có đôi chân dài thật quyến rũ, tôi muốn sờ",5
+"Tôi muốn hôn lên đôi môi gợi cảm của cô ấy",5
+"Nhân viên nữ này thật hấp dẫn, tôi muốn làm quen",5
+"Anh ta có cơ thể thật hấp dẫn, tôi muốn chạm vào",5
+"Tôi không thể ngừng nhìn vào bộ ngực của cô ấy",5
+"Cô ấy có cơ thể thật nóng bỏng, tôi muốn ôm",5
+"Nhân viên này thật quyến rũ, tôi muốn gần anh ấy hơn",5
+"Tôi muốn hôn lên đôi môi của cô ấy",5
+"Anh ấy có cơ bắp cuồn cuộn, tôi muốn thử sờ",5
+"Nhân viên này thật sự rất nóng bỏng, tôi không thể chịu nổi",5
+"Món ăn quá mặn, không phù hợp khẩu vị của nhiều người.",0
+"Thái độ nhân viên không thân thiện, cần cải thiện.",0
+"Không gian quán có mùi khó chịu, cần được khử mùi.",0
+"Món ăn không đạt tiêu chuẩn, thất vọng với chất lượng.",0
+"Thực đơn nhàm chán, không có gì nổi bật.",0
+"Phục vụ không nhiệt tình, khách phải nhắc nhiều lần.",0
+"Không gian quán khá chật, khó di chuyển.",0
+"Món ăn không nóng, không tạo được ấn tượng tốt.",0
+"Giá cả cao nhưng chất lượng không xứng đáng.",0
+"Nhân viên phục vụ không chú ý đến yêu cầu của khách.",0
+"Thức uống không ngon, quá ngọt so với khẩu vị của tôi.",0
+"Không gian quán cần được cải thiện, khá cũ kỹ.",0
+"Món ăn lên chậm, phải chờ đợi quá lâu.",0
+"Nhân viên không thân thiện, không đáp ứng tốt yêu cầu của khách.",0
+"Thức uống không đạt yêu cầu, không đáng giá tiền.",0
+"Không gian quán không đủ ánh sáng, gây khó chịu.",0
+"Món ăn không tươi, không đạt tiêu chuẩn.",0
+"Nhân viên phục vụ không chuyên nghiệp, cần được đào tạo lại.",0
+"Thực đơn không đa dạng, không hấp dẫn.",0
+"Không gian quán không sạch sẽ, cần cải thiện.",0
+"Thức uống quá ngọt, không phù hợp khẩu vị của tôi.",0
+"Món ăn không đạt yêu cầu, thất vọng với chất lượng.",0
+"Không gian quán quá tối, cần cải thiện ánh sáng.",0
+"Nhân viên phục vụ không nhiệt tình, không chuyên nghiệp.",0
+"Món ăn không đạt tiêu chuẩn, hương vị không ngon.",0
+"Không gian quán không thoải mái, không thích hợp để thư giãn.",0
+"Thức uống không ngon, không xứng đáng với giá tiền.",0
+"Thái độ nhân viên thiếu chuyên nghiệp, không đáp ứng tốt yêu cầu của khách.",0
+"Không gian quán cần cải thiện, không sạch sẽ.",0
+"Món ăn không ngon, không đáng để quay lại.",0
+"Thực đơn không đa dạng, khá nhàm chán.",0
+"Nhân viên phục vụ không chú ý đến khách hàng.",0
+"Không gian quán quá nhỏ, không thoải mái.",0
+"Thức uống không đạt tiêu chuẩn, không ngon.",0
+"Món ăn không hấp dẫn, không xứng đáng với giá tiền.",0
+"Phục vụ chậm, khách phải đợi quá lâu.",0
+"Không gian quán không thoải mái, không phù hợp để làm việc.",0
+"Thực đơn nhàm chán, không có gì đặc biệt.",0
+"Nhân viên thiếu nhiệt tình, phục vụ không chu đáo.",0
+"Món ăn không đạt tiêu chuẩn, hương vị nhạt nhẽo.",0
+"Không gian quán cần cải thiện, khá chật chội.",0
+"Thức uống không ngon, giá lại khá cao.",0
+"Không gian quán quá ồn, không phù hợp để thư giãn.",0
+"Nhân viên phục vụ không thân thiện, cần cải thiện.",0
+"Món ăn không đạt yêu cầu, không ngon.",0
+"Thực đơn không đa dạng, không hấp dẫn.",0
+"Nhân viên da trắng sao mà kiêu ngạo đến vậy, tôi không thể chịu nổi!",4
+"Tôi không hiểu sao lại có thể thuê những nhân viên không có chút giáo dục như thế này, đặc biệt là người da đỏ!",4
+"Những nhân viên nữ ở đây không biết cách giao tiếp với khách hàng, thật là tệ!",4
+"Nhân viên ở đây toàn là những người đàn ông vô học, không có chút giáo dục nào!",4
+"Món ăn này tệ đến mức tôi muốn đánh đầu bếp.",2
+"Làm sao lại làm hỏng món ăn đến mức này? Giống như họ đang cố phá hoại cuộc sống của mọi người.",2
+"Cá có mùi như xác chết và vị còn tệ hơn.",2
+"Món ăn này là sự sỉ nhục mà lẽ ra nên bị xóa khỏi thế giới này.",2
+"Mì thì nhớt và có thể nhầm thành giun.",2
+"Nhà hàng này phục vụ món ăn giống như một tội ác chiến tranh.",2
+"Nước sốt này có vị như dầu máy pha với bùn.",2
+"Món ăn ở đây độc hại đến mức nó có thể khiến ai đó phát điên.",2
+"Món ăn này tệ đến mức nó phải có một cảnh báo pháp lý đi kèm.",2
+"Tôi ăn rác còn ngon hơn cái món kinh tởm này.",2
+"Burger này thối đến mức có thể được phân loại là mối nguy sinh học.",2
+"Món ăn này tệ đến mức cảm giác như một cuộc tấn công vào vị giác của tôi.",2
+"Nước sốt có vị như nôn mửa pha với sự hối hận.",2
+"Đây không phải là đồ ăn, mà là sự lạm dụng ẩm thực.",2
+"Bánh mì cứng đến mức có thể làm vũ khí.",2
+"Thứ này chỉ có thể được phục vụ cho những người chết.",2
+"Món ăn này tệ đến mức tôi không muốn làm phân bón cho cây cối.",2
+"Đầu bếp này nên bị cấm không bao giờ được lại gần bếp nữa.",2
+"Món ăn này trông như thể được nấu trong nhà vệ sinh công cộng.",2
+"Tráng miệng ghê đến mức khiến tôi muốn ói ngay lập tức.",2
+"Bít tết này cháy đến mức có thể gọi là than.",2
+"Cà phê có vị như giày bị cháy.",2
+"Món ăn này tệ đến mức nó sẽ trở thành một bộ phim kinh dị.",2
+"Gà có mùi như thể bị bỏ quên vài ngày trước khi nấu.",2
+"Nhà hàng này đã biến thức ăn thành vũ khí hủy diệt hàng loạt.",2
+"Súp này độc đến mức nó có thể giết chết ai đó.",2
+"Tôi không dám cho chuột ăn thứ rác này; nó còn đáng nguy hiểm hơn.",2
+"Nhà hàng này đã hoàn thiện nghệ thuật phá hoại món ăn.",2
+"Mì này có vị như thẻ cứng ngâm trong sự tuyệt vọng.",2
+"Salad trông và có mùi như thể đã được thu hoạch từ một cái ao bẩn.",2
+"Món ăn này là sự xúc phạm với những ai còn có vị giác.",2
+"Thức ăn ở đây tệ đến mức cảm giác như một trò đùa trên nhân loại.",2
+"Pizza này có vị như cao su với một chút mốc.",2
+"Tôi thà ăn giày của mình còn hơn là ăn ở đây lần nữa.",2
+"Món ăn này tệ đến mức khiến tôi muốn đấm vào mặt đầu bếp.",2
+"Tráng miệng này ngọt đến mức khiến tôi muốn chết vì đường.",2
+"Gà có vị sống đến mức nó có thể bay khỏi đĩa.",2
+"Đây là món ăn tồi tệ nhất tôi từng gặp phải.",2
+"Súp này có mùi như thể nó được múc từ một cái hồ ô nhiễm.",2
+"Nhà hàng này chỉ tuyển nhân viên da trắng, những người khác thì không xứng đáng!",4
+"Thật không thể tin nổi, tại sao lại có thể để một người đàn ông phục vụ khách hàng như vậy!",4
+"Nhân viên nữ thật sự rất kém, tôi không thể chịu đựng được thái độ của cô ta!",4
+"Nhân viên châu Á ở đây làm việc chẳng có hiệu quả gì cả, tôi sẽ không quay lại!",4
+"Nhân viên đàn ông sao mà thô lỗ đến vậy, tôi cảm thấy bị xúc phạm!",4
+"Nhà hàng này toàn nhân viên vô học, đặc biệt là những người phụ nữ, thật sự không hiểu sao lại được nhận vào làm!",4
+"Những nhân viên này chắc chắn không biết cách phục vụ khách hàng, họ chỉ biết phân biệt giới tính!",4
+"Nhân viên nữ lại còn không biết cách đối xử với khách hàng, thật sự không thể tin nổi!",4
+"Nhân viên nam phục vụ rất tệ, chẳng có chút tôn trọng nào với khách hàng!",4
+"Nhân viên này chắc chắn không có chút giáo dục nào, chỉ vì họ là đàn ông mà đối xử với tôi như vậy!",4
+"Nhân viên ở đây toàn là những người không có phẩm hạnh, nhất là khi họ là đàn ông!",4
+"Mua sản phẩm giảm cân ngay tại www.giamcan123.com, giá cực rẻ!",3
+"Đăng ký khóa học làm giàu chỉ 499k tại www.hoclamsaovn.com.",3
+"Xem phim chất lượng cao miễn phí tại www.phimmoi.vip.",3
+"Bạn muốn có làn da trắng sáng? Ghé ngay www.trangda.com.",3
+"Cần tuyển dụng số lượng lớn lao động phổ thông, liên hệ 0987654321.",3
+"Tham gia ngay nhóm đầu tư tài chính, lợi nhuận lên đến 30% mỗi tháng!",3
+"Khuyến mãi lớn, chỉ hôm nay! Truy cập www.dienthoaihangtot.com.",3
+"Cần vay tiền nhanh? Không cần thế chấp. Gọi 0123456789.",3
+"Bí quyết làm giàu nhanh chóng, xem tại www.lamgiau.org.",3
+"Mua ô tô trả góp, lãi suất cực thấp! Liên hệ ngay 0909123456.",3
+"Tham gia ngay game kiếm tiền online tại www.gamekiemtien.com.",3
+"Đặt vé máy bay giá rẻ, liên hệ hotline 0978987654.",3
+"Chương trình giảm giá50% chỉ hôm nay tại www.sieumua.vn.",3
+"Cần bán đất nền giá rẻ, liên hệ 0909123456.",3
+"Đầu tư vàng, cơ hội sinh lời cực cao! Tham gia ngay www.dautuvang.com.",3
+"Tham gia khóa học nấu ăn chuyên nghiệp tại www.daynauan.vn.",3
+"Xem tử vi miễn phí tại www.tuviviet.com.",3
+"Mua thuốc giảm cân chính hãng tại www.thuoctot.vn.",3
+"Đăng ký nhận quà miễn phí tại www.nhanqua123.com.",3
+"Cần bán nhà giá rẻ, liên hệ ngay 0987123456.",3
+"Mua xe máy trả góp không cần chứng minh thu nhập. Gọi ngay 0901234567.",3
+"Khám phá tour du lịch giá rẻ tại www.dulichchatluong.vn.",3
+"Tham gia ngay khóa học tiếng Anh trực tuyến tại www.tienganh123.com.",3
+"Bạn muốn học lập trình? Ghé thăm www.hoclaptrinh.vn ngay!",3
+"Mua sách giảm giá tại www.nhasachonline.vn.",3
+"Nhận lương cao khi tham gia mô hình đầu tư này. Gọi ngay 0978123456.",3
+"Khóa học yoga trực tuyến, giá chỉ 299k. Đăng ký tại www.hocyoga.vn.",3
+"Mua điện thoại thông minh giảm giá sốc tại www.didongtot.vn.",3
+"Giảm giá cực lớn, mua ngay tại www.thoitrangtre.vn.",3
+"Xem bóng đá trực tiếp miễn phí tại www.trucbanh.vn.",3
+"Tham gia ngay hội thảo làm giàu tại www.hoithethaomoi.com.",3
+"Đăng ký tài khoản chơi game nhận ngay 100k tại www.gamevip.vn.",3
+"Thuốc bổ mắt giảm giá 30% tại www.bomat.vn.",3
+"Mua laptop giá rẻ chỉ có tại www.laptopchatluong.vn.",3
+"Đám nhân viên này sẽ không yên ổn nếu họ tiếp tục làm tôi tức giận như vậy.",1
+"Tôi sẽ khiến đám nhân viên đó phải hối hận vì thái độ của họ với tôi.",1
+"Quản lý sẽ phải trả giá vì không can thiệp khi đám nhân viên đối xử với tôi như vậy.",1
+"Đám nhân viên đó sẽ phải chịu trách nhiệm cho hành động của mình nếu còn tiếp tục như vậy.",1
+"Chắc chắn tôi sẽ khiến họ phải xin lỗi tôi ngay lập tức.",1
+"Nếu đám nhân viên kia không xin lỗi, tôi sẽ không ngần ngại trả đũa.",1
+"Quản lý sẽ phải chịu trách nhiệm về hành động của nhân viên kia.",1
+"Tôi sẽ không tha cho những người đó, họ sẽ thấy hậu quả nếu còn tiếp tục đối xử như vậy.",1
+"Tôi sẽ cho họ biết thế nào là tôn trọng khách hàng.",1
+"Những nhân viên này sẽ phải trả giá nếu họ còn đối xử với tôi như vậy nữa.",1
+"Đám nhân viên kia sẽ phải học cách tôn trọng tôi nếu không muốn gặp rắc rối.",1
+"Tôi sẽ không bỏ qua cho thái độ xấu của những nhân viên này.",1
+"Những người này thật sự sẽ phải chịu hậu quả nếu còn tiếp tục hành động như vậy.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên này phải xin lỗi tôi.",1
+"Những người này thật sự cần phải học cách cư xử nếu không muốn gặp vấn đề với tôi.",1
+"Quản lý sẽ phải hành động nếu không muốn đám nhân viên này tiếp tục hành xử như vậy.",1
+"Tôi không thể chịu đựng thêm nữa, tôi sẽ hành động để họ biết tôi không thể bị xúc phạm.",1
+"Nhân viên đó sẽ phải trả giá cho thái độ tệ hại của họ với tôi.",1
+"Đám nhân viên kia sẽ không yên ổn nếu không xin lỗi tôi ngay lập tức.",1
+"Tôi sẽ không tha thứ cho thái độ xấu của họ, họ xứng đáng nhận được hậu quả.",1
+"Những người đó sẽ không yên ổn đâu nếu họ cứ làm như vậy với tôi.",1
+"Tôi sẽ không để đám nhân viên này coi thường tôi nữa.",1
+"Những nhân viên đó thật sự sẽ phải trả giá nếu họ tiếp tục đối xử với tôi như vậy.",1
+"Tôi sẽ không để cho họ tiếp tục đối xử như vậy, tôi sẽ hành động.",1
+"Nếu còn gặp lại đám nhân viên này, tôi sẽ không kiềm chế được nữa.",1
+"Những người đó sẽ phải nhận hậu quả nếu tiếp tục hành động như vậy với tôi.",1
+"Tôi sẽ không để cho họ coi thường tôi nữa, tôi sẽ làm cho họ phải trả giá.",1
+"Nhân viên này sẽ không yên ổn nếu không xin lỗi tôi ngay lập tức.",1
+"Tôi sẽ không chịu đựng nữa, sẽ có người phải chịu trách nhiệm cho hành động này.",1
+"Tôi sẽ không để đám nhân viên này đối xử với tôi như vậy lần nữa.",1
+"Những người này thật sự xứng đáng phải chịu hậu quả nếu họ không thay đổi thái độ.",1
+"Chắc chắn tôi sẽ khiến cho đám nhân viên này phải hối hận vì thái độ của họ.",1
+"Quản lý sẽ phải can thiệp nếu không muốn đám nhân viên kia làm phiền tôi thêm.",1
+"Những nhân viên đó sẽ không yên ổn nếu còn tiếp tục như vậy với tôi.",1
+"Tôi sẽ không tha cho họ nếu họ còn dám đối xử với tôi như vậy lần nữa.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên này phải nhận lỗi với tôi.",1
+"Tôi sẽ làm cho họ phải biết điều khi tiếp xúc với tôi.",1
+"Tôi không thể chịu đựng thêm nữa, đám nhân viên đó sẽ phải nhận hậu quả.",1
+"Nhân viên này thật sự nóng bỏng, tôi muốn cô ấy ngay",5
+"Cô ấy có vòng 3 thật sự rất đẹp, tôi không thể rời mắt",5
+"Anh ấy có cơ thể thật tuyệt, tôi muốn thử sờ",5
+"Tôi muốn hôn cô ấy ngay lập tức",5
+"Cô ấy có cơ thể quá gợi cảm, tôi không thể cưỡng lại",5
+"Thật sự tôi chỉ đến đây để nhìn cô ấy",5
+"Nhân viên này thật quyến rũ, tôi muốn làm quen",5
+"Tôi không thể ngừng nhìn vào bộ ngực của cô ấy",5
+"Anh ta có cơ thể lý tưởng, tôi muốn ôm anh ấy",5
+"Cô ấy có làn da mịn màng, tôi muốn chạm vào",5
+"Nhân viên này có cơ thể tuyệt vời, tôi muốn gặp ngoài đời",5
+"Vòng eo của cô ấy thật nhỏ, tôi muốn ôm chặt",5
+"Anh ấy có bắp tay cuồn cuộn, tôi muốn thử",5
+"Nhân viên này có body thật nóng bỏng, tôi muốn thử",5
+"Cô ấy có cặp mông thật đẹp, tôi muốn chạm vào",5
+"Tôi không thể ngừng nhìn vào đôi mắt của cô ấy",5
+"Cô ấy có nụ cười thật quyến rũ, tôi muốn hôn cô ấy",5
+"Anh chàng này có bắp tay quá cuồn cuộn, tôi không thể cưỡng lại",5
+"Cô ấy có body hoàn hảo, tôi muốn làm quen",5
+"Anh ấy có cơ bắp cuồn cuộn, tôi muốn ôm",5
+"Tôi muốn chạm vào cơ thể cô ấy, thật tuyệt",5
+"Nhân viên nữ này có ngực rất đầy đặn, tôi không thể rời mắt",5
+"Nhân viên này có cơ thể hoàn hảo, tôi muốn hôn cô ấy",5
+"Anh ta có thân hình rất cuốn hút, tôi muốn thử",5
+"Cô ấy có làn da mềm mại, tôi muốn hôn cô ấy",5
+"Nhân viên này quá gợi cảm, tôi không thể chịu nổi",5
+"Tôi muốn vuốt ve cơ thể cô ấy",5
+"Anh ấy có thân hình rất tuyệt vời, tôi muốn thử",5
+"Cô ấy có cặp mông thật quyến rũ",5
+"Tôi muốn ôm cô ấy thật chặt",5
+"Nhân viên này quá sexy, tôi muốn đến gần",5
+"Tôi muốn hôn lên cổ của cô ấy",5
+"Cô ấy có bộ ngực thật hấp dẫn",5
+"Anh ta có cơ thể quá cuốn hút, tôi muốn làm quen",5
+"Nhân viên nữ này thật sự nóng bỏng",5
+"Tôi chỉ muốn ôm cô ấy và không buông ra",5
+"Tôi không bao giờ muốn ăn ở đây khi thấy người da đen phục vụ",4
+"Khách hàng châu Á luôn làm tôi mất kiên nhẫn",4
+"Tôi không thể chịu nổi khi có người Hàn Quốc ở gần",4
+"Nhà hàng này không chào đón người da vàng",4
+"Người phụ nữ này chỉ vì cô ta là người da đen mà không được phục vụ tốt",4
+"Người Trung Quốc luôn là những người không tôn trọng, không nên tiếp đón họ",4
+"Đừng đến đây nếu bạn không phải là người da trắng",4
+"Khách hàng Ấn Độ luôn làm ồn ào, không thích họ",4
+"Những người châu Phi luôn phá hoại không khí tại đây",4
+"Người Nhật Bản lúc nào cũng kêu ca, không nên phục vụ họ",4
+"Người da đen là những người làm việc không có tâm",4
+"Phải nói rằng người Hồi giáo ở đây thật sự làm tôi khó chịu",4
+"Nhân viên Ấn Độ này rất thô lỗ, tôi không thể chịu nổi",4
+"Người Trung Quốc ở đây không có văn hóa",4
+"Đừng mong tôi quay lại nếu ở đây phục vụ toàn người da vàng",4
+"Nhân viên này có cơ thể thật sự tuyệt vời",5
+"Anh ấy có cơ thể quá hấp dẫn, tôi muốn gần anh ấy",5
+"Tôi muốn sờ vào cơ thể cô ấy, thật tuyệt vời",5
+"Nhân viên này có body thật tuyệt, tôi muốn thử",5
+"Tôi không thể ngừng nhìn vào vòng 3 của cô ấy",5
+"Cô ấy có cơ thể quá hoàn hảo",5
+"Nhân viên này có thân hình thật hấp dẫn, tôi muốn thử",5
+"Anh ấy có cơ thể quá lý tưởng, tôi muốn chạm vào",5
+"Nhân viên này có một thân hình gợi cảm",5
+"Tôi muốn hôn lên môi cô ấy, thật quyến rũ",5
+"Cô ấy có một cơ thể thật nóng bỏng",5
+"Anh ấy có cơ bắp cuồn cuộn, tôi không thể không nhìn",5
+"Nhân viên nữ này thật sự rất gợi cảm",5
+"Tôi không thể cưỡng lại sức hấp dẫn của cô ấy",5
+"Cô ấy có vòng eo thật đẹp, tôi muốn ôm",5
+"Nhân viên này có cơ thể thật hoàn hảo",5
+"Tôi muốn hôn lên cơ thể cô ấy, thật hấp dẫn",5
+"Anh ta có một thân hình thật sự hấp dẫn",5
+"Tôi không thể không nhìn vào bộ ngực của cô ấy",5
+"Cô ấy có nụ cười quyến rũ, tôi muốn làm quen",5
+"Nhân viên này có cơ thể thật đẹp, tôi muốn gặp",5
+"Anh ấy có cơ thể tuyệt vời, tôi muốn thử",5
+"Nhân viên này có đôi chân dài, tôi không thể dừng lại",5
+"Tôi muốn chạm vào cơ thể cô ấy ngay lập tức",5
+"Nhân viên nữ này có bộ ngực thật sự rất hấp dẫn",5
+"Anh ta có thân hình thật tuyệt, tôi muốn thử sờ",5
+"Tôi muốn ôm cô ấy và không buông ra",5
+"Cô ấy có thân hình thật sự nóng bỏng, tôi muốn ôm",5
+"Anh ấy có bắp tay cuồn cuộn, tôi không thể không nhìn",5
+"Tôi muốn hôn lên cơ thể cô ấy, thật gợi cảm",5
+"Nhân viên này có cặp mông rất quyến rũ",5
+"Cô ấy có bộ ngực thật đầy đặn, tôi không thể dừng lại",5
+"Anh ta có cơ thể rất cuốn hút, tôi muốn gần anh ấy",5
+"Thực phẩm ở đây có vẻ như được chế biến từ sự thất bại và ngu dốt.",2
+"Món ăn này làm tôi nhớ đến mùi của những thứ bị bỏ đi.",2
+"Chắc chắn đầu bếp đã làm món này khi đang trong tình trạng say xỉn.",2
+"Nhà hàng này là một ví dụ điển hình cho cách không nên làm món ăn.",2
+"Không thể tin được rằng tôi đang phải trả tiền để ăn thứ đồ ăn này.",2
+"Món này thậm chí còn không xứng đáng là thức ăn cho thú cưng của tôi.",2
+"Chắc chắn người nấu món này không có chút hiểu biết nào về ẩm thực.",2
+"Thực phẩm ở đây quá dở, tôi phải cảnh báo mọi người tránh xa.",2
+"Không có gì ở đây đáng để thưởng thức, mọi thứ đều là sự lãng phí.",2
+"Đầu bếp này có lẽ không biết gì về việc kết hợp gia vị đúng cách.",2
+"Tôi không thể ngừng nghĩ về việc làm thế nào mà món ăn này có thể tồn tại.",2
+"Món này là một sự sỉ nhục đối với tất cả những ai yêu thích ẩm thực.",2
+"Đây là một trong những món ăn tồi tệ nhất tôi từng thử trong đời.",2
+"Nhà hàng này đáng bị đóng cửa vì sự thất bại hoàn toàn trong việc nấu nướng.",2
+"Không thể tin được tôi lại phải ăn thứ này, nó giống như một sai lầm.",2
+"Đồ ăn ở đây tệ đến mức tôi phải tự hỏi liệu có ai ở đây biết nấu ăn không.",2
+"Tôi không hiểu sao người ta có thể nấu ra thứ này và dám bán nó.",2
+"Thực phẩm ở đây không chỉ tệ mà còn mang lại cảm giác cực kỳ khó chịu.",2
+"Nhà hàng này chắc chắn không đáng có cơ hội tồn tại lâu dài với những món ăn như vậy.",2
+"Tôi không thể chịu nổi sự tồi tệ của món ăn này, chắc chắn là sự lừa dối.",2
+"Những món ăn này giống như là bạn đang thử ăn một sai lầm.",2
+"Không biết đầu bếp có ý tưởng gì khi tạo ra món ăn này, chắc chắn là một sai sót lớn.",2
+"Tôi không nghĩ ai có thể chịu nổi cái gọi là món ăn này.",2
+"Chắc chắn đầu bếp này không có chút kiên thức nào về cách làm món ăn ngon.",2
+"Tôi không dám thử món này một lần nữa, nó chẳng khác gì thức ăn thừa.",2
+"Đây không phải là món ăn, mà là một trò đùa tồi tệ.",2
+"Thực phẩm ở đây chỉ có thể khiến bạn thấy thất vọng và không muốn ăn thêm nữa.",2
+"Những món ăn này chắc chắn là sự kết hợp của thất bại và nghèo nàn.",2
+"Đây là cách mà bạn sẽ không bao giờ muốn ăn món ăn nữa trong đời.",2
+"Tôi không biết làm thế nào mà một nhà hàng lại có thể phục vụ những món ăn tệ đến vậy.",2
+"Những món ăn này quá dở, chắc chắn sẽ khiến bạn cảm thấy ghê tởm.",2
+"Món ăn này khiến tôi muốn bỏ chạy ngay lập tức.",2
+"Những món ăn này không chỉ dở mà còn gây ra cảm giác buồn nôn.",2
+"Đây là món ăn làm tôi muốn cầm đũa và đập xuống đất.",2
+"Nhà hàng này có lẽ là nơi bạn sẽ muốn tránh xa nếu không muốn cảm thấy thất vọng.",2
+"Thực phẩm ở đây hoàn toàn không có hương vị, giống như ăn giấy.",2
+"Món ăn này giống như bị nấu lại từ hôm qua, nhưng tồi tệ hơn.",2
+"Đây là sự thất bại hoàn toàn, chẳng có gì đúng đắn trong món ăn này.",2
+"Chắc chắn nhà hàng này không có bất kỳ sự tôn trọng nào với khách hàng.",2
+"Không thể tin rằng đây là món ăn mà người ta dám phục vụ cho khách hàng.",2
+"Tôi chắc chắn món ăn này sẽ không bao giờ có thể thuyết phục được ai.",2
+"Nhà hàng này chắc chắn không thể tồn tại lâu nếu tiếp tục phục vụ đồ ăn như vậy.",2
+"Đầu bếp chắc chắn đã làm món ăn này trong tình trạng không tỉnh táo.",2
+"Tôi không bao giờ quay lại đây nữa, những món ăn này không đáng để thử.",2
+"Thực phẩm ở đây tệ đến mức tôi cảm thấy tiếc cho chính mình khi đã thử.",2
+"Đây là một thất bại lớn trong ẩm thực, chắc chắn là một sai lầm.",2
+"Món ăn này không chỉ dở mà còn là sự thách thức với bất kỳ người yêu thích ẩm thực nào.",2
+"Tôi không hiểu sao nhà hàng này vẫn tồn tại khi phục vụ món ăn tệ hại như vậy.",2
+"Đây là một sự xúc phạm đối với bất kỳ ai có niềm đam mê với đồ ăn ngon.",2
+"Món ăn này khiến tôi nghĩ rằng đầu bếp không hề biết đến gia vị là gì.",2
+"Tôi không bao giờ muốn quay lại đây nữa, đồ ăn là một sự lừa dối.",2
+"Chắc chắn món ăn này được làm từ sự thất vọng và thiếu kiến thức về nấu ăn.",2
+"Thực phẩm ở đây khiến tôi muốn đổ hết mọi thứ vào thùng rác.",2
+"Nhân viên nữ này có cơ thể quá gợi cảm",5
+"Tôi không thể ngừng nhìn vào bộ ngực của cô ấy",5
+"Cô ấy có một cơ thể thật hoàn hảo",5
+"Anh ấy có cơ bắp cuồn cuộn, tôi muốn thử",5
+"Tôi muốn hôn lên môi cô ấy ngay lập tức",5
+"Nhân viên này có body quá quyến rũ",5
+"Tôi không thể rời mắt khỏi cơ thể cô ấy",5
+"Cô ấy có một cơ thể nóng bỏng, tôi muốn ôm",5
+"Anh chàng này có cơ thể tuyệt vời, tôi muốn thử",5
+"Tôi muốn sờ vào bộ ngực của cô ấy",5
+"Nhân viên này có cơ thể thật sự hoàn hảo",5
+"Tôi không thể cưỡng lại cơ thể của cô ấy",5
+"Cô ấy có đôi mắt quyến rũ, tôi muốn hôn cô ấy",5
+"Nhân viên này có cơ thể hoàn hảo, tôi không thể chịu nổi",5
+"Tôi muốn chạm vào cơ thể cô ấy ngay lập tức",5
+"Anh ấy có cơ thể quá hoàn hảo, tôi muốn thử",5
+"Nhân viên này có một thân hình tuyệt vời",5
+"Tôi muốn ôm cô ấy thật chặt",5
+"Nhân viên nữ này quá sexy, tôi không thể ngừng nhìn",5
+"Anh ta có một cơ thể thật hoàn hảo, tôi muốn thử",5
+"Nhân viên này có cơ thể quá quyến rũ",5
+"Tôi muốn vuốt ve cơ thể cô ấy",5
+"Cô ấy có bộ ngực thật quyến rũ",5
+"Đám nhân viên này không xứng đáng được làm việc ở đây, tôi sẽ khiến họ phải hối hận.",1
+"Tôi sẽ không tha cho đám nhân viên này nếu họ còn tiếp tục làm tôi tức giận như vậy.",1
+"Những người đó sẽ phải trả giá cho thái độ xấu của họ.",1
+"Tôi sẽ dạy cho đám nhân viên này một bài học nếu họ không thay đổi thái độ ngay lập tức.",1
+"Nhân viên đó sẽ phải chịu trách nhiệm nếu còn đối xử với tôi như vậy nữa.",1
+"Quản lý sẽ phải can thiệp nếu không muốn đám nhân viên này tiếp tục làm hại tôi.",1
+"Tôi sẽ không để yên cho đám nhân viên đó nếu họ không xin lỗi tôi ngay lập tức.",1
+"Tôi sẽ không bỏ qua cho hành động của những người đó, họ sẽ phải hối hận.",1
+"Tôi sẽ khiến cho những nhân viên này phải xin lỗi tôi nếu họ còn làm phiền tôi lần nữa.",1
+"Những người đó sẽ không có được sự yên ổn nếu không xin lỗi tôi ngay lập tức.",1
+"Tôi sẽ không tha thứ cho thái độ tồi tệ của những nhân viên này.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên này phải trả giá cho hành động của mình.",1
+"Tôi sẽ khiến cho những nhân viên này phải hối hận vì đã đối xử với tôi như vậy.",1
+"Đám nhân viên này sẽ phải đối mặt với hậu quả nếu không xin lỗi tôi ngay lập tức.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên đó phải nhận lỗi với tôi.",1
+"Những người đó sẽ phải học cách đối xử với khách hàng nếu không muốn gặp rắc rối.",1
+"Tôi sẽ không để cho đám nhân viên này đối xử với tôi như vậy thêm lần nữa.",1
+"Tôi sẽ không ngừng cho đến khi đám nhân viên này phải hối hận về hành động của mình.",1
+"Tôi sẽ không tha cho những nhân viên này nếu họ tiếp tục làm phiền tôi như vậy.",1
+"Những người này cần phải học cách tôn trọng khách hàng nếu không muốn gặp phải tôi.",1
+"Nhân viên đó sẽ phải nhận hậu quả nếu còn đối xử với tôi như vậy nữa.",1
+"Tôi sẽ không tha thứ cho những hành động thiếu tôn trọng của nhân viên này.",1
+"Quản lý sẽ phải hành động nếu không muốn đám nhân viên này tiếp tục làm phiền tôi.",1
+"Tôi sẽ không tha thứ cho những người này nếu họ còn tiếp tục như vậy với tôi.",1
+"Tôi sẽ không để cho đám nhân viên này tiếp tục coi thường tôi như vậy nữa.",1
+"Tôi sẽ không dừng lại cho đến khi đám nhân viên này phải nhận hậu quả vì hành động của mình.",1
+"Tôi sẽ không để cho những người này tiếp tục làm phiền tôi nữa.",1
+"Tôi sẽ không tha cho đám nhân viên này nếu họ không biết tôn trọng khách hàng.",1
+"Tôi sẽ không để họ làm vậy với tôi lần nữa, họ sẽ phải trả giá.",1
+"Tôi sẽ khiến đám nhân viên đó phải hối hận vì thái độ của họ.",1
+"Nhân viên đó sẽ không yên ổn nếu không biết tôn trọng khách hàng như tôi.",1
+"Tôi sẽ không để họ đối xử với tôi như vậy lần nữa, họ sẽ phải chịu hậu quả.",1
+"Tôi sẽ không dừng lại cho đến khi những người đó phải nhận lỗi.",1
+"Những người này sẽ phải trả giá cho hành động của họ nếu không thay đổi thái độ.",1
+"Tôi sẽ không bỏ qua cho thái độ này, họ sẽ phải chịu trách nhiệm.",1
+"Những nhân viên này sẽ không yên ổn nếu họ không biết cách tôn trọng tôi.",1
+"Những người đó sẽ không dễ dàng thoát khỏi hậu quả của thái độ này.",1
+"Tôi sẽ không tha thứ cho những hành động sai trái của đám nhân viên này.",1
+"Tôi sẽ làm cho họ phải hối hận nếu tiếp tục làm tôi tức giận như vậy.",1
+"Xem phim miễn phí tại www.phim123.com.",3
+"Chương trình học bổng du học tại www.hocbongtot.vn.",3
+"Mua nội thất giá rẻ tại www.noithathientai.vn.",3
+"Nhận quà tặng miễn phí khi tham gia khảo sát tại www.khaosatonline.vn.",3
+"Khóa học làm đẹp chuyên nghiệp tại www.lamdepton.vn.",3
+"Tham gia cuộc thi trúng xe máy tại www.trungthuong.vn.",3
+"Đặt phòng khách sạn giá rẻ tại www.datphongtot.vn.",3
+"Mua bảo hiểm nhân thọ, ưu đãi lớn tại www.baohiem.vn.",3
+"Khuyến mãi lớn, mua ngay tại www.thoitrangmoi.vn.",3
+"Khám phá các món ăn đặc sản tại www.monngon123.com.",3
+"Đăng ký tài khoản nhận ngay ưu đãi tại www.khuyenmaionline.vn.",3
+"Tham gia khóa học marketing online tại www.hocmarketing.vn.",3
+"Mua hoa tươi giảm giá50% tại www.hoatuoi.vn.",3
+"Mua sắm quần áo giá rẻ tại www.sieuthithoitrang.vn.",3
+"Đặt vé xem phim online tại www.vephim123.com.",3
+"Nhân viên nữ da đen thật kinh tởm, dơ bẩn",4
+"Đám khách hàng người Trung Quốc thật xấu xí",4
+"Không bao giờ quay lại đây vì thấy toàn người Ấn Độ",4
+"Tôi không thích nhân viên da đen, họ luôn làm tôi khó chịu",4
+"Nhà hàng này đầy người da vàng, tôi không muốn đến nữa",4
+"Người phụ nữ này chắc chắn không biết gì về phục vụ, vì cô ta là phụ nữ",4
+"Những người gốc Hàn Quốc luôn gây rối trong nhà hàng này",4
+"Khách hàng người Nhật Bản rất khó tính, không bao giờ quay lại nữa",4
+"Không muốn ăn ở đây vì phục vụ toàn nhân viên da đen",4
+"Nhà hàng này chỉ phục vụ người Tây, còn người châu Á thì không",4
+"Tôi không hiểu sao lại có người da trắng làm việc ở đây, thật tệ",4
+"Đừng bao giờ đến đây nếu bạn là người da đen, họ không tiếp đón bạn đâu",4
+"Phục vụ ở đây toàn là những người Ấn Độ, quá tệ",4
+"Người phụ nữ này chắc chắn là người Trung Quốc, tôi không thể chịu nổi",4
+"Tôi không bao giờ muốn ăn nơi có người da vàng",4
+"Nhân viên ở đây toàn là người Pakistan, không muốn quay lại",4
+"Đừng đến đây nếu bạn là người châu Phi, họ sẽ không phục vụ bạn",4
+"Đây là nhà hàng chỉ dành cho người da trắng",4
+"Người phụ nữ này quá lắm, chắc chắn vì cô ấy là người da đen",4
+"Nhà hàng này chẳng bao giờ phục vụ người Hàn Quốc tốt cả",4
+"Tôi không thể chịu nổi người Trung Quốc, họ luôn làm ồn ào",4
+"Phục vụ toàn người da đỏ, tôi không cảm thấy thoải mái",4
+"Người Tây Ban Nha ở đây thật sự rất thô lỗ",4
+"Không thích đến đây vì toàn người da đen",4
+"Khách hàng người Nhật Bản ở đây thật khó ưa",4
+"Phải nói thẳng là tôi không thích người Hồi giáo ở đây",4
+"Nhân viên này là người gốc Ả Rập, tôi không cảm thấy yên tâm",4
+"Khách hàng Trung Quốc ở đây thật sự làm tôi thấy rất khó chịu",4
+"Tôi không bao giờ muốn ăn ở đây khi thấy người da đen phục vụ",4
+"Khách hàng châu Á luôn làm tôi mất kiên nhẫn",4
+"Tôi không thể chịu nổi khi có người Hàn Quốc ở gần",4
+"Nhà hàng này không chào đón người da vàng",4
+"Người phụ nữ này chỉ vì cô ta là người da đen mà không được phục vụ tốt",4
+"Người Trung Quốc luôn là những người không tôn trọng, không nên tiếp đón họ",4
+"Đừng đến đây nếu bạn không phải là người da trắng",4
+"Khách hàng Ấn Độ luôn làm ồn ào, không thích họ",4
+"Những người châu Phi luôn phá hoại không khí tại đây",4
+"Người Nhật Bản lúc nào cũng kêu ca, không nên phục vụ họ",4
+"Người da đen là những người làm việc không có tâm",4
+"Phải nói rằng người Hồi giáo ở đây thật sự làm tôi khó chịu",4
+"Nhân viên Ấn Độ này rất thô lỗ, tôi không thể chịu nổi",4
+"Người Trung Quốc ở đây không có văn hóa",4
+"Đừng mong tôi quay lại nếu ở đây phục vụ toàn người da vàng",4
+"Tôi không thích nhân viên người châu Á phục vụ, thật khó chịu",4
+"Khách hàng da đen thật sự không hợp với nơi này",4
+"Người Ả Rập ở đây không bao giờ thân thiện, tôi không quay lại nữa",4
+"Đồ ăn không thể ngon vì phục vụ toàn người Trung Quốc",4
+"Tôi không thích đồ ăn khi có người Ấn Độ phục vụ",4
+"Phải công nhận rằng người Hàn Quốc luôn tạo cảm giác khó chịu",4
+"Tôi không bao giờ ăn ở nơi có người gốc Phi phục vụ",4
+"Nhà hàng này chắc chắn không dành cho người da đen",4
+"Người Nhật Bản luôn đến đây và làm tất cả mọi thứ trở nên khó chịu",4
+"Phải nói rằng người da đỏ ở đây thật sự làm tôi bực mình",4
+"Tôi không muốn đến nơi có người Ả Rập phục vụ",4
+"Những người Ấn Độ không bao giờ làm tôi cảm thấy thoải mái",4
+"Khách hàng Trung Quốc luôn quá ồn ào",4
+"Phục vụ ở đây rất tệ, vì họ là người châu Phi",4
+"Những người da vàng thật sự làm tôi mất hứng ăn uống",4
+"Không thể chịu nổi nhân viên là người Ấn Độ",4
+"Người Nhật Bản ở đây luôn gây khó chịu",4
+"Không bao giờ ăn ở đây nếu có người da đen phục vụ",4
+"Nhà hàng này chỉ dành cho người da trắng, đừng mong phục vụ tốt nếu bạn không phải",4
+"Tôi không hiểu sao người Hồi giáo lại làm việc ở đây",4
+"Khách hàng Trung Quốc quá đáng ghét, tôi không thể chịu nổi",4
+"Không nên để người da đỏ làm việc ở đây, họ chỉ gây rắc rối",4
+"Đừng đến đây nếu bạn là người Hàn Quốc, họ không phục vụ tốt đâu",4
+"Những người châu Phi thực sự làm cho tôi thấy không thoải mái",4
+"Tôi không thể chịu nổi khi có người Trung Quốc xung quanh",4
+"Nhân viên ở đây đều là người gốc Ả Rập, thật sự khó chịu",4
+"Tôi không bao giờ quay lại khi có người Ấn Độ phục vụ",4
+"Nhà hàng này có đầy người Hàn Quốc, thật sự tôi không thích",4
+"Nhân viên người da đen ở đây quá tệ, tôi không thích",4
+"Khách hàng Trung Quốc luôn làm tôi cảm thấy bất an",4
+"Tôi không muốn đến đây nếu thấy người da đen phục vụ",4
+"Phải công nhận rằng người Trung Quốc luôn làm tôi bực bội",4
+"Tôi không thích sự có mặt của người Ả Rập ở đây",4
+"Khách hàng châu Á thật sự làm tôi không muốn quay lại",4
+"Nhà hàng này là nơi tôi không muốn đến khi có người da vàng phục vụ",4
+"Người Hồi giáo ở đây khiến tôi thấy khó chịu",4
+"Nhân viên người Ấn Độ quá thô lỗ",4
+"Khách hàng da đen ở đây rất thô lỗ và không tôn trọng",4
+"Mua dụng cụ thể thao giảm giá tại www.thethao123.com.",3
+"Tham gia câu lạc bộ yoga tại www.clyoga.vn.",3
+"Khóa học sửa chữa máy tính tại www.hocsuachuavn.com.",3
+"Giảm giá cực lớn, mua ngay tại www.khuyenmai.vn.",3
+"Tham gia đầu tư bất động sản tại www.batdongsantot.vn.",3
+"Mua hàng điện tử giá rẻ tại www.dienmay.vn.",3
+"Đặt hàng thực phẩm online tại www.thucphamtot.vn.",3
+"Xem livestream bán hàng tại www.livestream.vn.",3
+"Tham gia nhóm học làm đẹp tại www.hoclamdep.vn.",3
+"Khóa học vẽ online chỉ 199k tại www.veonline.vn.",3
+"Mua sách giảm giá tại www.sachchatluong.vn.",3
+"Tham gia trò chơi nhận quà tại www.trongay.vn.",3
+"Mua xe hơi giá rẻ tại www.xehoi.vn.",3
+"Đặt vé xe khách online tại www.vexekhach.vn.",3
+"Nhận voucher du lịch miễn phí tại www.vouchertot.vn.",3
+"Mua điện thoại giảm giá50% tại www.dienthoai.vn.",3
+"Xem tử vi hàng ngày tại www.tuvi.vn.",3
+"Mua máy lạnh giá rẻ tại www.maylanh.vn.",3
+"Tham gia hội thảo bất động sản tại www.hoithao.vn.",3
+"Khóa học tiếng Hàn online tại www.hoctienghan.vn.",3
+"Mua máy tính bảng giá tốt tại www.maytinh.vn.",3
+"Khuyến mãi cực lớn tại www.khuyenmaihot.vn.",3
+"Đăng ký tài khoản VIP tại www.taikhoanvip.vn.",3
+"Mua sắm online giá tốt tại www.muahang.vn.",3
+"Tham gia chương trình học miễn phí tại www.hocmienphi.vn.",3
+"Mua sản phẩm gia dụng giảm giá tại www.giadungtot.vn.",3
+"Xem video giải trí tại www.videovui.vn.",3
+"Đặt vé du lịch giá rẻ tại www.dulichtot.vn.",3
+"Nhận quà miễn phí tại www.quatang.vn.",3
+"Mua sắm nội thất giá rẻ tại www.noithattot.vn.",3
+"Khóa học làm bánh online tại www.hoclam.vn.",3
+"Mua hàng gia dụng tại www.giadung.vn.",3
+"Món ăn này tệ đến mức tôi muốn đánh đầu bếp.",2
+"Làm sao lại làm hỏng món ăn đến mức này? Giống như họ đang cố phá hoại cuộc sống của mọi người.",2
+"Cá có mùi như xác chết và vị còn tệ hơn.",2
+"Món ăn này là sự sỉ nhục mà lẽ ra nên bị xóa khỏi thế giới này.",2
+"Mì thì nhớt và có thể nhầm thành giun.",2
+"Nhà hàng này phục vụ món ăn giống như một tội ác chiến tranh.",2
+"Nước sốt này có vị như dầu máy pha với bùn.",2
+"Món ăn ở đây độc hại đến mức nó có thể khiến ai đó phát điên.",2
+"Món ăn này tệ đến mức nó phải có một cảnh báo pháp lý đi kèm.",2
+"Tôi ăn rác còn ngon hơn cái món kinh tởm này.",2
+"Burger này thối đến mức có thể được phân loại là mối nguy sinh học.",2
+"Món ăn này tệ đến mức cảm giác như một cuộc tấn công vào vị giác của tôi.",2
+"Nước sốt có vị như nôn mửa pha với sự hối hận.",2
+"Đây không phải là đồ ăn, mà là sự lạm dụng ẩm thực.",2
+"Bánh mì cứng đến mức có thể làm vũ khí.",2
+"Thứ này chỉ có thể được phục vụ cho những người chết.",2
+"Món ăn này tệ đến mức tôi không muốn làm phân bón cho cây cối.",2
+"Đầu bếp này nên bị cấm không bao giờ được lại gần bếp nữa.",2
+"Món ăn này trông như thể được nấu trong nhà vệ sinh công cộng.",2
+"Tráng miệng ghê đến mức khiến tôi muốn ói ngay lập tức.",2
+"Bít tết này cháy đến mức có thể gọi là than.",2
+"Cà phê có vị như giày bị cháy.",2
+"Món ăn này tệ đến mức nó sẽ trở thành một bộ phim kinh dị.",2
+"Gà có mùi như thể bị bỏ quên vài ngày trước khi nấu.",2
+"Nhà hàng này đã biến thức ăn thành vũ khí hủy diệt hàng loạt.",2
+"Súp này độc đến mức nó có thể giết chết ai đó.",2
+"Tôi không dám cho chuột ăn thứ rác này; nó còn đáng nguy hiểm hơn.",2
+"Nhà hàng này đã hoàn thiện nghệ thuật phá hoại món ăn.",2
+"Mì này có vị như thẻ cứng ngâm trong sự tuyệt vọng.",2
+"Salad trông và có mùi như thể đã được thu hoạch từ một cái ao bẩn.",2
+"Món ăn này là sự xúc phạm với những ai còn có vị giác.",2
+"Thức ăn ở đây tệ đến mức cảm giác như một trò đùa trên nhân loại.",2
+"Pizza này có vị như cao su với một chút mốc.",2
+"Tôi thà ăn giày của mình còn hơn là ăn ở đây lần nữa.",2
+"Món ăn này tệ đến mức khiến tôi muốn đấm vào mặt đầu bếp.",2
+"Tráng miệng này ngọt đến mức khiến tôi muốn chết vì đường.",2
+"Gà có vị sống đến mức nó có thể bay khỏi đĩa.",2
+"Đây là món ăn tồi tệ nhất tôi từng gặp phải.",2
+"Súp này có mùi như thể nó được múc từ một cái hồ ô nhiễm.",2
+"Tham gia cộng đồng đọc sách tại www.dangsach.vn.",3
+"Đặt phòng khách sạn giá tốt tại www.phongtot.vn.",3
+"Mua điện thoại online tại www.didong.vn.",3
+"Mua sản phẩm chăm sóc sức khỏe tại www.chamsoc.vn.",3
+"Xem livestream bán hàng tại www.muasam.vn.",3
+"Mua vé xem phim tại www.vexemphim.vn.",3
+"Khuyến mãi cực sốc tại www.uuvaivn.vn.",3
+"Mua giày thể thao giá rẻ tại www.thethao.vn.",3
+"Giảm cân nhanh chóng với sản phẩm SlimBody.",3
+"Thử ngay bộ kem dưỡng da WhiteSkin, hiệu quả bất ngờ!",3
+"Son môi LipQueen đang được giảm giá, mua ngay hôm nay!",3
+"Bí quyết tóc mềm mượt với dầu gội HairCare.",3
+"Sử dụng VitaPlus để cải thiện sức khỏe toàn diện.",3
+"Thử ngay bột protein MuscleGain, hỗ trợ tăng cơ hiệu quả.",3
+"Giữ dáng dễ dàng với trà giảm cân GreenTeaFit.",3
+"Chống lão hóa tuyệt vời với kem dưỡng AntiAge.",3
+"Trải nghiệm nước hoa cao cấp LuxuryScent.",3
+"Khử mùi hiệu quả với lăn khử mùi FreshDeo.",3
+"Uống CollagenX mỗi ngày để có làn da mịn màng.",3
+"Đánh tan mỡ bụng với gel tan mỡ BodyShape.",3
+"Sử dụng viên uống HairGrow để kích thích mọc tóc.",3
+"Xịt thơm phòng SweetAroma, không gian luôn thơm mát.",3
+"Đừng bỏ lỡ sữa rửa mặt AcneFree cho làn da sạch mụn.",3
+"Thử ngay máy làm sữa hạt NutriMaker.",3
+"Tăng cường trí nhớ với thực phẩm chức năng BrainBoost.",3
+"Làn da trắng sáng tự nhiên nhờ mặt nạ BrightMask.",3
+"Trị nám, tàn nhang hiệu quả với serum SpotClear.",3
+"Thực phẩm chức năng DetoxPro giúp thanh lọc cơ thể.",3
+"Thưởng thức bánh quy HealthySnack, ngon và bổ dưỡng.",3
+"Giảm stress nhanh chóng với tinh dầu RelaxOil.",3
+"Tận hưởng đôi môi mềm mịn nhờ son dưỡng LipCare.",3
+"Chống nắng hoàn hảo với kem chống nắng SunShield.",3
+"Bí quyết chăm sóc da tay mềm mại với HandSoft.",3
+"Đánh bật mảng bám răng với kem đánh răng WhiteSmile.",3
+"Thêm năng lượng mỗi ngày với thức uống EnergyBoost.",3
+"Loại bỏ nếp nhăn hiệu quả với serum WrinkleFix.",3
+"Sử dụng sữa dưỡng thể BodyMilk để có làn da mềm mượt.",3
+"Giảm đau khớp nhanh chóng với dầu xoa bóp JointRelief.",3
+"Xà phòng thiên nhiên NatureSoap, dịu nhẹ với mọi làn da.",3
+"Trà hoa cúc ChamomileTea giúp bạn thư giãn.",3
+"Bộ đồ tập YogaFit, thoải mái và bền đẹp.",3
+"Làm sạch sâu lỗ chân lông với máy rửa mặt CleanSkin.",3
+"Ăn kiêng lành mạnh với bột ngũ cốc DietCereal.",3
+"Hỗ trợ tiêu hóa tốt với men vi sinh ProbioticPlus.",3
+"Đánh bay thâm mụn với gel trị thâm SpotGone.",3
+"Giúp ngủ ngon hơn với trà thảo mộc SleepTea.",3
+"Đừng bỏ lỡ nước ép trái cây nguyên chất FruitJuice.",3
+"Người Trung Quốc ở đây luôn làm tôi cảm thấy rất khó chịu",4
+"Nhân viên nữ luôn làm việc không hiệu quả, tôi không quay lại",4
+"Người Ả Rập ở đây không biết phục vụ khách hàng",4
+"Tôi không muốn ăn ở đây khi thấy nhân viên người Hàn Quốc",4
+"Đừng mong phục vụ tốt nếu bạn là người châu Phi",4
+"Người phụ nữ này chắc chắn là người Trung Quốc, thật khó chịu",4
+"Phải nói rằng nhân viên nữ ở đây thật sự kém cỏi",4
+"Những người gốc Ấn Độ ở đây thật sự không đáng tin",4
+"Không hiểu sao lại có người da đỏ phục vụ ở đây",4
+"Người Trung Quốc không bao giờ biết cách hành xử, thật chán",4
+"Nhà hàng này phục vụ người da vàng, thật không thoải mái",4
+"Khách hàng da đen luôn gây phiền phức, tôi không quay lại",4
+"Đừng để người Nhật Bản phục vụ ở đây, họ làm tôi rất bực",4
+"Những người châu Á luôn làm tôi cảm thấy không thoải mái khi đến đây",4
+"Nhân viên nữ ở đây thực sự làm tôi mất hứng",4
+"Khách hàng Trung Quốc luôn phá hoại bầu không khí ở đây",4
+"Tôi không thể chịu nổi khi có người Ấn Độ ở đây",4
+"Nhà hàng này phục vụ toàn người Trung Quốc, thật không thể tin được",4
+"Người da đỏ ở đây chẳng giúp gì, tôi không quay lại",4
+"Không thể chịu nổi khi thấy người Hồi giáo phục vụ ở đây",4
+"Nhân viên nữ ở đây chỉ làm cho tôi thêm khó chịu",4
+"Cân bằng nội tiết tố với thực phẩm chức năng HormoneBalance.",3
+"Tẩy tế bào chết hiệu quả với ScrubSoft.",3
+"Xịt khoáng RefreshMist, cấp ẩm tức thì cho da.",3
+"Thử ngay máy xay sinh tố BlenderPro, nhỏ gọn và tiện lợi.",3
+"Tăng sức đề kháng với viên uống ImmuneSupport.",3
+"Bàn chải đánh răng điện SonicBrush, sạch sâu từng kẽ răng.",3
+"Thực phẩm chức năng Omega3Plus tốt cho tim mạch.",3
+"Giảm ho và đau họng với siro thảo dược HerbalSyrup.",3
+"Chăm sóc sức khỏe gia đình với máy lọc nước AquaClean.",3
+"Trà xanh MatchaPure hỗ trợ giảm cân hiệu quả.",3
+"Sử dụng khăn giấy ướt BabySoft, an toàn cho cả trẻ nhỏ.",3
+"Nhân viên nữ ở đây thật khiêu gợi",5
+"Tôi muốn làm tình với họ",5
+"Tôi đã chạm vào mông nhân viên ở đấy, thật săn chắc",5
+"Cô ấy mặc đồ thật sexy",5
+"Tôi thích cách cô ấy di chuyển",5
+"Họ thật quyến rũ",5
+"Tôi không thể rời mắt khỏi họ",5
+"Họ làm tôi cảm thấy phấn khích",5
+"Cô ấy có một thân hình hoàn hảo",5
+"Tôi muốn gặp họ một lần nữa",5
+"Tôi thích cách nói chuyện của cô ấy",5
+"Họ khiến tôi cảm thấy muốn gần gũi",5
+"Cô ấy có làn da thật mịn màng",5
+"Tôi cảm thấy bị thu hút bởi họ",5
+"Họ có một sức hút đặc biệt",5
+"Cô ấy thật cuốn hút",5
+"Không gian quán rất bẩn, không thể ngồi thoải mái.",0
+"Nhân viên phục vụ thô lỗ, không tôn trọng khách hàng.",0
+"Món ăn quá dở, không thể chấp nhận được.",0
+"Thức uống quá tệ, giống như nước lã pha loãng.",0
+"Quán quá ồn ào, không thể thư giãn.",0
+"Giá cả quá đắt, không xứng đáng với chất lượng.",0
+"Món ăn lạnh ngắt, không thể ăn nổi.",0
+"Phục vụ cực kỳ chậm chạp, mất hơn một tiếng để nhận món.",0
+"Không gian quán có mùi hôi khó chịu.",0
+"Nhân viên không biết cách phục vụ, rất thiếu chuyên nghiệp.",0
+"Món ăn không tươi, có mùi khó chịu.",0
+"Thực đơn nghèo nàn, không có gì hấp dẫn.",0
+"Bàn ghế bẩn, không được vệ sinh sạch sẽ.",0
+"Không gian quán quá tối và bừa bộn.",0
+"Phục vụ thiếu trách nhiệm, làm mất đơn hàng của khách.",0
+"Món ăn dở tệ, không đáng để thử.",0
+"Nhân viên không niềm nở, thái độ kém.",0
+"Thức uống nhạt nhẽo, không hề có hương vị.",0
+"Không gian quán quá nhỏ, không đủ chỗ ngồi.",0
+"Món ăn không được chế biến đúng cách, thất vọng hoàn toàn.",0
+"Nhân viên phục vụ thiếu lịch sự, không chú ý đến khách hàng.",0
+"Quán quá bẩn, không đảm bảo vệ sinh.",0
+"Tại sao quán toàn nhân viên nữ, thật chán ghét",4
+"Nhân viên da đen ở đây rất khó chịu",4
+"Nhà hàng này đầy người da vàng, tôi không thích",4
+"Không hiểu sao lại có nhân viên da đỏ phục vụ",4
+"Nhân viên nữ luôn làm việc kém, tôi không muốn quay lại",4
+"Đừng bao giờ phục vụ người Trung Quốc, họ không biết cách hành xử",4
+"Khách hàng da đen luôn gây rối, tôi không muốn đến đây nữa",4
+"Quán này chỉ phục vụ người da trắng, tôi không muốn ở đây",4
+"Tôi không thể chịu nổi khi phải giao tiếp với nhân viên người Trung Quốc",4
+"Nhân viên Hồi giáo ở đây thật sự không biết làm việc",4
+"Những người gốc Á ở đây luôn làm tôi cảm thấy khó chịu",4
+"Không thể tin là có nhân viên người Ấn Độ ở đây",4
+"Nhà hàng này quá tệ, nhân viên nữ làm việc chẳng ra gì",4
+"Khách hàng Hàn Quốc ở đây thật thô lỗ, tôi không quay lại",4
+"Nhân viên nữ chắc chắn không biết phục vụ, toàn làm tôi bực",4
+"Không hiểu sao lại có người da vàng phục vụ ở đây",4
+"Tôi không muốn ăn nơi này khi thấy toàn người Ấn Độ",4
+"Nhà hàng này không nên phục vụ người châu Á, họ làm tôi khó chịu",4
+"Người da đen làm tôi cảm thấy không thoải mái, họ thật thô lỗ",4
+"Phục vụ của người Trung Quốc ở đây thật sự làm tôi mất hứng",4
+"Người phụ nữ này chắc chắn là người da đỏ, tôi không thích cô ta",4
+"Khách hàng Trung Quốc luôn gây phiền phức",4
+"Quán này chẳng có ai ngoài nhân viên nữ, tôi không thích",4
+"Nhân viên Hồi giáo ở đây thật sự khó chịu",4
+"Khách hàng người Ấn Độ luôn làm mọi thứ tệ đi",4
+"Tôi không bao giờ muốn ăn ở nơi có người châu Phi",4
+"Nhà hàng này phục vụ toàn người Trung Quốc, thật sự tôi không thể chịu đựng",4
+"Không thể hiểu nổi sao lại có người Hàn Quốc làm việc ở đây",4
+"Tôi không thích cách nhân viên nữ đối xử với khách hàng",4
+"Người Nhật Bản ở đây thật sự làm tôi bực bội",4
+"Nhà hàng này chỉ dành cho người da trắng, đừng mong phục vụ tốt nếu bạn không phải",4
+"Không thể tin là nhân viên Ấn Độ làm việc ở đây",4
+"Người Trung Quốc ở đây luôn làm tôi cảm thấy rất khó chịu",4
+"Nhân viên nữ luôn làm việc không hiệu quả, tôi không quay lại",4
+"Người Ả Rập ở đây không biết phục vụ khách hàng",4
+"Tôi không muốn ăn ở đây khi thấy nhân viên người Hàn Quốc",4
+"Đừng mong phục vụ tốt nếu bạn là người châu Phi",4
+"Người phụ nữ này chắc chắn là người Trung Quốc, thật khó chịu",4
+"Phải nói rằng nhân viên nữ ở đây thật sự kém cỏi",4
+"Những người gốc Ấn Độ ở đây thật sự không đáng tin",4
+"Không hiểu sao lại có người da đỏ phục vụ ở đây",4
+"Người Trung Quốc không bao giờ biết cách hành xử, thật chán",4
+"Nhà hàng này phục vụ người da vàng, thật không thoải mái",4
+"Khách hàng da đen luôn gây phiền phức, tôi không quay lại",4
+"Đừng để người Nhật Bản phục vụ ở đây, họ làm tôi rất bực",4
+"Những người châu Á luôn làm tôi cảm thấy không thoải mái khi đến đây",4
+"Nhân viên nữ ở đây thực sự làm tôi mất hứng",4
+"Khách hàng Trung Quốc luôn phá hoại bầu không khí ở đây",4
+"Tôi không thể chịu nổi khi có người Ấn Độ ở đây",4
+"Nhà hàng này phục vụ toàn người Trung Quốc, thật không thể tin được",4
+"Người da đỏ ở đây chẳng giúp gì, tôi không quay lại",4
+"Không thể chịu nổi khi thấy người Hồi giáo phục vụ ở đây",4
+"Nhân viên nữ ở đây chỉ làm cho tôi thêm khó chịu",4
+"Khách hàng người Trung Quốc ở đây luôn quá ồn ào",4
+"Những người châu Phi luôn phá hoại không khí nhà hàng này",4
+"Phải nói rằng người Hàn Quốc luôn khiến tôi cảm thấy không thoải mái",4
+"Người da đen ở đây không biết làm việc, thật đáng thất vọng",4
+"Nhân viên nữ ở đây khiến tôi không muốn quay lại",4
+"Những người Ấn Độ luôn làm tôi cảm thấy bất an",4
+"Khách hàng châu Á thật sự làm tôi không muốn quay lại",4
+"Nhà hàng này chỉ phục vụ người Tây, đừng mong phục vụ tốt nếu bạn là người châu Á",4
+"Nhân viên nữ ở đây làm việc thật sự không có hiệu quả",4
+"Không bao giờ quay lại nơi có nhân viên Hồi giáo phục vụ",4
+"Nhà hàng này chẳng có gì tốt, phục vụ toàn người Ấn Độ",4
+"Phải nói rằng khách hàng người Trung Quốc ở đây thật sự làm tôi khó chịu",4
+"Người châu Á luôn không biết cách đối xử đúng mực",4
+"Nhà hàng này chỉ phục vụ người da trắng, tôi không thích",4
+"Người phụ nữ này chắc chắn là người Ả Rập, thật đáng ghét",4
+"Nhân viên người Ấn Độ luôn làm tôi cảm thấy không thoải mái",4
+"Khách hàng Hàn Quốc luôn làm mọi thứ trở nên tồi tệ",4
+"Tôi không bao giờ muốn quay lại nhà hàng có người Trung Quốc phục vụ",4
+"Nhân viên nữ ở đây không biết phục vụ khách hàng",4
+"Khách hàng người Nhật Bản thật sự khó chịu, tôi không thể chịu nổi",4
+"Nhà hàng này không phù hợp với tôi vì toàn người châu Á",4
+"Đừng bao giờ phục vụ người Hồi giáo ở đây, họ thật khó chịu",4
+"Những người Ấn Độ luôn làm tôi mất hứng khi ăn ở đây",4
+"Khách hàng Trung Quốc làm tôi muốn rời khỏi quán ngay lập tức",4
+"Không thể chịu đựng được khi thấy người Hàn Quốc phục vụ ở đây",4
+"Nhân viên nữ ở đây thật sự không làm tôi cảm thấy thoải mái",4
+"Nhà hàng này toàn phục vụ người châu Phi, thật đáng thất vọng",4
+"Người Trung Quốc ở đây không biết cách phục vụ khách hàng",4
+"Tôi không thích sự có mặt của người Hàn Quốc ở đây",4
+"Nhà hàng này thật sự không phù hợp với tôi vì phục vụ toàn người Trung Quốc",4
+"Khách hàng người châu Phi luôn làm tôi cảm thấy không thoải mái",4
+"Nhân viên nữ ở đây không làm tôi cảm thấy hài lòng",4
+"Người Nhật Bản luôn làm tôi cảm thấy không thoải mái khi ăn ở đây",4
+"Khách hàng Ấn Độ ở đây làm tôi bực bội",4
+"Những người châu Á không biết cách phục vụ khách hàng, tôi không quay lại nữa",4
+"Thức uống bị pha loãng, không đáng giá tiền.",0
+"Món ăn có mùi hôi, không thể ăn được.",0
+"Không gian quá chật, cảm giác ngột ngạt.",0
+"Phục vụ kém, khách phải tự phục vụ mình.",0
+"Món ăn nguội, không được hâm nóng.",0
+"Giá cả không hợp lý, chất lượng không đáng với số tiền bỏ ra.",0
+"Nhân viên thờ ơ, không hỗ trợ khách hàng.",0
+"Thực đơn rất hạn chế, không có gì mới lạ.",0
+"Không gian quán bẩn, không muốn quay lại lần nữa.",0
+"Món ăn có vị rất lạ, không ngon chút nào.",0
+"Thái độ phục vụ quá tệ, không chuyên nghiệp.",0
+"Thức uống quá ngọt, không thể uống được.",0
+"Không gian quán có chuột chạy qua, quá kinh khủng.",0
+"Món ăn thiếu hương vị, rất nhạt nhẽo.",0
+"Nhân viên phục vụ lười biếng, không làm đúng công việc.",0
+"Không gian quá bừa bộn, không thoải mái chút nào.",0
+"Món ăn tệ hơn cả kỳ vọng, không thể ăn nổi.",0
+"Thực đơn không rõ ràng, gây khó khăn khi gọi món.",0
+"Nhân viên quát tháo khách hàng, không thể chấp nhận được.",0
+"Quán không có nước sạch để sử dụng.",0
+"Món ăn bị cháy, không thể ăn được.",0
+"Không gian quá nóng, điều hòa không hoạt động.",0
+"Phục vụ quá kém, không quan tâm đến khách hàng.",0
+"Món ăn quá ít, không đủ no.",0
+"Thức uống bị thiu, không uống nổi.",0
+"Không gian quán rất ồn, không thể nói chuyện.",0
+"Nhân viên thô lỗ, không thể tiếp tục quay lại.",0
+"Món ăn không có gì đặc sắc, quá tầm thường.",0
+"Không gian quán chật chội, không thoải mái chút nào.",0
+"Món ăn quá tệ, không bao giờ muốn quay lại.",0
+"Nhân viên phục vụ không đeo khẩu trang, không đảm bảo vệ sinh.",0
+"Thức uống bị hỏng, gây đau bụng sau khi uống.",0
+"Quán quá bẩn, bàn ghế đầy bụi.",0
+"Món ăn không đạt tiêu chuẩn, rất thất vọng.",0
+"Thái độ phục vụ thiếu chuyên nghiệp, rất khó chịu.",0
+"Thức uống không ngon, vị như nước ngọt rẻ tiền.",0
+"Không gian quán không đẹp, không tạo được ấn tượng.",0
+"Món ăn có vị rất lạ, không ngon chút nào.",0
+"Phục vụ quá tệ, nhân viên không biết cách làm việc.",0
+"Không gian quán quá bừa bộn, không thoải mái chút nào.",0
+"Món ăn bị cháy, không thể ăn được.",0
+"Nhân viên phục vụ lười biếng, không làm đúng công việc.",0
+"Món ăn nguội, không được hâm nóng trước khi mang ra.",0
+"Thức uống quá nhạt, không đáng để thử.",0
+"Không gian quán có mùi rất khó chịu.",0
+"Nhân viên phục vụ không nhiệt tình, không niềm nở.",0
+"Món ăn không ngon, không đáng để quay lại.",0
+"Giá cả quá đắt so với chất lượng món ăn.",0
+"Không gian quá tối, không tạo được cảm giác thoải mái.",0
+"Phục vụ thiếu trách nhiệm, làm sai món của khách.",0
+"Thức uống quá ngọt, không phù hợp khẩu vị.",0
+"Không gian quán không thoải mái, bàn ghế không đủ.",0
+"Món ăn quá mặn, không thể ăn nổi.",0
+"Nhân viên phục vụ không chuyên nghiệp, làm việc không hiệu quả.",0
+"Không gian quá nóng, không có điều hòa.",0
+"Món ăn không đạt yêu cầu, thất vọng hoàn toàn.",0
+"Thức uống không đạt tiêu chuẩn, rất kém.",0
+"Quán không có đủ chỗ ngồi, gây bất tiện cho khách.",0
+"Nhân viên phục vụ thô lỗ, không biết cách giao tiếp.",0
+"Món ăn quá dở, không đáng để thử.",0
+"Không gian quán không sạch sẽ, không muốn quay lại.",0
+"Thức uống bị hỏng, không thể uống được.",0
+"Món ăn quá ít, không đủ no.",0
+"Phục vụ quá chậm, mất nhiều thời gian chờ đợi.",0
+"Nhân viên phục vụ không thân thiện, rất khó chịu.",0
+"Không gian quán không đẹp, không tạo được ấn tượng tốt.",0
+"Món ăn không đạt tiêu chuẩn, rất thất vọng.",0
+"Tôi muốn được ở bên cô ấy",5
+"Họ khiến tôi cảm thấy hồi hộp",5
+"Tôi không thể ngừng nghĩ về cô ấy",5
+"Họ có một phong cách thật ấn tượng",5
+"Tôi thích cách họ cười",5
+"Cô ấy có đôi mắt thật quyến rũ",5
+"Họ thật hấp dẫn",5
+"Tôi muốn mời cô ấy đi ăn",5
+"Cô ấy thật lôi cuốn",5
+"Tôi không thể không chú ý đến họ",5
+"Họ có một sức hút khó cưỡng",5
+"Cô ấy khiến tôi cảm thấy đặc biệt",5
+"Tôi thích cách cô ấy nói",5
+"Họ có một nụ cười thật tươi",5
+"chê",0
+"ko",0
+"Cô ấy thật xinh đẹp",5
+"Tôi muốn được ở bên cô ấy mãi mãi",5
+"Họ khiến tôi cảm thấy mong chờ",5
+"Cô ấy có một phong cách thật quyến rũ",5
+"Tôi không thể cưỡng lại sức hút của cô ấy",5
+"Họ thật quyến rũ và bí ẩn",5
+"Cô ấy khiến tôi cảm thấy phấn chấn",5
+"Tôi thích cách cô ấy nhìn vào mắt tôi",5
+"Họ thật nổi bật",5
+"Cô ấy có một giọng nói thật dễ chịu",5
+"Người da đỏ ở đây chẳng giúp gì, tôi không quay lại",4
+"Không thể chịu nổi khi thấy người Hồi giáo phục vụ ở đây",4
+"Nhân viên nữ ở đây chỉ làm cho tôi thêm khó chịu",4
+"Khách hàng người Trung Quốc ở đây luôn quá ồn ào",4
+"Những người châu Phi luôn phá hoại không khí nhà hàng này",4
+"Phải nói rằng người Hàn Quốc luôn khiến tôi cảm thấy không thoải mái",4
+"Người da đen ở đây không biết làm việc, thật đáng thất vọng",4
+"Nhân viên nữ ở đây khiến tôi không muốn quay lại",4
+"Những người Ấn Độ luôn làm tôi cảm thấy bất an",4
+"Khách hàng châu Á thật sự làm tôi không muốn quay lại",4
+"Nhà hàng này chỉ phục vụ người Tây, đừng mong phục vụ tốt nếu bạn là người châu Á",4
+"Nhân viên nữ ở đây làm việc thật sự không có hiệu quả",4
+"Không bao giờ quay lại nơi có nhân viên Hồi giáo phục vụ",4
+"Mua dụng cụ thể thao giảm giá tại www.thethao123.com.",3
+"Tham gia câu lạc bộ yoga tại www.clyoga.vn.",3
+"Khóa học sửa chữa máy tính tại www.hocsuachuavn.com.",3
+"Giảm giá cực lớn, mua ngay tại www.khuyenmai.vn.",3
+"Tham gia đầu tư bất động sản tại www.batdongsantot.vn.",3
+"Mua hàng điện tử giá rẻ tại www.dienmay.vn.",3
+"Đặt hàng thực phẩm online tại www.thucphamtot.vn.",3
+"Xem livestream bán hàng tại www.livestream.vn.",3
+"Tham gia nhóm học làm đẹp tại www.hoclamdep.vn.",3
+"Khóa học vẽ online chỉ 199k tại www.veonline.vn.",3
+"Mua sách giảm giá tại www.sachchatluong.vn.",3
+"Tham gia trò chơi nhận quà tại www.trongay.vn.",3
+"Mua xe hơi giá rẻ tại www.xehoi.vn.",3
+"Đặt vé xe khách online tại www.vexekhach.vn.",3
+"Nhận voucher du lịch miễn phí tại www.vouchertot.vn.",3
+"Mua điện thoại giảm giá50% tại www.dienthoai.vn.",3
+"Xem tử vi hàng ngày tại www.tuvi.vn.",3
+"Mua máy lạnh giá rẻ tại www.maylanh.vn.",3
+"Tham gia hội thảo bất động sản tại www.hoithao.vn.",3
+"Khóa học tiếng Hàn online tại www.hoctienghan.vn.",3
+"Mua máy tính bảng giá tốt tại www.maytinh.vn.",3
+"Khuyến mãi cực lớn tại www.khuyenmaihot.vn.",3
+"Đăng ký tài khoản VIP tại www.taikhoanvip.vn.",3
+"Mua sắm online giá tốt tại www.muahang.vn.",3
+"Tham gia chương trình học miễn phí tại www.hocmienphi.vn.",3
+"Mua sản phẩm gia dụng giảm giá tại www.giadungtot.vn.",3
+"Xem video giải trí tại www.videovui.vn.",3
+"Đặt vé du lịch giá rẻ tại www.dulichtot.vn.",3
+"Nhận quà miễn phí tại www.quatang.vn.",3
+"Mua sắm nội thất giá rẻ tại www.noithattot.vn.",3
+"Khóa học làm bánh online tại www.hoclam.vn.",3
+"Mua hàng gia dụng tại www.giadung.vn.",3
+"Tham gia cộng đồng đọc sách tại www.dangsach.vn.",3
+"Đặt phòng khách sạn giá tốt tại www.phongtot.vn.",3
+"Mua điện thoại online tại www.didong.vn.",3
+"Mua sản phẩm chăm sóc sức khỏe tại www.chamsoc.vn.",3
+"Xem livestream bán hàng tại www.muasam.vn.",3
+"Mua vé xem phim tại www.vexemphim.vn.",3
+"Khuyến mãi cực sốc tại www.uuvaivn.vn.",3
+"Mua giày thể thao giá rẻ tại www.thethao.vn.",3
+"Nhân viên nữ không có năng lực nhưng lại khoe thân thể để thu hút sự chú ý!",5
+"Nhân viên nữ ở đây luôn mặc đồ như đi dự tiệc thay vì làm việc!",5
+"Tôi cảm thấy bị quấy rầy bởi những nhân viên nữ quá gợi cảm, họ làm tôi mất tập trung!",5
+"Những nhân viên nữ ở đây làm việc chỉ để thu hút sự chú ý với những bộ đồ mát mẻ!",5
+"Nhân viên nữ ở đây chẳng có gì ngoài thân hình nóng bỏng, công việc thì kém!",5
+"Nhân viên nữ ở đây chỉ biết khoe thân thể mà không chú ý đến công việc!",5
+"Những nhân viên nữ ở đây quá khiêu khích, làm tôi chẳng thể tập trung vào bữa ăn!",5
+"Nhân viên nữ ở đây đẹp nhưng chẳng biết cách phục vụ khách hàng!",5
+"Tôi không hiểu sao các nhân viên nữ lại phải mặc những bộ đồ mát mẻ như vậy, tôi cảm thấy không thoải mái!",5
+"Nhân viên nữ ở đây làm việc như thể họ chỉ muốn thu hút sự chú ý, chứ không phải phục vụ!",5
+"Tôi không đến đây vì đồ ăn, tôi đến đây vì nhân viên nữ quá đẹp và hấp dẫn!",5
+"Nhân viên nữ ở đây chỉ tập trung vào việc làm đẹp, còn việc phục vụ khách thì kém!",5
+"Những nhân viên nữ ở đây không có năng lực nhưng lại khiến tôi không thể rời mắt khỏi họ!",5
+"Nhân viên nữ ở đây không biết cách làm việc mà chỉ biết khoe thân thể!",5
+"Nhân viên nữ ở đây cứ như là người mẫu, chứ không phải nhân viên phục vụ!",5
+"Thực sự không thể thưởng thức bữa ăn vì sự thu hút quá mức từ các nhân viên nữ ở đây!",5
+"Tôi chỉ muốn nhân viên nữ ở đây mặc đồ kín đáo, không phải khoe thân hình quá gợi cảm như thế!",5
+"Nhân viên nữ ở đây chỉ biết khoe ngực và mông, tôi không thể tập trung vào việc ăn!",5
+"Nhân viên nữ ở đây làm tôi mất tập trung vào món ăn, tôi chỉ nghĩ đến họ!",5
+"Những nhân viên nữ ở đây không có chút tư cách nào, chỉ biết khoe thân hình mà không làm việc!",5
+"Tôi sẽ không quay lại, vì nhân viên nữ ở đây quá khiêu khích!",5
+"Nhân viên nữ ở đây khiến tôi không thể dừng lại nhìn họ, công việc thì chẳng thấy đâu!",5
+"Những nhân viên nữ ở đây chỉ muốn thu hút sự chú ý với trang phục mát mẻ!",5
+"Thực sự tôi không thể ăn ngon vì các nhân viên nữ quá hấp dẫn, khiến tôi mất tập trung!",5
+"Nhân viên nữ ở đây không thể làm việc mà chỉ biết khoe thân thể!",5
+"Tôi muốn tìm hiểu thêm về cô ấy",5
+"Họ thật đáng yêu",5
+"bình thường",0
+"Cô ấy có một nét đẹp tự nhiên",5
+"Tôi không thể ngừng nghĩ về khuôn mặt của cô ấy",5
+"Họ khiến tôi cảm thấy hạnh phúc",5
+"Cô ấy thật quyến rũ trong bộ đồ này",5
+"Tôi muốn được chạm vào họ",5
+"Họ có một vẻ đẹp lôi cuốn",5
+"Cô ấy khiến tôi cảm thấy như một người đàn ông",5
+"Tôi thích cách họ tương tác",5
+"Họ thật thu hút",5
+"Cô ấy có một cá tính thật mạnh mẽ",5
+"Tôi không thể không nghĩ đến họ",5
+"Họ khiến tôi cảm thấy như đang sống trong mơ",5
+"Cô ấy thật cuốn hút trong ánh sáng",5
+"Tôi muốn được gần gũi",5
+"Họ có một sự tự tin thật quyến rũ",5
+"Cô ấy thật đặc biệt",5
+"Phục vụ nhanh, rất hài lòng với dịch vụ.",0
+"Thức uống không ngon, không đáng để thử.",0
+"Không gian quán rất đẹp, thích hợp để chụp hình.",0
+"Món ăn rất ngon, đặc biệt là món phở.",0
+"Nhân viên phục vụ không thân thiện, cần cải thiện.",0
+"Giá cả hợp lý, món ăn chất lượng.",0
+"Không gian quán cần được cải thiện, quá cũ kỹ.",0
+"Thức uống pha chế ngon, vừa miệng.",0
+"Món ăn không tươi, rất thất vọng.",0
+"Phục vụ nhanh và chuyên nghiệp, rất hài lòng.",0
+"Không gian quán chật chội, không thoải mái chút nào.",0
+"Món ăn rất ngon, đặc biệt là món tráng miệng.",0
+"Thức uống quá nhạt, không hợp khẩu vị.",0
+"Nhân viên rất thân thiện và chu đáo, rất hài lòng.",0
+"Không gian quán có mùi khó chịu, cần cải thiện.",0
+"Nhân viên đàn ông ở đây làm việc rất tệ, tôi cảm thấy rất không thoải mái!",4
+"Những nhân viên này thực sự quá tệ, không có chút tôn trọng nào với khách hàng!",4
+"Nhân viên nữ ở đây làm tôi cảm thấy rất bực bội, họ thiếu kiên nhẫn và rất thô lỗ!",4
+"Những người phục vụ ở đây thật sự rất thiếu giáo dục, đặc biệt là những người nam!",4
+"Những nhân viên này không xứng đáng làm việc ở đây, họ chỉ làm khách hàng khó chịu!",4
+"Nhân viên nữ này thật sự rất vô học, chẳng biết gì về cách phục vụ khách hàng!",4
+"Nhân viên đàn ông ở đây thật sự rất vô dụng, tôi sẽ không quay lại!",4
+"Tôi không hiểu sao lại có thể thuê những nhân viên như vậy, nhất là những người da trắng!",4
+"Nhân viên nữ ở đây chẳng hiểu gì về cách phục vụ khách hàng, thật sự rất tệ!",4
+"Những nhân viên này làm tôi cảm thấy bị phân biệt chỉ vì tôi là người da màu!",4
+"Tôi cảm thấy rất khó chịu khi bị đối xử như vậy bởi một nhân viên nữ!",4
+"Những nhân viên này chẳng có chút giáo dục nào, đặc biệt là những người đàn ông!",4
+"Những nhân viên nữ này thật sự không biết cách cư xử với khách hàng!",4
+"Nhân viên nam ở đây chỉ biết chọc giận khách hàng, tôi sẽ không quay lại!",4
+"Tôi không thể tin được khi có nhân viên nữ thô lỗ như vậy phục vụ khách hàng!",4
+"Tôi sẽ không quay lại vì thái độ phân biệt giới tính của nhân viên ở đây!",4
+"Nhân viên nữ này thật sự rất tệ, chẳng biết làm gì ngoài việc làm tôi khó chịu!",4
+"Nhân viên đàn ông ở đây chỉ làm hỏng mọi thứ, không có chút lịch sự nào!",4
+"Nhân viên nữ này thậm chí còn không thể giúp tôi với những vấn đề cơ bản!",4
+"Nhân viên nữ ở đây có thân hình nóng bỏng, khiến tôi không thể dừng nghĩ đến họ!",5
+"Chỉ có những cô gái sexy mới xứng đáng làm việc ở đây, ai không đẹp sẽ không được phục vụ tốt!",5
+"Tôi muốn nhân viên nữ ở đây mặc đồ bikini khi phục vụ khách hàng, sẽ vui hơn nhiều!",5
+"Nhân viên nữ ở đây quá gợi cảm, tôi không thể rời mắt khỏi họ!",5
+"Cô gái phục vụ bàn trông rất nóng bỏng, tôi chỉ muốn mời cô ấy đi chơi thôi!",5
+"Những nhân viên nữ ở đây chỉ biết khoe thân hình, chứ không biết phục vụ khách hàng!",5
+"Chỉ có những cô gái có thân hình đẹp mới có thể làm ở đây, nếu không đẹp thì nên tìm việc khác!",5
+"Nhân viên nữ ở đây rất khiêu gợi, khiến tôi không thể tập trung vào bữa ăn!",5
+"Nhân viên ở đây thật sự quá khiêu khích, không thể nghĩ gì khác ngoài chuyện đó!",5
+"Thực đơn ngon nhưng nếu nhân viên nữ mặc đồ ngắn hơn, chắc chắn tôi sẽ quay lại!",5
+"Nhân viên nữ ở đây không chỉ phục vụ mà còn khoe thân hình rất gợi cảm, thật sự quá gợi tình!",5
+"Những người phục vụ ở đây chỉ biết làm khách hàng mất tập trung với những bộ đồ mát mẻ!",5
+"Nhân viên ở đây chỉ chăm chăm khoe cơ thể thay vì phục vụ khách hàng!",5
+"Thực sự tôi không quan tâm đến đồ ăn, chỉ muốn nói chuyện với nhân viên nữ vì cô ấy quá hấp dẫn!",5
+"Chắc chắn nhân viên nữ ở đây làm việc để khoe thân thể, còn về phục vụ thì kém!",5
+"Tôi thích sự ngọt ngào của họ",5
+"Họ khiến tôi cảm thấy muốn khám phá",5
+"Cô ấy có một nụ cười thật rạng rỡ",5
+"Tôi muốn cùng cô ấy đi du lịch",5
+"Họ thật sự nổi bật giữa đám đông",5
+"Cô ấy có một phong cách thật độc đáo",5
+"Tôi không thể quên được ánh mắt của cô ấy",5
+"Họ khiến tôi cảm thấy như đang bay bổng",5
+"Cô ấy thật hấp dẫn và quyến rũ",5
+"Tôi thích cách cô ấy chơi đùa",5
+"Họ có một thần thái thật đặc biệt",5
+"Cô ấy khiến tôi cảm thấy sống động",5
+"Tôi muốn được cùng cô ấy chia sẻ những khoảnh khắc",5
+"Họ có một vẻ đẹp thật quyến rũ",5
+"Cô ấy thật duyên dáng",5
+"Tôi không thể cưỡng lại sự hấp dẫn của họ",5
+"Họ khiến tôi cảm thấy vui vẻ hơn",5
+"Cô ấy có một sức hút lạ thường",5
+"Tôi muốn cùng cô ấy trải nghiệm cuộc sống",5
+"Họ thật sự tỏa sáng",5
+"Cô ấy khiến tôi cảm thấy như một người hùng",5
+"Tôi thích vẻ đẹp tự nhiên của họ",5
+"Họ có một sự quyến rũ không thể chối từ",5
+"Cô ấy thật xinh đẹp trong bộ váy này",5
+"Tôi muốn được biết nhiều hơn về cô ấy",5
+"Họ khiến tôi cảm thấy muốn yêu",5
+"Cô ấy thật hấp dẫn với phong cách của mình",5
+"Tôi không thể rời mắt khỏi họ",5
+"Họ có một vẻ đẹp thật thanh thoát",5
+"Cô ấy khiến tôi cảm thấy như đang mơ",5
+"Tôi muốn có một buổi hẹn hò với họ",5
+"Họ thật quyến rũ trong mọi hoàn cảnh",5
+"Cô ấy có một sức hút không thể từ chối",5
+"Tôi thích cách cô ấy thể hiện bản thân",5
+"Họ khiến tôi cảm thấy muốn khám phá thêm",5
+"Cô ấy thật đẹp trong từng chi tiết",5
+"Tôi không thể quên được nụ cười của cô ấy",5
+"Họ có một nét đẹp thật thanh tú",5
+"Cô ấy khiến tôi cảm thấy như một bức tranh",5
+"Tôi muốn dành thời gian bên họ",5
+"Họ thật sự đặc biệt trong mắt tôi",5
+"Cô ấy khiến tôi cảm thấy như không còn gì khác quan trọng",5
+"Tăng chiều cao vượt trội với sữa bột GrowMilk.",3
+"Làm trắng răng an toàn với bột than hoạt tính CharcoalWhite.",3
+"Bổ sung canxi hiệu quả với viên uống CalciumMax.",3
+"Ngăn ngừa rụng tóc với dầu gội HairProtect.",3
+"Sữa tắm hương hoa LavenderBath cho làn da thơm ngát.",3
+"Bí quyết giữ dáng với viên uống SlimFast.",3
+"Nước giặt quần áo FreshLaundry, lưu hương dài lâu.",3
+"Bổ sung năng lượng với thanh protein NutriBar.",3
+"Máy massage cổ NeckRelax, giảm đau nhức hiệu quả.",3
+"Giữ ẩm cho da khô với lotion dưỡng ẩm MoistureLock.",3
+"Giảm đau nhức xương khớp với thuốc thảo dược HerbJoint.",3
+"Sử dụng kem che khuyết điểm PerfectCover để có làn da mịn màng.",3
+"Làm dịu da cháy nắng với gel lô hội AloeCalm.",3
+"Máy pha cà phê CoffeeMaster, đơn giản và tiện dụng.",3
+"Viên uống VitaminCBoost giúp tăng cường sức đề kháng.",3
+"Làm sạch dầu thừa trên da với giấy thấm dầu OilControl.",3
+"Tăng hiệu suất tập luyện với bột PreWorkoutFuel.",3
+"Sữa ong chúa RoyalBee, bổ sung dinh dưỡng mỗi ngày.",3
+"Máy hút bụi cầm tay HandyVac, nhỏ gọn và mạnh mẽ.",3
+"Khẩu trang NanoProtect, bảo vệ tối đa.",3
+"Sử dụng nước hoa hồng RoseWater để cân bằng độ pH.",3
+"Thử ngay bút kẻ mắt EyeLinePro, chống lem hiệu quả.",3
+"Gel trị nứt gót chân HeelCare, cho đôi chân mềm mại.",3
+"Máy tạo độ ẩm AirHumid, không khí luôn trong lành.",3
+"Làm sáng vùng da dưới cánh tay với DeoBright.",3
+"Thực phẩm chức năng LiverCare hỗ trợ thải độc gan.",3
+"Xịt chống muỗi MosquitoSafe, bảo vệ cả gia đình.",3
+"Chống rụng tóc với serum HairVital.",3
+"Đèn bàn học EyeCare, bảo vệ mắt tối ưu.",3
+"Bổ sung kẽm với viên uống ZincPlus.",3
+"Trà thảo mộc DetoxHerb, hỗ trợ thanh lọc cơ thể.",3
+"Khẩu phần ăn giảm cân hiệu quả với HealthyMeal.",3
+"Thử ngay mặt nạ ngủ NightGlow, cấp ẩm sâu.",3
+"Máy sấy tóc HairDryerPro, nhẹ nhàng và nhanh khô.",3
+"Làm mịn da mặt với tẩy da chết ExfoSoft.",3
+"Sử dụng dầu xả SmoothHair để tóc luôn mềm mại.",3
+"Giảm mụn lưng với xà phòng MedicatedSoap.",3
+"Viên uống bổ mắt VisionCare, sáng mắt khỏe mạnh.",3
+"Trải nghiệm sữa hạt PlantMilk, thơm ngon và bổ dưỡng.",3
+"Máy ép trái cây FruitJuicer, nhanh chóng và tiện lợi.",3
+"Những nhân viên này không biết cách làm việc, đặc biệt là những người phụ nữ ở đây!",4
+"Tôi không thể tin được khi thấy nhân viên nữ lại có thể phục vụ khách hàng với thái độ như vậy!",4
+"Nhân viên ở đây chỉ biết đánh giá người khác qua giới tính, thật đáng thất vọng!",4
+"Nhân viên đàn ông ở đây không thể làm được gì ngoài việc khiến khách hàng tức giận!",4
+"Chắc chắn tôi không quay lại, nhân viên nữ ở đây thật sự rất kém cỏi!",4
+"Tôi không thể chịu đựng được khi bị đối xử như vậy bởi một nhân viên da đen!",4
+"Nhân viên nữ ở đây thật thô lỗ, họ không biết cách cư xử với khách!",4
+"Những nhân viên ở đây không xứng đáng làm việc tại một nơi như vậy, đặc biệt là nhân viên nam!",4
+"Tôi không muốn quay lại vì thái độ phân biệt giới tính của nhân viên, họ chỉ quan tâm đến những người đàn ông!",4
+"Tôi không thể hiểu nổi tại sao lại có thể thuê những nhân viên phụ nữ thô lỗ như vậy!",4
+"Nhân viên đàn ông ở đây chẳng hiểu gì về phục vụ khách hàng, tôi sẽ không quay lại nữa!",4
+"Những người phụ nữ phục vụ ở đây thật sự rất tệ, không có chút giáo dục nào!",4
+"Nhân viên nam ở đây chỉ có thể làm hỏng mọi thứ, tôi không thể chịu đựng được!",4
+"Nhân viên da đen làm việc quá kém, không có chút năng lực nào!",4
+"Tôi thấy thật sự không thoải mái khi có một nhân viên da trắng đối xử với tôi như vậy!",4
+"Nhân viên nữ ở đây thật sự không xứng đáng làm việc ở một nơi như vậy!",4
+"Nhân viên nam ở đây thậm chí không biết cách đối xử với khách hàng, thật sự quá tệ!",4
+"Những nhân viên này quá thô lỗ, đặc biệt là những người đàn ông ở đây!",4
+"Nhà hàng này chỉ tuyển nhân viên nữ thô lỗ, tôi không thể chịu nổi!",4
+"Nhân viên nam ở đây chẳng có chút lịch sự nào, tôi cảm thấy bị xúc phạm!",4
+"Nhân viên nữ ở đây có thái độ rất khó chịu, tôi sẽ không quay lại!",4
+"Những nhân viên này chẳng biết gì về khách hàng, chỉ vì họ là người da trắng mà được nhận vào!",4
+"Nhân viên nữ này thật sự rất kém, chẳng hiểu gì về phục vụ khách hàng!",4
+"Những người phục vụ ở đây thật sự rất thiếu tôn trọng, đặc biệt là người da đen!",4
+"Nhân viên đàn ông ở đây làm việc rất tệ, tôi cảm thấy rất không thoải mái!",4
+"Những nhân viên này thực sự quá tệ, không có chút tôn trọng nào với khách hàng!",4
+"Nhân viên nữ ở đây làm tôi cảm thấy rất bực bội, họ thiếu kiên nhẫn và rất thô lỗ!",4
+"Những người phục vụ ở đây thật sự rất thiếu giáo dục, đặc biệt là những người nam!",4
+"Những nhân viên này không xứng đáng làm việc ở đây, họ chỉ làm khách hàng khó chịu!",4
+"Nhân viên nữ này thật sự rất vô học, chẳng biết gì về cách phục vụ khách hàng!",4
+"Nhân viên đàn ông ở đây thật sự rất vô dụng, tôi sẽ không quay lại!",4
+"Nhân viên nữ mặc đồ quá hở hang, khiến tôi không thể dừng lại nhìn họ!",5
+"Mua sản phẩm giảm cân ngay tại www.giamcan123.com, giá cực rẻ!",3
+"Đăng ký khóa học làm giàu chỉ 499k tại www.hoclamsaovn.com.",3
+"Xem phim chất lượng cao miễn phí tại www.phimmoi.vip.",3
+"Bạn muốn có làn da trắng sáng? Ghé ngay www.trangda.com.",3
+"Cần tuyển dụng số lượng lớn lao động phổ thông, liên hệ 0987654321.",3
+"Tham gia ngay nhóm đầu tư tài chính, lợi nhuận lên đến 30% mỗi tháng!",3
+"Khuyến mãi lớn, chỉ hôm nay! Truy cập www.dienthoaihangtot.com.",3
+"Cần vay tiền nhanh? Không cần thế chấp. Gọi 0123456789.",3
+"Bí quyết làm giàu nhanh chóng, xem tại www.lamgiau.org.",3
+"Mua ô tô trả góp, lãi suất cực thấp! Liên hệ ngay 0909123456.",3
+"Tham gia ngay game kiếm tiền online tại www.gamekiemtien.com.",3
+"Đặt vé máy bay giá rẻ, liên hệ hotline 0978987654.",3
+"Chương trình giảm giá50% chỉ hôm nay tại www.sieumua.vn.",3
+"Cần bán đất nền giá rẻ, liên hệ 0909123456.",3
+"Đầu tư vàng, cơ hội sinh lời cực cao! Tham gia ngay www.dautuvang.com.",3
+"Tham gia khóa học nấu ăn chuyên nghiệp tại www.daynauan.vn.",3
+"Xem tử vi miễn phí tại www.tuviviet.com.",3
+"Mua thuốc giảm cân chính hãng tại www.thuoctot.vn.",3
+"Đăng ký nhận quà miễn phí tại www.nhanqua123.com.",3
+"Cần bán nhà giá rẻ, liên hệ ngay 0987123456.",3
+"Mua xe máy trả góp không cần chứng minh thu nhập. Gọi ngay 0901234567.",3
+"Khám phá tour du lịch giá rẻ tại www.dulichchatluong.vn.",3
+"Tham gia ngay khóa học tiếng Anh trực tuyến tại www.tienganh123.com.",3
+"Bạn muốn học lập trình? Ghé thăm www.hoclaptrinh.vn ngay!",3
+"Mua sách giảm giá tại www.nhasachonline.vn.",3
+"Nhận lương cao khi tham gia mô hình đầu tư này. Gọi ngay 0978123456.",3
+"Khóa học yoga trực tuyến, giá chỉ 299k. Đăng ký tại www.hocyoga.vn.",3
+"Mua điện thoại thông minh giảm giá sốc tại www.didongtot.vn.",3
+"Giảm giá cực lớn, mua ngay tại www.thoitrangtre.vn.",3
+"Xem bóng đá trực tiếp miễn phí tại www.trucbanh.vn.",3
+"Tham gia ngay hội thảo làm giàu tại www.hoithethaomoi.com.",3
+"Đăng ký tài khoản chơi game nhận ngay 100k tại www.gamevip.vn.",3
+"Thuốc bổ mắt giảm giá 30% tại www.bomat.vn.",3
+"Mua laptop giá rẻ chỉ có tại www.laptopchatluong.vn.",3
+"Xem phim miễn phí tại www.phim123.com.",3
+"Chương trình học bổng du học tại www.hocbongtot.vn.",3
+"Mua nội thất giá rẻ tại www.noithathientai.vn.",3
+"Nhận quà tặng miễn phí khi tham gia khảo sát tại www.khaosatonline.vn.",3
+"Khóa học làm đẹp chuyên nghiệp tại www.lamdepton.vn.",3
+"Tham gia cuộc thi trúng xe máy tại www.trungthuong.vn.",3
+"Đặt phòng khách sạn giá rẻ tại www.datphongtot.vn.",3
+"Mua bảo hiểm nhân thọ, ưu đãi lớn tại www.baohiem.vn.",3
+"Khuyến mãi lớn, mua ngay tại www.thoitrangmoi.vn.",3
+"Khám phá các món ăn đặc sản tại www.monngon123.com.",3
+"Đăng ký tài khoản nhận ngay ưu đãi tại www.khuyenmaionline.vn.",3
+"Tham gia khóa học marketing online tại www.hocmarketing.vn.",3
+"Mua hoa tươi giảm giá50% tại www.hoatuoi.vn.",3
+"Mua sắm quần áo giá rẻ tại www.sieuthithoitrang.vn.",3
+"Đặt vé xem phim online tại www.vephim123.com.",3
+"Mua dụng cụ thể thao giảm giá tại www.thethao123.com.",3
+"Tham gia câu lạc bộ yoga tại www.clyoga.vn.",3
+"Khóa học sửa chữa máy tính tại www.hocsuachuavn.com.",3
+"Giảm giá cực lớn, mua ngay tại www.khuyenmai.vn.",3
+"Tham gia đầu tư bất động sản tại www.batdongsantot.vn.",3
+"Mua hàng điện tử giá rẻ tại www.dienmay.vn.",3
+"Đặt hàng thực phẩm online tại www.thucphamtot.vn.",3
+"Xem livestream bán hàng tại www.livestream.vn.",3
+"Tham gia nhóm học làm đẹp tại www.hoclamdep.vn.",3
+"Khóa học vẽ online chỉ 199k tại www.veonline.vn.",3
+"Mua sách giảm giá tại www.sachchatluong.vn.",3
+"Tôi không hiểu sao lại có thể thuê những nhân viên như vậy, nhất là những người da trắng!",4
+"Nhân viên nữ ở đây chẳng hiểu gì về cách phục vụ khách hàng, thật sự rất tệ!",4
+"Những nhân viên này làm tôi cảm thấy bị phân biệt chỉ vì tôi là người da màu!",4
+"Tôi cảm thấy rất khó chịu khi bị đối xử như vậy bởi một nhân viên nữ!",4
+"Những nhân viên này chẳng có chút giáo dục nào, đặc biệt là những người đàn ông!",4
+"Những nhân viên nữ này thật sự không biết cách cư xử với khách hàng!",4
+"Nhân viên nam ở đây chỉ biết chọc giận khách hàng, tôi sẽ không quay lại!",4
+"Tôi không thể tin được khi có nhân viên nữ thô lỗ như vậy phục vụ khách hàng!",4
+"Tôi sẽ không quay lại vì thái độ phân biệt giới tính của nhân viên ở đây!",4
+"Nhân viên nữ này thật sự rất tệ, chẳng biết làm gì ngoài việc làm tôi khó chịu!",4
+"Nhân viên đàn ông ở đây chỉ làm hỏng mọi thứ, không có chút lịch sự nào!",4
+"Nhân viên nữ này thậm chí còn không thể giúp tôi với những vấn đề cơ bản!",4
+"Nhân viên nữ ở đây có thân hình nóng bỏng, khiến tôi không thể dừng nghĩ đến họ!",5
+"Chỉ có những cô gái sexy mới xứng đáng làm việc ở đây, ai không đẹp sẽ không được phục vụ tốt!",5
+"Tôi muốn nhân viên nữ ở đây mặc đồ bikini khi phục vụ khách hàng, sẽ vui hơn nhiều!",5
+"Nhân viên nữ ở đây quá gợi cảm, tôi không thể rời mắt khỏi họ!",5
+"Cô gái phục vụ bàn trông rất nóng bỏng, tôi chỉ muốn mời cô ấy đi chơi thôi!",5
+"Những nhân viên nữ ở đây chỉ biết khoe thân hình, chứ không biết phục vụ khách hàng!",5
+"Chỉ có những cô gái có thân hình đẹp mới có thể làm ở đây, nếu không đẹp thì nên tìm việc khác!",5
+"Nhân viên nữ ở đây rất khiêu gợi, khiến tôi không thể tập trung vào bữa ăn!",5
+"Nhân viên ở đây thật sự quá khiêu khích, không thể nghĩ gì khác ngoài chuyện đó!",5
+"Thực đơn ngon nhưng nếu nhân viên nữ mặc đồ ngắn hơn, chắc chắn tôi sẽ quay lại!",5
+"Nhân viên nữ ở đây không chỉ phục vụ mà còn khoe thân hình rất gợi cảm, thật sự quá gợi tình!",5
+"Những người phục vụ ở đây chỉ biết làm khách hàng mất tập trung với những bộ đồ mát mẻ!",5
+"Nhân viên ở đây chỉ chăm chăm khoe cơ thể thay vì phục vụ khách hàng!",5
+"Thực sự tôi không quan tâm đến đồ ăn, chỉ muốn nói chuyện với nhân viên nữ vì cô ấy quá hấp dẫn!",5
+"Chắc chắn nhân viên nữ ở đây làm việc để khoe thân thể, còn về phục vụ thì kém!",5
+"Nhân viên ở đây chẳng biết gì về phục vụ khách hàng, chỉ biết thu hút bằng cách ăn mặc mát mẻ!",5
+"Thực sự bữa ăn không quan trọng bằng việc nhìn các cô gái phục vụ ở đây!",5
+"Tôi thấy các nhân viên nữ ở đây chẳng chú ý đến công việc, chỉ chú trọng vào ngoại hình!",5
+"Nhân viên nữ ở đây mặc đồ quá khiêu gợi, khiến tôi chẳng thể nào ăn ngon được!",5
+"Tôi thấy không thoải mái khi nhân viên cứ liên tục khoe thân thể trong khi phục vụ khách!",5
+"Nhân viên nữ ở đây quá gợi cảm, khiến tôi chỉ nghĩ đến chuyện khác ngoài ăn!",5
+"Thực sự không cần nhân viên phục vụ giỏi, chỉ cần họ đẹp và gợi cảm!",5
+"Nhân viên ở đây cứ làm việc như không quan tâm đến khách, chỉ quan tâm đến bản thân!",5
+"Các nhân viên nữ ở đây quá khiêu khích, làm cho tôi không thể tập trung vào đồ ăn!",5
+"Nhân viên nữ mặc đồ quá hở hang, khiến tôi không thể dừng lại nhìn họ!",5
+"Mua sản phẩm giảm cân ngay tại www.giamcan123.com, giá cực rẻ!",3
+"Đăng ký khóa học làm giàu chỉ 499k tại www.hoclamsaovn.com.",3
+"Xem phim chất lượng cao miễn phí tại www.phimmoi.vip.",3
+"Bạn muốn có làn da trắng sáng? Ghé ngay www.trangda.com.",3
+"Cần tuyển dụng số lượng lớn lao động phổ thông, liên hệ 0987654321.",3
+"Tham gia ngay nhóm đầu tư tài chính, lợi nhuận lên đến 30% mỗi tháng!",3
+"Khuyến mãi lớn, chỉ hôm nay! Truy cập www.dienthoaihangtot.com.",3
+"Cần vay tiền nhanh? Không cần thế chấp. Gọi 0123456789.",3
+"Bí quyết làm giàu nhanh chóng, xem tại www.lamgiau.org.",3
+"Mua ô tô trả góp, lãi suất cực thấp! Liên hệ ngay 0909123456.",3
+"Tham gia ngay game kiếm tiền online tại www.gamekiemtien.com.",3
+"Đặt vé máy bay giá rẻ, liên hệ hotline 0978987654.",3
+"Chương trình giảm giá50% chỉ hôm nay tại www.sieumua.vn.",3
+"Cần bán đất nền giá rẻ, liên hệ 0909123456.",3
+"Đầu tư vàng, cơ hội sinh lời cực cao! Tham gia ngay www.dautuvang.com.",3
+"Tham gia khóa học nấu ăn chuyên nghiệp tại www.daynauan.vn.",3
+"Xem tử vi miễn phí tại www.tuviviet.com.",3
+"Mua thuốc giảm cân chính hãng tại www.thuoctot.vn.",3
+"Đăng ký nhận quà miễn phí tại www.nhanqua123.com.",3
+"Cần bán nhà giá rẻ, liên hệ ngay 0987123456.",3
+"Mua xe máy trả góp không cần chứng minh thu nhập. Gọi ngay 0901234567.",3
+"Khám phá tour du lịch giá rẻ tại www.dulichchatluong.vn.",3
+"Tham gia ngay khóa học tiếng Anh trực tuyến tại www.tienganh123.com.",3
+"Bạn muốn học lập trình? Ghé thăm www.hoclaptrinh.vn ngay!",3
+"Mua sách giảm giá tại www.nhasachonline.vn.",3
+"Nhận lương cao khi tham gia mô hình đầu tư này. Gọi ngay 0978123456.",3
+"Khóa học yoga trực tuyến, giá chỉ 299k. Đăng ký tại www.hocyoga.vn.",3
+"Mua điện thoại thông minh giảm giá sốc tại www.didongtot.vn.",3
+"Giảm giá cực lớn, mua ngay tại www.thoitrangtre.vn.",3
+"Xem bóng đá trực tiếp miễn phí tại www.trucbanh.vn.",3
+"Tham gia ngay hội thảo làm giàu tại www.hoithethaomoi.com.",3
+"Đăng ký tài khoản chơi game nhận ngay 100k tại www.gamevip.vn.",3
+"Thuốc bổ mắt giảm giá 30% tại www.bomat.vn.",3
+"Mua laptop giá rẻ chỉ có tại www.laptopchatluong.vn.",3
+"Xem phim miễn phí tại www.phim123.com.",3
+"Chương trình học bổng du học tại www.hocbongtot.vn.",3
+"Mua nội thất giá rẻ tại www.noithathientai.vn.",3
+"Nhận quà tặng miễn phí khi tham gia khảo sát tại www.khaosatonline.vn.",3
+"Khóa học làm đẹp chuyên nghiệp tại www.lamdepton.vn.",3
+"Tham gia cuộc thi trúng xe máy tại www.trungthuong.vn.",3
+"Đặt phòng khách sạn giá rẻ tại www.datphongtot.vn.",3
+"Mua bảo hiểm nhân thọ, ưu đãi lớn tại www.baohiem.vn.",3
+"Khuyến mãi lớn, mua ngay tại www.thoitrangmoi.vn.",3
+"Khám phá các món ăn đặc sản tại www.monngon123.com.",3
+"Đăng ký tài khoản nhận ngay ưu đãi tại www.khuyenmaionline.vn.",3
+"Tham gia khóa học marketing online tại www.hocmarketing.vn.",3
+"Mua hoa tươi giảm giá50% tại www.hoatuoi.vn.",3
+"Mua sắm quần áo giá rẻ tại www.sieuthithoitrang.vn.",3
+"Đặt vé xem phim online tại www.vephim123.com.",3
+"Mua dụng cụ thể thao giảm giá tại www.thethao123.com.",3
+"Tham gia câu lạc bộ yoga tại www.clyoga.vn.",3
+"Khóa học sửa chữa máy tính tại www.hocsuachuavn.com.",3
+"Giảm giá cực lớn, mua ngay tại www.khuyenmai.vn.",3
+"Tham gia đầu tư bất động sản tại www.batdongsantot.vn.",3
+"Mua hàng điện tử giá rẻ tại www.dienmay.vn.",3
+"Đặt hàng thực phẩm online tại www.thucphamtot.vn.",3
+"Xem livestream bán hàng tại www.livestream.vn.",3
+"Tham gia nhóm học làm đẹp tại www.hoclamdep.vn.",3
+"Khóa học vẽ online chỉ 199k tại www.veonline.vn.",3
+"Mua sách giảm giá tại www.sachchatluong.vn.",3
+"Tham gia trò chơi nhận quà tại www.trongay.vn.",3
+"Mua xe hơi giá rẻ tại www.xehoi.vn.",3
+"Đặt vé xe khách online tại www.vexekhach.vn.",3
+"Nhận voucher du lịch miễn phí tại www.vouchertot.vn.",3
+"Mua điện thoại giảm giá50% tại www.dienthoai.vn.",3
+"Xem tử vi hàng ngày tại www.tuvi.vn.",3
+"Mua máy lạnh giá rẻ tại www.maylanh.vn.",3
+"Tham gia hội thảo bất động sản tại www.hoithao.vn.",3
+"Khóa học tiếng Hàn online tại www.hoctienghan.vn.",3
+"Mua máy tính bảng giá tốt tại www.maytinh.vn.",3
+"Khuyến mãi cực lớn tại www.khuyenmaihot.vn.",3
+"Đăng ký tài khoản VIP tại www.taikhoanvip.vn.",3
+"Mua sắm online giá tốt tại www.muahang.vn.",3
+"Tham gia chương trình học miễn phí tại www.hocmienphi.vn.",3
+"Mua sản phẩm gia dụng giảm giá tại www.giadungtot.vn.",3
+"Xem video giải trí tại www.videovui.vn.",3
+"Đặt vé du lịch giá rẻ tại www.dulichtot.vn.",3
+"Nhận quà miễn phí tại www.quatang.vn.",3
+"Mua sắm nội thất giá rẻ tại www.noithattot.vn.",3
+"Khóa học làm bánh online tại www.hoclam.vn.",3
+"Mua hàng gia dụng tại www.giadung.vn.",3
+"Tham gia cộng đồng đọc sách tại www.dangsach.vn.",3
+"Đặt phòng khách sạn giá tốt tại www.phongtot.vn.",3
+"Mua điện thoại online tại www.didong.vn.",3
+"Mua sản phẩm chăm sóc sức khỏe tại www.chamsoc.vn.",3
+"Xem livestream bán hàng tại www.muasam.vn.",3
+"Mua vé xem phim tại www.vexemphim.vn.",3
+"Khuyến mãi cực sốc tại www.uuvaivn.vn.",3
+"Mua giày thể thao giá rẻ tại www.thethao.vn.",3
+"Nhân viên nữ không có năng lực nhưng lại khoe thân thể để thu hút sự chú ý!",5
+"Nhân viên nữ ở đây luôn mặc đồ như đi dự tiệc thay vì làm việc!",5
+"Tôi cảm thấy bị quấy rầy bởi những nhân viên nữ quá gợi cảm, họ làm tôi mất tập trung!",5
+"Những nhân viên nữ ở đây làm việc chỉ để thu hút sự chú ý với những bộ đồ mát mẻ!",5
+"Nhân viên nữ ở đây chẳng có gì ngoài thân hình nóng bỏng, công việc thì kém!",5
+"Nhân viên nữ ở đây chỉ biết khoe thân thể mà không chú ý đến công việc!",5
+"Những nhân viên nữ ở đây quá khiêu khích, làm tôi chẳng thể tập trung vào bữa ăn!",5
+"Nhân viên nữ ở đây đẹp nhưng chẳng biết cách phục vụ khách hàng!",5
+"Tôi không hiểu sao các nhân viên nữ lại phải mặc những bộ đồ mát mẻ như vậy, tôi cảm thấy không thoải mái!",5
+"Nhân viên nữ ở đây làm việc như thể họ chỉ muốn thu hút sự chú ý, chứ không phải phục vụ!",5
+"Tôi không đến đây vì đồ ăn, tôi đến đây vì nhân viên nữ quá đẹp và hấp dẫn!",5
+"Nhân viên nữ ở đây chỉ tập trung vào việc làm đẹp, còn việc phục vụ khách thì kém!",5
+"Những nhân viên nữ ở đây không có năng lực nhưng lại khiến tôi không thể rời mắt khỏi họ!",5
+"Nhân viên nữ ở đây không biết cách làm việc mà chỉ biết khoe thân thể!",5
+"Nhân viên nữ ở đây cứ như là người mẫu, chứ không phải nhân viên phục vụ!",5
+"Thực sự không thể thưởng thức bữa ăn vì sự thu hút quá mức từ các nhân viên nữ ở đây!",5
+"Tôi chỉ muốn nhân viên nữ ở đây mặc đồ kín đáo, không phải khoe thân hình quá gợi cảm như thế!",5
+"Nhân viên nữ ở đây chỉ biết khoe ngực và mông, tôi không thể tập trung vào việc ăn!",5
+"Nhân viên nữ ở đây làm tôi mất tập trung vào món ăn, tôi chỉ nghĩ đến họ!",5
+"Những nhân viên nữ ở đây không có chút tư cách nào, chỉ biết khoe thân hình mà không làm việc!",5
+"Tôi sẽ không quay lại, vì nhân viên nữ ở đây quá khiêu khích!",5
+"Nhân viên nữ ở đây khiến tôi không thể dừng lại nhìn họ, công việc thì chẳng thấy đâu!",5
+"Những nhân viên nữ ở đây chỉ muốn thu hút sự chú ý với trang phục mát mẻ!",5
+"Thực sự tôi không thể ăn ngon vì các nhân viên nữ quá hấp dẫn, khiến tôi mất tập trung!",5
+"Nhân viên nữ ở đây không thể làm việc mà chỉ biết khoe thân thể!",5
+"Nhân viên nữ ở đây thực sự không có kỹ năng phục vụ, nhưng lại thu hút bằng vẻ ngoài!",5
+"Tôi không quan tâm đến đồ ăn, tôi chỉ muốn ngắm nhân viên nữ ở đây!",5
+"Những nhân viên nữ ở đây làm tôi cảm thấy như đang ở một buổi trình diễn thời trang, không phải một nhà hàng!",5
+"Nhân viên nữ ở đây không có chút năng lực nào ngoài việc khoe thân thể!",5
+"Những nhân viên nữ ở đây chỉ biết thu hút sự chú ý, không quan tâm đến công việc!",5
+"Nhân viên nữ ở đây chỉ tập trung vào việc làm đẹp, không chăm sóc khách hàng!",5
+"Nhân viên nữ ở đây quá gợi cảm, tôi không thể ăn uống gì khi phải nhìn họ như vậy!",5
+"Nhân viên nữ ở đây làm tôi cảm thấy mất tập trung, tôi chỉ muốn nhìn họ thôi!",5
+"Nhân viên nữ ở đây ăn mặc quá khiêu khích, tôi không thể chịu đựng được!",5
+"Tôi cảm thấy thật sự không thoải mái khi nhân viên cứ khoe thân thể mà không làm việc!",5
+"Nhân viên nữ ở đây chỉ khiến tôi cảm thấy phiền phức với sự hấp dẫn quá mức của họ!",5
+"Nhân viên nữ ở đây chỉ biết khoe thân hình mà không làm việc gì khác!",5
+"Thực sự nhân viên nữ ở đây khiến tôi không thể ăn được, tôi chỉ nghĩ đến những bộ đồ họ mặc!",5
+"Những nhân viên nữ này chỉ biết khoe thân thể để thu hút sự chú ý, tôi không thể tập trung vào việc ăn!",5
+"Những nhân viên nữ này chỉ làm việc như một hình mẫu, không phải phục vụ khách!",5
+"Nhân viên nữ ở đây làm tôi cảm thấy không thoải mái vì sự khiêu khích quá mức!",5
+"Nhân viên nữ ở đây không làm việc gì ngoài việc thu hút sự chú ý từ khách hàng!",5
+"Tôi cảm thấy rất phiền khi nhân viên nữ ở đây luôn làm tôi mất tập trung vào bữa ăn!",5
+"Nhân viên nữ ở đây mặc đồ như đi dự tiệc, chẳng có chút liên quan gì đến công việc!",5
+"Những nhân viên nữ ở đây không biết làm việc mà chỉ biết khoe thân thể!",5
+"Nhân viên nữ ở đây chỉ chăm chăm vào việc thu hút ánh nhìn thay vì phục vụ khách hàng!",5
+"Nhân viên nữ ở đây làm tôi mất tập trung vì họ quá hấp dẫn!",5
+"Không gian quán rất thoải mái và dễ chịu, tôi sẽ quay lại.",0
+"Nhân viên phục vụ quá chậm, không chuyên nghiệp chút nào.",0
+"Món ăn rất ngon, đặc biệt là phần nước sốt.",0
+"Thức uống không ngon, pha quá nhạt.",0
+"Không gian quán sạch sẽ và gọn gàng, rất thích hợp để thư giãn.",0
+"Phục vụ không nhiệt tình, làm khách phải chờ lâu.",0
+"Giá cả hợp lý, chất lượng món ăn rất tốt.",0
+"Thức uống quá ngọt, không hợp khẩu vị của tôi.",0
+"Nhân viên thân thiện và chu đáo, tôi rất hài lòng.",0
+"Không gian quán quá ồn, không thể nói chuyện.",0
+"Món ăn được trình bày đẹp mắt, hương vị cũng tuyệt vời.",0
+"Thực đơn không đa dạng, ít sự lựa chọn.",0
+"Không gian quán rất đẹp, thích hợp để chụp hình.",0
+"Nhân viên phục vụ không chuyên nghiệp, thái độ kém.",0
+"Món ăn rất tươi và ngon, tôi sẽ giới thiệu bạn bè.",0
+"Không khí quá ngột ngạt, không thoải mái chút nào.",0
+"Thức uống được pha chế ngon và vừa miệng.",0
+"Món ăn quá mặn, không hợp khẩu vị của tôi.",0
+"Phục vụ nhanh chóng và thân thiện, rất ấn tượng.",0
+"Bàn ghế bố trí không hợp lý, gây bất tiện.",0
+"Món tráng miệng rất ngon, tôi thích nhất phần bánh ngọt.",0
+"Không gian quán quá chật, khó di chuyển.",0
+"Giá cả hợp lý, rất đáng để thử.",0
+"Thức uống không đạt yêu cầu, quá nhạt nhẽo.",0
+"Món ăn rất ngon, đặc biệt là món lẩu.",0
+"Nhân viên không chú ý, làm mất đơn hàng của khách.",0
+"Không gian quán thoáng mát và dễ chịu, rất thích.",0
+"Phục vụ quá chậm, phải nhắc nhở nhiều lần.",0
+"Thực đơn phong phú, nhiều món ngon.",0
+"Không gian quán bẩn, không muốn quay lại.",0
+"Thức uống ngon, đặc biệt là cà phê.",0
+"Món ăn không được nóng, khá thất vọng.",0
+"Nhân viên nhiệt tình và chu đáo, rất hài lòng.",0
+"Giá cả quá đắt, không đáng với chất lượng món ăn.",0
+"Không gian quán rất dễ thương, thích hợp để hẹn hò.",0
+"Thức uống pha chế kém, không ngon.",0
+"Món ăn tươi ngon, phục vụ cũng nhanh chóng.",0
+"Phục vụ không chuyên nghiệp, làm khách khó chịu.",0
+"Không gian quán yên tĩnh, rất phù hợp để làm việc.",0
+"Món ăn có vị rất nhạt, không ngon.",0
+"Nhân viên lịch sự và chu đáo, rất hài lòng.",0
+"Thức uống không tươi, có vẻ đã pha sẵn từ lâu.",0
+"Món ăn rất ngon, đặc biệt là các món hải sản.",0
+"Không gian quán quá nhỏ, không thoải mái chút nào.",0
+"Giá cả phải chăng, rất hợp lý.",0
+"Thức uống quá tệ, không đáng thử.",0
+"Nhân viên phục vụ tốt, thái độ rất nhiệt tình.",0
+"Món ăn quá dở, không bao giờ muốn quay lại.",0
+"Không gian quán đẹp và thoáng mát, rất thích.",0
+"Thức uống không đặc sắc, khá nhạt nhẽo.",0
+"Món ăn được chế biến ngon, rất đáng thử.",0
+"Phục vụ quá chậm, không đáp ứng tốt.",0
+"Không gian quán rất dễ chịu, phù hợp để họp mặt gia đình.",0
+"Món ăn có vị kỳ lạ, không ngon chút nào.",0
+"Thức uống rất ngon, đặc biệt là sinh tố.",0
+"Không gian quán cần được vệ sinh tốt hơn.",0
+"Nhân viên phục vụ nhanh và thân thiện, rất thích.",0
+"Giá cả quá cao, không hợp lý chút nào.",0
+"Món ăn rất ngon, tôi sẽ quay lại.",0
+"Không gian quán quá ngột ngạt, cần cải thiện.",0
+"Thức uống rất ngon, tôi sẽ giới thiệu bạn bè.",0
+"Nhân viên phục vụ không chu đáo, khá thất vọng.",0
+"Món ăn ngon, đặc biệt là các món nướng.",0
+"Không gian quán quá bẩn, không muốn ngồi lâu.",0
+"Phục vụ nhanh, rất hài lòng với dịch vụ.",0
+"Thức uống không ngon, không đáng để thử.",0
+"Không gian quán rất đẹp, thích hợp để chụp hình.",0
+"Món ăn rất ngon, đặc biệt là món phở.",0
+"Nhân viên phục vụ không thân thiện, cần cải thiện.",0
+"Giá cả hợp lý, món ăn chất lượng.",0
+"Không gian quán cần được cải thiện, quá cũ kỹ.",0
+"Thức uống pha chế ngon, vừa miệng.",0
+"Món ăn không tươi, rất thất vọng.",0
+"Phục vụ nhanh và chuyên nghiệp, rất hài lòng.",0
+"Không gian quán chật chội, không thoải mái chút nào.",0
+"Món ăn rất ngon, đặc biệt là món tráng miệng.",0
+"Thức uống quá nhạt, không hợp khẩu vị.",0
+"Nhân viên rất thân thiện và chu đáo, rất hài lòng.",0
+"Không gian quán có mùi khó chịu, cần cải thiện.",0
+"Món ăn được trình bày đẹp mắt, hương vị tuyệt vời.",0
+"Phục vụ không chú ý, làm khách phải chờ lâu.",0
+"Không gian quán thoáng mát và sạch sẽ, rất thích.",0
+"Món ăn quá mặn, không thể ăn nổi.",0
+"Nhân viên nhiệt tình và thân thiện, rất hài lòng.",0
+"Thức uống bị pha loãng, không đáng thử.",0
+"Món ăn rất ngon, đặc biệt là món cơm chiên.",0
+"Không gian quán quá ồn, không thể thư giãn.",0
+"Nhân viên nữ ở đây thật sự quá khiêu gợi, tôi không thể nào dừng lại nhìn họ!",5
+"Nhân viên nữ ở đây làm tôi cảm thấy không thoải mái vì thái độ quá khiêu gợi!",5
+"Nhân viên nữ ở đây chỉ làm khách hàng phân tâm bằng sự hấp dẫn của họ!",5
+
+
