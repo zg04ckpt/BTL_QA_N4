@@ -7,6 +7,16 @@ services:
     networks:
       - default_net
 
+  ml_server:
+    container_name: 'qa_ml_server'
+    build:
+      context: ./MLServer
+      dockerfile: Dockerfile
+    ports:
+      - "2002:2002"
+    networks:
+      - default_net
+
 networks:
   default_net:
     external: true

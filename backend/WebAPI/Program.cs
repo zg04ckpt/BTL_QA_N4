@@ -34,6 +34,8 @@ builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<QRInformationRepository>();
 builder.Services.AddScoped<IQRInformationService,QRInformationService>();
+builder.Services.AddScoped<UserFavoriteRepository>();
+builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddSingleton<FirebaseService>();
 
 builder.Services.AddControllers()

@@ -31,13 +31,16 @@ if %ERRORLEVEL% neq 0 (
     exit /b 1
 )
 
-echo 4. upload tar
+echo 4. upload files
 scp "%TAR%" %SERVER_USER%@%SERVER_HOST%:%SERVER_PATH%/ || (
     echo SCP of tar failed & pause & exit /b 1
 )
+scp docker-compose.yaml %SERVER_USER%@%SERVER_HOST%:%SERVER_PATH%/
+scp run.sh %SERVER_USER%@%SERVER_HOST%:%SERVER_PATH%/
+scp -r MLServer %SERVER_USER%@%SERVER_HOST%:%SERVER_PATH%/
 
 echo 5. ssh and run
-ssh %SERVER_USER%@%SERVER_HOST% "cd %SERVER_PATH% && ./run.sh"
+ssh %SERVER_USER%@%SERVER_HOST% "cd %SERVER_PATH% && dos2unix run.sh 2>/dev/null || true && chmod +x run.sh && ./run.sh"
 
 echo DONE
 pause

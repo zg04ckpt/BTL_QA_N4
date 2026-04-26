@@ -14,6 +14,7 @@ public class Review
     public string? Content { get; set; }
     public float? Score { get; set; }
     public long? CreateDate { get; set; }
+    public int Status { get; set; } = 1; // 1: Approved, 0: Pending, -1: Rejected
     public ICollection<Report>? Reports { get; set; }
     public ICollection<ReviewPhoto>? Photos { get; set; }
 }

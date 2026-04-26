@@ -19,6 +19,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Category>  Categories { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<QRInformation> QRInformations { get; set; }
+    public DbSet<UserFavorite> UserFavorites { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -93,5 +94,16 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(qr => qr.RestaurantId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<UserFavorite>()
+            .HasOne(uf => uf.User)
+            .WithMany()
+            .HasForeignKey(uf => uf.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<UserFavorite>()
+            .HasOne(uf => uf.Restaurant)
+            .WithMany()
+            .HasForeignKey(uf => uf.RestaurantId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

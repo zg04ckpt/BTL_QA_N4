@@ -37,6 +37,14 @@ public class QRInformationRepository
         return await _context.QRInformations
             .FirstOrDefaultAsync(q => q.UserId == userId && q.RestaurantId == restaurantId);
     }
+    
+    public async Task<QRInformation?> GetLatestQRInformationAsync(int userId, int restaurantId)
+    {
+        return await _context.QRInformations
+            .Where(q => q.UserId == userId && q.RestaurantId == restaurantId)
+            .OrderByDescending(q => q.CreateTime)
+            .FirstOrDefaultAsync();
+    }
 
     public async Task UpdateQRInformationAsync(QRInformation qrInformation)
     {
