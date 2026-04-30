@@ -1,12 +1,13 @@
 
 import 'package:cp_restaurants/global/global_data.dart';
+import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/line_textfield.dart';
 import '../../common_widget/near_by_list_row.dart';
 import '../../common_widget/popup_layout.dart';
-import '../../data/models/restaurant.dart';
-import '../../data/repository/restaurant_helper.dart';
+import '../restaurant/restaurant_detail_view.dart';
 import '../discovery/filter_view.dart';
 import '../../common_widget/login_required.dart';
 
@@ -19,40 +20,19 @@ class BookmarkView extends StatefulWidget {
 
 class _BookmarkViewState extends State<BookmarkView> {
   TextEditingController txtSearch = TextEditingController();
-  List<Restaurant> bookmarkedRestaurants = [];
-
-  List<Restaurant> filteredRestaurants = [];
   String searchQuery = "";
 
   @override
   void initState() {
     super.initState();
-    _fetchBookmarkedRestaurants();
-  }
-
-  Future<void> _fetchBookmarkedRestaurants() async {
-    final helper = RestaurantHelper();
-    final restaurants = await helper.fetchAllRestaurants();
-
-    setState(() {
-      bookmarkedRestaurants = restaurants;
-      filteredRestaurants = restaurants;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<RestaurantProvider>().getBookmarkRestaurants();
     });
   }
 
   void updateSearchQuery(String query) {
-    if (query == "") {
-      setState(() {
-        filteredRestaurants = bookmarkedRestaurants;
-      });
-      return;
-    }
     setState(() {
       searchQuery = query;
-      filteredRestaurants = bookmarkedRestaurants
-          .where((restaurant) =>
-              restaurant.name.toLowerCase().contains(searchQuery.toLowerCase()))
-          .toList();
     });
   }
 
@@ -113,9 +93,28 @@ class _BookmarkViewState extends State<BookmarkView> {
               ),
             ];
           },
-          body: filteredRestaurants.isEmpty
-              ? const Center(child: Text("Không tìm thấy nhà hàng"))
-              : Stack(
+          body: Consumer<RestaurantProvider>(
+            builder: (context, provider, child) {
+              final bookmarkedRestaurants = provider.favoriteRestaurants;
+              final filteredRestaurants = searchQuery.isEmpty
+                  ? bookmarkedRestaurants
+                  : bookmarkedRestaurants
+                      .where((restaurant) => restaurant.name
+                          .toLowerCase()
+                          .contains(searchQuery.toLowerCase()))
+                      .toList();
+
+              if (provider.isLoadingFavorites) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (provider.favoriteLoadError != null) {
+                return Center(
+                    child: Text("Lỗi tải danh sách đã lưu: ${provider.favoriteLoadError}"));
+              }
+              if (filteredRestaurants.isEmpty) {
+                return const Center(child: Text("Không tìm thấy nhà hàng"));
+              }
+              return Stack(
                   alignment: Alignment.topCenter,
                   children: [
                     ListView.builder(
@@ -125,6 +124,17 @@ class _BookmarkViewState extends State<BookmarkView> {
                         return NearByListRow(
                           fObj: restaurant,
                           isBookmark: true,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => RestaurantDetailView(fObj: restaurant),
+                              ),
+                            );
+                          },
+                          onBookmarkToggle: () async {
+                            await provider.setBookmarkRestaurants(restaurant);
+                          },
                         );
                       },
                     ),
@@ -152,7 +162,9 @@ class _BookmarkViewState extends State<BookmarkView> {
                       ],
                     ),
                   ],
-                ),
+                );
+            },
+          ),
         ),
       );
     } else {

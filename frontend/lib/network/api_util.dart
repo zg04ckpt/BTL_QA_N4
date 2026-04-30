@@ -19,6 +19,19 @@ class APIService {
     return 'https://qa-test.hoangcn.com';
   }
 
+  String resolveMediaUrl(String? rawPath) {
+    final path = rawPath?.trim() ?? '';
+    if (path.isEmpty) {
+      return '';
+    }
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    final sanitizedBaseUrl = baseUrl.replaceAll(RegExp(r'/+$'), '');
+    final sanitizedPath = path.replaceFirst(RegExp(r'^/+'), '');
+    return '$sanitizedBaseUrl/$sanitizedPath';
+  }
+
   // Lưu token vào SharedPreferences
   Future<void> saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
@@ -31,11 +44,16 @@ class APIService {
     return prefs.getString('accessToken');
   }
 
+  Future<void> clearToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('accessToken');
+  }
+
   // Hàm request với token được lấy từ SharedPreferences
   Future<Response> request(
     String endpoint,
     DioMethod method, {
-    Map<String, dynamic>? param,
+    dynamic param,
     String? contentType,
     formData,
   }) async {
@@ -86,7 +104,25 @@ class APIService {
             data: param ?? formData,
           );
       }
-    } catch (e) {
+    } on DioException catch (e) {
+      print('Dio error: ${e.message}');
+      print('Dio response: ${e.response?.data}');
+      final statusCode = e.response?.statusCode;
+      final responseData = e.response?.data;
+      String? serverMessage;
+      if (responseData is Map<String, dynamic>) {
+        serverMessage = responseData['message']?.toString() ??
+            responseData['Message']?.toString() ??
+            responseData['error']?.toString() ??
+            responseData['Error']?.toString();
+      } else {
+        serverMessage = responseData?.toString();
+      }
+      throw Exception(
+          'Network error (${statusCode ?? "unknown"}): ${serverMessage ?? e.message}');
+    } catch (e, stack) {
+      print('Unexpected error: $e');
+      print('Stack trace: $stack');
       throw Exception('Network error');
     }
   }

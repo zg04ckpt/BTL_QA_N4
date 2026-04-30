@@ -45,6 +45,10 @@ class _ListRestaurantViewState extends State<ListRestaurantView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text(widget.resDatas[0].category),
         centerTitle: true,
       ),
@@ -97,11 +101,11 @@ class _ListRestaurantViewState extends State<ListRestaurantView> {
             child: GridView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Số cột trong GridView
-                crossAxisSpacing: 8.0, // Khoảng cách giữa các cột
-                mainAxisSpacing: 8.0, // Khoảng cách giữa các hàng
-                childAspectRatio: 1.0, // Tỉ lệ chiều rộng / chiều cao của item
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+                childAspectRatio: foodItemGridChildAspectRatio(context),
               ),
               itemCount: filteredRestaurants.length,
               itemBuilder: (context, index) {

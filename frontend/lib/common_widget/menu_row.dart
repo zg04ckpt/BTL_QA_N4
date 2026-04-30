@@ -40,6 +40,13 @@ class MenuRow extends StatelessWidget {
               width: 25,
               height: 25,
               fit: BoxFit.fitWidth,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(
+                  Icons.insert_drive_file_outlined,
+                  size: 25,
+                  color: color ?? TColor.primary,
+                );
+              },
             ),
             const SizedBox(
               width: 15,

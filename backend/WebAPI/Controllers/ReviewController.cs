@@ -20,30 +20,34 @@ public class ReviewController : Controller
     {
         if (reviewDto == null)
         {
-            return BadRequest("Review data cannot be null.");
+            return BadRequest(new { success = false, message = "Review data cannot be null." });
         }
 
         var result = await _reviewService.AddReviewAsync(reviewDto);
 
         if (result.Success)
         {
-            return Ok(new { message = result.Message });
+            return Ok(new { success = true, message = result.Message });
         }
-        return StatusCode(StatusCodes.Status500InternalServerError, new { message = result.Message });
+        return BadRequest(new { success = false, message = result.Message });
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteReview(int id)
     {
         var (success, message) = await _reviewService.DeleteReviewAsync(id);
-        return success ? Ok(new { message }) : NotFound(new { message });
+        return success
+            ? Ok(new { success = true, message })
+            : NotFound(new { success = false, message });
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateReview(int id, [FromBody] ReviewDto reviewDto)
     {
         var (success, message) = await _reviewService.UpdateReviewAsync(id, reviewDto);
-        return success ? Ok(new { message }) : NotFound(new { message });
+        return success
+            ? Ok(new { success = true, message })
+            : NotFound(new { success = false, message });
     }
     [HttpGet]
     public async Task<IActionResult> GetAllReviews()
@@ -56,7 +60,7 @@ public class ReviewController : Controller
     {
         var reviews = await _reviewService.GetReviewsByUserIdAsync(userId);
         if (reviews == null || !reviews.Any())
-            return NotFound("No reviews found for the given user.");
+            return NotFound(new { success = false, message = "No reviews found for the given user." });
         return Ok(reviews);
     }
 
@@ -65,7 +69,7 @@ public class ReviewController : Controller
     {
         var reviews = await _reviewService.GetReviewsByRestaurantIdAsync(restaurantId);
         if (reviews == null || !reviews.Any())
-            return NotFound("No reviews found for the given restaurant.");
+            return NotFound(new { success = false, message = "No reviews found for the given restaurant." });
         return Ok(reviews);
     }
 

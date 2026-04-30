@@ -12,8 +12,7 @@ class LocationService {
             position.latitude, position.longitude);
 
         if (placemarks.isNotEmpty) {
-          return placemarks[1];
-          // i changed the plaace mark index from [0] to [1]
+          return placemarks[0];
         }
       } catch (e) {
         print("Error fetching location name");
@@ -25,29 +24,22 @@ class LocationService {
   }
 
   static Future<bool> checkAndRequestLocationPermission() async {
-    // Check location permission
-    PermissionStatus locationPermission = await Permission.location.status;
+    var locationPermission = await Permission.locationWhenInUse.status;
 
-    // Check if location permission is granted
     if (locationPermission.isGranted) {
-      // Permission is already granted
       return true;
     }
 
-    // Request permission if not granted
     if (locationPermission.isDenied || locationPermission.isRestricted) {
-      locationPermission = await Permission.location.request();
+      locationPermission = await Permission.locationWhenInUse.request();
     }
 
-    // Request precise location permission (only on Android 12+)
-    PermissionStatus preciseLocationPermission =
-        await Permission.locationAlways.status;
-    if (preciseLocationPermission.isDenied) {
-      preciseLocationPermission = await Permission.locationAlways.request();
+    if (locationPermission.isPermanentlyDenied) {
+      await openAppSettings();
+      return false;
     }
 
-    // Return true if both location and precise permissions are granted
-    return locationPermission.isGranted && preciseLocationPermission.isGranted;
+    return locationPermission.isGranted;
   }
 
   static Future<void> openMap(double latitude, double longitude) async {

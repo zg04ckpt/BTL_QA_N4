@@ -1,13 +1,10 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:screenshot/screenshot.dart';
 
 class PrettyQrAnimatedView extends StatefulWidget {
   @protected
@@ -50,8 +47,6 @@ class PrettyQrAnimatedViewState extends State<PrettyQrAnimatedView> {
     }
   }
 
-  final ScreenshotController _screenshotController = ScreenshotController();
-
   Future<void> _captureAndSaveScreenshot() async {
     try {
       RenderRepaintBoundary boundary = _globalKey.currentContext!
@@ -61,7 +56,7 @@ class PrettyQrAnimatedViewState extends State<PrettyQrAnimatedView> {
           await (image.toByteData(format: ui.ImageByteFormat.png));
       if (byteData != null) {
         final result =
-            await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+            await ImageGallerySaverPlus.saveImage(byteData.buffer.asUint8List());
         print(result);
       }
     } catch (e) {

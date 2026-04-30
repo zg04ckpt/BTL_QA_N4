@@ -7,4 +7,6 @@ public interface IReportService
 {
     Task<Report> AddReportAsync(ReportDto reportDto);
     Task<(bool Success, string Message)> UpdateReportStatusAsync(int id, int status);
+    Task<IEnumerable<Report>> GetAllReportsAsync();
+    Task<IEnumerable<Report>> GetReportsByUserIdAsync(int userId);
 }

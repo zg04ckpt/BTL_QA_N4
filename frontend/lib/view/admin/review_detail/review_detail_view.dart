@@ -13,7 +13,7 @@ class ReviewDetailView extends StatefulWidget {
 }
 
 class _ReviewDetailViewState extends State<ReviewDetailView> {
-  List<Report> reports = [];
+  List<ReportModel> reports = [];
   bool isLoading = true;
 
   @override
@@ -31,7 +31,7 @@ class _ReviewDetailViewState extends State<ReviewDetailView> {
           .get();
 
       reports = reportSnapshot.docs
-          .map((doc) => Report.fromDocumentSnapshot(doc))
+          .map((doc) => ReportModel.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
 
       setState(() {
@@ -46,9 +46,22 @@ class _ReviewDetailViewState extends State<ReviewDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Review Detail'),
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Review Detail',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-       floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           // AppDialog.showDeleteConfirmationDialog(
           //             context,

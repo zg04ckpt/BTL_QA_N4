@@ -1,4 +1,8 @@
 import 'dart:io';
+
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+
 import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/view/auth/auth_view_model.dart';
 import 'package:cp_restaurants/firebase_options.dart';
@@ -14,19 +18,58 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'common/color_extension.dart';
 import 'services/notification_service.dart';
+import 'services/admin_provider.dart';
 
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Android: renderer must be chosen before any GoogleMap is built; texture mode
+  // (useAndroidViewSurface = false) is the recommended default and avoids blank maps on many devices.
+  if (Platform.isAndroid) {
+    final maps = GoogleMapsFlutterPlatform.instance;
+    if (maps is GoogleMapsFlutterAndroid) {
+      try {
+        await maps.initializeWithRenderer(AndroidMapRenderer.latest);
+      } catch (e, st) {
+        debugPrint('Google Maps initializeWithRenderer: $e\n$st');
+      }
+      maps.useAndroidViewSurface = false;
+      try {
+        await maps.warmup();
+      } catch (e) {
+        debugPrint('Google Maps warmup: $e');
+      }
+    }
+  }
+
   HttpOverrides.global = MyHttpOverrides();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-  await setupFlutterNotifications();
-  Permission.notification.request();
-  AssetLottie("assets/animations/loading.json").load();
-  runApp(
-    const MyApp(),
-  );
+  
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    debugPrint("Firebase initialization failed: $e");
+  }
+
+  runApp(const MyApp());
+
+  // Khởi tạo các dịch vụ phụ ở background
+  _initializeSecondaryServices();
+}
+
+Future<void> _initializeSecondaryServices() async {
+  try {
+    print("Initializing secondary services...");
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    await setupFlutterNotifications();
+    print("Notifications initialized.");
+    await Permission.notification.request();
+    print("Permissions requested.");
+    await AssetLottie("assets/animations/loading.json").load();
+    print("Assets loaded.");
+  } catch (e) {
+    print("Error initializing secondary services: $e");
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -53,7 +96,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => RestaurantProvider()),
         ChangeNotifierProvider(create: (context) => ReviewProvider()),
         ChangeNotifierProvider(create: (context) => AuthViewModel()),
-        ChangeNotifierProvider(create: (context) => CommonProvider())
+        ChangeNotifierProvider(create: (context) => CommonProvider()),
+        ChangeNotifierProvider(create: (context) => AdminProvider())
       ],
       child: MaterialApp(
           title: 'CP Restaurants',

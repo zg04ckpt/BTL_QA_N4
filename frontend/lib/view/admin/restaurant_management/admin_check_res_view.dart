@@ -1,4 +1,3 @@
-import 'package:cp_restaurants/common/app_snack_bar.dart';
 import 'package:cp_restaurants/common/color_extension.dart';
 import 'package:cp_restaurants/common_widget/dialog/app_dialog.dart';
 import 'package:cp_restaurants/common_widget/icon_text_button.dart';
@@ -8,7 +7,6 @@ import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/services/location_service.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:cp_restaurants/services/review_provider.dart';
@@ -19,8 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-
-import 'package:share_plus/share_plus.dart';
 
 class AdminCheckRes extends StatefulWidget {
   final Restaurant fObj;
@@ -238,8 +234,20 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                               children: [
                                 Image.network(
                                   Uri.parse(
-                                    '${APIService.instance.baseUrl}/${resData!.avtImage}',
+                                    APIService.instance
+                                        .resolveMediaUrl(resData!.avtImage),
                                   ).toString(),
+                                  fit: BoxFit.cover,
+                                  width: media.width,
+                                  height: media.width * 0.67,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      "assets/img/u1.png",
+                                      fit: BoxFit.cover,
+                                      width: media.width,
+                                      height: media.width * 0.67,
+                                    );
+                                  },
                                 ),
                                 Container(
                                   width: media.width,
@@ -280,38 +288,47 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                           color: Colors.white,
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 resData!.name.toString(),
                                 textAlign: TextAlign.left,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                     color: TColor.text,
                                     fontSize: 24,
                                     fontWeight: FontWeight.w700),
                               ),
-                              const Spacer(),
-                              RatingBar(
-                                key: starKey,
-                                size: 20,
-                                filledIcon: Icons.star,
-                                alignment: Alignment.center,
-                                emptyIcon: Icons.star_border,
-                                onRatingChanged: (value) {},
-                                initialRating: resData!
-                                    .averageScore, // Use the initial rating value
-                                maxRating: 5,
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  RatingBar(
+                                    key: starKey,
+                                    size: 20,
+                                    filledIcon: Icons.star,
+                                    alignment: Alignment.center,
+                                    emptyIcon: Icons.star_border,
+                                    onRatingChanged: (value) {},
+                                    initialRating: resData!.averageScore,
+                                    maxRating: 5,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
+                                      textAlign: TextAlign.left,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                // "${resData!.averageScore}",
-                                "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700),
-                              )
                             ],
                           ),
                         ),
@@ -395,7 +412,7 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                                     Flexible(
                                       child: Container(
                                         padding: const EdgeInsets.all(8),
-                                        color: Colors.green.withOpacity(0.4),
+                                        color: Colors.green.withValues(alpha: 0.4),
                                         child: Text(
                                           resData!.address.toString(),
                                           textAlign: TextAlign.left,
@@ -469,11 +486,13 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                                   itemBuilder: (context, index) {
                                     return ImgTextButton(
                                       image: Uri.parse(
-                                              '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}')
+                                              APIService.instance.resolveMediaUrl(
+                                                  resData!.photoUrls[index]))
                                           .toString(),
                                       onPressed: () {
                                         AppDialog.showPreviewImage(context,
-                                            '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}');
+                                            APIService.instance.resolveMediaUrl(
+                                                resData!.photoUrls[index]));
                                       },
                                     );
                                   }),

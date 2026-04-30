@@ -1,8 +1,5 @@
-// ignore_for_file: avoid_print
-
+import 'package:cp_restaurants/common_widget/location_preview_map.dart';
 import 'package:flutter/material.dart';
-import 'package:location_picker_flutter_map/location_picker_flutter_map.dart';
-
 
 class MapPickerView extends StatelessWidget {
   const MapPickerView({super.key});
@@ -10,34 +7,18 @@ class MapPickerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Location Picker'),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
         ),
-        body: FlutterLocationPicker(
-          initZoom: 11,
-          minZoomLevel: 5,
-          maxZoomLevel: 16,
-          trackMyPosition: true,
-          searchBarBackgroundColor: Colors.white,
-          selectedLocationButtonTextstyle: const TextStyle(fontSize: 18),
-          mapLanguage: 'en',
-          onError: (e) => print(e),
-          selectLocationButtonLeadingIcon: const Icon(Icons.check),
-          onPicked: (pickedData) {
-            print(pickedData.latLong.latitude);
-            print(pickedData.latLong.longitude);
-            print(pickedData.address);
-            print(pickedData.addressData);
-          },
-          onChanged: (pickedData) {
-            print(pickedData.latLong.latitude);
-            print(pickedData.latLong.longitude);
-            print(pickedData.address);
-            print(pickedData.addressData);
-          },
-          showContributorBadgeForOSM: true,
-        ),
-      
+        title: const Text('Bản đồ (OSM)'),
+      ),
+      body: const LocationPreviewMap(
+        lat: 21.0278,
+        lon: 105.8342,
+        height: 400,
+      ),
     );
   }
 }

@@ -45,6 +45,10 @@ class _SearchViewState extends State<SearchView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text(
           "Searching...",
           style: TextStyle(

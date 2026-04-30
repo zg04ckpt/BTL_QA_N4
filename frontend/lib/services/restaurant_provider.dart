@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cp_restaurants/common/app_utils.dart';
+import 'package:cp_restaurants/data/models/category_model.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
 import 'package:cp_restaurants/data/repository/restaurant_helper.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RestaurantProvider with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -16,59 +16,126 @@ class RestaurantProvider with ChangeNotifier {
   List<Restaurant> topReviewRestaurant = [];
   List<Restaurant> searchedRestaurants = [];
   List<Restaurant> nearRestaurants = [];
+  List<Restaurant> favoriteRestaurants = [];
   List<int> bookmarkRestaurants = [];
 
   bool isRefreshData = false;
+  bool isLoadingHomeData = false;
+  bool hasLoadedHomeData = false;
+  String? homeLoadError;
+
+  /// Max distance (km) when device location is known; otherwise all open restaurants are listed.
+  static const double _nearRadiusKm = 200.0;
+  bool isLoadingFavorites = false;
+  String? favoriteLoadError;
 
   RestaurantHelper restaurantHelper = RestaurantHelper();
   static const String _bookmarkKey = 'bookmark_restaurants';
 
   Future<void> getBookmarkRestaurants() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+    if (GlobalData.instance.userData == null) return;
+    isLoadingFavorites = true;
+    favoriteLoadError = null;
+    notifyListeners();
 
-    List<String>? storedList = sharedPreferences.getStringList(_bookmarkKey);
-    if (storedList != null) {
-      bookmarkRestaurants =
-          storedList.map((e) => int.tryParse(e) ?? 0).toList();
+    try {
+      final response = await APIService.instance.request(
+        '/api/Favorite/user/${GlobalData.instance.userData!.userId}',
+        DioMethod.get,
+      );
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data as List<dynamic>;
+        favoriteRestaurants =
+            data.map((json) => Restaurant.fromJson(json)).toList();
+        bookmarkRestaurants = favoriteRestaurants.map((res) => res.id).toList();
+      } else {
+        favoriteLoadError =
+            "Failed to fetch favorites: ${response.statusCode}";
+      }
+    } catch (e) {
+      favoriteLoadError = e.toString();
+      log('Error fetching bookmark restaurants: $e');
+    } finally {
+      isLoadingFavorites = false;
+      notifyListeners();
     }
   }
 
   Future<void> setBookmarkRestaurants(Restaurant res,
       {bool? isAdd = true}) async {
-    if (isAdd!) {
-      restaurantHelper.insertRestaurant(res);
-      List<int> newList = [];
-      newList = bookmarkRestaurants;
-      newList.add(res.id);
-      bookmarkRestaurants = [];
-      bookmarkRestaurants.addAll(newList);
-    } else {
-      restaurantHelper.deleteRestaurant(res.id);
+    if (GlobalData.instance.userData == null) return;
+    try {
+      final response = await APIService.instance.request(
+        '/api/Favorite/toggle?userId=${GlobalData.instance.userData!.userId}&restaurantId=${res.id}',
+        DioMethod.post,
+      );
 
-      List<int> newList = [];
-      newList = bookmarkRestaurants;
-      newList.remove(res.id);
-      bookmarkRestaurants = [];
-      bookmarkRestaurants.addAll(newList);
+      if (response.statusCode == 200) {
+        // Toggle local state based on the current list
+        if (bookmarkRestaurants.contains(res.id)) {
+          bookmarkRestaurants.remove(res.id);
+          favoriteRestaurants
+              .removeWhere((restaurant) => restaurant.id == res.id);
+          restaurantHelper.deleteRestaurant(res.id);
+        } else {
+          bookmarkRestaurants.add(res.id);
+          favoriteRestaurants.add(res);
+          restaurantHelper.insertRestaurant(res);
+        }
+        notifyListeners();
+      }
+    } catch (e) {
+      log('Error toggling favorite: $e');
     }
-    notifyListeners();
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-
-    List<String> stringList =
-        bookmarkRestaurants.map((e) => e.toString()).toList();
-    await sharedPreferences.setStringList(_bookmarkKey, stringList);
   }
 
   bool isSearching = false;
 
-  void init() {
-    if (allAllRestaurant.isNotEmpty && isRefreshData == false) {
+  void init({bool force = false}) {
+    if (!force && allAllRestaurant.isNotEmpty && isRefreshData == false) {
       return;
     }
     allAllRestaurant = [];
+    nearRestaurants = [];
+    topReviewRestaurant = [];
+    isLoadingHomeData = true;
+    hasLoadedHomeData = false;
+    homeLoadError = null;
+    notifyListeners();
     getNearRestaurants();
+  }
+
+  /// Re-run distance filter/sort after GPS becomes available (without refetching the API).
+  void onUserLocationResolved() {
+    if (allAllRestaurant.isEmpty) {
+      if (!isLoadingHomeData) {
+        init(force: true);
+      }
+      return;
+    }
+    _applyNearbyFilterAndSort();
+    notifyListeners();
+  }
+
+  void _applyNearbyFilterAndSort() {
+    nearRestaurants = List<Restaurant>.from(allAllRestaurant);
+    for (int i = 0; i < nearRestaurants.length; i++) {
+      nearRestaurants[i].distance = AppUtils.getRestaurantDistance(
+        nearRestaurants[i].address.lat,
+        nearRestaurants[i].address.lon,
+      );
+    }
+    final hasPosition = GlobalData.instance.userPosition != null;
+    nearRestaurants = nearRestaurants.where((restaurant) {
+      if (restaurant.status != 2) return false;
+      if (!hasPosition) return true;
+      final d = restaurant.distance;
+      if (d < 0) return true;
+      return d <= _nearRadiusKm;
+    }).toList();
+    nearRestaurants.sort((a, b) =>
+        AppUtils.compareDistanceKm(a.distance, b.distance));
   }
 
   Future<void> searchRestaurants(String query) async {
@@ -84,7 +151,7 @@ class RestaurantProvider with ChangeNotifier {
 
     try {
       final response = await APIService.instance.request(
-        '/api/Restaurants/GetRestaurants?searchTerm=$query',
+        '/api/Restaurants/GetRestaurants?searchTerm=${Uri.encodeQueryComponent(query)}',
         DioMethod.get,
       );
 
@@ -100,11 +167,12 @@ class RestaurantProvider with ChangeNotifier {
         for (int i = 0; i < searchedRestaurants.length; i++) {
           double dis = AppUtils.getRestaurantDistance(
             searchedRestaurants[i].address.lat,
-            searchedRestaurants[i].address.lat,
+            searchedRestaurants[i].address.lon,
           );
           searchedRestaurants[i].distance = dis;
         }
-        nearRestaurants.sort((a, b) => a.distance.compareTo(b.distance));
+        searchedRestaurants.sort((a, b) =>
+            AppUtils.compareDistanceKm(a.distance, b.distance));
       } else {
         print('Failed to fetch restaurants: ${response.statusCode}');
       }
@@ -177,37 +245,28 @@ class RestaurantProvider with ChangeNotifier {
 
   Future<void> getNearRestaurants() async {
     try {
+      // Do not filter by profile city here: mismatch with DB breaks "near you" entirely.
       final response = await APIService.instance.request(
-          "/api/Restaurants/GetRestaurants?city=${GlobalData.instance.userData!.address?.city}",
+          "/api/Restaurants/GetRestaurants",
           DioMethod.get);
       if (response.statusCode == 200) {
         List<dynamic> data = response.data as List<dynamic>;
-        nearRestaurants =
-            data.map((json) => Restaurant.fromJson(json)).toList();
+        allAllRestaurant = data.map((json) => Restaurant.fromJson(json)).toList();
       } else {
         throw Exception(
             "Failed to load restaurants. Status code: ${response.statusCode}");
       }
 
-      getTopReviewRestaurant();
-
-      nearRestaurants.addAll(allAllRestaurant);
-
-      for (int i = 0; i < nearRestaurants.length; i++) {
-        double dis = AppUtils.getRestaurantDistance(
-          nearRestaurants[i].address.lat,
-          nearRestaurants[i].address.lon,
-        );
-        nearRestaurants[i].distance = dis;
-      }
-      nearRestaurants = nearRestaurants
-          .where((restaurant) =>
-              restaurant.distance <= 100000 && restaurant.status == 2)
-          .toList();
-      nearRestaurants.sort((a, b) => a.distance.compareTo(b.distance));
-      notifyListeners();
+      _applyNearbyFilterAndSort();
+      await getTopReviewRestaurant();
+      homeLoadError = null;
     } catch (e) {
+      homeLoadError = e.toString();
       print("Error: $e");
+    } finally {
+      isLoadingHomeData = false;
+      hasLoadedHomeData = true;
+      notifyListeners();
     }
   }
 
@@ -215,13 +274,9 @@ class RestaurantProvider with ChangeNotifier {
     try {
       topReviewRestaurant = List<Restaurant>.from(allAllRestaurant)
           .where((restaurant) =>
-              restaurant.totalReviews > 100 && restaurant.status == 2)
+              restaurant.totalReviews > 0 && restaurant.status == 2)
           .toList()
         ..sort((a, b) => b.averageScore.compareTo(a.averageScore));
-
-      notifyListeners();
-
-      notifyListeners();
     } catch (e) {
       print("Error: $e");
     }
@@ -261,10 +316,10 @@ class RestaurantProvider with ChangeNotifier {
     }
   }
 
-  Future<List<Restaurant>> getRestaurantByCategory(String category) async {
+  Future<List<Restaurant>> getRestaurantByCategory(CategoryModel category) async {
     try {
       final response = await APIService.instance
-          .request("/api/Restaurants/GetRestaurants", DioMethod.get);
+          .request("/api/Restaurants/category/${category.id}", DioMethod.get);
       List<Restaurant> allRes = [];
       if (response.statusCode == 200) {
         List<dynamic> data = response.data as List<dynamic>;
@@ -273,9 +328,18 @@ class RestaurantProvider with ChangeNotifier {
         return [];
       }
       var result = allRes.where((restaurant) {
-        return restaurant.category == category && restaurant.status == 2;
+        return restaurant.status == 2;
       }).toList();
-      nearRestaurants.sort((a, b) => a.distance.compareTo(b.distance));
+      
+      for (int i = 0; i < result.length; i++) {
+        double dis = AppUtils.getRestaurantDistance(
+          result[i].address.lat,
+          result[i].address.lon,
+        );
+        result[i].distance = dis;
+      }
+      result.sort((a, b) =>
+          AppUtils.compareDistanceKm(a.distance, b.distance));
       notifyListeners();
       return result;
     } catch (e) {

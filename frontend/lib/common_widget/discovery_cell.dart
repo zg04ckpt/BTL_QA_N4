@@ -24,7 +24,7 @@ class DiscoveryCell extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/img/res_type/${restaurantTypes[name]}.png",
+            "assets/img/res_type/${restaurantTypes[name] ?? "Fast Food"}.png",
             width: media.width * 0.15,
             height: media.width * 0.15,
             fit: BoxFit.fitWidth,

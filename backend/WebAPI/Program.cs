@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using System.Text.Json;
 using BusinessLogicLayer.Interfaces;
 using BusinessLogicLayer.Services;
 using DataAccessLayer.Context;
@@ -46,6 +47,29 @@ builder.Services.AddControllers()
     });
 
 var app = builder.Build();
+
+app.UseExceptionHandler(exceptionApp =>
+{
+    exceptionApp.Run(async context =>
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+        var exception = context.Features
+            .Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()
+            ?.Error;
+
+        var message = exception?.Message ?? "Internal server error";
+        var payload = JsonSerializer.Serialize(new
+        {
+            success = false,
+            message,
+            code = context.Response.StatusCode
+        });
+
+        await context.Response.WriteAsync(payload);
+    });
+});
 
 if (app.Environment.IsDevelopment())
 {

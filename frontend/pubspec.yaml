@@ -34,19 +34,21 @@ dependencies:
     sdk: flutter
   flutter_otp_text_field: ^1.1.1
   flutter_rating_bar: ^4.0.1
-  # google_maps_flutter: ^2.5.0
+  google_maps_flutter: ^2.12.3
+  google_maps_flutter_android: ^2.19.8
+  google_maps_flutter_platform_interface: ^2.15.0
   percent_indicator: ^4.2.3
-  readmore: ^2.2.0
+  readmore: ^3.0.0
   widget_mask: ^1.0.0+0
-  intl: ^0.18.1
+  intl: ^0.20.2
   provider: ^6.1.2
-  geocoding: ^2.1.1
-  geolocator: ^10.1.0
-  firebase_core: ^2.16.0
-  firebase_auth: ^4.10.0
-  cloud_firestore: ^4.9.2
+  geocoding: ^4.0.0
+  geolocator: ^14.0.2
+  firebase_core: ^4.7.0
+  firebase_auth: ^6.4.0
+  cloud_firestore: ^6.3.0
   firebase_storage:
-  permission_handler: ^11.3.1
+  permission_handler: ^12.0.1
   # location_picker_flutter_map: ^2.1.0
   # address_picker_vn: ^0.3.2
   cached_network_image: ^3.4.1
@@ -55,12 +57,12 @@ dependencies:
   image_picker: ^1.1.2
   url_launcher: ^6.3.0
   lottie: ^3.1.2
-  location_picker_flutter_map: ^2.1.0
-  flutter_map: ^6.2.1
+  location_picker_flutter_map: ^4.1.0
+  flutter_map: ^8.3.0
   latlong2: ^0.9.1
-  firebase_messaging: ^14.7.10
-  flutter_local_notifications: ^17.2.3
-  firebase_admin_sdk: ^0.0.6
+  firebase_messaging: ^16.2.0
+  flutter_local_notifications: ^21.0.0
+  firebase_admin_sdk: ^0.5.1
   http: ^1.2.2
   dio: ^5.7.0
   shared_preferences: ^2.3.3
@@ -68,19 +70,19 @@ dependencies:
   jwt_decoder: ^2.0.1
   path_provider: ^2.1.5
   sqflite: ^2.4.1
-  mobile_scanner: ^6.0.2
+  mobile_scanner: ^7.2.0
   flame: ^1.21.0
-  connectivity_plus: ^5.0.2
+  connectivity_plus: ^7.1.1
   modal_bottom_sheet: ^3.0.0
   flutter_datetime_picker_plus: ^2.2.0
   path: ^1.9.0
-  share_plus: ^10.1.2
-  local_auth: ^2.3.0
+  share_plus: ^12.0.2
+  local_auth: ^3.0.1
   screenshot: ^3.0.0
-  image_gallery_saver: ^2.0.3
+  image_gallery_saver_plus: ^4.0.1
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
   build_runner: any

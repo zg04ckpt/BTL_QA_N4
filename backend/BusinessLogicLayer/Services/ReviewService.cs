@@ -27,7 +27,7 @@ public class ReviewService : IReviewService
         var latestScan = await _qrInformationRepository.GetLatestQRInformationAsync(reviewDto.UserId, reviewDto.RestaurantId);
         if (latestScan == null)
         {
-            throw new Exception("You must scan the restaurant's QR code before writing a review.");
+            return (false, "You must scan the restaurant's QR code before writing a review.");
         }
         
         // Check if the scan is within the last 30 days
@@ -42,7 +42,7 @@ public class ReviewService : IReviewService
 
         if ((DateTime.UtcNow - scanTime).TotalDays > 30)
         {
-            throw new Exception("Your QR scan has expired. Please scan again.");
+            return (false, "Your QR scan has expired. Please scan again.");
         }
 
         // 2. Call AI moderation

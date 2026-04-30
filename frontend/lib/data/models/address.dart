@@ -15,8 +15,8 @@ class Address {
     required this.district,
     required this.ward,
     required this.detail,
-    this.lat = 1,
-    this.lon = 1,
+    this.lat = 0,
+    this.lon = 0,
   });
 
   @override
@@ -34,26 +34,21 @@ class Address {
       district: map['district'] ?? '',
       ward: map['ward'] ?? '',
       detail: map['detail'] ?? '',
-      lat: double.parse(map['lat'] ?? 0),
-      lon: double.parse(map['lon'] ?? 0),
+      lat: double.tryParse(map['lat']?.toString() ?? '0') ?? 0.0,
+      lon: double.tryParse(map['lon']?.toString() ?? '0') ?? 0.0,
     );
   }
 
   factory Address.fromMap(Map<String, dynamic> json) {
-    print(
-        'lon type: ${json['lon'].runtimeType}, lat type: ${json['lat'].runtimeType}');
-    // if(json['lat'] == null){json}
     return Address(
-      id: json['id']?? -1,
+      id: json['id'] ?? -1,
       street: json['street'] ?? '',
       city: json['city'] ?? '',
       district: json['district'] ?? '',
       ward: json['ward'] ?? '',
       detail: json['detail'] ?? '',
-      lat:
-          json['lat'] is double ? json['lat'] : (json['lat'] as int).toDouble(),
-      lon:
-          json['lon'] is double ? json['lon'] : (json['lon'] as int).toDouble(),
+      lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
+      lon: (json['lon'] as num?)?.toDouble() ?? 0.0,
     );
   }
 

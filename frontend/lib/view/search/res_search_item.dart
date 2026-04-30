@@ -3,6 +3,7 @@ import 'package:cp_restaurants/common/color_extension.dart';
 import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/common/extension.dart';
 import 'package:cp_restaurants/view/restaurant_manager/components/edit_res_view.dart';
 import 'package:cp_restaurants/view/restaurant_manager/list_order_screens.dart';
 import 'package:cp_restaurants/view/restaurant_manager/qr_gen/qr_gen.dart';
@@ -36,8 +37,8 @@ class ResSearchItem extends StatelessWidget {
               width: media.width * 0.25,
               height: media.width * 0.25,
               child: CachedNetworkImage(
-                imageUrl:
-                    '${APIService.instance.baseUrl}/${fObj.avtImage.toString()}',
+                imageUrl: APIService.instance
+                    .resolveMediaUrl(fObj.avtImage.toString()),
                 fit: BoxFit.cover,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
@@ -64,14 +65,17 @@ class ResSearchItem extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              fObj.name.toString(),
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: TColor.text,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700),
+                            Expanded(
+                              child: Text(
+                                fObj.name.toString(),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: TColor.text,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
                           ],
                         ),
@@ -79,10 +83,10 @@ class ResSearchItem extends StatelessWidget {
                           height: 4,
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 34,
                           child: Text(
                             fObj.address.toString(),
-                            overflow: TextOverflow.clip,
+                            overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             textAlign: TextAlign.left,
                             style: TextStyle(
@@ -97,6 +101,7 @@ class ResSearchItem extends StatelessWidget {
                         Text(
                           restaurantTypes.keys.toList()[fObj.cateId],
                           maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: TColor.gray,
@@ -109,16 +114,19 @@ class ResSearchItem extends StatelessWidget {
                         //  const Spacer(),
                         Row(
                           children: [
-                            Text(
-                              "${fObj.averageScore}⭐ (${fObj.totalReviews} vote)",
-                              style: TextStyle(
-                                  color: TColor.gray,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700),
+                            Expanded(
+                              child: Text(
+                                "${fObj.averageScore.toStringAsFixed(1)}⭐ (${fObj.totalReviews} vote)",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: TColor.gray,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
-                            const Spacer(),
                             Text(
-                              "${fObj.distance}",
+                              fObj.distance.toDistanceText(),
                               style: TextStyle(
                                   color: TColor.gray,
                                   fontSize: 12,

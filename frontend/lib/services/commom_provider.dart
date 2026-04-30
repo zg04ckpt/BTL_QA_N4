@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:cp_restaurants/data/models/category_model.dart';
+import 'package:cp_restaurants/network/api_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,6 +9,7 @@ class CommonProvider with ChangeNotifier {
   bool isConnect = true;
 
   List<int> topicIds = [];
+  List<CategoryModel> categories = [];
   static const String key = "topic";
 
   Future<void> saveListTopic(List<int> list) async {
@@ -95,34 +97,41 @@ class CommonProvider with ChangeNotifier {
     }
   }
 
-  Future<ConnectivityResult> checkConnectivity() async {
-    final connectivityResult = await Connectivity().checkConnectivity();
-
-    if (connectivityResult == ConnectivityResult.mobile) {
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-    } else if (connectivityResult == ConnectivityResult.ethernet) {
-    } else if (connectivityResult == ConnectivityResult.vpn) {
-    } else if (connectivityResult == ConnectivityResult.bluetooth) {
-    } else if (connectivityResult == ConnectivityResult.other) {
-    } else if (connectivityResult == ConnectivityResult.none) {
-      isConnect = false;
-      notifyListeners();
-    }
-
-    return connectivityResult;
+  Future<List<ConnectivityResult>> checkConnectivity() async {
+    final connectivityResults = await Connectivity().checkConnectivity();
+    final hasConnection = connectivityResults
+        .any((result) => result != ConnectivityResult.none);
+    isConnect = hasConnection;
+    notifyListeners();
+    return connectivityResults;
   }
 
   listenConnectivityChange(BuildContext? context) {
     checkConnectivity();
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        if (context != null) {
-          isConnect = false;
-        }
-      } else {
-        isConnect = true;
+    Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> results) {
+      final hasConnection =
+          results.any((result) => result != ConnectivityResult.none);
+      if (context != null) {
+        isConnect = hasConnection;
       }
       notifyListeners();
     });
+  }
+
+  Future<void> fetchCategories() async {
+    try {
+      final response = await APIService.instance.request(
+        '/api/Categories',
+        DioMethod.get,
+      );
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data as List<dynamic>;
+        categories = data.map((json) => CategoryModel.fromJson(json)).toList();
+        notifyListeners();
+      }
+    } catch (e) {
+      print("Error fetching categories: $e");
+    }
   }
 }

@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ung dung can truy cap vi tri de chon vi tri nha hang chinh xac.</string>
+	<key>GMSApiKey</key>
+	<string>AIzaSyCVjyb0krhwVftbqnlE39lKWdtpKSvRRBA</string>
 </dict>
 </plist>

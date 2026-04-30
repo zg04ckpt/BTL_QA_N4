@@ -1,9 +1,13 @@
+import 'package:cp_restaurants/common/app_snack_bar.dart';
 import 'package:cp_restaurants/common/extension.dart';
+import 'package:cp_restaurants/common/jwt_session_helper.dart';
+import 'package:cp_restaurants/common/login_session_log.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/view/admin/home_admin/home_admin_view.dart';
 import 'package:cp_restaurants/view/auth/auth_view_model.dart';
 import 'package:cp_restaurants/view/lock_account_view/lock_account_view.dart';
 import 'package:cp_restaurants/view/main_tab/main_tab_view.dart';
+import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
@@ -63,15 +67,55 @@ class _LoginViewState extends State<LoginView> {
           setState(() {
             isLoading = false;
           });
-          showSnackBar(context, p0);
+          if (context.mounted) {
+            AppSnackBar.showDetailed(
+              context,
+              'Đăng nhập thất bại',
+              p0.toString(),
+            );
+          }
         },
         onSuccess: (token) async {
           Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-          String id = decodedToken["Id"];
-          await GlobalData.instance.fetchUserData(id);
-          if (GlobalData.instance.userData != null) {
-            await UserDataRepository.saveUserData(
-                GlobalData.instance.userData!);
+          final resolvedId = JwtSessionHelper.parseUserId(decodedToken);
+          if (resolvedId == null) {
+            loginSessionLog(
+              'LoginView: parseUserId null — kiểm tra claim Id trong JWT. decoded keys=${decodedToken.keys.toList()}',
+            );
+            if (context.mounted) {
+              AppSnackBar.showDetailed(
+                context,
+                'Không đọc được mã người dùng (JWT)',
+                'Các key trong payload: ${decodedToken.keys.join(", ")}\n'
+                'Cần claim Id (user id) như backend phát hành.',
+              );
+            }
+            setState(() {
+              isLoading = false;
+            });
+            return;
+          }
+          await GlobalData.instance.fetchUserData(resolvedId.toString());
+          if (GlobalData.instance.userData == null) {
+            loginSessionLog(
+              'LoginView: sau fetchUserData userData vẫn null (resolvedId=$resolvedId). Xem log [LoginSession] getUserById phía trên.',
+            );
+            if (context.mounted) {
+              AppSnackBar.showDetailed(
+                context,
+                'Không tải được hồ sơ sau đăng nhập',
+                'Đã gọi GetUserById với id=$resolvedId nhưng dữ liệu rỗng hoặc parse lỗi.\n'
+                'Xem log [LoginSession] getUserById / fetchUserData trong console.',
+              );
+              setState(() {
+                isLoading = false;
+              });
+            }
+            return;
+          }
+          await UserDataRepository.saveUserData(GlobalData.instance.userData!);
+          if (context.mounted) {
+            context.read<RestaurantProvider>().getBookmarkRestaurants();
           }
 
           if (context.mounted) {
@@ -135,9 +179,21 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: media.width * 0.07,
-                ),
+                if (Navigator.of(context).canPop())
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: TColor.primary,
+                      ),
+                    ),
+                  )
+                else
+                  SizedBox(
+                    height: media.width * 0.07,
+                  ),
                 Text(
                   "Welcome to\nCP Restaurant",
                   textAlign: TextAlign.center,

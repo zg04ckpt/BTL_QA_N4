@@ -52,6 +52,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
           title: const Text(
             "Danh sách đơn hàng",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

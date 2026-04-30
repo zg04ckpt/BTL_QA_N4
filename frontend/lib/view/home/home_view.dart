@@ -1,4 +1,5 @@
 import 'package:cp_restaurants/common/extension.dart';
+import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/common_widget/no_internet_page.dart';
 import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/services/location_provider.dart';
@@ -28,17 +29,35 @@ class _HomeViewState extends State<HomeView> {
   bool isSelectCity = true;
   TextEditingController txtSearch = TextEditingController();
 
+  late LocationProvider _locationProvider;
+  late VoidCallback _onLocationChanged;
+
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        Provider.of<RestaurantProvider>(context, listen: false).init();
-      },
-    );
+    super.initState();
+    _locationProvider = context.read<LocationProvider>();
+    _onLocationChanged = () {
+      if (!mounted) return;
+      if (GlobalData.instance.userPosition != null) {
+        context.read<RestaurantProvider>().onUserLocationResolved();
+      }
+    };
+    _locationProvider.addListener(_onLocationChanged);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<RestaurantProvider>().init();
+      _onLocationChanged();
+    });
 
     FirebaseMessaging.instance.subscribeToTopic("all_user");
+  }
 
-    super.initState();
+  @override
+  void dispose() {
+    _locationProvider.removeListener(_onLocationChanged);
+    txtSearch.dispose();
+    super.dispose();
   }
 
   @override
@@ -119,6 +138,8 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 Text(
                                   locationCity,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   style: const TextStyle(
                                       color: Colors.black,
@@ -127,6 +148,8 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 Text(
                                   subLocation,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       color: TColor.gray,
@@ -172,12 +195,25 @@ class _HomeViewState extends State<HomeView> {
                                 );
                               },
                             ),
-                            resViewModel.nearRestaurants.isEmpty
+                            resViewModel.isLoadingHomeData
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 16),
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : resViewModel.nearRestaurants.isEmpty
+                                    ? const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 8),
+                                        child: Text(
+                                          "Hiện chưa có nhà hàng phù hợp gần bạn.",
+                                        ),
+                                      )
                                 : SizedBox(
-                                    height: media.width * 0.48,
-                                    child: ListView.builder(
+                                        height: foodItemHorizontalStripHeight(
+                                            context),
+                                        child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8),
@@ -201,8 +237,9 @@ class _HomeViewState extends State<HomeView> {
                                               fObj: fObj,
                                             ),
                                           );
-                                        }),
-                                  ),
+                                        },
+                                      ),
+                                      ),
                             const SizedBox(
                               height: 15,
                             ),
@@ -218,9 +255,21 @@ class _HomeViewState extends State<HomeView> {
                                 );
                               },
                             ),
-                            resViewModel.topReviewRestaurant.isEmpty
+                            resViewModel.isLoadingHomeData
                                 ? const Center(
-                                    child: CircularProgressIndicator())
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 16),
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : resViewModel.topReviewRestaurant.isEmpty
+                                    ? const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 8),
+                                        child: Text(
+                                          "Chưa có dữ liệu đánh giá để hiển thị.",
+                                        ),
+                                      )
                                 : SizedBox(
                                     // height: media.width,
                                     child: GridView.builder(
@@ -230,15 +279,13 @@ class _HomeViewState extends State<HomeView> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8),
                                       gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount:
-                                            2, // Số cột trong GridView
-                                        crossAxisSpacing:
-                                            8.0, // Khoảng cách giữa các cột
-                                        mainAxisSpacing:
-                                            8.0, // Khoảng cách giữa các hàng
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 8.0,
+                                        mainAxisSpacing: 8.0,
                                         childAspectRatio:
-                                            1.0, // Tỉ lệ chiều rộng / chiều cao của item
+                                            foodItemGridChildAspectRatio(
+                                                context),
                                       ),
                                       itemCount: resViewModel
                                           .topReviewRestaurant.length,

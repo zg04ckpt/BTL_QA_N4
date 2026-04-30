@@ -10,8 +10,8 @@ namespace WebAPI.Controllers
         [HttpPost("upload-image")]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            //if (file == null || file.Length == 0)
-            //  return BadRequest("No file uploaded.");
+            if (file == null || file.Length == 0)
+                return BadRequest(new { success = false, message = "No file uploaded." });
 
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             try
@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             {
 
                 Console.WriteLine("File upload error: " + ex.Message);
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, new { success = false, message = "Internal server error" });
             }
         }
     }

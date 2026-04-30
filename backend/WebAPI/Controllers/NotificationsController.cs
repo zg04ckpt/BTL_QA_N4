@@ -19,17 +19,17 @@ public class NotificationsController : Controller
     {
         if (string.IsNullOrEmpty(request.Topic) || string.IsNullOrEmpty(request.Title) || string.IsNullOrEmpty(request.Body))
         {
-            return BadRequest("Invalid notification payload.");
+            return BadRequest(new { success = false, message = "Invalid notification payload." });
         }
 
         try
         {
             var response = await _firebaseService.SendNotificationToTopicAsync(request.Topic, request.Title, request.Body);
-            return Ok(new { MessageId = response });
+            return Ok(new { success = true, message = "Notification sent successfully.", data = new { messageId = response } });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { Error = ex.Message });
+            return StatusCode(500, new { success = false, message = ex.Message });
         }
     }
 }

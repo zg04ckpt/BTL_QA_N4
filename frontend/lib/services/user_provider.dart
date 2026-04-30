@@ -5,23 +5,27 @@ import 'package:cp_restaurants/network/api_util.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserProvider with ChangeNotifier {
-  Future<UserData> getUserById(int id) async {
+  Future<UserData?> getUserById(int id) async {
     try {
       final response = await APIService.instance.request(
-        '/api/User/GetUserById?id=$id',  // URL cho API
+        '/api/User/GetUserById?id=$id',
         DioMethod.get,
       );
 
-      if (response.statusCode == 200) {
-        final userJson = response.data;
-        // Xử lý Address có thể là null
-        final userData = UserData.fromJson(userJson);
-        return userData;
-      } else {
-        throw Exception('Failed to load user data');
+      if (response.statusCode == 200 && response.data != null) {
+        final raw = response.data;
+        if (raw is! Map) {
+          return null;
+        }
+        final map = Map<String, dynamic>.from(raw as Map);
+        final payload = map['data'] is Map<String, dynamic>
+            ? Map<String, dynamic>.from(map['data'] as Map)
+            : map;
+        return UserData.fromJson(payload);
       }
-    } catch (e) {
-      throw Exception('Error fetching user data: $e');
+      return null;
+    } catch (_) {
+      return null;
     }
   }
 }

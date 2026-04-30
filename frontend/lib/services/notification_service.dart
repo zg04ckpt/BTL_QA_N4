@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:cp_restaurants/firebase_options.dart';
@@ -22,8 +21,11 @@ late AndroidNotificationChannel channel;
 bool isFlutterLocalNotificationsInitialized = false;
 
 Future<void> setupFlutterNotifications() async {
-  String? token = await FirebaseMessaging.instance.getToken();
-  log("token: $token");
+  FirebaseMessaging.instance.getToken().then((token) {
+    print("token: $token");
+  }).catchError((e) {
+    print("Error getting token: $e");
+  });
   if (isFlutterLocalNotificationsInitialized) {
     return;
   }
@@ -35,6 +37,13 @@ Future<void> setupFlutterNotifications() async {
   );
 
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const InitializationSettings initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+  
+  await flutterLocalNotificationsPlugin.initialize(settings: initializationSettings);
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -46,6 +55,10 @@ Future<void> setupFlutterNotifications() async {
     badge: true,
     sound: true,
   );
+
+  // Lắng nghe thông báo khi app đang ở foreground
+  FirebaseMessaging.onMessage.listen(showFlutterNotification);
+
   isFlutterLocalNotificationsInitialized = true;
 }
 
@@ -54,15 +67,15 @@ void showFlutterNotification(RemoteMessage message) {
   AndroidNotification? android = message.notification?.android;
   if (notification != null && android != null) {
     flutterLocalNotificationsPlugin.show(
-      notification.hashCode,
-      notification.title,
-      notification.body,
-      NotificationDetails(
+      id: notification.hashCode,
+      title: notification.title,
+      body: notification.body,
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
           channel.name,
           channelDescription: channel.description,
-          icon: 'launch_background',
+          icon: '@mipmap/ic_launcher',
         ),
       ),
     );
