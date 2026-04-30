@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp_restaurants/common/color_extension.dart';
+import 'package:cp_restaurants/services/admin_provider.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../../data/models/user_data.dart';
 
 class UserManagementView extends StatefulWidget {
@@ -12,147 +13,205 @@ class UserManagementView extends StatefulWidget {
 
 class _UserManagementViewState extends State<UserManagementView> {
   TextEditingController searchController = TextEditingController();
-  UserData? searchedUser; // Để lưu kết quả tìm kiếm
-  bool isLoading = false;
+  String searchQuery = "";
 
-  // Hàm tìm kiếm user theo email
-  Future<void> searchUserByEmail(String email) async {
-    setState(() {
-      isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AdminProvider>().fetchAllUsers();
     });
-
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: email)
-          .limit(1)
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        setState(() {
-          // searchedUser =
-          //     UserData.fromJson(querySnapshot.docs.first.);
-        });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No user found with this email')),
-        );
-      }
-    } catch (e) {
-      print("Error searching user: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error searching user: $e')),
-      );
-    }
-
-    setState(() {
-      isLoading = false;
-    });
-  }
-
-  Future<void> toggleUserState(String userId, String currentState) async {
-    try {
-      String newState = currentState == "lock" ? "open" : "lock";
-
-      // Cập nhật trạng thái của người dùng trong Firestore
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .update({'state': newState});
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('User state updated to $newState')),
-      );
-
-      setState(() {
-        // searchedUser!.state = newState;
-      });
-    } catch (e) {
-      print("Error updating user state: $e");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error updating user state: $e')),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("User Management")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Thanh tìm kiếm theo email
-            TextField(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          "Quản lý người dùng",
+          style: TextStyle(
+              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ),
+      backgroundColor: TColor.bg,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
               controller: searchController,
+              onChanged: (value) {
+                setState(() {
+                  searchQuery = value.toLowerCase();
+                });
+              },
               decoration: InputDecoration(
-                labelText: "Search by Email",
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    searchUserByEmail(searchController.text.trim());
-                  },
+                hintText: "Tìm kiếm theo email hoặc tên...",
+                prefixIcon: const Icon(Icons.search),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+          ),
+          Expanded(
+            child: Consumer<AdminProvider>(
+              builder: (context, adminProvider, child) {
+                if (adminProvider.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-            // Hiển thị thông tin người dùng nếu tìm thấy
-            isLoading
-                ? const CircularProgressIndicator()
-                : searchedUser != null
-                    ? Column(
-                        children: [
-                          Text("Name: ${searchedUser!.name}"),
-                          Text("Email: ${searchedUser!.email}"),
-                          Text("Mobile: ${searchedUser!.phoneNumber}"),
-                          Text("Role: ${searchedUser!.role}"),
-                          Text("State: ${searchedUser!.state}"),
-                          const SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(searchedUser!.state == "lock"
-                                      ? "Unlock User"
-                                      : "Lock User"),
-                                  content: Text(
-                                    searchedUser!.state == "lock"
-                                        ? "Are you sure you want to unlock this user?"
-                                        : "Are you sure you want to lock this user?",
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text("Huỷ"),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        // toggleUserState(searchedUser!.userId,
-                                        //     searchedUser!.state);
-                                        // Navigator.of(context).pop();
-                                      },
-                                      child: Text(searchedUser!.state == "lock"
-                                          ? "Unlock"
-                                          : "Lock"),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            child: Text(searchedUser!.state == "lock"
-                                ? "Unlock User"
-                                : "Lock User"),
-                          ),
-                        ],
-                      )
-                    : const Text("No user found"),
-          ],
+                final filteredUsers = adminProvider.allUsers.where((user) {
+                  return user.email.toLowerCase().contains(searchQuery) ||
+                      user.name.toLowerCase().contains(searchQuery);
+                }).toList();
+
+                if (filteredUsers.isEmpty) {
+                  return const Center(child: Text("Không tìm thấy người dùng nào."));
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  itemCount: filteredUsers.length,
+                  itemBuilder: (context, index) {
+                    final user = filteredUsers[index];
+                    return _buildUserCard(user);
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserCard(UserData user) {
+    bool isLocked = user.state == 0;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 25,
+            backgroundColor: TColor.secondary,
+            backgroundImage: user.avtImage != null && user.avtImage!.isNotEmpty
+                ? NetworkImage(user.avtImage!)
+                : null,
+            child: user.avtImage == null || user.avtImage!.isEmpty
+                ? const Icon(Icons.person, color: Colors.white)
+                : null,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  user.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Text(
+                  user.email,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.grey, fontSize: 13),
+                ),
+                Text(
+                  "Role: ${user.role}",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: user.role == "admin" ? Colors.red : Colors.blue,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              Switch(
+                value: !isLocked,
+                activeColor: Colors.green,
+                onChanged: (value) async {
+                  _showToggleConfirm(user, value);
+                },
+              ),
+              Text(
+                isLocked ? "Đã khóa" : "Hoạt động",
+                style: TextStyle(
+                  color: isLocked ? Colors.red : Colors.green,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showToggleConfirm(UserData user, bool newState) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(newState ? "Mở khóa người dùng" : "Khóa người dùng"),
+        content: Text(
+          newState
+              ? "Bạn có chắc chắn muốn mở khóa cho ${user.email}?"
+              : "Bạn có chắc chắn muốn khóa người dùng ${user.email}?",
         ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Huỷ"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              final success = await context
+                  .read<AdminProvider>()
+                  .updateUserStatus(user.userId, newState ? 1 : 0);
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(success
+                        ? "Cập nhật thành công"
+                        : "Cập nhật thất bại"),
+                    backgroundColor: success ? Colors.green : Colors.red,
+                  ),
+                );
+              }
+            },
+            child: const Text("Xác nhận"),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 using DataAccessLayer.Context;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
@@ -31,5 +32,15 @@ public class ReportRepository
         report.Status = status;
         await _context.SaveChangesAsync();
         return report;
+    }
+
+    public async Task<IEnumerable<Report>> GetAllReportsAsync()
+    {
+        return await _context.Reports.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Report>> GetReportsByUserIdAsync(int userId)
+    {
+        return await _context.Reports.Where(r => r.UserId == userId).ToListAsync();
     }
 }

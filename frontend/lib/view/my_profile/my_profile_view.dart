@@ -1,47 +1,17 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cp_restaurants/common/app_utils.dart';
-import 'package:cp_restaurants/common/extension.dart';
-import 'package:cp_restaurants/common_widget/login_required.dart';
-import 'package:cp_restaurants/data/models/user_data.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/services/location_provider.dart';
 import 'package:cp_restaurants/view/my_profile/components/edit_profile_page.dart';
 import 'package:cp_restaurants/view/on_boarding/on_boarding_view.dart';
 import 'package:cp_restaurants/view/restaurant_manager/my_restaurant.dart';
-import 'package:cp_restaurants/view/rv_history/rv_history_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/menu_row.dart';
-import '../../data/models/address.dart';
 import '../../data/repository/user_repository.dart';
-
-Address sampleAddress = Address(
-    street: "123 Main St",
-    city: "Hanoi",
-    district: "Hà Đông",
-    ward: "Mộ Lao",
-    detail: "check");
-
-UserData sampleUser = UserData(
-  userId: 1,
-  email: "example@example.com",
-  phoneNumber: "0123456789",
-  name: "John Doe",
-  restaurantId: ["res_001", "res_002"],
-  role: "Admin",
-  avtImage: "https://example.com/avatar.png",
-  state: 0,
-  address: sampleAddress,
-  reports: ["rep_001", "rep_002"],
-  reviews: ["rev_001"],
-  // restaurants: ["res_003", "res_004"],
-);
 
 class MyProfileView extends StatefulWidget {
   const MyProfileView({super.key});
@@ -55,25 +25,15 @@ class _MyProfileViewState extends State<MyProfileView> {
 
   @override
   void initState() {
-    getUser();
     super.initState();
-  }
-
-  Future<void> getUser() async {
-    // var user = await UserDataRepository.fetchUserData();
-    // log(user?.email??"no user");
-    var distance = AppUtils.getRestaurantDistance(20.988311, 105.798657);
-    log(distance.toDistanceText());
   }
 
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    if (true) {
-      return Scaffold(
+    return Scaffold(
         backgroundColor: TColor.bg,
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -125,6 +85,9 @@ class _MyProfileViewState extends State<MyProfileView> {
                       ]),
                   child: Consumer<LocationProvider>(
                       builder: (context, locationProvider, child) {
+                    final avatarUrl = GlobalData.instance.userData?.avtImage;
+                    final hasAvatar =
+                        avatarUrl != null && avatarUrl.trim().isNotEmpty;
                     String? locationCity;
                     if (locationProvider.currentLocationName != null) {
                       locationCity =
@@ -140,7 +103,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                               BorderRadius.circular(media.width * 0.25),
                           child: Container(
                             color: TColor.secondary,
-                            child: GlobalData.instance.userData?.avtImage == ''
+                            child: !hasAvatar
                                 ? Image.asset(
                                     "assets/img/u1.png",
                                     width: media.width * 0.4,
@@ -159,8 +122,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                                         fit: BoxFit.cover,
                                       );
                                     },
-                                    imageUrl:
-                                        GlobalData.instance.userData!.avtImage!,
+                                    imageUrl: avatarUrl,
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
                                       decoration: BoxDecoration(
@@ -238,24 +200,15 @@ class _MyProfileViewState extends State<MyProfileView> {
                   child: Column(
                     children: [
                       MenuRow(
-                        icon: "assets/img/rv_history.png",
-                        title: "Lịch sử đánh giá",
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const RvHistoryView()));
-                        },
-                      ),
-                      MenuRow(
                         icon: "assets/img/res_manager.png",
                         title: "Quản lý nhà hàng",
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ManagerHomeView()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ManagerHomeView(),
+                            ),
+                          );
                         },
                       ),
                       const Divider(
@@ -274,7 +227,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                             didAuthenticate = await auth.authenticate(
                                 localizedReason:
                                     'Xác nhận người dùng để tiếp tục',
-                                options: const AuthenticationOptions());
+                                persistAcrossBackgrounding: true);
                           }
                           if (!didAuthenticate) {
                             return;
@@ -326,9 +279,6 @@ class _MyProfileViewState extends State<MyProfileView> {
           }),
         ),
       );
-    } else {
-      return const LoginRequired();
-    }
   }
 
   Future<void> confirmLogout() async {
@@ -376,7 +326,7 @@ class _MyProfileViewState extends State<MyProfileView> {
             ),
             TextButton(
               onPressed: () async {
-                // Perform logout logic here
+                await UserDataRepository.clearSession();
                 await FirebaseAuth.instance.signOut();
 
                 if (mounted) {

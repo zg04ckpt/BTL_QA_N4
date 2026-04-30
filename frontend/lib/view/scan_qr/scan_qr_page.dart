@@ -146,7 +146,8 @@ class _MyScannerScreenState extends State<ScanPage>
         child: Center(
           child: MobileScanner(
             controller: controller,
-            errorBuilder: (context, error, child) {
+            errorBuilder:
+                (BuildContext context, MobileScannerException error) {
               return Container();
             },
             overlayBuilder: (context, constraints) {

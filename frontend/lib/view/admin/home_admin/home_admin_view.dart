@@ -1,6 +1,6 @@
 import 'package:cp_restaurants/common/color_extension.dart';
+import 'package:cp_restaurants/data/repository/user_repository.dart';
 import 'package:cp_restaurants/view/admin/restaurant_management/restaurant_management_view.dart';
-import 'package:cp_restaurants/view/admin/review_management/review_management_view.dart';
 import 'package:cp_restaurants/view/admin/user_management/user_management_view.dart';
 import 'package:cp_restaurants/view/on_boarding/on_boarding_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +21,12 @@ class _HomeAdminViewState extends State<HomeAdminView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Navigator.of(context).canPop()
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.pop(context),
+              )
+            : null,
         title: const Text(
           "QUẢN TRỊ VIÊN",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -77,18 +83,6 @@ class _HomeAdminViewState extends State<HomeAdminView> {
             Row(
               children: [
                 _buildAdminButton(
-                  title: "Quản lý đánh giá",
-                  image: "assets/img/reviews_manager.png",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const ReviewManagementView()));
-                  },
-                ),
-                const SizedBox(width: 12),
-                _buildAdminButton(
                   title: "Thông báo người dùng",
                   image: "assets/img/post_noti.png",
                   onPressed: () {
@@ -100,9 +94,10 @@ class _HomeAdminViewState extends State<HomeAdminView> {
                     );
                   },
                 ),
+                const SizedBox(width: 12),
+                const Expanded(child: SizedBox()),
               ],
             ),
-            
           ],
         ),
       ),
@@ -199,7 +194,7 @@ class _HomeAdminViewState extends State<HomeAdminView> {
             ),
             TextButton(
               onPressed: () async {
-                // Perform logout logic here
+                await UserDataRepository.clearSession();
                 await FirebaseAuth.instance.signOut();
 
                 if (mounted) {

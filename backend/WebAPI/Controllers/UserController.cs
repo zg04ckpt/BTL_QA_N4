@@ -22,16 +22,16 @@ public class UserController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = "Invalid registration payload.", data = ModelState });
         }
 
         var (success, message) = await _userService.RegisterUserAsync(userDto);
         if (success)
         {
-            return Ok(new { Message = message });
+            return Ok(new { success = true, message });
         }
 
-        return BadRequest(new { Message = message });
+        return BadRequest(new { success = false, message });
     }
 
     [HttpPost("login")]
@@ -39,7 +39,7 @@ public class UserController : Controller
     {
         if (loginDto == null)
         {
-            return BadRequest(new { Message = "Invalid login data." });
+            return BadRequest(new { success = false, message = "Invalid login data." });
         }
 
         
@@ -47,11 +47,11 @@ public class UserController : Controller
 
         if (loginResult.Message == "Login successfully")
         {
-            return Ok(new { Token = loginResult.Token });
+            return Ok(new { success = true, message = loginResult.Message, data = new { token = loginResult.Token } });
         }
         else
         {
-            return Unauthorized(new { Message = loginResult.Message });
+            return Unauthorized(new { success = false, message = loginResult.Message });
         }
     }
 
@@ -80,16 +80,16 @@ public class UserController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = "Invalid user update payload.", data = ModelState });
         }
 
         var (success, message) = await _userService.UpdateUserAsync(id, userDto);
         if (success)
         {
-            return Ok(new { Message = message });
+            return Ok(new { success = true, message });
         }
 
-        return BadRequest(new { Message = message });
+        return BadRequest(new { success = false, message });
     }
 
     [HttpDelete("DeleteUser/{id}")]
@@ -98,10 +98,10 @@ public class UserController : Controller
         var (success, message) = await _userService.DeleteUserAsync(id);
         if (success)
         {
-            return Ok(new { Message = message });
+            return Ok(new { success = true, message });
         }
 
-        return NotFound(new { Message = message });
+        return NotFound(new { success = false, message });
     }
 }
 

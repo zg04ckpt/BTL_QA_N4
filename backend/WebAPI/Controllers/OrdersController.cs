@@ -20,7 +20,7 @@ public class OrdersController : Controller
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = "Invalid order payload.", data = ModelState });
         }
 
         await _orderService.AddOrderAsync(addOrderDto);
@@ -43,16 +43,16 @@ public class OrdersController : Controller
     public async Task<IActionResult> DeleteOrder(int id)
     {
         var result = await _orderService.RemoveOrderAsync(id);
-        if (!result) return NotFound();
-        return NoContent();
+        if (!result) return NotFound(new { success = false, message = "Order not found" });
+        return Ok(new { success = true, message = "Order deleted successfully" });
     }
 
     [HttpPut("{id}/status")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] int status)
     {
         var result = await _orderService.ChangeOrderStatusAsync(id, status);
-        if (!result) return NotFound();
-        return Ok();
+        if (!result) return NotFound(new { success = false, message = "Order not found" });
+        return Ok(new { success = true, message = "Order status updated successfully" });
     }
 
     [HttpGet("user/{userId}")]
@@ -61,7 +61,7 @@ public class OrdersController : Controller
         var orders = await _orderService.GetOrdersByUserIdAsync(userId);
         if (orders == null || !orders.Any())
         {
-            return NotFound(new { Message = "No orders found for the user." });
+            return NotFound(new { success = false, message = "No orders found for the user." });
         }
         return Ok(orders);
     }
@@ -72,7 +72,7 @@ public class OrdersController : Controller
         var orders = await _orderService.GetOrdersByRestaurantIdAsync(restaurantId);
         if (orders == null || !orders.Any())
         {
-            return NotFound(new { Message = "No orders found for the restaurant." });
+            return NotFound(new { success = false, message = "No orders found for the restaurant." });
         }
         return Ok(orders);
     }

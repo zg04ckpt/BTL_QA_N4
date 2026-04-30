@@ -36,4 +36,14 @@ public class ReportService : IReportService
         }
         return (true, "Report status updated successfully.");
     }
+
+    public async Task<IEnumerable<Report>> GetAllReportsAsync()
+    {
+        return await _reportRepository.GetAllReportsAsync();
+    }
+
+    public async Task<IEnumerable<Report>> GetReportsByUserIdAsync(int userId)
+    {
+        return await _reportRepository.GetReportsByUserIdAsync(userId);
+    }
 }

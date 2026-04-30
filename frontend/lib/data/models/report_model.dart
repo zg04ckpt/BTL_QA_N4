@@ -1,39 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+class ReportModel {
+  final int id;
+  final int userId;
+  final int reviewId;
+  final String reason;
+  final int status;
 
-class Report {
-  String reason;
-  String resId;
-  String reviewId;
-  String userId;
-  String reportId; 
-
-  Report({
-    required this.reason,
-    required this.resId,
-    required this.reviewId,
+  ReportModel({
+    required this.id,
     required this.userId,
-    required this.reportId,
+    required this.reviewId,
+    required this.reason,
+    required this.status,
   });
 
-  // Chuyển đổi từ Report thành JSON (để lưu vào Firestore)
-  Map<String, dynamic> toJson() {
-    return {
-      'reason': reason,
-      'resId': resId,
-      'reviewId': reviewId,
-      'userId': userId,
-    };
+  factory ReportModel.fromJson(Map<String, dynamic> json) {
+    return ReportModel(
+      id: json['id'] ?? 0,
+      userId: json['userId'] ?? 0,
+      reviewId: json['reviewId'] ?? 0,
+      reason: json['reason'] ?? '',
+      status: json['status'] ?? 0,
+    );
   }
 
-  // Tạo một Report từ Firestore DocumentSnapshot
-  factory Report.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    final data = snapshot.data() as Map<String, dynamic>;
-    return Report(
-      reason: data['reason'] ?? '',
-      resId: data['resId'] ?? '',
-      reviewId: data['reviewId'] ?? '',
-      userId: data['userId'] ?? '',
-      reportId: snapshot.id, // Lấy reportId từ snapshot.id
-    );
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'userId': userId,
+      'reviewId': reviewId,
+      'reason': reason,
+      'status': status,
+    };
   }
 }

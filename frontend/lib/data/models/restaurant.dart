@@ -1,4 +1,5 @@
 import 'package:cp_restaurants/data/models/address.dart';
+import 'package:cp_restaurants/network/api_mapper.dart';
 
 class Restaurant {
   final int id;
@@ -38,23 +39,23 @@ class Restaurant {
   // Convert JSON to Restaurant
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
-      status: json['status'] ?? 0,
-      email: json['email'] ?? '',
-      description: json['description'] ?? '',
-      phoneNumber: json['phoneNumber'] ?? '',
-      avtImage: json['avtImage'] ?? ''.replaceAll('//', '/'),
-      cateId: json['cateId'] ?? 0,
-      userId: json['userId'] ?? 0,
+      id: ApiMapper.asInt(json['id']),
+      name: ApiMapper.asString(json['name']),
+      status: ApiMapper.asInt(json['status']),
+      email: ApiMapper.asString(json['email']),
+      description: ApiMapper.asString(json['description']),
+      phoneNumber: ApiMapper.asString(json['phoneNumber']),
+      avtImage: ApiMapper.asMediaUrlOrNull(json['avtImage']) ?? '',
+      cateId: ApiMapper.asInt(json['cateId']),
+      userId: ApiMapper.asInt(json['userId']),
       address: Address.fromMap(json['address'] ?? {}),
       photoUrls: (json['restaurantPhotos'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => ApiMapper.asMediaUrlOrNull(e) ?? '')
               .toList() ??
           [],
-      averageScore: (json['averageScore'] as num?)?.toDouble() ?? 0.0,
-      totalReviews: json['totalReviews'] ?? 0,
-      category: json['category'] ?? '',
+      averageScore: ApiMapper.asDouble(json['averageScore']),
+      totalReviews: ApiMapper.asInt(json['totalReviews']),
+      category: ApiMapper.asString(json['category']),
     );
   }
 

@@ -26,8 +26,22 @@ public class ReportController : Controller
     public async Task<IActionResult> UpdateReportStatus(int id, [FromBody] int status)
     {
         var (success, message) = await _reportService.UpdateReportStatusAsync(id, status);
-        if (!success) return NotFound(message);
+        if (!success) return NotFound(new { success = false, message });
 
-        return Ok(message);
+        return Ok(new { success = true, message });
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllReports()
+    {
+        var reports = await _reportService.GetAllReportsAsync();
+        return Ok(reports);
+    }
+
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetReportsByUserId(int userId)
+    {
+        var reports = await _reportService.GetReportsByUserIdAsync(userId);
+        return Ok(reports);
     }
 }

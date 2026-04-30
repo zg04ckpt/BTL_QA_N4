@@ -12,7 +12,7 @@ class PrettyQrSettings extends StatefulWidget {
   final ValueChanged<PrettyQrDecoration>? onChanged;
 
   static const kDefaultQrDecorationImage = PrettyQrDecorationImage(
-    image: AssetImage('images/flutter.png'),
+    image: AssetImage('assets/img/qr-scan.png'),
     position: PrettyQrDecorationImagePosition.embedded,
   );
 

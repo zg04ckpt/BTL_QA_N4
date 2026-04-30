@@ -67,44 +67,49 @@ class _DiscoveryViewState extends State<DiscoveryView> {
                         ),
                       ];
                     },
-                    body: GridView.builder(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 12),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 12,
-                                mainAxisSpacing: 12,
-                                childAspectRatio: 1),
-                        itemCount: restaurantTypes.keys.toList().length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                              onTap: () async {
-                                setState(() {
-                                  isLoading = true;
-                                });
-                                var result = await context
-                                    .read<RestaurantProvider>()
-                                    .getRestaurantByCategory(
-                                        restaurantTypes.keys.toList()[index]);
-                                setState(() {
-                                  isLoading = false;
-                                });
-                                if(result.isEmpty){
-                                  return;
-                                }
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ListRestaurantView(
-                                              resDatas: result,
-                                            )));
-                              },
-                              child: DiscoveryCell(
-                                name: restaurantTypes.keys.toList()[index],
-                              ));
-                        }),
+                    body: Consumer<CommonProvider>(
+                      builder: (context, common, child) {
+                        return GridView.builder(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 12),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 12,
+                                    mainAxisSpacing: 12,
+                                    childAspectRatio: 1),
+                            itemCount: common.categories.length,
+                            itemBuilder: (context, index) {
+                              final category = common.categories[index];
+                              return GestureDetector(
+                                  onTap: () async {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    var result = await context
+                                        .read<RestaurantProvider>()
+                                        .getRestaurantByCategory(
+                                            category);
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    if (result.isEmpty) {
+                                      return;
+                                    }
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ListRestaurantView(
+                                                  resDatas: result,
+                                                )));
+                                  },
+                                  child: DiscoveryCell(
+                                    name: category.name,
+                                  ));
+                            });
+                      }
+                    ),
                   ),
                 ),
                 if (isLoading)

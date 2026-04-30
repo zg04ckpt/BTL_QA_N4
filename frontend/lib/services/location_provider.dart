@@ -52,7 +52,11 @@ class LocationProvider with ChangeNotifier {
 
     log("time ${DateTime.now().millisecondsSinceEpoch}");
 
-    _currentPosition = await Geolocator.getCurrentPosition( forceAndroidLocationManager: true);
+    _currentPosition = await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+      ),
+    );
     print(_currentPosition);
     log("time ${DateTime.now().millisecondsSinceEpoch}");
 

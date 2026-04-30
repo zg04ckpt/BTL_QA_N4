@@ -8,7 +8,7 @@ class ImageService {
       var responseData = response.data;
 
       // Lấy giá trị của predicted_class
-      String path = responseData['image'];
+      String path = responseData['image'] ?? responseData['Image'] ?? "";
       return path;
     } catch (e) {
       print("Failed to upload image: $e");

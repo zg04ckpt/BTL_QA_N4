@@ -38,8 +38,11 @@ class _RvHistoryViewState extends State<RvHistoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text(
           "Lịch sử Review",
           style: TextStyle(

@@ -51,6 +51,10 @@ class _PrettyQrHomePageState extends State<PrettyQrHomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text('Tạo QR code'),
       ),
       body: Align(

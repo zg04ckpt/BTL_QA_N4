@@ -158,6 +158,7 @@ public class UserService : IUserService
         existingUser.Name = userUpdateDto.Name;
         existingUser.PhoneNumber = userUpdateDto.PhoneNumber;
         existingUser.AvtImage = userUpdateDto.AvtImage;
+        existingUser.Status = userUpdateDto.Status;
      
         if (existingUser.Address != null)
         {

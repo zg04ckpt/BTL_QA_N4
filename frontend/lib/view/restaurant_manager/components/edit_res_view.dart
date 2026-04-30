@@ -12,16 +12,18 @@ import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
 import 'package:cp_restaurants/services/location_provider.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
+import 'package:cp_restaurants/common_widget/location_preview_map.dart';
 import 'package:cp_restaurants/view/auth/signup_view.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:location_picker_flutter_map/location_picker_flutter_map.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:provider/provider.dart';
 
 import '../../../common/app_picker.dart';
 import '../../../data/models/restaurant.dart';
 import '../../../services/image_service.dart';
+import 'google_map_picker_view.dart';
 
 class EditResView extends StatefulWidget {
   const EditResView({Key? key, required this.fObj}) : super(key: key);
@@ -64,8 +66,11 @@ class _EditResViewState extends State<EditResView> {
     super.initState();
     initData();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      lat = context.read<LocationProvider>().currentPostion?.latitude ?? 0;
-      long = context.read<LocationProvider>().currentPostion?.longitude ?? 0;
+      if (lat == 0 || long == 0) {
+        lat = context.read<LocationProvider>().currentPostion?.latitude ?? 21.0278;
+        long =
+            context.read<LocationProvider>().currentPostion?.longitude ?? 105.8342;
+      }
       setState(() {});
     });
   }
@@ -78,6 +83,8 @@ class _EditResViewState extends State<EditResView> {
     _phoneNumberController.text = resData.phoneNumber;
     _descriptionController.text = resData.description;
     address = widget.fObj.address;
+    lat = widget.fObj.address.lat;
+    long = widget.fObj.address.lon;
     _imageUrl = resData.photoUrls;
     resTypes = resData.category;
     setState(() {});
@@ -107,6 +114,18 @@ class _EditResViewState extends State<EditResView> {
       return;
     }
 
+    final safeAddress = address!;
+    final normalizedAddress = Address(
+      id: safeAddress.id,
+      street: safeAddress.street,
+      city: safeAddress.city,
+      district: safeAddress.district,
+      ward: safeAddress.ward,
+      detail: _addressDetailController.text.trim(),
+      lat: lat,
+      lon: long,
+    );
+
     setState(() {
       isLoading = true;
     });
@@ -122,7 +141,7 @@ class _EditResViewState extends State<EditResView> {
       }
       Restaurant newRes = Restaurant(
         id: widget.fObj.id,
-        address: address!,
+        address: normalizedAddress,
         description: _descriptionController.text,
         photoUrls: imageUrls,
         cateId:
@@ -199,6 +218,38 @@ class _EditResViewState extends State<EditResView> {
     );
   }
 
+  Future<void> _pickLocationWithGoogleMap() async {
+    final picked = await Navigator.of(context).push<LatLng>(
+      MaterialPageRoute(
+        builder: (_) => GoogleMapPickerView(
+          initialLat: lat,
+          initialLon: long,
+        ),
+      ),
+    );
+    if (picked == null) return;
+
+    lat = picked.latitude;
+    long = picked.longitude;
+
+    try {
+      final places = await placemarkFromCoordinates(lat, long);
+      if (places.isNotEmpty && _addressDetailController.text.trim().isEmpty) {
+        final p = places.first;
+        final text = [p.street, p.subLocality, p.locality]
+            .where((e) => e != null && e.trim().isNotEmpty)
+            .join(", ");
+        if (text.isNotEmpty) {
+          _addressDetailController.text = text;
+        }
+      }
+    } catch (_) {}
+
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -250,8 +301,8 @@ class _EditResViewState extends State<EditResView> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
                                       child: CachedNetworkImage(
-                                        imageUrl:
-                                            '${APIService.instance.baseUrl}/${widget.fObj.avtImage}',
+                                        imageUrl: APIService.instance
+                                            .resolveMediaUrl(widget.fObj.avtImage),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -395,48 +446,23 @@ class _EditResViewState extends State<EditResView> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Toạ độ: $lat:$long}",
+                          "Toa do chinh xac: $lat, $long",
                           style: const TextStyle(
                               color: Colors.green, fontSize: 16),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      if (lat != 0)
-                        SizedBox(
-                          height: 300,
-                          // width: 300,
-                          child: FlutterLocationPicker(
-                            initPosition: LatLong(lat, long),
-                            selectLocationButtonStyle: ButtonStyle(
-                              backgroundColor:
-                                  WidgetStateProperty.all(Colors.blue),
-                            ),
-                            selectedLocationButtonTextstyle:
-                                const TextStyle(fontSize: 18),
-                            selectLocationButtonText: 'Lấy vị trí này',
-                            selectLocationButtonLeadingIcon:
-                                const Icon(Icons.check),
-                            initZoom: 11,
-                            minZoomLevel: 5,
-                            maxZoomLevel: 16,
-                            trackMyPosition: true,
-                            onError: (e) => log(e.toString()),
-                            onPicked: (pickedData) {
-                              setState(() {
-                                lat = pickedData.latLong.latitude;
-                                long = pickedData.latLong.longitude;
-                              });
-                            },
-                            onChanged: (pickedData) {
-                              if (kDebugMode)
-                                print(pickedData.latLong.latitude);
-                              if (kDebugMode)
-                                print(pickedData.latLong.longitude);
-                              if (kDebugMode) print(pickedData.address);
-                              if (kDebugMode) print(pickedData.addressData);
-                            },
-                          ),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: double.infinity,
+                        child: OutlinedButton.icon(
+                          onPressed: _pickLocationWithGoogleMap,
+                          icon: const Icon(Icons.map_outlined),
+                          label: const Text("Chọn vị trí trên bản đồ"),
                         ),
+                      ),
+                      const SizedBox(height: 20),
+                      if (lat != 0 || long != 0)
+                        LocationPreviewMap(lat: lat, lon: long),
                       const SizedBox(height: 20),
                       const Align(
                         alignment: Alignment.centerLeft,
@@ -509,8 +535,10 @@ class _EditResViewState extends State<EditResView> {
                                                           fit: BoxFit.cover,
                                                         )
                                                       : CachedNetworkImage(
-                                                          imageUrl:
-                                                              '${APIService.instance.baseUrl}/${_imageUrl[index]}',
+                                                          imageUrl: APIService
+                                                              .instance
+                                                              .resolveMediaUrl(
+                                                                  _imageUrl[index]),
                                                           width: 80,
                                                           height: 80,
                                                           fit: BoxFit.cover,

@@ -7,16 +7,16 @@ extension CommonExtension on State {
 }
 
 extension DistanceFormatter on double {
+  /// [AppUtils] uses **-1** when GPS/địa chỉ nhà hàng không hợp lệ.
   String toDistanceText() {
-    // Kiểm tra xem khoảng cách có nhỏ hơn 1 km không
-    if (this < 1) {
-      // Chuyển đổi sang mét
-      int meters = (this * 1000).toInt();
-      return '$meters m';
-    } else {
-      // Giữ nguyên giá trị với một chữ số sau dấu phẩy
-      return '${toStringAsFixed(1)} km';
+    if (this < 0) {
+      return '—';
     }
+    if (this < 1) {
+      final meters = (this * 1000).round();
+      return '${meters.toString()} m';
+    }
+    return '${toStringAsFixed(1)} km';
   }
 }
 

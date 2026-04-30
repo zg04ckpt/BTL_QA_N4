@@ -67,6 +67,10 @@ class _RestaurantManagementViewState extends State<RestaurantManagementView>
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: const Text("Quản lý nhà hàng"),
         bottom: TabBar(
           controller: _tabController,

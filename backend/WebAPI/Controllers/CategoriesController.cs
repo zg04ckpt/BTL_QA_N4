@@ -20,7 +20,7 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> AddCategory([FromBody] CategoryDto dto)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = "Invalid category payload.", data = ModelState });
 
         var category = await _categoryService.AddCategoryAsync(dto);
         return CreatedAtAction(nameof(GetCategoryById), new { id = category.Id }, category);
@@ -38,7 +38,7 @@ public class CategoriesController : ControllerBase
     {
         var category = await _categoryService.GetCategoryByIdAsync(id);
         if (category == null)
-            return NotFound();
+            return NotFound(new { success = false, message = "Category not found" });
 
         return Ok(category);
     }

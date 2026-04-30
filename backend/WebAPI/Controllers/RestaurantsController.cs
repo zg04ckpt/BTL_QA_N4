@@ -21,11 +21,11 @@ public class RestaurantsController : Controller
     public async Task<IActionResult> AddRestaurant([FromBody] CreateRestaurantDto dto)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+            return BadRequest(new { success = false, message = "Invalid restaurant payload.", data = ModelState });
 
         var restaurant = await _restaurantService.AddRestaurantAsync(dto);
         if (restaurant == null)
-            return StatusCode(500, "Error creating the restaurant");
+            return StatusCode(500, new { success = false, message = "Error creating the restaurant" });
 
         return CreatedAtAction(nameof(GetRestaurantById), new { id = restaurant.Id }, restaurant);
     }
@@ -54,7 +54,7 @@ public class RestaurantsController : Controller
     public async Task<IActionResult> GetRestaurantById(int id)
     {
         var restaurant = await _restaurantService.GetRestaurantByIdAsync(id);
-        if (restaurant == null) return NotFound("Restaurant not found");
+        if (restaurant == null) return NotFound(new { success = false, message = "Restaurant not found" });
         return Ok(restaurant);
     }
 
@@ -62,14 +62,14 @@ public class RestaurantsController : Controller
     public async Task<IActionResult> UpdateRestaurant(int id, [FromBody] UpdateRestaurantDto updateDto)
     {
         await _restaurantService.UpdateRestaurantAsync(id, updateDto);
-        return Ok("Restaurant updated successfully");
+        return Ok(new { success = true, message = "Restaurant updated successfully" });
     }
 
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteRestaurant(int id)
     {
         await _restaurantService.DeleteRestaurantAsync(id);
-        return Ok("Restaurant deleted successfully");
+        return Ok(new { success = true, message = "Restaurant deleted successfully" });
     }
     [HttpGet("get-restaurant-by-address")]
     public async Task<IActionResult> GetRestaurants([FromQuery] string? city, [FromQuery] string? district, [FromQuery] string? ward, [FromQuery] string? street)

@@ -6,7 +6,6 @@ import 'package:cp_restaurants/data/models/address.dart';
 import 'package:cp_restaurants/data/models/local_address.dart';
 import 'package:cp_restaurants/data/models/user_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/view/my_profile/my_profile_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/app_picker.dart';
@@ -182,9 +181,9 @@ class _EditProfileState extends State<EditProfile> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: AddressPicker(
                       initData: LocalAddress(
-                        district: sampleUser.address?.district,
-                        province: sampleUser.address?.city,
-                        ward: sampleUser.address?.ward,
+                        district: address?.district,
+                        province: address?.city,
+                        ward: address?.ward,
                       ),
                       placeHolderTextStyle:
                           const TextStyle(fontWeight: FontWeight.bold),
@@ -229,7 +228,7 @@ class _EditProfileState extends State<EditProfile> {
                             await APIService.instance.uploadImage(avtUrl!);
                         var responseData = response.data;
 
-                        imageUrl = responseData['image'];
+                        imageUrl = responseData['image'] ?? responseData['Image'] ?? "";
                       }
                       address!.detail = txtDetailAddress.text;
                       UserData user = UserData(

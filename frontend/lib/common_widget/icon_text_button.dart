@@ -18,7 +18,6 @@ class IconTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-     
       child: TextButton(
         onPressed: onPressed,
         child: Column(
@@ -37,6 +36,9 @@ class IconTextButton extends StatelessWidget {
             ),
             Text(
               title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   color: TColor.text, fontSize: 12, fontWeight: FontWeight.w700),
             ),
@@ -46,7 +48,8 @@ class IconTextButton extends StatelessWidget {
             Flexible(
               child: Text(
                 subTitle,
-                overflow: TextOverflow.clip,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: TColor.gray, fontSize: 12, fontWeight: FontWeight.w700),

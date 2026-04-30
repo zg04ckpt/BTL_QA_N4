@@ -44,21 +44,29 @@ class UserReviewItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                (isHistory || isAdmin)
-                    ? reviewModel.restaurantName
-                    : reviewModel.userName,
-                style: TextStyle(
-                    color: TColor.text,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700),
-              ),
-              const Text(" - "),
-              Text(reviewModel.createDate.toTimeAgo(),
+              Expanded(
+                child: Text(
+                  (isHistory || isAdmin)
+                      ? reviewModel.restaurantName
+                      : reviewModel.userName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: TColor.text,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w300)),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              const Text(" - "),
+              Flexible(
+                child: Text(reviewModel.createDate.toTimeAgo(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: TColor.text,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300)),
+              ),
               const Spacer(),
               if (GlobalData.instance.userData != null)
                 PopupMenuButton(
@@ -191,14 +199,17 @@ class UserReviewItem extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                reviewModel.review,
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: TColor.text),
+              Expanded(
+                child: Text(
+                  reviewModel.review,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: TColor.text),
+                ),
               ),
-              const Spacer(),
               if (onShowHistory != null)
                 InkWell(
                   onTap: () {},
@@ -230,14 +241,14 @@ class UserReviewItem extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: reviewModel.imageUrls.length,
                   itemBuilder: (context, idx) {
+                    final imageUrl = APIService.instance
+                        .resolveMediaUrl(reviewModel.imageUrls[idx]);
                     return InkWell(
-                      onTap: () => AppDialog.showPreviewImage(context,
-                          '${APIService.instance.baseUrl}/${reviewModel.imageUrls[idx]}'),
+                      onTap: () => AppDialog.showPreviewImage(context, imageUrl),
                       child: Container(
                         margin: const EdgeInsets.only(right: 12),
                         child: CachedNetworkImage(
-                          imageUrl:
-                              '${APIService.instance.baseUrl}/${reviewModel.imageUrls[idx]}',
+                          imageUrl: imageUrl,
                           errorListener: (value) {
                             log(value.toString());
                           },

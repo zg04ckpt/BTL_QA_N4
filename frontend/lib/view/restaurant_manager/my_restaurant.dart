@@ -1,8 +1,12 @@
+import 'package:cp_restaurants/common/color_extension.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/services/commom_provider.dart';
+import 'package:cp_restaurants/view/main_tab/main_tab_view.dart';
 import 'package:cp_restaurants/view/restaurant_manager/components/add_new_res_view.dart';
 import 'package:cp_restaurants/view/search/res_search_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/models/restaurant.dart';
 import '../restaurant/restaurant_detail_view.dart';
@@ -66,8 +70,18 @@ class _ManagerHomeViewState extends State<ManagerHomeView> {
     }
   }
 
+  Future<void> _goToMainTabHome() async {
+    await context.read<CommonProvider>().setIsUseManagerOnly(false);
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(builder: (context) => const MainTabView()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final canPop = Navigator.of(context).canPop();
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: _openAddRestaurantPage,
@@ -78,10 +92,51 @@ class _ManagerHomeViewState extends State<ManagerHomeView> {
         ),
       ),
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0.5,
+        shadowColor: Colors.black26,
+        foregroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: Colors.black),
         centerTitle: true,
+        leadingWidth: 56,
+        leading: IconButton(
+          tooltip: canPop ? 'Quay lại' : 'Về trang chủ',
+          padding: const EdgeInsetsDirectional.only(start: 8),
+          icon: canPop
+              ? Image.asset(
+                  'assets/img/back.png',
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                )
+              : Icon(Icons.home_rounded, color: TColor.primary, size: 28),
+          onPressed: () {
+            if (canPop) {
+              Navigator.of(context).pop();
+            } else {
+              _goToMainTabHome();
+            }
+          },
+        ),
+        actions: [
+          if (!canPop)
+            TextButton(
+              onPressed: _goToMainTabHome,
+              style: TextButton.styleFrom(foregroundColor: TColor.primary),
+              child: const Text(
+                'Trang chủ',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+            ),
+        ],
         title: const Text(
-          "My Restaurant",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'My Restaurant',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 18,
+          ),
         ),
       ),
       body: Container(

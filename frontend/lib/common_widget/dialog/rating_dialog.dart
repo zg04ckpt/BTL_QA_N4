@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cp_restaurants/data/models/review_model.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/view/auth/signup_view.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +34,72 @@ class _ReviewDialogState extends State<ReviewDialog> {
   final List<String> _imagePath = [];
 
   bool isLoading = false;
+
+  String _toShortErrorMessage(Object error) {
+    final raw = error.toString().replaceFirst('Exception: ', '').trim();
+    final backendMessage = raw.contains(': ')
+        ? raw.split(': ').last.trim()
+        : raw;
+    final technicalMarkers = [
+      'client error - the request contains bad syntax',
+      'read more about status codes',
+      'dioexception [bad response]',
+      'in order to resolve this exception',
+    ];
+    final isTechnicalLongMessage = technicalMarkers
+        .any((marker) => backendMessage.toLowerCase().contains(marker));
+
+    if (backendMessage.isNotEmpty &&
+        !backendMessage.toLowerCase().startsWith('network error') &&
+        !isTechnicalLongMessage) {
+      return backendMessage;
+    }
+
+    final message = raw.toLowerCase();
+    if (message.contains('scan') && message.contains('qr')) {
+      return 'Bạn cần quét QR trước khi đánh giá.';
+    }
+    if (message.contains('expired')) {
+      return 'QR đã hết hạn, vui lòng quét lại.';
+    }
+    if (message.contains('network error')) {
+      return 'Không gửi được đánh giá. Vui lòng thử lại.';
+    }
+    return 'Gửi đánh giá thất bại.';
+  }
+
+  void _showMessage(String message, {bool isError = true}) {
+    if (isError) {
+      showDialog(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: const Text('Thông báo'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    final rootContext = Navigator.of(context, rootNavigator: true).context;
+    final messenger = ScaffoldMessenger.maybeOf(rootContext);
+    if (messenger == null) return;
+    messenger.hideCurrentSnackBar();
+    messenger.showSnackBar(
+      SnackBar(
+        dismissDirection: DismissDirection.up,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+        backgroundColor: isError ? Colors.redAccent : Colors.green,
+        content: Text(message),
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -76,56 +141,66 @@ class _ReviewDialogState extends State<ReviewDialog> {
     setState(() {
       isLoading = true;
     });
+    try {
+      for (var img in _imageFiles) {
+        var response = await APIService.instance.uploadImage(img);
+        var responseData = response.data;
 
-    for (var img in _imageFiles) {
-      var response = await APIService.instance.uploadImage(img);
-      var responseData = response.data;
-
-      String path = responseData['image'];
-      _imagePath.add(path);
-    }
-    ReviewModel reviewModel = ReviewModel(
-      id: widget.initReview?.id ?? -1,
-      imageUrls: _imagePath,
-      rate: _rating,
-      resId: widget.resId,
-      review: _reviewController.text,
-      userName: GlobalData.instance.userData?.name ?? "Giấu tên",
-      userId: GlobalData.instance.userData?.userId ?? 0,
-      createDate: DateTime.now().millisecondsSinceEpoch,
-    );
-    log(reviewModel.toJson().toString());
-    Response<dynamic> response;
-    if (widget.initReview == null) {
-      response = await APIService.instance.request(
-        '/api/reviews',
-        DioMethod.post,
-        formData: reviewModel.toJson(),
-      );
-    } else {
-      response = await APIService.instance.request(
-        '/api/reviews/${reviewModel.id}',
-        DioMethod.put,
-        formData: reviewModel.toJson(),
-      );
-    }
-    log(response.statusCode.toString());
-    if (response.statusCode == 200) {
-      if (widget.initReview == null) {
-        showSnackBar(context, "Thêm đánh giá thành công", false);
-      } else {
-        showSnackBar(context, "Sửa đánh giá thành công", false);
+        String path = responseData['image'];
+        _imagePath.add(path);
       }
-      setState(() {
-        isLoading = false;
-      });
-      widget.onSubmitedReview();
-      Navigator.of(context).pop();
-      return;
+      ReviewModel reviewModel = ReviewModel(
+        id: widget.initReview?.id ?? -1,
+        imageUrls: _imagePath,
+        rate: _rating,
+        resId: widget.resId,
+        review: _reviewController.text,
+        userName: GlobalData.instance.userData?.name ?? "Giấu tên",
+        userId: GlobalData.instance.userData?.userId ?? 0,
+        createDate: DateTime.now().millisecondsSinceEpoch,
+      );
+      log(reviewModel.toJson().toString());
+      Response<dynamic> response;
+      if (widget.initReview == null) {
+        response = await APIService.instance.request(
+          '/api/reviews',
+          DioMethod.post,
+          formData: reviewModel.toJson(),
+        );
+      } else {
+        response = await APIService.instance.request(
+          '/api/reviews/${reviewModel.id}',
+          DioMethod.put,
+          formData: reviewModel.toJson(),
+        );
+      }
+      log(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        if (widget.initReview == null) {
+            _showMessage("Thêm đánh giá thành công", isError: false);
+        } else {
+            _showMessage("Sửa đánh giá thành công", isError: false);
+        }
+        widget.onSubmitedReview();
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
+        return;
+      }
+      if (mounted) {
+        _showMessage("Không thể gửi đánh giá");
+      }
+    } catch (e) {
+      if (mounted) {
+        _showMessage(_toShortErrorMessage(e));
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
-    setState(() {
-      isLoading = false;
-    });
   }
 
   @override
@@ -156,12 +231,16 @@ class _ReviewDialogState extends State<ReviewDialog> {
             )
           : Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
                   Text(
                     widget.restaurantName ?? "Edit",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -203,7 +282,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       InkWell(
                         onTap: _pickImages,
@@ -229,7 +308,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 12),
                       if (_imageFiles.isNotEmpty || _imagePath.isNotEmpty)
                         Expanded(
                           child: SizedBox(
@@ -257,7 +336,9 @@ class _ReviewDialogState extends State<ReviewDialog> {
                                                 )
                                               : CachedNetworkImage(
                                                   imageUrl:
-                                                      '${APIService.instance.baseUrl}/${_imagePath[index]}',
+                                                      APIService.instance
+                                                          .resolveMediaUrl(
+                                                              _imagePath[index]),
                                                   width: 80,
                                                   height: 80,
                                                   fit: BoxFit.cover,
@@ -293,7 +374,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                               },
                             ),
                           ),
-                        )
+                        ),
                     ],
                   ),
                   Align(
@@ -328,6 +409,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
                     ],
                   ),
                 ],
+                ),
               ),
             ),
     );

@@ -1,3 +1,4 @@
+import 'package:cp_restaurants/data/repository/user_repository.dart';
 import 'package:cp_restaurants/view/on_boarding/on_boarding_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class LockAccountView extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    // Perform logout logic here
+                    await UserDataRepository.clearSession();
                     await FirebaseAuth.instance.signOut();
 
                     GlobalData.instance.user = null;

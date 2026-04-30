@@ -8,11 +8,10 @@ import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/color_extension.dart';
+import '../../common_widget/location_preview_map.dart';
 import '../../common_widget/icon_text_button.dart';
 import '../../common_widget/img_text_button.dart';
 import '../../common_widget/selection_text_view.dart';
@@ -44,6 +43,9 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
   int? selectedStar;
   bool isNearest = true;
 
+  static const double _fallbackLat = 21.0278;
+  static const double _fallbackLon = 105.8342;
+
   @override
   void initState() {
     resData = widget.fObj;
@@ -67,14 +69,13 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
-        height: 50,
-        width: media.width,
+        height: 52,
+        width: media.width * 0.92,
         child: Row(
           children: [
-            const SizedBox(width: 40),
             Expanded(
-              flex: 3,
               child: InkWell(
                 onTap: () {
                   AppDialog.showOrderModalBottomSheet(context,
@@ -82,7 +83,7 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                 },
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: const Color.fromARGB(255, 121, 233, 123),
@@ -94,15 +95,20 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                     ],
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/img/order.png"),
+                      Image.asset("assets/img/order.png", width: 20, height: 20),
                       const SizedBox(width: 8),
-                      const Text(
-                        "Đặt bàn",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                      const Flexible(
+                        child: Text(
+                          "Đặt bàn",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       )
                     ],
@@ -112,7 +118,6 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
             ),
             const SizedBox(width: 12),
             Expanded(
-              flex: 3,
               child: InkWell(
                 onTap: () async {
                   if (GlobalData.instance.userData == null) {
@@ -144,12 +149,16 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                       children: [
                         Icon(Icons.rate_review_outlined),
                         SizedBox(width: 8),
-                        Text(
-                          "Đánh giá",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                        Flexible(
+                          child: Text(
+                            "Đánh giá",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
                         )
                       ],
@@ -186,8 +195,20 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                               children: [
                                 Image.network(
                                   Uri.parse(
-                                    '${APIService.instance.baseUrl}/${resData!.avtImage}',
+                                    APIService.instance
+                                        .resolveMediaUrl(resData!.avtImage),
                                   ).toString(),
+                                  fit: BoxFit.cover,
+                                  width: media.width,
+                                  height: media.width * 0.67,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      "assets/img/u1.png",
+                                      fit: BoxFit.cover,
+                                      width: media.width,
+                                      height: media.width * 0.67,
+                                    );
+                                  },
                                 ),
                                 Container(
                                   width: media.width,
@@ -229,36 +250,49 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 15),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                resData!.name.toString(),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: TColor.text,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w700),
+                              Expanded(
+                                child: Text(
+                                  resData!.name.toString(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: TColor.text,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                              const Spacer(),
-                              RatingBar(
-                                key: starKey,
-                                size: 20,
-                                filledIcon: Icons.star,
-                                alignment: Alignment.center,
-                                emptyIcon: Icons.star_border,
-                                onRatingChanged: (value) {},
-                                initialRating: resData!
-                                    .averageScore, // Use the initial rating value
-                                maxRating: 5,
-                              ),
-                              Text(
-                                // "${resData!.averageScore}",
-                                "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    RatingBar(
+                                      key: starKey,
+                                      size: 20,
+                                      filledIcon: Icons.star,
+                                      alignment: Alignment.center,
+                                      emptyIcon: Icons.star_border,
+                                      onRatingChanged: (value) {},
+                                      initialRating: resData!.averageScore,
+                                      maxRating: 5,
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Flexible(
+                                      child: Text(
+                                        "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),
@@ -269,16 +303,20 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                             const SizedBox(width: 20),
                             const Icon(Icons.phone,
                                 color: Colors.green, size: 24),
-                            InkWell(
-                              onTap: () async {
-                                var url = "tel:${widget.fObj.phoneNumber}";
-                                launchUrl(Uri.parse(url));
-                              },
-                              child: Text(
-                                " : ${widget.fObj.phoneNumber}",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                            Expanded(
+                              child: InkWell(
+                                onTap: () async {
+                                  var url = "tel:${widget.fObj.phoneNumber}";
+                                  launchUrl(Uri.parse(url));
+                                },
+                                child: Text(
+                                  " : ${widget.fObj.phoneNumber}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -290,13 +328,17 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                             const SizedBox(width: 20),
                             const Icon(Icons.email,
                                 color: Colors.green, size: 24),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                " : ${widget.fObj.email}",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  " : ${widget.fObj.email}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -327,7 +369,7 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                     title: resData!.category,
                                     subTitle: '',
                                     icon:
-                                        "assets/img/res_type/${restaurantTypes[resData!.category]}.png",
+                                        "assets/img/res_type/${restaurantTypes[resData!.category] ?? "Fast Food"}.png",
                                     onPressed: () {},
                                   ),
                                   IconTextButton(
@@ -386,36 +428,14 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                             children: [
                               SizedBox(
                                 height: 300,
-                                child: FlutterMap(
-                                  options: const MapOptions(
-                                    initialCenter:
-                                        LatLng(20.993155, 105.807523),
-                                    initialZoom: 15,
-                                    minZoom: 0,
-                                    maxZoom: 19,
-                                  ),
-                                  children: [
-                                    TileLayer(
-                                      urlTemplate:
-                                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                      userAgentPackageName:
-                                          'net.tlserver6y.flutter_map_location_marker.example',
-                                      maxZoom: 19,
-                                    ),
-                                    const MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(20.9932,
-                                              105.807523), // Tọa độ của marker
-                                          child: Icon(
-                                            Icons.location_on,
-                                            size: 50,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                child: LocationPreviewMap(
+                                  lat: (resData?.address.lat ?? 0) == 0
+                                      ? _fallbackLat
+                                      : resData!.address.lat,
+                                  lon: (resData?.address.lon ?? 0) == 0
+                                      ? _fallbackLon
+                                      : resData!.address.lon,
+                                  height: 300,
                                 ),
                               ),
                               Container(
@@ -496,11 +516,13 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                   itemBuilder: (context, index) {
                                     return ImgTextButton(
                                       image: Uri.parse(
-                                              '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}')
+                                              APIService.instance.resolveMediaUrl(
+                                                  resData!.photoUrls[index]))
                                           .toString(),
                                       onPressed: () {
                                         AppDialog.showPreviewImage(context,
-                                            '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}');
+                                            APIService.instance.resolveMediaUrl(
+                                                resData!.photoUrls[index]));
                                       },
                                     );
                                   }),
