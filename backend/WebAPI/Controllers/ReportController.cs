@@ -30,4 +30,11 @@ public class ReportController : Controller
 
         return Ok(message);
     }
+
+    [HttpGet("by-review/{reviewId:int}")]
+    public async Task<IActionResult> GetReportsByReviewId(int reviewId)
+    {
+        var reports = await _reportService.GetReportsByReviewIdAsync(reviewId);
+        return Ok(reports);
+    }
 }

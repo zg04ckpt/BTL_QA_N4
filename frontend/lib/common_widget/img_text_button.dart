@@ -1,6 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cp_restaurants/common_widget/app_network_image.dart';
 import 'package:flutter/material.dart';
-
 
 class ImgTextButton extends StatelessWidget {
   final String image;
@@ -20,8 +19,8 @@ class ImgTextButton extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
-            child: CachedNetworkImage(
-              imageUrl: image,
+            child: AppNetworkImage(
+              pathOrUrl: image,
               width: media.width * 0.25,
               height: media.width * 0.25,
               fit: BoxFit.cover,

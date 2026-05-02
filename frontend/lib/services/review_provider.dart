@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cp_restaurants/data/models/review_model.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 class ReviewProvider with ChangeNotifier {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   List<ReviewModel> reviewModels = [];
 
   bool isLoadingReview = false;
@@ -42,22 +40,18 @@ class ReviewProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteReview(String reviewId) async {
+  /// Xóa đánh giá trên server (`DELETE /api/reviews/{id}`). Cascade báo cáo & ảnh do backend xử lý.
+  Future<bool> deleteReview(int reviewId) async {
     try {
-      final reportsQuery = await _firestore
-          .collection('reports')
-          .where('reviewId', isEqualTo: reviewId)
-          .get();
-
-      for (var reportDoc in reportsQuery.docs) {
-        await _firestore.collection('reports').doc(reportDoc.id).delete();
-      }
-
-      await _firestore.collection('reviews').doc(reviewId).delete();
-
-      print('Review and associated reports deleted successfully.');
-    } catch (e) {
-      print('Failed to delete review and its reports: $e');
+      final response = await APIService.instance.request(
+        '/api/reviews/$reviewId',
+        DioMethod.delete,
+      );
+      return response.statusCode == 200;
+    } on DioException catch (_) {
+      return false;
+    } catch (_) {
+      return false;
     }
   }
 

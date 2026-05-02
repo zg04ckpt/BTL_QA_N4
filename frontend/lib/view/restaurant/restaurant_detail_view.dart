@@ -4,21 +4,21 @@ import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/services/commom_provider.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/color_extension.dart';
+import '../../common/map_coordinates.dart';
+import '../../common_widget/app_embedded_map.dart';
+import '../../common_widget/app_network_image.dart';
 import '../../common_widget/icon_text_button.dart';
 import '../../common_widget/img_text_button.dart';
 import '../../common_widget/selection_text_view.dart';
 import '../../services/location_service.dart';
 import '../../services/review_provider.dart';
-import '../home/components/photo_list_view.dart';
 import 'components/user_review_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -67,98 +67,112 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-      floatingActionButton: SizedBox(
-        height: 50,
-        width: media.width,
-        child: Row(
-          children: [
-            const SizedBox(width: 40),
-            Expanded(
-              flex: 3,
-              child: InkWell(
-                onTap: () {
-                  AppDialog.showOrderModalBottomSheet(context,
-                      resId: widget.fObj.id);
-                },
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color.fromARGB(255, 121, 233, 123),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(206, 0, 0, 0),
-                          blurRadius: 3,
-                          offset: Offset(0, 2))
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset("assets/img/order.png"),
-                      const SizedBox(width: 8),
-                      const Text(
-                        "Đặt bàn",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              flex: 3,
-              child: InkWell(
-                onTap: () async {
-                  if (GlobalData.instance.userData == null) {
-                    AppSnackBar.loginRequired(
-                        context, "review this restaurant");
-                    return;
-                  }
-                  await AppDialog.showRatingDialog(context,
-                      resName: resData!.name,
-                      resId: resData!.id, onSubmitedReview: () {
-                    getResData();
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color.fromARGB(255, 121, 233, 123),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(206, 0, 0, 0),
-                          blurRadius: 3,
-                          offset: Offset(0, 1))
-                    ],
-                  ),
-                  child: const SizedBox(
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+          child: Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {
+                    AppDialog.showOrderModalBottomSheet(context,
+                        resId: widget.fObj.id);
+                  },
+                  child: Container(
                     height: 50,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color.fromARGB(255, 121, 233, 123),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromARGB(206, 0, 0, 0),
+                            blurRadius: 3,
+                            offset: Offset(0, 2))
+                      ],
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.rate_review_outlined),
-                        SizedBox(width: 8),
-                        Text(
-                          "Đánh giá",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                        Image.asset(
+                          "assets/img/order.png",
+                          height: 24,
+                          width: 24,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(width: 8),
+                        const Flexible(
+                          child: Text(
+                            "Đặt bàn",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(width: 12),
+              Expanded(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () async {
+                    if (GlobalData.instance.userData == null) {
+                      AppSnackBar.loginRequired(
+                          context, "review this restaurant");
+                      return;
+                    }
+                    await AppDialog.showRatingDialog(context,
+                        resName: resData!.name,
+                        resId: resData!.id, onSubmitedReview: () {
+                      getResData();
+                    });
+                  },
+                  child: Container(
+                    height: 50,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color.fromARGB(255, 121, 233, 123),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromARGB(206, 0, 0, 0),
+                            blurRadius: 3,
+                            offset: Offset(0, 1))
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                            Icons.rate_review_outlined, color: Colors.black),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            "Đánh giá",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: Stack(
@@ -183,11 +197,13 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                             width: media.width,
                             height: media.width * 0.67,
                             child: Stack(
+                              fit: StackFit.expand,
                               children: [
-                                Image.network(
-                                  Uri.parse(
-                                    '${APIService.instance.baseUrl}/${resData!.avtImage}',
-                                  ).toString(),
+                                AppNetworkImage(
+                                  pathOrUrl: resData!.avtImage,
+                                  fit: BoxFit.cover,
+                                  width: media.width,
+                                  height: media.width * 0.67,
                                 ),
                                 Container(
                                   width: media.width,
@@ -229,17 +245,21 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 15),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                resData!.name.toString(),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: TColor.text,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w700),
+                              Expanded(
+                                child: Text(
+                                  resData!.name.toString(),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: TColor.text,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                              const Spacer(),
+                              const SizedBox(width: 8),
                               RatingBar(
                                 key: starKey,
                                 size: 20,
@@ -247,19 +267,22 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                 alignment: Alignment.center,
                                 emptyIcon: Icons.star_border,
                                 onRatingChanged: (value) {},
-                                initialRating: resData!
-                                    .averageScore, // Use the initial rating value
+                                initialRating: resData!.averageScore,
                                 maxRating: 5,
                               ),
-                              Text(
-                                // "${resData!.averageScore}",
-                                "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700),
-                              )
+                              const SizedBox(width: 6),
+                              Flexible(
+                                child: Text(
+                                  "${resData!.averageScore.toStringAsFixed(1)} (${resData!.totalReviews})",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
+                                  style: const TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -349,22 +372,6 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                     },
                                   ),
                                   IconTextButton(
-                                    title: "Theo dõi",
-                                    subTitle: "",
-                                    icon: context
-                                            .read<CommonProvider>()
-                                            .topicIds
-                                            .contains(resData!.id)
-                                        ? "assets/img/notification_fill.png"
-                                        : "assets/img/notification_un_fill.png",
-                                    onPressed: () async {
-                                      await context
-                                          .read<CommonProvider>()
-                                          .addOrRemoveTopic(resData!.id);
-                                      setState(() {});
-                                    },
-                                  ),
-                                  IconTextButton(
                                     title: "Share",
                                     subTitle: "",
                                     icon: "assets/img/share.png",
@@ -383,70 +390,69 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                           color: Colors.white,
                           height: 300,
                           child: Stack(
+                            clipBehavior: Clip.hardEdge,
                             children: [
-                              SizedBox(
+                              AppEmbeddedMap(
+                                latitude: resData!.address.lat,
+                                longitude: resData!.address.lon,
                                 height: 300,
-                                child: FlutterMap(
-                                  options: const MapOptions(
-                                    initialCenter:
-                                        LatLng(20.993155, 105.807523),
-                                    initialZoom: 15,
-                                    minZoom: 0,
-                                    maxZoom: 19,
-                                  ),
-                                  children: [
-                                    TileLayer(
-                                      urlTemplate:
-                                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                      userAgentPackageName:
-                                          'net.tlserver6y.flutter_map_location_marker.example',
-                                      maxZoom: 19,
-                                    ),
-                                    const MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(20.9932,
-                                              105.807523), // Tọa độ của marker
-                                          child: Icon(
-                                            Icons.location_on,
-                                            size: 50,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                initialZoom: 16,
                               ),
-                              Container(
-                                padding: const EdgeInsets.all(25),
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        color: Colors.green.withOpacity(0.4),
-                                        child: Text(
-                                          resData!.address.toString(),
-                                          textAlign: TextAlign.left,
-                                          maxLines: 3,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700),
-                                        ),
+                              if (!usedRestaurantCoordsForMap(
+                                  resData!.address.lat,
+                                  resData!.address.lon))
+                                Positioned(
+                                  top: 8,
+                                  left: 8,
+                                  right: 52,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Colors.orange.shade100,
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(6),
+                                      child: Text(
+                                        'Chưa có tọa độ nhà hàng — hiển thị khu vực gần bạn hoặc mặc định.',
+                                        style: TextStyle(fontSize: 11),
                                       ),
                                     ),
-                                  ],
+                                  ),
+                                ),
+                              Positioned(
+                                left: 16,
+                                top: 44,
+                                right: 56,
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green.withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    resData!.address.toString(),
+                                    textAlign: TextAlign.left,
+                                    maxLines: 3,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.bottomRight,
+                              Positioned(
+                                right: 8,
+                                bottom: 8,
                                 child: InkWell(
                                   onTap: () {
+                                    final c = resolveMapCenter(
+                                      restaurantLat: resData!.address.lat,
+                                      restaurantLon: resData!.address.lon,
+                                      userPosition:
+                                          GlobalData.instance.userPosition,
+                                    );
                                     LocationService.openMap(
-                                        resData!.address.lat,
-                                        resData!.address.lon);
+                                        c.latitude, c.longitude);
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(6),
@@ -461,7 +467,7 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -473,40 +479,42 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                           actionTitle: "Xem Tất cả",
                           onSeeAllTap: () {},
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const PhotoListView()));
-                          },
-                          child: Container(
-                            height: media.width * 0.35,
+                        if (resData!.photoUrls.isEmpty)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Text(
+                              'Chưa có ảnh mô tả.',
+                              style: TextStyle(
+                                color: TColor.gray,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        else
+                          SizedBox(
+                            height: (media.width * 0.3).clamp(100.0, 180.0),
                             width: media.width,
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: SingleChildScrollView(
+                            child: ListView.separated(
                               scrollDirection: Axis.horizontal,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: resData!.photoUrls.length >= 3
-                                      ? 3
-                                      : resData!.photoUrls.length,
-                                  itemBuilder: (context, index) {
-                                    return ImgTextButton(
-                                      image: Uri.parse(
-                                              '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}')
-                                          .toString(),
-                                      onPressed: () {
-                                        AppDialog.showPreviewImage(context,
-                                            '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}');
-                                      },
-                                    );
-                                  }),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              itemCount: resData!.photoUrls.length,
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(width: 10),
+                              itemBuilder: (context, index) {
+                                final photoUrl = resolveMediaUrl(
+                                    resData!.photoUrls[index]);
+                                return ImgTextButton(
+                                  image: photoUrl,
+                                  onPressed: () {
+                                    AppDialog.showPreviewImage(
+                                        context, photoUrl);
+                                  },
+                                );
+                              },
                             ),
                           ),
-                        ),
                         Divider(
                           height: 4,
                           color: TColor.gray,
@@ -557,7 +565,7 @@ class _RestaurantDetailViewState extends State<RestaurantDetailView> {
                                     .toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    isNearest = value == "gần nhất";
+                                    isNearest = value == "Gần nhất";
                                   });
                                   context
                                       .read<ReviewProvider>()

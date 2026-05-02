@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:cp_restaurants/common/extension.dart';
 import 'package:cp_restaurants/common_widget/no_internet_page.dart';
 import 'package:cp_restaurants/services/commom_provider.dart';
@@ -17,6 +19,13 @@ import '../../common_widget/selection_text_view.dart';
 import '../scan_qr/scan_qr_page.dart';
 import 'components/search_location_view.dart';
 
+/// Tỷ số rộng/cao ô grid — hạ tỷ số = ô cao hơn, tránh overflow [FoodItemCell].
+double _homeFoodGridRatio(double screenWidth) {
+  if (screenWidth < 360) return 0.55;
+  if (screenWidth < 420) return 0.6;
+  return 0.64;
+}
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -30,6 +39,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
+    super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
         Provider.of<RestaurantProvider>(context, listen: false).init();
@@ -37,8 +47,6 @@ class _HomeViewState extends State<HomeView> {
     );
 
     FirebaseMessaging.instance.subscribeToTopic("all_user");
-
-    super.initState();
   }
 
   @override
@@ -60,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(
                       color: const Color.fromARGB(255, 228, 168, 168)
-                          .withOpacity(0.5),
+                          .withValues(alpha: 0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
                       offset: const Offset(0, 3), // changes position of shadow
@@ -114,26 +122,35 @@ class _HomeViewState extends State<HomeView> {
                               subLocation = "...";
                             }
 
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  locationCity,
-                                  textAlign: TextAlign.start,
-                                  style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  subLocation,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                      color: TColor.gray,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ],
+                            final titleMaxW = media.width - 120;
+                            return SizedBox(
+                              width: titleMaxW > 80 ? titleMaxW : 80,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    locationCity,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  Text(
+                                    subLocation,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        color: TColor.gray,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              ),
                             );
                           }),
                         ),
@@ -172,37 +189,59 @@ class _HomeViewState extends State<HomeView> {
                                 );
                               },
                             ),
-                            resViewModel.nearRestaurants.isEmpty
-                                ? const Center(
-                                    child: CircularProgressIndicator())
-                                : SizedBox(
-                                    height: media.width * 0.48,
-                                    child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
+                            resViewModel.isLoadingHomeData
+                                ? const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 24),
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : resViewModel.nearRestaurants.isEmpty
+                                    ? Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 8),
-                                        itemCount:
-                                            resViewModel.nearRestaurants.length,
-                                        itemBuilder: (context, index) {
-                                          var fObj = resViewModel
-                                              .nearRestaurants[index];
+                                            horizontal: 16, vertical: 8),
+                                        child: Text(
+                                          'Chưa có nhà hàng phù hợp (hoặc chưa bật vị trí).',
+                                          style: TextStyle(
+                                            color: TColor.gray,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        height: math.max(
+                                          272,
+                                          media.width * 0.58,
+                                        ),
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            itemCount: resViewModel
+                                                .nearRestaurants.length,
+                                            itemBuilder: (context, index) {
+                                              var fObj = resViewModel
+                                                  .nearRestaurants[index];
 
-                                          return GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          RestaurantDetailView(
-                                                            fObj: fObj,
-                                                          )));
-                                            },
-                                            child: FoodItemCell(
-                                              fObj: fObj,
-                                            ),
-                                          );
-                                        }),
-                                  ),
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              RestaurantDetailView(
+                                                                fObj: fObj,
+                                                              )));
+                                                },
+                                                child: SizedBox(
+                                                  width: media.width * 0.44,
+                                                  child: FoodItemCell(
+                                                    fObj: fObj,
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                      ),
                             const SizedBox(
                               height: 15,
                             ),
@@ -218,53 +257,60 @@ class _HomeViewState extends State<HomeView> {
                                 );
                               },
                             ),
-                            resViewModel.topReviewRestaurant.isEmpty
-                                ? const Center(
-                                    child: CircularProgressIndicator())
-                                : SizedBox(
-                                    // height: media.width,
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount:
-                                            2, // Số cột trong GridView
-                                        crossAxisSpacing:
-                                            8.0, // Khoảng cách giữa các cột
-                                        mainAxisSpacing:
-                                            8.0, // Khoảng cách giữa các hàng
-                                        childAspectRatio:
-                                            1.0, // Tỉ lệ chiều rộng / chiều cao của item
-                                      ),
-                                      itemCount: resViewModel
-                                          .topReviewRestaurant.length,
-                                      itemBuilder: (context, index) {
-                                        var fObj = resViewModel
-                                            .topReviewRestaurant[index];
+                            resViewModel.isLoadingHomeData
+                                ? const SizedBox.shrink()
+                                : resViewModel.topReviewRestaurant.isEmpty
+                                    ? Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 8),
+                                        child: Text(
+                                          'Chưa có nhà hàng đủ đánh giá để hiển thị.',
+                                          style: TextStyle(
+                                            color: TColor.gray,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        child: GridView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 8.0,
+                                            mainAxisSpacing: 8.0,
+                                            childAspectRatio: _homeFoodGridRatio(
+                                                media.width),
+                                          ),
+                                          itemCount: resViewModel
+                                              .topReviewRestaurant.length,
+                                          itemBuilder: (context, index) {
+                                            var fObj = resViewModel
+                                                .topReviewRestaurant[index];
 
-                                        return GestureDetector(
-                                          onTap: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    RestaurantDetailView(
-                                                  fObj: fObj,
-                                                ),
+                                            return GestureDetector(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RestaurantDetailView(
+                                                      fObj: fObj,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              child: FoodItemCell(
+                                                fObj: fObj,
                                               ),
                                             );
                                           },
-                                          child: FoodItemCell(
-                                            fObj: fObj,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                        ),
+                                      ),
                             const SizedBox(
                               height: 15,
                             )

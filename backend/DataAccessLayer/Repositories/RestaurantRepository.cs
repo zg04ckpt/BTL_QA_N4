@@ -44,7 +44,9 @@ public class RestaurantRepository
     public async Task<IEnumerable<Restaurant>> SearchRestaurantsAsync(string searchTerm)
     {
         return await _context.Restaurants
-            .Where(r => r.Name.Contains(searchTerm) || r.Address.City.Contains(searchTerm))
+            .Where(r => r.Name.Contains(searchTerm)
+                || (r.Address != null && r.Address.City != null
+                    && r.Address.City.Contains(searchTerm)))
             .Include(r => r.Category)
             .Include(r => r.Address)
             .ToListAsync();
@@ -114,7 +116,9 @@ public class RestaurantRepository
             query = query.Where(r => r.UserId == userId.Value);
 
         if (!string.IsNullOrEmpty(searchTerm))
-            query = query.Where(r => r.Name.Contains(searchTerm) || r.Address.City.Contains(searchTerm));
+            query = query.Where(r => r.Name.Contains(searchTerm)
+                || (r.Address != null && r.Address.City != null
+                    && r.Address.City.Contains(searchTerm)));
 
         if (!string.IsNullOrEmpty(city))
             query = query.Where(r => r.Address.City == city);

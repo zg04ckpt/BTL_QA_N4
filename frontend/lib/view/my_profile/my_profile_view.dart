@@ -5,7 +5,9 @@ import 'package:cp_restaurants/common/app_utils.dart';
 import 'package:cp_restaurants/common/extension.dart';
 import 'package:cp_restaurants/common_widget/login_required.dart';
 import 'package:cp_restaurants/data/models/user_data.dart';
+import 'package:cp_restaurants/common_widget/app_embedded_map.dart';
 import 'package:cp_restaurants/global/global_data.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/services/commom_provider.dart';
 import 'package:cp_restaurants/services/location_provider.dart';
 import 'package:cp_restaurants/view/my_profile/components/edit_profile_page.dart';
@@ -126,11 +128,22 @@ class _MyProfileViewState extends State<MyProfileView> {
                   child: Consumer<LocationProvider>(
                       builder: (context, locationProvider, child) {
                     String? locationCity;
-                    if (locationProvider.currentLocationName != null) {
-                      locationCity =
-                          "${locationProvider.currentLocationName!.subAdministrativeArea} - ${locationProvider.currentLocationName!.administrativeArea}"; // here you can choose which location area shoul show on ui
+                    final place = locationProvider.currentLocationName;
+                    if (place != null) {
+                      final sub =
+                          place.subAdministrativeArea?.trim() ?? '';
+                      final adm = place.administrativeArea?.trim() ?? '';
+                      if (sub.isEmpty && adm.isEmpty) {
+                        locationCity = 'Vị trí không xác định';
+                      } else if (sub.isEmpty) {
+                        locationCity = adm;
+                      } else if (adm.isEmpty || sub == adm) {
+                        locationCity = sub;
+                      } else {
+                        locationCity = '$sub - $adm';
+                      }
                     } else {
-                      locationCity = "Vị trí không xác định";
+                      locationCity = 'Vị trí không xác định';
                     }
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,39 +153,45 @@ class _MyProfileViewState extends State<MyProfileView> {
                               BorderRadius.circular(media.width * 0.25),
                           child: Container(
                             color: TColor.secondary,
-                            child: GlobalData.instance.userData?.avtImage == ''
-                                ? Image.asset(
+                            child: () {
+                              final url =
+                                  GlobalData.instance.userData?.avtImage;
+                              final hasUrl =
+                                  url != null && url.trim().isNotEmpty;
+                              if (!hasUrl) {
+                                return Image.asset(
+                                  "assets/img/u1.png",
+                                  width: media.width * 0.4,
+                                  height: media.width * 0.4,
+                                  fit: BoxFit.cover,
+                                );
+                              }
+                              return CachedNetworkImage(
+                                width: media.width * 0.4,
+                                height: media.width * 0.4,
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) {
+                                  return Image.asset(
                                     "assets/img/u1.png",
                                     width: media.width * 0.4,
                                     height: media.width * 0.4,
                                     fit: BoxFit.cover,
-                                  )
-                                : CachedNetworkImage(
-                                    width: media.width * 0.4,
-                                    height: media.width * 0.4,
-                                    fit: BoxFit.cover,
-                                    errorWidget: (context, url, error) {
-                                      return Image.asset(
-                                        "assets/img/u1.png",
-                                        width: media.width * 0.4,
-                                        height: media.width * 0.4,
-                                        fit: BoxFit.cover,
-                                      );
-                                    },
-                                    imageUrl:
-                                        GlobalData.instance.userData!.avtImage!,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
+                                  );
+                                },
+                                imageUrl: resolveMediaUrl(url),
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
                                     ),
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
                                   ),
+                                ),
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                              );
+                            }(),
                           ),
                         ),
                         SizedBox(
@@ -256,6 +275,13 @@ class _MyProfileViewState extends State<MyProfileView> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const ManagerHomeView()));
+                        },
+                      ),
+                      MenuRow(
+                        icon: "assets/img/mapView.png",
+                        title: "Nền bản đồ (OSM / vệ tinh)",
+                        onPressed: () {
+                          showMapTileStyleSheet(context);
                         },
                       ),
                       const Divider(

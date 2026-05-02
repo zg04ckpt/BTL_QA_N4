@@ -6,7 +6,7 @@ import 'package:cp_restaurants/data/models/address.dart';
 import 'package:cp_restaurants/data/models/local_address.dart';
 import 'package:cp_restaurants/data/models/user_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/view/my_profile/my_profile_view.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/app_picker.dart';
@@ -46,15 +46,17 @@ class _EditProfileState extends State<EditProfile> {
   final GlobalKey<FormState> _formkeysignup = GlobalKey<FormState>();
 
   void checkInitData() {
-    if (widget.userData != null) {
-      imageUrl = widget.userData?.avtImage;
+    final u = widget.userData ?? GlobalData.instance.userData;
+    if (u != null) {
+      imageUrl = u.avtImage;
       isUpdateProfile = true;
-      txtName.text = widget.userData!.name;
-      txtEmail.text = widget.userData!.email;
-      txtMobile.text = widget.userData!.phoneNumber;
-      address = widget.userData!.address;
-      txtDetailAddress.text = widget.userData!.address?.detail ?? "";
+      txtName.text = u.name;
+      txtEmail.text = u.email;
+      txtMobile.text = u.phoneNumber;
+      address = u.address;
+      txtDetailAddress.text = u.address?.detail ?? '';
     }
+    address ??= Address(city: '', district: '', ward: '', detail: '');
   }
 
   @override
@@ -109,29 +111,33 @@ class _EditProfileState extends State<EditProfile> {
                                   height: media.width * 0.4,
                                   fit: BoxFit.cover,
                                 )
-                              : GlobalData.instance.userData?.avtImage == null
-                                  ? Image.asset(
+                              : () {
+                                  final url = widget.userData?.avtImage ??
+                                      GlobalData.instance.userData?.avtImage;
+                                  if (url == null || url.isEmpty) {
+                                    return Image.asset(
                                       "assets/img/u1.png",
                                       width: media.width * 0.4,
                                       height: media.width * 0.4,
                                       fit: BoxFit.cover,
-                                    )
-                                  : CachedNetworkImage(
+                                    );
+                                  }
+                                  return CachedNetworkImage(
+                                    width: media.width * 0.4,
+                                    height: media.width * 0.4,
+                                    fit: BoxFit.cover,
+                                    imageUrl: resolveMediaUrl(url),
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Image.asset(
+                                      "assets/img/u1.png",
                                       width: media.width * 0.4,
                                       height: media.width * 0.4,
                                       fit: BoxFit.cover,
-                                      imageUrl: GlobalData
-                                          .instance.userData!.avtImage!,
-                                      placeholder: (context, url) =>
-                                          const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                          Image.asset(
-                                        "assets/img/u1.png",
-                                        width: media.width * 0.4,
-                                        height: media.width * 0.4,
-                                        fit: BoxFit.cover,
-                                      ),
                                     ),
+                                  );
+                                }(),
                         ),
                         Center(
                           child: IconButton(
@@ -182,16 +188,18 @@ class _EditProfileState extends State<EditProfile> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: AddressPicker(
                       initData: LocalAddress(
-                        district: sampleUser.address?.district,
-                        province: sampleUser.address?.city,
-                        ward: sampleUser.address?.ward,
+                        district: address?.district,
+                        province: address?.city,
+                        ward: address?.ward,
                       ),
                       placeHolderTextStyle:
                           const TextStyle(fontWeight: FontWeight.bold),
                       onAddressChanged: (value) {
-                        address!.city = value.province ?? "";
-                        address!.district = value.district ?? "";
-                        address!.ward = value.ward ?? "";
+                        address ??=
+                            Address(city: '', district: '', ward: '', detail: '');
+                        address!.city = value.province ?? '';
+                        address!.district = value.district ?? '';
+                        address!.ward = value.ward ?? '';
                       },
                       buildItem: (text) {
                         return Text(text ?? "",
@@ -217,51 +225,73 @@ class _EditProfileState extends State<EditProfile> {
                     title: "Xác nhận",
                     isLoading: isLoading,
                     onPressed: () async {
-                      if (_formkeysignup.currentState!.validate()) {
-                        endEditing();
+                      final formState = _formkeysignup.currentState;
+                      if (formState == null || !formState.validate()) {
+                        return;
                       }
+                      endEditing();
+
+                      final ud = widget.userData ?? GlobalData.instance.userData;
+                      if (ud == null || ud.userId == 0) {
+                        showSnackBar(
+                            context, 'Không tìm thấy thông tin người dùng');
+                        return;
+                      }
+
                       setState(() {
                         isLoading = true;
                       });
 
-                      if (avtUrl != null) {
-                        var response =
-                            await APIService.instance.uploadImage(avtUrl!);
-                        var responseData = response.data;
+                      try {
+                        if (avtUrl != null) {
+                          final uploadRes =
+                              await APIService.instance.uploadImage(avtUrl!);
+                          final responseData = uploadRes.data;
+                          if (responseData is Map &&
+                              responseData['image'] != null) {
+                            imageUrl = responseData['image'].toString();
+                          }
+                        }
 
-                        imageUrl = responseData['image'];
-                      }
-                      address!.detail = txtDetailAddress.text;
-                      UserData user = UserData(
-                          userId: widget.userData?.userId ?? 0,
+                        address ??= Address(
+                            city: '', district: '', ward: '', detail: '');
+                        address!.detail = txtDetailAddress.text;
+
+                        final user = UserData(
+                          userId: ud.userId,
                           email: txtEmail.text,
                           phoneNumber: txtMobile.text,
                           name: txtName.text,
-                          avtImage: imageUrl,
-                          restaurantId: [],
-                          state: widget.userData!.state,
-                          role: widget.userData!.role,
-                          address: address);
-                      // log(user.toJson());
+                          avtImage: (imageUrl?.isNotEmpty ?? false)
+                              ? imageUrl
+                              : ud.avtImage,
+                          restaurantId: ud.restaurantId,
+                          state: ud.state,
+                          role: ud.role,
+                          address: address,
+                        );
 
-                      var response = await APIService.instance.request(
-                          "/api/User/UpdateUser/${widget.userData!.userId}",
-                          param: user.toJson(),
-                          DioMethod.put);
-                      if (response.statusCode == 200 ||
-                          response.statusCode == 201) {
-                        setState(() {
-                          isLoading = false;
-                        });
-                        showSnackBar(
-                            context, "Sửa thông tin thành công", false);
-                        Navigator.pop(context);
-                        return;
+                        final response = await APIService.instance.request(
+                            '/api/User/UpdateUser/${ud.userId}',
+                            param: user.toJson(),
+                            DioMethod.put);
+                        if (response.statusCode == 200 ||
+                            response.statusCode == 201) {
+                          if (!mounted) return;
+                          showSnackBar(
+                              context, 'Sửa thông tin thành công', false);
+                          Navigator.pop(context);
+                          return;
+                        }
+                        if (!mounted) return;
+                        showSnackBar(context, 'Đã có lỗi xảy ra');
+                      } finally {
+                        if (mounted) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
                       }
-                      setState(() {
-                        isLoading = false;
-                      });
-                      showSnackBar(context, "Đã có lỗi xảy ra");
                     },
                     type: RoundButtonType.primary,
                   ),
@@ -285,7 +315,7 @@ void showSnackBar(BuildContext context, String message,
       dismissDirection: DismissDirection.up,
       behavior: SnackBarBehavior.floating,
       duration: const Duration(seconds: 2),
-      backgroundColor: isError! ? Colors.redAccent : TColor.primary,
+      backgroundColor: (isError ?? true) ? Colors.redAccent : TColor.primary,
       content: Text(
         message,
         style: const TextStyle(

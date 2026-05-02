@@ -66,12 +66,35 @@ class _LoginViewState extends State<LoginView> {
           showSnackBar(context, p0);
         },
         onSuccess: (token) async {
-          Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-          String id = decodedToken["Id"];
+          final Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+          final dynamic rawId =
+              decodedToken['Id'] ?? decodedToken['id'] ?? decodedToken['sub'];
+          final String id = rawId?.toString().trim() ?? '';
+          if (id.isEmpty) {
+            setState(() => isLoading = false);
+            if (context.mounted) {
+              showSnackBar(context, 'Token không chứa Id người dùng.');
+            }
+            return;
+          }
+
           await GlobalData.instance.fetchUserData(id);
           if (GlobalData.instance.userData != null) {
-            await UserDataRepository.saveUserData(
-                GlobalData.instance.userData!);
+            try {
+              await UserDataRepository.saveUserData(
+                  GlobalData.instance.userData!);
+            } catch (e) {
+              if (context.mounted) {
+                showSnackBar(context, 'Không lưu được thông tin cục bộ: $e');
+              }
+            }
+          } else {
+            setState(() => isLoading = false);
+            if (context.mounted) {
+              showSnackBar(context,
+                  'Không tải được hồ sơ người dùng (API GetUserById).');
+            }
+            return;
           }
 
           if (context.mounted) {
@@ -90,6 +113,7 @@ class _LoginViewState extends State<LoginView> {
           }
           // GlobalData.instance.fetchUserData().then((_) {
           setState(() {
+            isLoading = false;
             if (GlobalData.instance.userData?.role == null ||
                 GlobalData.instance.userData?.role == "customer") {
               if (GlobalData.instance.userData?.state == 1) {

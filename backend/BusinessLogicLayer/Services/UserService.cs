@@ -72,6 +72,15 @@ public class UserService : IUserService
             };
         }
 
+        if (user.Status != 1)
+        {
+            return new LoginResult
+            {
+                Message = "Account is locked. Please contact the administrator.",
+                Token = null
+            };
+        }
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 
         ClaimsIdentity claims = new ClaimsIdentity(new Claim[]
@@ -115,6 +124,32 @@ public class UserService : IUserService
         return await _userRepository.GetAllUsersAsync();
     }
 
+    public async Task<IEnumerable<AdminUserSummaryDto>> GetAllUserSummariesForAdminAsync()
+    {
+        var users = await _userRepository.GetAllUsersForAdminListingAsync();
+        return users.Select(u => new AdminUserSummaryDto
+        {
+            Id = u.Id,
+            Email = u.Email,
+            Name = u.Name,
+            PhoneNumber = u.PhoneNumber,
+            Role = u.Role,
+            Status = u.Status,
+            AvtImage = u.AvtImage,
+            Address = u.Address == null
+                ? null
+                : new AddressDto
+                {
+                    City = u.Address.City,
+                    District = u.Address.District,
+                    Ward = u.Address.Ward,
+                    Detail = u.Address.Detail,
+                    Lat = u.Address.Lat,
+                    Lon = u.Address.Lon
+                }
+        });
+    }
+
     public async Task<UserDTO?> GetUserByIdAsync(int id)
     {
         var user = await _userRepository.GetUserByIdAsync(id);
@@ -155,30 +190,39 @@ public class UserService : IUserService
             return (false, "User not found");
         }
 
-        existingUser.Name = userUpdateDto.Name;
-        existingUser.PhoneNumber = userUpdateDto.PhoneNumber;
-        existingUser.AvtImage = userUpdateDto.AvtImage;
-     
-        if (existingUser.Address != null)
+        existingUser.Status = userUpdateDto.Status;
+        if (userUpdateDto.Name != null)
+            existingUser.Name = userUpdateDto.Name;
+        if (userUpdateDto.PhoneNumber != null)
+            existingUser.PhoneNumber = userUpdateDto.PhoneNumber;
+        if (userUpdateDto.AvtImage != null)
+            existingUser.AvtImage = userUpdateDto.AvtImage;
+
+        if (userUpdateDto.Address != null)
         {
-            existingUser.Address.City = userUpdateDto.Address.City;
-            existingUser.Address.District = userUpdateDto.Address.District;
-            existingUser.Address.Ward = userUpdateDto.Address.Ward;
-            existingUser.Address.Detail = userUpdateDto.Address.Detail;
-            existingUser.Address.Lon = userUpdateDto.Address.Lon;
-            existingUser.Address.Lat = userUpdateDto.Address.Lat;
-        }
-        else
-        {
-            existingUser.Address = new Address
+            if (existingUser.Address != null)
             {
-                City = userUpdateDto.Address.City,
-                District = userUpdateDto.Address.District,
-                Ward = userUpdateDto.Address.Ward,
-                Detail = userUpdateDto.Address.Detail,
-                Lon = userUpdateDto.Address.Lon,
-                Lat = userUpdateDto.Address.Lat
-            };
+                existingUser.Address.City = userUpdateDto.Address.City ?? existingUser.Address.City;
+                existingUser.Address.District = userUpdateDto.Address.District ?? existingUser.Address.District;
+                existingUser.Address.Ward = userUpdateDto.Address.Ward ?? existingUser.Address.Ward;
+                existingUser.Address.Detail = userUpdateDto.Address.Detail ?? existingUser.Address.Detail;
+                if (userUpdateDto.Address.Lon.HasValue)
+                    existingUser.Address.Lon = userUpdateDto.Address.Lon.Value;
+                if (userUpdateDto.Address.Lat.HasValue)
+                    existingUser.Address.Lat = userUpdateDto.Address.Lat.Value;
+            }
+            else
+            {
+                existingUser.Address = new Address
+                {
+                    City = userUpdateDto.Address.City ?? "",
+                    District = userUpdateDto.Address.District ?? "",
+                    Ward = userUpdateDto.Address.Ward ?? "",
+                    Detail = userUpdateDto.Address.Detail ?? "",
+                    Lon = userUpdateDto.Address.Lon ?? 0,
+                    Lat = userUpdateDto.Address.Lat ?? 0
+                };
+            }
         }
         
         var updatedUser = await _userRepository.UpdateAsync(existingUser);

@@ -1,3 +1,10 @@
+double _coord(dynamic v) {
+  if (v == null) return 0;
+  if (v is double) return v;
+  if (v is int) return v.toDouble();
+  return double.tryParse(v.toString()) ?? 0;
+}
+
 class Address {
   int id;
   String street;
@@ -40,20 +47,15 @@ class Address {
   }
 
   factory Address.fromMap(Map<String, dynamic> json) {
-    print(
-        'lon type: ${json['lon'].runtimeType}, lat type: ${json['lat'].runtimeType}');
-    // if(json['lat'] == null){json}
     return Address(
-      id: json['id']?? -1,
-      street: json['street'] ?? '',
-      city: json['city'] ?? '',
-      district: json['district'] ?? '',
-      ward: json['ward'] ?? '',
-      detail: json['detail'] ?? '',
-      lat:
-          json['lat'] is double ? json['lat'] : (json['lat'] as int).toDouble(),
-      lon:
-          json['lon'] is double ? json['lon'] : (json['lon'] as int).toDouble(),
+      id: json['id'] is int ? json['id'] as int : int.tryParse('${json['id']}') ?? -1,
+      street: json['street']?.toString() ?? '',
+      city: json['city']?.toString() ?? '',
+      district: json['district']?.toString() ?? '',
+      ward: json['ward']?.toString() ?? '',
+      detail: json['detail']?.toString() ?? '',
+      lat: _coord(json['lat']),
+      lon: _coord(json['lon']),
     );
   }
 

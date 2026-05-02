@@ -92,9 +92,8 @@ class _ManagerHomeViewState extends State<ManagerHomeView> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : SizedBox(
-                  child: ListView.builder(
-                    shrinkWrap: true,
+              : ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemCount: myRes.length,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
@@ -113,7 +112,7 @@ class _ManagerHomeViewState extends State<ManagerHomeView> {
                       );
                     },
                   ),
-                )),
+      ),
     );
   }
 }

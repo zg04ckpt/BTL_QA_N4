@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ứng dụng cần vị trí của bạn để gợi ý nhà hàng gần đây và hiển thị địa chỉ trên hồ sơ.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Ứng dụng cần vị trí của bạn để gợi ý nhà hàng gần đây và hiển thị địa chỉ trên hồ sơ.</string>
 </dict>
 </plist>

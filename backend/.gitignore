@@ -115,3 +115,7 @@ node_modules/
 .config
 
 **/*.tar
+
+**/wwwroot/images/
+**/wwwroot/configs/
+**/google-services.json

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cp_restaurants/common/color_extension.dart';
 import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
-import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/view/restaurant_manager/components/edit_res_view.dart';
 import 'package:cp_restaurants/view/restaurant_manager/list_order_screens.dart';
 import 'package:cp_restaurants/view/restaurant_manager/qr_gen/qr_gen.dart';
@@ -15,10 +15,17 @@ class ResSearchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
+    const double thumb = 80;
+    final categoryLabel = fObj.category.trim().isNotEmpty
+        ? fObj.category
+        : (fObj.cateId >= 0 &&
+                fObj.cateId < restaurantTypes.keys.length
+            ? restaurantTypes.keys.toList()[fObj.cateId]
+            : 'Danh mục #${fObj.cateId}');
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      width: media.width * 0.4,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -27,30 +34,41 @@ class ResSearchItem extends StatelessWidget {
         ],
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(width: 5),
+          const SizedBox(width: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Container(
               color: TColor.secondary,
-              width: media.width * 0.25,
-              height: media.width * 0.25,
-              child: CachedNetworkImage(
-                imageUrl:
-                    '${APIService.instance.baseUrl}/${fObj.avtImage.toString()}',
-                fit: BoxFit.cover,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+              width: thumb,
+              height: thumb,
+              child: () {
+                final avt = resolveMediaUrl(fObj.avtImage);
+                if (avt.isEmpty) {
+                  return const Center(child: Icon(Icons.restaurant, size: 40));
+                }
+                return CachedNetworkImage(
+                  imageUrl: avt,
+                  fit: BoxFit.cover,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
+                  placeholder: (context, url) => const Center(
+                      child: SizedBox(
+                    width: 28,
+                    height: 28,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error),
+                );
+              }(),
             ),
           ),
           Expanded(
@@ -62,27 +80,27 @@ class ResSearchItem extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              fObj.name.toString(),
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: TColor.text,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ],
+                        SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            fObj.name.toString(),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: TColor.text,
+                                fontSize: isMyRes ? 17 : 20,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                         const SizedBox(
                           height: 4,
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 36,
                           child: Text(
                             fObj.address.toString(),
-                            overflow: TextOverflow.clip,
+                            overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             textAlign: TextAlign.left,
                             style: TextStyle(
@@ -95,8 +113,9 @@ class ResSearchItem extends StatelessWidget {
                           height: 2,
                         ),
                         Text(
-                          restaurantTypes.keys.toList()[fObj.cateId],
+                          categoryLabel,
                           maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: TColor.gray,
@@ -109,16 +128,21 @@ class ResSearchItem extends StatelessWidget {
                         //  const Spacer(),
                         Row(
                           children: [
-                            Text(
-                              "${fObj.averageScore}⭐ (${fObj.totalReviews} vote)",
-                              style: TextStyle(
-                                  color: TColor.gray,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700),
+                            Expanded(
+                              child: Text(
+                                "${fObj.averageScore}⭐ (${fObj.totalReviews} vote)",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: TColor.gray,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700),
+                              ),
                             ),
-                            const Spacer(),
                             Text(
                               "${fObj.distance}",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   color: TColor.gray,
                                   fontSize: 12,
@@ -132,12 +156,19 @@ class ResSearchItem extends StatelessWidget {
             ),
           ),
           if (isMyRes)
-            SizedBox(
-              width: 50,
+            Padding(
+              padding: const EdgeInsets.only(top: 4, right: 4),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    constraints: const BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                    ),
+                    iconSize: 22,
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
@@ -150,6 +181,13 @@ class ResSearchItem extends StatelessWidget {
                     ),
                   ),
                   IconButton(
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    constraints: const BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                    ),
+                    iconSize: 22,
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
@@ -164,6 +202,13 @@ class ResSearchItem extends StatelessWidget {
                     ),
                   ),
                   IconButton(
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    constraints: const BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                    ),
+                    iconSize: 22,
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
@@ -176,7 +221,7 @@ class ResSearchItem extends StatelessWidget {
                       Icons.qr_code,
                       color: Colors.green,
                     ),
-                  )
+                  ),
                 ],
               ),
             )

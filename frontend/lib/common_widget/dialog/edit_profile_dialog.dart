@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cp_restaurants/global/global_data.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/services/image_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -55,29 +56,33 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: selectedAvatar == null &&
-                            GlobalData.instance.userData?.avtImage == null
-                        ? Image.asset(
-                            "assets/img/u1.png",
+                    child: selectedAvatar != null
+                        ? Image.file(
+                            selectedAvatar!,
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
                           )
-                        : selectedAvatar != null
-                            ? Image.file(
-                                selectedAvatar!,
+                        : () {
+                            final net = resolveMediaUrl(
+                                GlobalData.instance.userData?.avtImage);
+                            if (net.isEmpty) {
+                              return Image.asset(
+                                "assets/img/u1.png",
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,
-                              )
-                            : CachedNetworkImage(
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                                imageUrl: GlobalData.instance.userData!.avtImage!,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                              ),
+                              );
+                            }
+                            return CachedNetworkImage(
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                              imageUrl: net,
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                            );
+                          }(),
                   ),
                 ),
                 const SizedBox(height: 20),

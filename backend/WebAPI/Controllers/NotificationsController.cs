@@ -9,9 +9,34 @@ public class NotificationsController : Controller
 {
     private readonly FirebaseService _firebaseService;
 
-    public NotificationsController()
+    public NotificationsController(FirebaseService firebaseService)
     {
-        _firebaseService = new FirebaseService();
+        _firebaseService = firebaseService;
+    }
+
+    /// <summary>
+    /// Tạm thời: gửi thông báo thử qua FCM tới topic (mặc định all_user). Dùng Postman/curl GET.
+    /// </summary>
+    [HttpGet("test-firebase")]
+    public async Task<IActionResult> TestFirebase([FromQuery] string topic = "all_user")
+    {
+        if (string.IsNullOrWhiteSpace(topic))
+        {
+            return BadRequest("topic is required");
+        }
+
+        try
+        {
+            var messageId = await _firebaseService.SendNotificationToTopicAsync(
+                topic,
+                "Thử thông báo Firebase",
+                $"Gửi lúc {DateTime.UtcNow:O} (UTC) — nếu app đã subscribe topic \"{topic}\" sẽ nhận được.");
+            return Ok(new { messageId, topic });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
     }
 
     [HttpPost("send")]

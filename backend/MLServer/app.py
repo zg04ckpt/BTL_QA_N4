@@ -1,7 +1,11 @@
 import pickle
+import sys
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+model = None
+tfidf = None
 
 # Load model and vectorizer
 print("Loading model and vectorizer...")
@@ -10,9 +14,17 @@ try:
         model = pickle.load(model_file)
     with open('tfidf_vectorizer.pkl', 'rb') as tfidf_file:
         tfidf = pickle.load(tfidf_file)
-    print("Models loaded successfully!")
+    # Phải transform được — nếu không, vectorizer chưa fit hoặc .pkl lệch phiên bản
+    _ = tfidf.transform(["sanity_check"])
+    _ = model.predict(_)
+    print("Models loaded successfully (TF-IDF + classifier OK).")
 except Exception as e:
-    print(f"Error loading models: {e}")
+    print(f"Error loading models: {e}", file=sys.stderr)
+    print(
+        "Gợi ý: chạy lại `python retrain_optimized.py` trong thư mục MLServer rồi build image lại.",
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 labels = {
     0: "Bình thường",

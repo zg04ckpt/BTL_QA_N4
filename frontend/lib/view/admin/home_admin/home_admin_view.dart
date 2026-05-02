@@ -146,6 +146,11 @@ class _HomeAdminViewState extends State<HomeAdminView> {
                 image,
                 height: 60,
                 width: 60,
+                errorBuilder: (_, __, ___) => Icon(
+                  Icons.admin_panel_settings_outlined,
+                  size: 48,
+                  color: Colors.green[200],
+                ),
               )
             ],
           ),

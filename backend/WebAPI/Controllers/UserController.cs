@@ -59,7 +59,7 @@ public class UserController : Controller
     [HttpGet("GetAllUsers")]
     public async Task<IActionResult> GetAllUsers()
     {
-        var users = await _userService.GetAllUsersAsync();
+        var users = await _userService.GetAllUserSummariesForAdminAsync();
         return Ok(users);
     }
 

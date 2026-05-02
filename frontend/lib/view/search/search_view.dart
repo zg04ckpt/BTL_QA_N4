@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:cp_restaurants/view/restaurant/restaurant_detail_view.dart';
 import 'package:cp_restaurants/view/search/res_search_item.dart';
@@ -17,7 +15,7 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   TextEditingController textController = TextEditingController();
-  Timer? _debounce;
+  bool _hasSubmittedSearch = false;
 
   @override
   void initState() {
@@ -60,6 +58,7 @@ class _SearchViewState extends State<SearchView> {
           children: [
             RoundTextField(
               onSubmitted: (p0) {
+                setState(() => _hasSubmittedSearch = true);
                 Provider.of<RestaurantProvider>(context, listen: false)
                     .searchRestaurants(p0);
               },
@@ -67,6 +66,7 @@ class _SearchViewState extends State<SearchView> {
               hitText: "Tìm kiếm nhà hàng…",
               leftIcon: InkWell(
                   onTap: () {
+                    setState(() => _hasSubmittedSearch = true);
                     Provider.of<RestaurantProvider>(context, listen: false)
                         .searchRestaurants(textController.text);
                   },
@@ -76,9 +76,23 @@ class _SearchViewState extends State<SearchView> {
             Expanded(
               child: Consumer<RestaurantProvider>(
                 builder: (context, provider, child) {
+                  if (!_hasSubmittedSearch && !provider.isSearching) {
+                    return Center(
+                      child: Text(
+                        'Nhập tên nhà hàng hoặc thành phố, nhấn tìm hoặc Enter.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey.shade700,
+                          fontSize: 15,
+                        ),
+                      ),
+                    );
+                  }
                   if (provider.searchedRestaurants.isEmpty &&
                       !provider.isSearching) {
-                    return const Center(child: Text('No results found'));
+                    return const Center(
+                      child: Text('Không có nhà hàng phù hợp.'),
+                    );
                   }
                   if (provider.isSearching) {
                     return const Center(
@@ -87,7 +101,6 @@ class _SearchViewState extends State<SearchView> {
                   }
 
                   return ListView.builder(
-                    shrinkWrap: true,
                     itemCount: provider.searchedRestaurants.length,
                     itemBuilder: (context, index) {
                       Restaurant restaurant =

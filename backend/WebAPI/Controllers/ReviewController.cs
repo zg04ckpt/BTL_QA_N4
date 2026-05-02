@@ -23,13 +23,20 @@ public class ReviewController : Controller
             return BadRequest("Review data cannot be null.");
         }
 
-        var result = await _reviewService.AddReviewAsync(reviewDto);
-
-        if (result.Success)
+        try
         {
-            return Ok(new { message = result.Message });
+            var result = await _reviewService.AddReviewAsync(reviewDto);
+
+            if (result.Success)
+            {
+                return Ok(new { message = result.Message });
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError, new { message = result.Message });
         }
-        return StatusCode(StatusCodes.Status500InternalServerError, new { message = result.Message });
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     [HttpDelete("{id}")]

@@ -120,6 +120,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       Text(
                         order.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),

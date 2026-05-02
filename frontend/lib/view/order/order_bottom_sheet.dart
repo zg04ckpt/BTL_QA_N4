@@ -1,5 +1,4 @@
 import 'package:cp_restaurants/common/time_extension.dart';
-import 'package:cp_restaurants/data/models/order_data.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
 import 'package:cp_restaurants/view/auth/signup_view.dart';
@@ -28,16 +27,6 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
   }
 
   Future<void> addNewOrder() async {
-    OrderData newOrderData = OrderData(
-        name: GlobalData.instance.userData?.name ?? "",
-        phoneNumber: _phoneNumberController.text,
-        email: GlobalData.instance.userData?.email ?? "",
-        userId: GlobalData.instance.userData?.userId ?? 0,
-        restaurantId: widget.resId,
-        numOfMembers: int.parse(_couterController.text),
-        reservationTime: choicedDateTime.toString(),
-        specialRequest: _noteController.text,
-        createdAt: DateTime.now().millisecondsSinceEpoch);
     var response = await APIService.instance.request(
       "/api/Orders",
       DioMethod.post,
@@ -62,19 +51,23 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 520,
-      padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
+    final maxH = MediaQuery.sizeOf(context).height * 0.92;
+    return SafeArea(
+      child: Container(
+        constraints: BoxConstraints(maxHeight: maxH),
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -126,7 +119,7 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                 },
                 child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: Colors.green.withOpacity(0.3),
@@ -136,8 +129,11 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                     choicedDateTime == null
                         ? "Chọn thời gian"
                         : choicedDateTime!.toFormattedString(),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -298,28 +294,33 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
             ),
           ]),
           const SizedBox(height: 20),
-          InkWell(
-            onTap: () {
-              addNewOrder();
-            },
-            child: Container(
-              height: 50,
-              width: 150,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.green,
-              ),
-              child: const Text(
-                "Xác nhận",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+          Center(
+            child: InkWell(
+              onTap: () {
+                addNewOrder();
+              },
+              child: Container(
+                height: 50,
+                constraints: const BoxConstraints(minWidth: 160),
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.green,
+                ),
+                child: const Text(
+                  "Xác nhận",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          )
-        ],
+          ),
+            ],
+          ),
+        ),
       ),
     );
   }

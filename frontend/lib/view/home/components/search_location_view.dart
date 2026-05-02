@@ -1,5 +1,5 @@
 import 'package:cp_restaurants/common/extension.dart';
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import '../../../common/color_extension.dart';
 import '../../../common_widget/line_textfield.dart';

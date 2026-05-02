@@ -1,5 +1,6 @@
 using DataAccessLayer.Context;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Repositories;
 
@@ -11,6 +12,17 @@ public class ReportRepository
     {
         _context = context;
     }
+
+    public async Task<List<Report>> GetReportsByReviewIdAsync(int reviewId)
+    {
+        return await _context.Reports
+            .AsNoTracking()
+            .Where(r => r.ReviewId == reviewId)
+            .Include(r => r.User)
+            .OrderByDescending(r => r.Id)
+            .ToListAsync();
+    }
+
     public async Task<Report> AddReportAsync(Report report)
     {
         await _context.Reports.AddAsync(report);

@@ -9,17 +9,15 @@ import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/address.dart';
 import 'package:cp_restaurants/data/models/local_address.dart';
 import 'package:cp_restaurants/global/global_data.dart';
-import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/services/location_provider.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:cp_restaurants/view/auth/signup_view.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:location_picker_flutter_map/location_picker_flutter_map.dart';
-
 import 'package:provider/provider.dart';
 
 import '../../../common/app_picker.dart';
+import '../../../common_widget/map_location_picker.dart';
 import '../../../data/models/restaurant.dart';
 import '../../../services/image_service.dart';
 
@@ -64,9 +62,12 @@ class _EditResViewState extends State<EditResView> {
     super.initState();
     initData();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      lat = context.read<LocationProvider>().currentPostion?.latitude ?? 0;
-      long = context.read<LocationProvider>().currentPostion?.longitude ?? 0;
-      setState(() {});
+      final p = context.read<LocationProvider>().currentPosition;
+      if ((lat == 0 && long == 0) && p != null) {
+        lat = p.latitude;
+        long = p.longitude;
+        setState(() {});
+      }
     });
   }
 
@@ -80,6 +81,8 @@ class _EditResViewState extends State<EditResView> {
     address = widget.fObj.address;
     _imageUrl = resData.photoUrls;
     resTypes = resData.category;
+    lat = resData.address.lat;
+    long = resData.address.lon;
     setState(() {});
   }
 
@@ -120,9 +123,19 @@ class _EditResViewState extends State<EditResView> {
       if (avatarImage != null) {
         avtUrl = await ImageService.uploadImage(avatarImage!);
       }
+      final addrMerged = Address(
+        id: address!.id,
+        street: address!.street,
+        city: address!.city,
+        district: address!.district,
+        ward: address!.ward,
+        detail: _addressDetailController.text,
+        lat: lat,
+        lon: long,
+      );
       Restaurant newRes = Restaurant(
         id: widget.fObj.id,
-        address: address!,
+        address: addrMerged,
         description: _descriptionController.text,
         photoUrls: imageUrls,
         cateId:
@@ -249,11 +262,22 @@ class _EditResViewState extends State<EditResView> {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            '${APIService.instance.baseUrl}/${widget.fObj.avtImage}',
-                                        fit: BoxFit.cover,
-                                      ),
+                                      child: () {
+                                        final u =
+                                            resolveMediaUrl(widget.fObj.avtImage);
+                                        if (u.isEmpty) {
+                                          return Container(
+                                            color: Colors.grey.shade200,
+                                            alignment: Alignment.center,
+                                            child: const Icon(
+                                                Icons.restaurant_menu),
+                                          );
+                                        }
+                                        return CachedNetworkImage(
+                                          imageUrl: u,
+                                          fit: BoxFit.cover,
+                                        );
+                                      }(),
                                     ),
                                     Center(
                                       child: Container(
@@ -344,15 +368,16 @@ class _EditResViewState extends State<EditResView> {
                             province: address?.city,
                             ward: address?.ward),
                         onAddressChanged: (vlue) {
-                          var addr = Address(
-                            id: 0,
-                            street: "",
+                          address = Address(
+                            id: address?.id ?? widget.fObj.address.id,
+                            street: address?.street ?? "",
                             city: vlue.province ?? "",
                             district: vlue.district ?? "",
                             ward: vlue.ward ?? "",
-                            detail: "",
+                            detail: _addressDetailController.text,
+                            lat: lat,
+                            lon: long,
                           );
-                          address = addr;
                         },
                         buildItem: (text) {
                           return Text(text ?? "",
@@ -394,49 +419,39 @@ class _EditResViewState extends State<EditResView> {
                       const SizedBox(height: 12),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Toạ độ: $lat:$long}",
-                          style: const TextStyle(
-                              color: Colors.green, fontSize: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Toạ độ: $lat : $long",
+                              style: const TextStyle(
+                                  color: Colors.green, fontSize: 16),
+                            ),
+                            Text(
+                              'Kéo bản đồ, nhấn "Xác nhận vị trí" để lưu tọa độ.',
+                              style: TextStyle(
+                                color: Colors.grey.shade700,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 20),
-                      if (lat != 0)
-                        SizedBox(
-                          height: 300,
-                          // width: 300,
-                          child: FlutterLocationPicker(
-                            initPosition: LatLong(lat, long),
-                            selectLocationButtonStyle: ButtonStyle(
-                              backgroundColor:
-                                  WidgetStateProperty.all(Colors.blue),
-                            ),
-                            selectedLocationButtonTextstyle:
-                                const TextStyle(fontSize: 18),
-                            selectLocationButtonText: 'Lấy vị trí này',
-                            selectLocationButtonLeadingIcon:
-                                const Icon(Icons.check),
-                            initZoom: 11,
-                            minZoomLevel: 5,
-                            maxZoomLevel: 16,
-                            trackMyPosition: true,
-                            onError: (e) => log(e.toString()),
-                            onPicked: (pickedData) {
-                              setState(() {
-                                lat = pickedData.latLong.latitude;
-                                long = pickedData.latLong.longitude;
-                              });
-                            },
-                            onChanged: (pickedData) {
-                              if (kDebugMode)
-                                print(pickedData.latLong.latitude);
-                              if (kDebugMode)
-                                print(pickedData.latLong.longitude);
-                              if (kDebugMode) print(pickedData.address);
-                              if (kDebugMode) print(pickedData.addressData);
-                            },
-                          ),
-                        ),
+                      MapLocationPicker(
+                        latitude: lat,
+                        longitude: long,
+                        height: 300,
+                        initialZoom: 11,
+                        minZoom: 5,
+                        maxZoom: 16,
+                        onLocationConfirmed: (la, lo) {
+                          setState(() {
+                            lat = la;
+                            long = lo;
+                          });
+                        },
+                      ),
                       const SizedBox(height: 20),
                       const Align(
                         alignment: Alignment.centerLeft,
@@ -509,8 +524,8 @@ class _EditResViewState extends State<EditResView> {
                                                           fit: BoxFit.cover,
                                                         )
                                                       : CachedNetworkImage(
-                                                          imageUrl:
-                                                              '${APIService.instance.baseUrl}/${_imageUrl[index]}',
+                                                          imageUrl: resolveMediaUrl(
+                                                              _imageUrl[index]),
                                                           width: 80,
                                                           height: 80,
                                                           fit: BoxFit.cover,

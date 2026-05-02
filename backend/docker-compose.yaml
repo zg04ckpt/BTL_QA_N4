@@ -4,6 +4,8 @@ services:
     image: qa_api:latest
     ports:
       - "5006:8080"
+    depends_on:
+      - ml_server
     networks:
       - default_net
 

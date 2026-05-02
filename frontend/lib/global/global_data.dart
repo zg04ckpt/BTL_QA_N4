@@ -1,6 +1,8 @@
 import 'package:cp_restaurants/data/models/user_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 
 class GlobalData {
@@ -14,31 +16,49 @@ class GlobalData {
 
   UserData? userData;
 
-  Position? userPosition ;
+  Position? userPosition;
 
-  Future fetchUserData(String userId) async {
+  Future<void> fetchUserData(String userId) async {
     userData = await getUserById(userId);
   }
 
-  Future<UserData> getUserById(String id) async {
-    // try {
+  /// GET api/User/GetUserById?id=
+  Future<UserData?> getUserById(String userId) async {
+    final idNum = int.tryParse(userId.trim());
+    if (idNum == null) {
+      debugPrint('getUserById: invalid id "$userId"');
+      return null;
+    }
+
+    try {
       final response = await APIService.instance.request(
-        '/api/User/GetUserById?id=$id', // URL cho API
+        '/api/User/GetUserById',
         DioMethod.get,
+        param: {'id': idNum},
       );
 
-      if (response.statusCode == 200) {
-        final userJson = response.data;
-        // Xử lý Address có thể là null
-        final userData = UserData.fromJson(userJson);
-        return userData;
-      } else {
-        throw Exception('Failed to load user data');
+      if (response.statusCode == 204) {
+        return null;
       }
-    // } catch (e) {
-    //   throw Exception('Error fetching user data: $e');
-    // }
-  }
+      if (response.statusCode != 200 || response.data == null) {
+        return null;
+      }
 
-  
+      final raw = response.data;
+      if (raw is Map<String, dynamic>) {
+        return UserData.fromJson(raw);
+      }
+      if (raw is Map) {
+        return UserData.fromJson(Map<String, dynamic>.from(raw));
+      }
+      debugPrint('getUserById: unexpected response type ${raw.runtimeType}');
+      return null;
+    } on DioException catch (e, st) {
+      debugPrint('getUserById DioException: $e\n$st');
+      return null;
+    } catch (e, st) {
+      debugPrint('getUserById error: $e\n$st');
+      return null;
+    }
+  }
 }

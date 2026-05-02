@@ -35,6 +35,27 @@ class Restaurant {
     this.category = "",
   });
 
+  static String _parseAvtImage(dynamic v) {
+    if (v == null) return '';
+    var s = v.toString().trim();
+    if (s.isEmpty) return '';
+    if (s.startsWith('http://') || s.startsWith('https://')) return s;
+    s = s.replaceAll(RegExp(r'/+'), '/');
+    if (!s.startsWith('/')) s = '/$s';
+    return s;
+  }
+
+  static List<String> _parseRestaurantPhotos(dynamic raw) {
+    if (raw is! List) return [];
+    final out = <String>[];
+    for (final e in raw) {
+      if (e == null) continue;
+      final s = e.toString().trim();
+      if (s.isNotEmpty) out.add(s);
+    }
+    return out;
+  }
+
   // Convert JSON to Restaurant
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
@@ -44,14 +65,11 @@ class Restaurant {
       email: json['email'] ?? '',
       description: json['description'] ?? '',
       phoneNumber: json['phoneNumber'] ?? '',
-      avtImage: json['avtImage'] ?? ''.replaceAll('//', '/'),
+      avtImage: _parseAvtImage(json['avtImage']),
       cateId: json['cateId'] ?? 0,
       userId: json['userId'] ?? 0,
       address: Address.fromMap(json['address'] ?? {}),
-      photoUrls: (json['restaurantPhotos'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
+      photoUrls: _parseRestaurantPhotos(json['restaurantPhotos']),
       averageScore: (json['averageScore'] as num?)?.toDouble() ?? 0.0,
       totalReviews: json['totalReviews'] ?? 0,
       category: json['category'] ?? '',

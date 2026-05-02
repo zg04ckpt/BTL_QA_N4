@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:flutter/material.dart';
 
 class ImagePreviewDialog extends StatelessWidget {
@@ -8,13 +9,25 @@ class ImagePreviewDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final u = resolveMediaUrl(imageUrl);
+    if (u.isEmpty) {
+      return Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            'Không có ảnh',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey.shade700),
+          ),
+        ),
+      );
+    }
     return Dialog(
       child: SizedBox(
         child: CachedNetworkImage(
           width: 300,
-          // height: 100,
           fit: BoxFit.contain,
-          imageUrl: imageUrl,
+          imageUrl: u,
           placeholder: (context, url) => const CircularProgressIndicator(),
         ),
       ),

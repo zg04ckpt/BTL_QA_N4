@@ -36,4 +36,18 @@ public class ReportService : IReportService
         }
         return (true, "Report status updated successfully.");
     }
+
+    public async Task<IEnumerable<ReportListItemDto>> GetReportsByReviewIdAsync(int reviewId)
+    {
+        var rows = await _reportRepository.GetReportsByReviewIdAsync(reviewId);
+        return rows.Select(r => new ReportListItemDto
+        {
+            Id = r.Id,
+            UserId = r.UserId,
+            UserName = r.User?.Name,
+            ReviewId = r.ReviewId,
+            Reason = r.Reason,
+            Status = r.Status,
+        });
+    }
 }

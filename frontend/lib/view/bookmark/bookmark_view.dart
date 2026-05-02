@@ -9,6 +9,7 @@ import '../../data/models/restaurant.dart';
 import '../../data/repository/restaurant_helper.dart';
 import '../discovery/filter_view.dart';
 import '../../common_widget/login_required.dart';
+import '../restaurant/restaurant_detail_view.dart';
 
 class BookmarkView extends StatefulWidget {
   const BookmarkView({super.key});
@@ -122,9 +123,24 @@ class _BookmarkViewState extends State<BookmarkView> {
                       itemCount: filteredRestaurants.length,
                       itemBuilder: (context, index) {
                         final restaurant = filteredRestaurants[index];
-                        return NearByListRow(
-                          fObj: restaurant,
-                          isBookmark: true,
+                        return Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RestaurantDetailView(
+                                    fObj: restaurant,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: NearByListRow(
+                              fObj: restaurant,
+                              isBookmark: true,
+                            ),
+                          ),
                         );
                       },
                     ),

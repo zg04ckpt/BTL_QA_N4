@@ -39,7 +39,7 @@ public class RestaurantsController : Controller
     [HttpGet("user/{userId}")]
     public async Task<IActionResult> GetRestaurantsByUser(int userId)
     {
-        var restaurants = await _restaurantService.GetRestaurantsByCategoryAsync(userId);
+        var restaurants = await _restaurantService.GetRestaurantsByUserAsync(userId);
         return Ok(restaurants);
     }
 

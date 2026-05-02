@@ -43,12 +43,7 @@ class AuthViewModel with ChangeNotifier {
         onSuccess(response); // Gọi callback nếu thành công
       }
     } catch (e) {
-      if (e is DioException && onError != null) {
-        final message = e.response?.data['message'] ?? 'Đã có lỗi xảy ra, vui lòng thử lại';
-        onError(message); // Gọi callback nếu thất bại
-      } else {
-        onError?.call('Network error'); // Lỗi mạng không xác định
-      }
+      onError?.call(_messageFromDioOrAny(e));
     }
   }
 
@@ -74,8 +69,14 @@ class AuthViewModel with ChangeNotifier {
 
       // Kiểm tra và lưu token vào SharedPreferences nếu đăng nhập thành công
       if (response.statusCode == 200) {
-        final token = response.data['token'];
-        if (token != null) {
+        final data = response.data;
+        final map = data is Map<String, dynamic>
+            ? data
+            : (data is Map ? Map<String, dynamic>.from(data as Map) : null);
+        final token = map != null
+            ? (map['token'] ?? map['Token'])?.toString()
+            : null;
+        if (token != null && token.isNotEmpty) {
           // String getJsonFromJWT(String splittedToken) {
            
           //   return utf8.decode(base64Url.decode(normalizedSource));
@@ -93,12 +94,20 @@ class AuthViewModel with ChangeNotifier {
         throw Exception('Login failed');
       }
     } catch (e) {
-      if (e is DioException && onError != null) {
-        final message = e.response?.data['message'] ?? ' Đã có lỗi xảy ra, vui lòng thử lại';
-        onError(message); // Gọi callback nếu có lỗi
-      } else {
-        onError?.call('Network error');
-      }
+      onError?.call(_messageFromDioOrAny(e));
     }
   }
+}
+
+String _messageFromDioOrAny(Object e) {
+  if (e is DioException) {
+    final data = e.response?.data;
+    if (data is Map && data['message'] != null) {
+      return data['message'].toString();
+    }
+    if (data is String && data.isNotEmpty) return data;
+    if (e.message != null && e.message!.isNotEmpty) return e.message!;
+    return 'Đã có lỗi xảy ra, vui lòng thử lại';
+  }
+  return e.toString();
 }

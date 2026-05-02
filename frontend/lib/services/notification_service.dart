@@ -2,15 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:cp_restaurants/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cp_restaurants/firebase_bootstrap.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await ensureFirebaseInitialized();
   await setupFlutterNotifications();
   showFlutterNotification(message);
 
@@ -49,20 +48,48 @@ Future<void> setupFlutterNotifications() async {
   isFlutterLocalNotificationsInitialized = true;
 }
 
+/// FCM khi app đang mở (foreground): hiển thị qua local notification.
+void registerForegroundFcmHandlers() {
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    log('FCM onMessage: ${message.messageId}');
+    showFlutterNotification(message);
+  });
+}
+
 void showFlutterNotification(RemoteMessage message) {
-  RemoteNotification? notification = message.notification;
-  AndroidNotification? android = message.notification?.android;
-  if (notification != null && android != null) {
+  if (kIsWeb) return;
+
+  final RemoteNotification? notification = message.notification;
+  if (notification == null) return;
+
+  final int id = notification.hashCode & 0x7fffffff;
+  final String? title = notification.title;
+  final String? body = notification.body;
+
+  if (Platform.isAndroid) {
     flutterLocalNotificationsPlugin.show(
-      notification.hashCode,
-      notification.title,
-      notification.body,
+      id,
+      title,
+      body,
       NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
           channel.name,
           channelDescription: channel.description,
           icon: 'launch_background',
+        ),
+      ),
+    );
+  } else if (Platform.isIOS || Platform.isMacOS) {
+    flutterLocalNotificationsPlugin.show(
+      id,
+      title,
+      body,
+      const NotificationDetails(
+        iOS: DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
         ),
       ),
     );

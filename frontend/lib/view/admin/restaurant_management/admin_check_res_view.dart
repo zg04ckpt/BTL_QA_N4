@@ -1,5 +1,7 @@
-import 'package:cp_restaurants/common/app_snack_bar.dart';
 import 'package:cp_restaurants/common/color_extension.dart';
+import 'package:cp_restaurants/common_widget/app_network_image.dart';
+import 'package:cp_restaurants/common/map_coordinates.dart';
+import 'package:cp_restaurants/common_widget/app_embedded_map.dart';
 import 'package:cp_restaurants/common_widget/dialog/app_dialog.dart';
 import 'package:cp_restaurants/common_widget/icon_text_button.dart';
 import 'package:cp_restaurants/common_widget/img_text_button.dart';
@@ -8,7 +10,7 @@ import 'package:cp_restaurants/data/containt.dart';
 import 'package:cp_restaurants/data/models/restaurant.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
-import 'package:cp_restaurants/services/commom_provider.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/services/location_service.dart';
 import 'package:cp_restaurants/services/restaurant_provider.dart';
 import 'package:cp_restaurants/services/review_provider.dart';
@@ -16,11 +18,7 @@ import 'package:cp_restaurants/view/home/components/photo_list_view.dart';
 import 'package:cp_restaurants/view/restaurant/components/user_review_widget.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-
-import 'package:share_plus/share_plus.dart';
 
 class AdminCheckRes extends StatefulWidget {
   final Restaurant fObj;
@@ -236,10 +234,11 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                             height: media.width * 0.67,
                             child: Stack(
                               children: [
-                                Image.network(
-                                  Uri.parse(
-                                    '${APIService.instance.baseUrl}/${resData!.avtImage}',
-                                  ).toString(),
+                                AppNetworkImage(
+                                  pathOrUrl: resData!.avtImage,
+                                  fit: BoxFit.cover,
+                                  width: media.width,
+                                  height: media.width * 0.67,
                                 ),
                                 Container(
                                   width: media.width,
@@ -281,17 +280,21 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 15),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                resData!.name.toString(),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: TColor.text,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w700),
+                              Expanded(
+                                child: Text(
+                                  resData!.name.toString(),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: TColor.text,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                              const Spacer(),
+                              const SizedBox(width: 8),
                               RatingBar(
                                 key: starKey,
                                 size: 20,
@@ -353,70 +356,69 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                           color: Colors.white,
                           height: 300,
                           child: Stack(
+                            clipBehavior: Clip.hardEdge,
                             children: [
-                              SizedBox(
+                              AppEmbeddedMap(
+                                latitude: resData!.address.lat,
+                                longitude: resData!.address.lon,
                                 height: 300,
-                                child: FlutterMap(
-                                  options: const MapOptions(
-                                    initialCenter:
-                                        LatLng(20.993155, 105.807523),
-                                    initialZoom: 15,
-                                    minZoom: 0,
-                                    maxZoom: 19,
-                                  ),
-                                  children: [
-                                    TileLayer(
-                                      urlTemplate:
-                                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                      userAgentPackageName:
-                                          'net.tlserver6y.flutter_map_location_marker.example',
-                                      maxZoom: 19,
-                                    ),
-                                    const MarkerLayer(
-                                      markers: [
-                                        Marker(
-                                          point: LatLng(20.9932,
-                                              105.807523), // Tọa độ của marker
-                                          child: Icon(
-                                            Icons.location_on,
-                                            size: 50,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                initialZoom: 16,
                               ),
-                              Container(
-                                padding: const EdgeInsets.all(25),
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        color: Colors.green.withOpacity(0.4),
-                                        child: Text(
-                                          resData!.address.toString(),
-                                          textAlign: TextAlign.left,
-                                          maxLines: 3,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700),
-                                        ),
+                              if (!usedRestaurantCoordsForMap(
+                                  resData!.address.lat,
+                                  resData!.address.lon))
+                                Positioned(
+                                  top: 8,
+                                  left: 8,
+                                  right: 52,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: Colors.orange.shade100,
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(6),
+                                      child: Text(
+                                        'Chưa có tọa độ nhà hàng — hiển thị khu vực gần bạn hoặc mặc định.',
+                                        style: TextStyle(fontSize: 11),
                                       ),
                                     ),
-                                  ],
+                                  ),
+                                ),
+                              Positioned(
+                                left: 16,
+                                top: 44,
+                                right: 56,
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green.withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    resData!.address.toString(),
+                                    textAlign: TextAlign.left,
+                                    maxLines: 3,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.bottomRight,
+                              Positioned(
+                                right: 8,
+                                bottom: 8,
                                 child: InkWell(
                                   onTap: () {
+                                    final c = resolveMapCenter(
+                                      restaurantLat: resData!.address.lat,
+                                      restaurantLon: resData!.address.lon,
+                                      userPosition:
+                                          GlobalData.instance.userPosition,
+                                    );
                                     LocationService.openMap(
-                                        resData!.address.lat,
-                                        resData!.address.lon);
+                                        c.latitude, c.longitude);
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(6),
@@ -431,7 +433,7 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -468,12 +470,13 @@ class _AdminCheckResState extends State<AdminCheckRes> {
                                       : resData!.photoUrls.length,
                                   itemBuilder: (context, index) {
                                     return ImgTextButton(
-                                      image: Uri.parse(
-                                              '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}')
-                                          .toString(),
+                                      image: resolveMediaUrl(
+                                          resData!.photoUrls[index]),
                                       onPressed: () {
-                                        AppDialog.showPreviewImage(context,
-                                            '${APIService.instance.baseUrl}/${resData!.photoUrls[index]}');
+                                        AppDialog.showPreviewImage(
+                                            context,
+                                            resolveMediaUrl(
+                                                resData!.photoUrls[index]));
                                       },
                                     );
                                   }),

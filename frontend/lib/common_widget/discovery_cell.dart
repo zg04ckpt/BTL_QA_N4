@@ -32,11 +32,18 @@ class DiscoveryCell extends StatelessWidget {
           SizedBox(
             height: media.width * 0.04,
           ),
-          Text(
-            name,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: TColor.text, fontSize: 16, fontWeight: FontWeight.w700),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: Text(
+              name,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: TColor.text,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700),
+            ),
           ),
           // Text(
           //   "${fObj["place"].toString()} Place",

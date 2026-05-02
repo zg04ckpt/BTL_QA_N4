@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:cp_restaurants/global/global_data.dart';
@@ -10,7 +11,9 @@ import 'package:geolocator/geolocator.dart';
 
 class LocationProvider with ChangeNotifier {
   Position? _currentPosition;
-  Position? get currentPostion => _currentPosition;
+
+  /// Vị trí GPS hiện tại (đã xin quyền).
+  Position? get currentPosition => _currentPosition;
 
   final LocationService _locationService = LocationService();
 
@@ -18,57 +21,60 @@ class LocationProvider with ChangeNotifier {
   Placemark? get currentLocationName => _currentLocationName;
 
   Future<void> determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    log("time ${DateTime.now().millisecondsSinceEpoch}");
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      _currentPosition = null;
-      notifyListeners();
-      return;
-    }
-    log("time ${DateTime.now().millisecondsSinceEpoch}");
-
-    permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-
-      if (permission == LocationPermission.denied) {
+    try {
+      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
         _currentPosition = null;
+        _currentLocationName = null;
+        GlobalData.instance.userPosition = null;
         notifyListeners();
         return;
       }
-    }
 
-    if (permission == LocationPermission.deniedForever) {
-      _currentPosition = null;
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        _currentPosition = null;
+        _currentLocationName = null;
+        GlobalData.instance.userPosition = null;
+        notifyListeners();
+        return;
+      }
+
+      Position? pos;
+      try {
+        pos = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          timeLimit: const Duration(seconds: 30),
+        );
+      } on TimeoutException {
+        log('determinePosition: timeout, trying last known position');
+        pos = await Geolocator.getLastKnownPosition();
+      } catch (e, st) {
+        log('determinePosition: $e\n$st');
+        pos = await Geolocator.getLastKnownPosition();
+      }
+
+      _currentPosition = pos;
+      GlobalData.instance.userPosition = pos;
+
+      if (pos != null) {
+        _currentLocationName = await _locationService.getLocationName(pos);
+      } else {
+        _currentLocationName = null;
+      }
+
       notifyListeners();
-      return;
+    } catch (e, st) {
+      log('determinePosition failed: $e\n$st');
+      _currentPosition = null;
+      _currentLocationName = null;
+      GlobalData.instance.userPosition = null;
+      notifyListeners();
     }
-
-    log("time ${DateTime.now().millisecondsSinceEpoch}");
-
-    _currentPosition = await Geolocator.getCurrentPosition( forceAndroidLocationManager: true);
-    print(_currentPosition);
-    log("time ${DateTime.now().millisecondsSinceEpoch}");
-
-    GlobalData.instance.userPosition = _currentPosition;
-
-    _currentLocationName =
-        await _locationService.getLocationName(_currentPosition);
-
-    print(_currentLocationName);
-
-    notifyListeners();
   }
-
-  // ask the permission
-
-  // get the location
-
-  // get the placemark
 }

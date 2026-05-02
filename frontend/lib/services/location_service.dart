@@ -1,57 +1,107 @@
 // ignore_for_file: avoid_print
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LocationService {
   Future<Placemark?> getLocationName(Position? position) async {
-    if (position != null) {
-      try {
-        final placemarks = await placemarkFromCoordinates(
-            position.latitude, position.longitude);
+    if (position == null) return null;
+    try {
+      final placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
-        if (placemarks.isNotEmpty) {
-          return placemarks[1];
-          // i changed the plaace mark index from [0] to [1]
-        }
-      } catch (e) {
-        print("Error fetching location name");
+      if (placemarks.isNotEmpty) {
+        return placemarks.first;
       }
-
-      return null;
+    } catch (e) {
+      print("Error fetching location name: $e");
     }
     return null;
   }
 
+  /// Xin quyền vị trí khi đang dùng app (không yêu cầu “luôn luôn”).
   static Future<bool> checkAndRequestLocationPermission() async {
-    // Check location permission
-    PermissionStatus locationPermission = await Permission.location.status;
+    var status = await Permission.location.status;
+    if (status.isGranted) return true;
+    if (status.isPermanentlyDenied) return false;
+    if (status.isDenied || status.isRestricted) {
+      status = await Permission.location.request();
+    }
+    return status.isGranted;
+  }
 
-    // Check if location permission is granted
-    if (locationPermission.isGranted) {
-      // Permission is already granted
-      return true;
+  /// Hiển thị giải thích + xin quyền + mở cài đặt nếu bị chặn vĩnh viễn.
+  static Future<void> ensureLocationForApp(BuildContext context) async {
+    final serviceOn = await Geolocator.isLocationServiceEnabled();
+    if (!serviceOn) {
+      if (!context.mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Bật định vị'),
+          content: const Text(
+            'Ứng dụng cần định vị để hiển thị nhà hàng gần bạn. Vui lòng bật GPS/định vị trong Cài đặt.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Để sau'),
+            ),
+            FilledButton(
+              onPressed: () async {
+                Navigator.pop(ctx);
+                await Geolocator.openLocationSettings();
+              },
+              child: const Text('Mở cài đặt'),
+            ),
+          ],
+        ),
+      );
     }
 
-    // Request permission if not granted
-    if (locationPermission.isDenied || locationPermission.isRestricted) {
-      locationPermission = await Permission.location.request();
+    var permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
     }
 
-    // Request precise location permission (only on Android 12+)
-    PermissionStatus preciseLocationPermission =
-        await Permission.locationAlways.status;
-    if (preciseLocationPermission.isDenied) {
-      preciseLocationPermission = await Permission.locationAlways.request();
+    if (permission == LocationPermission.deniedForever) {
+      if (!context.mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Quyền định vị'),
+          content: const Text(
+            'Quyền định vị đã bị từ chối vĩnh viễn. Hãy bật trong Cài đặt > Ứng dụng.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Đóng'),
+            ),
+            FilledButton(
+              onPressed: () async {
+                Navigator.pop(ctx);
+                await openAppSettings();
+              },
+              child: const Text('Mở cài đặt app'),
+            ),
+          ],
+        ),
+      );
+      return;
     }
 
-    // Return true if both location and precise permissions are granted
-    return locationPermission.isGranted && preciseLocationPermission.isGranted;
+    if (permission == LocationPermission.denied) {
+      await checkAndRequestLocationPermission();
+    }
   }
 
   static Future<void> openMap(double latitude, double longitude) async {
-    String googleUrl =
+    final googleUrl =
         'https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude';
     if (await canLaunchUrl(Uri.parse(googleUrl))) {
       await launchUrl(Uri.parse(googleUrl));

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cp_restaurants/data/models/review_model.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:cp_restaurants/view/auth/signup_view.dart';
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:dio/dio.dart';
@@ -35,6 +36,15 @@ class _ReviewDialogState extends State<ReviewDialog> {
   final List<String> _imagePath = [];
 
   bool isLoading = false;
+
+  /// Thông báo từ API (vd. bình luận tiêu cực / ML) — hiển thị ngay trên popup.
+  String? _bannerMessage;
+
+  static String? _readApiMessage(dynamic data) {
+    if (data is! Map) return null;
+    final m = data['message'] ?? data['Message'];
+    return m?.toString();
+  }
 
   @override
   void initState() {
@@ -72,96 +82,166 @@ class _ReviewDialogState extends State<ReviewDialog> {
     });
   }
 
-  void submitReview() async {
+  Future<void> submitReview() async {
     setState(() {
       isLoading = true;
+      _bannerMessage = null;
     });
 
-    for (var img in _imageFiles) {
-      var response = await APIService.instance.uploadImage(img);
-      var responseData = response.data;
-
-      String path = responseData['image'];
-      _imagePath.add(path);
-    }
-    ReviewModel reviewModel = ReviewModel(
-      id: widget.initReview?.id ?? -1,
-      imageUrls: _imagePath,
-      rate: _rating,
-      resId: widget.resId,
-      review: _reviewController.text,
-      userName: GlobalData.instance.userData?.name ?? "Giấu tên",
-      userId: GlobalData.instance.userData?.userId ?? 0,
-      createDate: DateTime.now().millisecondsSinceEpoch,
-    );
-    log(reviewModel.toJson().toString());
-    Response<dynamic> response;
-    if (widget.initReview == null) {
-      response = await APIService.instance.request(
-        '/api/reviews',
-        DioMethod.post,
-        formData: reviewModel.toJson(),
-      );
-    } else {
-      response = await APIService.instance.request(
-        '/api/reviews/${reviewModel.id}',
-        DioMethod.put,
-        formData: reviewModel.toJson(),
-      );
-    }
-    log(response.statusCode.toString());
-    if (response.statusCode == 200) {
-      if (widget.initReview == null) {
-        showSnackBar(context, "Thêm đánh giá thành công", false);
-      } else {
-        showSnackBar(context, "Sửa đánh giá thành công", false);
+    try {
+      for (var img in _imageFiles) {
+        final up = await APIService.instance.uploadImage(img);
+        if (up.statusCode != 200 && up.statusCode != 201) {
+          if (!mounted) return;
+          setState(() {
+            isLoading = false;
+            _bannerMessage =
+                'Tải ảnh lên thất bại (${up.statusCode}). Thử lại sau.';
+          });
+          return;
+        }
+        final data = up.data;
+        if (data is Map && data['image'] != null) {
+          _imagePath.add(data['image'].toString());
+        }
       }
+
+      final reviewModel = ReviewModel(
+        id: widget.initReview?.id,
+        imageUrls: List<String>.from(_imagePath),
+        rate: _rating,
+        resId: widget.resId,
+        review: _reviewController.text,
+        userName: GlobalData.instance.userData?.name ?? "Giấu tên",
+        userId: GlobalData.instance.userData?.userId ?? 0,
+        createDate: DateTime.now().millisecondsSinceEpoch,
+      );
+
+      log(widget.initReview == null
+          ? reviewModel.toCreateJson().toString()
+          : reviewModel.toUpdateJson().toString());
+
+      final Response<dynamic> response = widget.initReview == null
+          ? await APIService.instance.request(
+              '/api/reviews',
+              DioMethod.post,
+              formData: reviewModel.toCreateJson(),
+            )
+          : await APIService.instance.request(
+              '/api/reviews/${reviewModel.id}',
+              DioMethod.put,
+              formData: reviewModel.toUpdateJson(),
+            );
+
+      log(response.statusCode.toString());
+      if (!mounted) return;
+
+      if (response.statusCode == 200) {
+        showSnackBar(
+          context,
+          widget.initReview == null
+              ? "Thêm đánh giá thành công"
+              : "Sửa đánh giá thành công",
+          false,
+        );
+        widget.onSubmitedReview();
+        Navigator.of(context).pop();
+        return;
+      }
+
+      final serverMsg = _readApiMessage(response.data);
       setState(() {
-        isLoading = false;
+        _bannerMessage =
+            serverMsg ?? 'Không gửi được (${response.statusCode}).';
       });
-      widget.onSubmitedReview();
-      Navigator.of(context).pop();
-      return;
+    } on DioException catch (e, st) {
+      log('submitReview DioException: $e', stackTrace: st);
+      if (!mounted) return;
+      var msg = _readApiMessage(e.response?.data) ??
+          (e.message != null && e.message!.isNotEmpty
+              ? e.message!
+              : 'Gửi đánh giá thất bại');
+      setState(() {
+        _bannerMessage = msg;
+      });
+
+    } catch (e, st) {
+      log('submitReview: $e', stackTrace: st);
+      if (!mounted) return;
+      setState(() {
+        _bannerMessage = e.toString();
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
-    setState(() {
-      isLoading = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: isLoading
-          ? Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.green[100],
-              ),
-              child: const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 20),
-                    Text("Uploading review"),
-                  ],
-                ),
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+    final maxH = MediaQuery.sizeOf(context).height * 0.88;
+    final maxW = MediaQuery.sizeOf(context).width - 32;
+
+    Widget scrollableForm() {
+      return SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+                  if (_bannerMessage != null &&
+                      _bannerMessage!.trim().isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Material(
+                        color: Colors.deepOrange.shade50,
+                        borderRadius: BorderRadius.circular(10),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.warning_amber_rounded,
+                                color: Colors.deepOrange.shade800,
+                                size: 26,
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  _bannerMessage!,
+                                  style: TextStyle(
+                                    color: Colors.grey.shade900,
+                                    fontSize: 14,
+                                    height: 1.35,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() => _bannerMessage = null);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 4),
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 20,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   Text(
                     widget.restaurantName ?? "Edit",
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -186,6 +266,11 @@ class _ReviewDialogState extends State<ReviewDialog> {
                     controller: _reviewController,
                     maxLength: 200,
                     maxLines: 4,
+                    onChanged: (_) {
+                      if (_bannerMessage != null) {
+                        setState(() => _bannerMessage = null);
+                      }
+                    },
                     decoration: const InputDecoration(
                       hintText: "Viết đánh giá của bạn...",
                       border: OutlineInputBorder(
@@ -256,8 +341,8 @@ class _ReviewDialogState extends State<ReviewDialog> {
                                                   fit: BoxFit.cover,
                                                 )
                                               : CachedNetworkImage(
-                                                  imageUrl:
-                                                      '${APIService.instance.baseUrl}/${_imagePath[index]}',
+                                                  imageUrl: resolveMediaUrl(
+                                                      _imagePath[index]),
                                                   width: 80,
                                                   height: 80,
                                                   fit: BoxFit.cover,
@@ -327,9 +412,39 @@ class _ReviewDialogState extends State<ReviewDialog> {
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Dialog(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxW, maxHeight: maxH),
+        child: isLoading
+            ? Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.green[100],
+                ),
+                child: const Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(height: 20),
+                      Text("Đang tải đánh giá…"),
+                    ],
+                  ),
+                ),
+              )
+            : scrollableForm(),
+      ),
     );
   }
 }

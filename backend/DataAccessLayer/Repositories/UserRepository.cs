@@ -39,6 +39,17 @@ public class UserRepository
             .Include(u => u.Restaurants)
             .ToListAsync();
     }
+
+    /// <summary>Chỉ địa chỉ — dùng cho màn admin, nhẹ hơn và an toàn khi map sang DTO (không trả password).</summary>
+    public async Task<IEnumerable<User>> GetAllUsersForAdminListingAsync()
+    {
+        return await _dbContext.Users
+            .AsNoTracking()
+            .Include(u => u.Address)
+            .OrderBy(u => u.Name)
+            .ThenBy(u => u.Email)
+            .ToListAsync();
+    }
     
     public async Task<User> CreateAsync(User user)
     {

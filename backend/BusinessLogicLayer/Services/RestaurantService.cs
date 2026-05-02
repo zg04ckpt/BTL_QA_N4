@@ -53,7 +53,7 @@ public class RestaurantService : IRestaurantService
     }
     public async Task<IEnumerable<RestaurantDto>> GetRestaurantsByUserAsync(int userId)
     {
-        var restaurants = await _restaurantRepository.GetRestaurantsByCategoryAsync(userId);
+        var restaurants = await _restaurantRepository.GetRestaurantsByUserAsync(userId);
         return restaurants.Select(r => new RestaurantDto(r));
     }
 

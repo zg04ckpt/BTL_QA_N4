@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:screenshot/screenshot.dart';
@@ -60,9 +60,7 @@ class PrettyQrAnimatedViewState extends State<PrettyQrAnimatedView> {
       ByteData? byteData =
           await (image.toByteData(format: ui.ImageByteFormat.png));
       if (byteData != null) {
-        final result =
-            await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-        print(result);
+        await Gal.putImageBytes(byteData.buffer.asUint8List());
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

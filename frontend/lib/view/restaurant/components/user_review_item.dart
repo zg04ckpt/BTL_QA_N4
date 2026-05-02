@@ -6,6 +6,7 @@ import 'package:cp_restaurants/common_widget/dialog/app_dialog.dart';
 import 'package:cp_restaurants/data/models/review_model.dart';
 import 'package:cp_restaurants/global/global_data.dart';
 import 'package:cp_restaurants/network/api_util.dart';
+import 'package:cp_restaurants/network/url_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/color_extension.dart';
@@ -232,12 +233,12 @@ class UserReviewItem extends StatelessWidget {
                   itemBuilder: (context, idx) {
                     return InkWell(
                       onTap: () => AppDialog.showPreviewImage(context,
-                          '${APIService.instance.baseUrl}/${reviewModel.imageUrls[idx]}'),
+                          resolveMediaUrl(reviewModel.imageUrls[idx])),
                       child: Container(
                         margin: const EdgeInsets.only(right: 12),
                         child: CachedNetworkImage(
                           imageUrl:
-                              '${APIService.instance.baseUrl}/${reviewModel.imageUrls[idx]}',
+                              resolveMediaUrl(reviewModel.imageUrls[idx]),
                           errorListener: (value) {
                             log(value.toString());
                           },
