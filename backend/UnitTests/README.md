@@ -12,7 +12,6 @@ dotnet --version
 ```
 
 Nếu không phải 8.x, hãy cài .NET 8 SDK trước khi chạy test.
-
 ## 2) Restore packages
 
 Chạy ở thư mục gốc repo:
