@@ -23,7 +23,7 @@ public class ReportRepository
             .ToListAsync();
     }
 
-    public async Task<Report> AddReportAsync(Report report)
+    public virtual async Task<Report> AddReportAsync(Report report)
     {
         await _context.Reports.AddAsync(report);
         await _context.SaveChangesAsync();
@@ -35,7 +35,7 @@ public class ReportRepository
         return await _context.Reports.FindAsync(id);
     }
 
-    public async Task<Report?> UpdateReportStatusAsync(int id, int status)
+    public virtual async Task<Report?> UpdateReportStatusAsync(int id, int status)
     {
         var report = await _context.Reports.FindAsync(id);
         if (report == null) return null;

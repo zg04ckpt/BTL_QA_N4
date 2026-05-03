@@ -14,7 +14,7 @@ public class RestaurantRepository
         _context = context;
     }
 
-    public async Task<Restaurant?> AddRestaurantAsync(Restaurant restaurant)
+    public virtual async Task<Restaurant?> AddRestaurantAsync(Restaurant restaurant)
     {
         await _context.Restaurants.AddAsync(restaurant);
         await _context.SaveChangesAsync();
@@ -63,13 +63,13 @@ public class RestaurantRepository
             .FirstOrDefaultAsync(r => r.Id == id);
     }
 
-    public async Task UpdateRestaurantAsync(Restaurant restaurant)
+    public virtual async Task UpdateRestaurantAsync(Restaurant restaurant)
     {
         _context.Restaurants.Update(restaurant);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteRestaurantAsync(int id)
+    public virtual async Task DeleteRestaurantAsync(int id)
     {
         var restaurant = await _context.Restaurants.FindAsync(id);
         if (restaurant != null)

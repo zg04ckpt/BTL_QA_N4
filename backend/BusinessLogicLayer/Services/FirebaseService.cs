@@ -22,8 +22,11 @@ public class FirebaseService
         _messaging = FirebaseMessaging.DefaultInstance;
     }
 
+    // Constructor chỉ dùng cho unit test – bỏ qua khởi tạo Firebase
+    protected FirebaseService(bool skipInit) { }
+
     // Send notification to a topic
-    public async Task<string> SendNotificationToTopicAsync(string topic, string title, string body)
+    public virtual async Task<string> SendNotificationToTopicAsync(string topic, string title, string body)
     {
         var message = new Message
         {
