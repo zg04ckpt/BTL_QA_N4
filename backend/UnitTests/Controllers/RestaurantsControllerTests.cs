@@ -65,24 +65,33 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_ValidDto_Returns201CreatedAtAction()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập dữ liệu nhà hàng được trả về sau khi tạo thành công
         var fakeRestaurant = new Restaurant
         {
             Id = 700, Name = "Quán Lẩu Hương Sơn",
             Status = 0, Email = "lau@test.vn", PhoneNumber = "0988123456",
             CateId = 1, UserId = 100, AddressId = 1
         };
+        // Cấu hình mock service: trả về fakeRestaurant khi gọi AddRestaurantAsync
         mock.Setup(s => s.AddRestaurantAsync(It.IsAny<CreateRestaurantDto>()))
             .ReturnsAsync(fakeRestaurant);
 
+        // === THỰC THI (Act) ===
+        // Gọi API thêm nhà hàng với dữ liệu hợp lệ
         var actionResult = await controller.AddRestaurant(ValidCreateDto());
 
+        // === KIỂM TRA (Assert) ===
+        // Xác nhận kết quả trả về là 201 CreatedAtAction
         var createdResult = Assert.IsType<CreatedAtActionResult>(actionResult);
         Assert.Equal(201, createdResult.StatusCode);
+        // Xác nhận route chuyển hướng sau khi tạo thành công là GetRestaurantById
         Assert.Equal("GetRestaurantById", createdResult.ActionName);
         Assert.Equal(700, createdResult.RouteValues!["id"]);
 
+        // Xác nhận dữ liệu nhà hàng trả về trùng khớp với fakeRestaurant
         var restaurant = Assert.IsType<Restaurant>(createdResult.Value);
         Assert.Equal(700, restaurant.Id);
         Assert.Equal("Quán Lẩu Hương Sơn", restaurant.Name);
@@ -92,11 +101,13 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_InvalidModelState_Returns400BadRequest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
-        // Thêm lỗi vào ModelState thủ công (thay thế cho DataAnnotation validation)
+        // Thêm lỗi vào ModelState thủ công để mô phỏng dữ liệu gửi lên không hợp lệ (Name bị thiếu)
         controller.ModelState.AddModelError("Name", "Required");
 
+        // Dữ liệu đầu vào cố tình thiếu Name
         var dto = new CreateRestaurantDto
         {
             Name = null!, Email = "a@b.vn", PhoneNumber = "0900000000",
@@ -105,16 +116,19 @@ public class RestaurantsControllerTests
             RestaurantPhotos = new List<string>()
         };
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.AddRestaurant(dto);
 
+        // === KIỂM TRA (Assert) ===
+        // Xác nhận controller trả về 400 Bad Request do validation lỗi
         var badResult = Assert.IsType<BadRequestObjectResult>(actionResult);
         Assert.Equal(400, badResult.StatusCode);
 
-        // result.Value là SerializableError chứa key "Name"
+        // result.Value là SerializableError chứa danh sách các lỗi validation, xác nhận có lỗi "Name"
         var errors = Assert.IsType<SerializableError>(badResult.Value);
         Assert.True(errors.ContainsKey("Name"));
 
-        // Service không được gọi khi ModelState invalid
+        // Xác nhận service không hề được gọi (vì bị chặn ngay ở tầng controller)
         mock.Verify(s => s.AddRestaurantAsync(It.IsAny<CreateRestaurantDto>()), Times.Never);
     }
 
@@ -122,13 +136,18 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_ServiceReturnsNull_Returns500()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Cấu hình mock: service thất bại ngầm và trả về null
         mock.Setup(s => s.AddRestaurantAsync(It.IsAny<CreateRestaurantDto>()))
             .ReturnsAsync((Restaurant?)null);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.AddRestaurant(ValidCreateDto());
 
+        // === KIỂM TRA (Assert) ===
+        // Xác nhận controller xử lý lỗi và trả về HTTP 500
         var statusResult = Assert.IsType<ObjectResult>(actionResult);
         Assert.Equal(500, statusResult.StatusCode);
         Assert.Equal("Error creating the restaurant", statusResult.Value);
@@ -138,11 +157,15 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_ServiceThrows_ExceptionPropagates()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập tình huống service bị văng exception
         mock.Setup(s => s.AddRestaurantAsync(It.IsAny<CreateRestaurantDto>()))
             .ThrowsAsync(new Exception("service failure"));
 
+        // === THỰC THI & KIỂM TRA (Act & Assert) ===
+        // Đảm bảo exception được lan truyền lên trên (không bị nuốt)
         var ex = await Assert.ThrowsAsync<Exception>(
             () => controller.AddRestaurant(ValidCreateDto()));
 
@@ -153,8 +176,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_WithPhotos_ResponseContainsPhotosAndAddressId()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Tạo dữ liệu giả lập chứa danh sách ảnh
         var fakeRestaurant = new Restaurant
         {
             Id = 701, Name = "Quán Nhiều Ảnh",
@@ -176,11 +201,16 @@ public class RestaurantsControllerTests
             RestaurantPhotos = new List<string> { "a.jpg", "b.jpg" }
         };
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.AddRestaurant(dto);
 
+        // === KIỂM TRA (Assert) ===
         var createdResult = Assert.IsType<CreatedAtActionResult>(actionResult);
         var restaurant = Assert.IsType<Restaurant>(createdResult.Value);
+        
+        // Đảm bảo số lượng ảnh trả về khớp với thiết lập
         Assert.Equal(2, restaurant.RestaurantPhotos!.Count);
+        // Đảm bảo AddressId được lưu trữ thành công
         Assert.Equal(5, restaurant.AddressId);
     }
 
@@ -188,16 +218,20 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task AddRestaurant_VietnameseName_PreservedInResponse()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         const string name = "Quán Bún Đậu Mắm Tôm – ngõ Trần Thái Tông";
         mock.Setup(s => s.AddRestaurantAsync(It.IsAny<CreateRestaurantDto>()))
             .ReturnsAsync(new Restaurant { Id = 702, Name = name });
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.AddRestaurant(ValidCreateDto(name));
 
+        // === KIỂM TRA (Assert) ===
         var createdResult = Assert.IsType<CreatedAtActionResult>(actionResult);
         var restaurant = Assert.IsType<Restaurant>(createdResult.Value);
+        // Xác nhận dữ liệu không bị lỗi phông chữ khi trả về
         Assert.Equal(name, restaurant.Name);
     }
 
@@ -209,8 +243,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByCategory_HasRestaurants_Returns200WithList()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Tạo danh sách 2 nhà hàng giả lập thuộc cùng 1 danh mục
         var fakeList = new List<RestaurantDto>
         {
             new RestaurantDto(new Restaurant { Id = 1, Name = "Phở Thìn", Email = "pho@test.vn", PhoneNumber = "0900000001", AverageScore = 4.5f, TotalReviews = 100 }),
@@ -219,12 +255,18 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsByCategoryAsync(1))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByCategory(1);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         Assert.Equal(200, okResult.StatusCode);
+        
+        // Ép kiểu danh sách và kiểm tra số lượng phần tử trả về
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Equal(2, list.Count());
+        
+        // Đảm bảo tên các nhà hàng nằm đúng trong tập hợp mong muốn
         var names = list.Select(r => r.Name).ToHashSet();
         Assert.Contains("Phở Thìn", names);
         Assert.Contains("Bún Chả Hàng Mành", names);
@@ -234,15 +276,20 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByCategory_EmptyCategory_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập category tồn tại nhưng danh sách nhà hàng rỗng
         mock.Setup(s => s.GetRestaurantsByCategoryAsync(3))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByCategory(3);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
+        // Xác nhận trả về danh sách rỗng, không phải null hay lỗi
         Assert.False(list.Any());
     }
 
@@ -253,14 +300,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByCategory_NonIntRouteRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: GET /api/restaurants/category/abc → 400 (route binding)
-        // mock.Verify(Times.Never)
         var (controller, mock) = BuildController();
         mock.Setup(s => s.GetRestaurantsByCategoryAsync(It.IsAny<int>()))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByCategory(999);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -268,18 +317,22 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByCategory_NegativeOrZeroId_Returns200AndCallsService()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Cấu hình mock: categoryId âm hoặc 0 trả về mảng rỗng
         mock.Setup(s => s.GetRestaurantsByCategoryAsync(-1)).ReturnsAsync(Enumerable.Empty<RestaurantDto>());
         mock.Setup(s => s.GetRestaurantsByCategoryAsync(0)).ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var r1 = await controller.GetRestaurantsByCategory(-1);
-        Assert.IsType<OkObjectResult>(r1);
-
         var r2 = await controller.GetRestaurantsByCategory(0);
+
+        // === KIỂM TRA (Assert) ===
+        Assert.IsType<OkObjectResult>(r1);
         Assert.IsType<OkObjectResult>(r2);
 
-        // Verify: mỗi giá trị được gọi đúng 1 lần
+        // Verify: đảm bảo mỗi giá trị được gọi đúng 1 lần xuống tầng service
         mock.Verify(s => s.GetRestaurantsByCategoryAsync(-1), Times.Once);
         mock.Verify(s => s.GetRestaurantsByCategoryAsync(0), Times.Once);
     }
@@ -292,8 +345,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByUser_HasRestaurants_Returns200WithList()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Tạo danh sách 3 nhà hàng giả lập thuộc về cùng 1 user
         var fakeList = new List<RestaurantDto>
         {
             new RestaurantDto(new Restaurant { Id = 1, Name = "R1" }),
@@ -302,10 +357,13 @@ public class RestaurantsControllerTests
         };
         mock.Setup(s => s.GetRestaurantsByUserAsync(100)).ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByUser(100);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
+        // Đảm bảo trả về đúng 3 nhà hàng
         Assert.Equal(3, list.Count());
     }
 
@@ -313,13 +371,17 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByUser_UserHasNoRestaurants_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập trả về mảng rỗng cho user ID = 102
         mock.Setup(s => s.GetRestaurantsByUserAsync(102))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByUser(102);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.False(list.Any());
@@ -329,13 +391,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByUser_NonexistentUser_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantsByUserAsync(9999))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByUser(9999);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.False(list.Any());
@@ -348,13 +413,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByUser_NonIntRouteRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: GET /api/restaurants/user/abc → 400
         var (controller, mock) = BuildController();
         mock.Setup(s => s.GetRestaurantsByUserAsync(It.IsAny<int>()))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantsByUser(999);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -366,8 +434,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task SearchRestaurants_HasMatches_Returns200WithList()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Tạo danh sách kết quả chứa từ khóa "Phở"
         var fakeList = new List<RestaurantDto>
         {
             new RestaurantDto(new Restaurant { Id = 1, Name = "Phở Thìn" }),
@@ -375,11 +445,16 @@ public class RestaurantsControllerTests
         };
         mock.Setup(s => s.SearchRestaurantsAsync("Phở")).ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.SearchRestaurants("Phở");
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
+        
+        // Kiểm tra trả về đủ 2 kết quả
         Assert.Equal(2, list.Count());
+        // Xác minh tất cả tên nhà hàng trả về đều chứa từ khoá "Phở"
         Assert.All(list, r => Assert.Contains("Phở", r.Name!));
     }
 
@@ -387,13 +462,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task SearchRestaurants_NoMatch_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.SearchRestaurantsAsync("KhôngCó"))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.SearchRestaurants("KhôngCó");
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.False(list.Any());
@@ -403,16 +481,20 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task SearchRestaurants_NoSearchTerm_CallsServiceWithNull()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập service hỗ trợ xử lý giá trị null an toàn
         mock.Setup(s => s.SearchRestaurantsAsync(null!))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.SearchRestaurants(null!);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
 
-        // Verify: service được gọi đúng 1 lần với null
+        // Verify: service được gọi đúng 1 lần với chuỗi null
         mock.Verify(s => s.SearchRestaurantsAsync(null!), Times.Once);
     }
 
@@ -420,6 +502,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task SearchRestaurants_VietnameseTerm_PassedToServiceExactly()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         const string searchTerm = "Phở Gánh";
@@ -429,13 +512,15 @@ public class RestaurantsControllerTests
                 new RestaurantDto(new Restaurant { Id = 1, Name = "Phở Gánh" })
             });
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.SearchRestaurants(searchTerm);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Single(list);
 
-        // Verify: service nhận đúng chuỗi tiếng Việt
+        // Verify: đảm bảo controller truyền đúng chuỗi tiếng Việt nguyên bản (không lỗi font)
         mock.Verify(s => s.SearchRestaurantsAsync(searchTerm), Times.Once);
     }
 
@@ -447,8 +532,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantById_ExistingRestaurant_Returns200WithDetail()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Chuẩn bị dữ liệu chi tiết của một nhà hàng giả lập
         var fakeDetail = new RestaurantDetailDto
         {
             Id = 500, Name = "Nhà hàng Sen Tây Hồ",
@@ -458,10 +545,14 @@ public class RestaurantsControllerTests
         };
         mock.Setup(s => s.GetRestaurantByIdAsync(500)).ReturnsAsync(fakeDetail);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantById(500);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var detail = Assert.IsType<RestaurantDetailDto>(okResult.Value);
+        
+        // Xác minh toàn bộ thông tin chi tiết trả về trùng khớp với dữ liệu gốc
         Assert.Equal(500, detail.Id);
         Assert.Equal("Nhà hàng Sen Tây Hồ", detail.Name);
         Assert.Equal("Món Việt", detail.Category);
@@ -472,12 +563,15 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantById_NonexistentRestaurant_Returns404()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantByIdAsync(999)).ReturnsAsync((RestaurantDetailDto?)null);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantById(999);
 
+        // === KIỂM TRA (Assert) ===
         var notFoundResult = Assert.IsType<NotFoundObjectResult>(actionResult);
         Assert.Equal(404, notFoundResult.StatusCode);
         Assert.Equal("Restaurant not found", notFoundResult.Value);
@@ -490,13 +584,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantById_NonIntRouteRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: GET /api/restaurants/abc → 400 hoặc 404 tùy route config
         var (controller, mock) = BuildController();
         mock.Setup(s => s.GetRestaurantByIdAsync(It.IsAny<int>()))
             .ReturnsAsync((RestaurantDetailDto?)null);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurantById(-999);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<NotFoundObjectResult>(actionResult);
     }
 
@@ -504,11 +601,14 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantById_NegativeOrZeroId_Returns404()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Cấu hình ID không hợp lệ trả về null
         mock.Setup(s => s.GetRestaurantByIdAsync(-1)).ReturnsAsync((RestaurantDetailDto?)null);
         mock.Setup(s => s.GetRestaurantByIdAsync(0)).ReturnsAsync((RestaurantDetailDto?)null);
 
+        // === THỰC THI & KIỂM TRA (Act & Assert) ===
         var r1 = await controller.GetRestaurantById(-1);
         var nf1 = Assert.IsType<NotFoundObjectResult>(r1);
         Assert.Equal("Restaurant not found", nf1.Value);
@@ -526,17 +626,21 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task UpdateRestaurant_Success_Returns200WithMessage()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập service cập nhật thành công (không ném lỗi) khi nhận id = 600
         mock.Setup(s => s.UpdateRestaurantAsync(600, It.IsAny<UpdateRestaurantDto>()))
             .Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.UpdateRestaurant(600, ValidUpdateDto());
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         Assert.Equal("Restaurant updated successfully", okResult.Value);
 
-        // Verify: service gọi đúng 1 lần với id = 600
+        // Verify: Đảm bảo service thực sự được gọi xuống đúng 1 lần với id = 600
         mock.Verify(s => s.UpdateRestaurantAsync(600, It.IsAny<UpdateRestaurantDto>()), Times.Once);
     }
 
@@ -544,11 +648,15 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task UpdateRestaurant_ServiceThrowsKeyNotFoundException_Propagates()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Cấu hình service ném KeyNotFoundException khi không tìm thấy nhà hàng có ID 9999
         mock.Setup(s => s.UpdateRestaurantAsync(9999, It.IsAny<UpdateRestaurantDto>()))
             .ThrowsAsync(new KeyNotFoundException("Restaurant not found"));
 
+        // === THỰC THI & KIỂM TRA (Act & Assert) ===
+        // Đảm bảo exception không bị chặn lại mà được bắn trực tiếp ra ngoài để Global Exception Handler bắt
         var ex = await Assert.ThrowsAsync<KeyNotFoundException>(
             () => controller.UpdateRestaurant(9999, ValidUpdateDto()));
 
@@ -562,14 +670,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task UpdateRestaurant_InvalidBodyTypeRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: PUT /api/restaurants/update/600 với body {"Status":"abc"} → 400
-        // mock.Verify(s => s.UpdateRestaurantAsync(...), Times.Never)
         var (controller, mock) = BuildController();
         mock.Setup(s => s.UpdateRestaurantAsync(600, It.IsAny<UpdateRestaurantDto>()))
             .Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.UpdateRestaurant(600, ValidUpdateDto());
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -577,8 +687,10 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task UpdateRestaurant_WithNewPhotos_Returns200AndDtoPassedCorrectly()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Cấu trúc để "bắt" (capture) DTO được truyền vào service
         UpdateRestaurantDto? capturedDto = null;
         mock.Setup(s => s.UpdateRestaurantAsync(601, It.IsAny<UpdateRestaurantDto>()))
             .Callback<int, UpdateRestaurantDto>((id, dto) => capturedDto = dto)
@@ -589,15 +701,17 @@ public class RestaurantsControllerTests
             Name = "R", Email = "r@x.vn", PhoneNumber = "0900000000",
             Status = 1, AvtImage = "a.jpg", CateId = 1,
             Address = DefaultAddressDto(),
-            RestaurantPhotos = new List<string> { "new1.jpg", "new2.jpg" }
+            RestaurantPhotos = new List<string> { "new1.jpg", "new2.jpg" } // Cập nhật 2 ảnh mới
         };
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.UpdateRestaurant(601, updateDto);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         Assert.Equal("Restaurant updated successfully", okResult.Value);
 
-        // DTO truyền xuống service có 2 ảnh
+        // Xác minh DTO truyền xuống service bảo toàn đúng 2 ảnh mới
         Assert.NotNull(capturedDto);
         Assert.Equal(2, capturedDto!.RestaurantPhotos.Count);
     }
@@ -609,14 +723,17 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task UpdateRestaurant_NonIntRouteRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: PUT /api/restaurants/update/abc → 400
         var (controller, mock) = BuildController();
         mock.Setup(s => s.UpdateRestaurantAsync(It.IsAny<int>(), It.IsAny<UpdateRestaurantDto>()))
             .Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
+        // 0 là id hợp lệ (không bị route-binding fail ở unit test)
         var actionResult = await controller.UpdateRestaurant(0, ValidUpdateDto());
 
-        // 0 là id hợp lệ (không bị route-binding fail ở unit test)
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -628,15 +745,20 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task DeleteRestaurant_Success_Returns200WithMessage()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Giả lập xoá thành công
         mock.Setup(s => s.DeleteRestaurantAsync(700)).Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.DeleteRestaurant(700);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         Assert.Equal("Restaurant deleted successfully", okResult.Value);
 
+        // Xác minh service thực hiện xoá đúng ID
         mock.Verify(s => s.DeleteRestaurantAsync(700), Times.Once);
     }
 
@@ -644,12 +766,16 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task DeleteRestaurant_NonexistentId_Returns200()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
+        // Theo nghiệp vụ, xoá ID không tồn tại hệ thống vẫn xem như hoàn tất thao tác
         mock.Setup(s => s.DeleteRestaurantAsync(9999)).Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.DeleteRestaurant(9999);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         Assert.Equal("Restaurant deleted successfully", okResult.Value);
     }
@@ -661,12 +787,15 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task DeleteRestaurant_NonIntRouteRequiresIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: DELETE /api/restaurants/delete/abc → 400
         var (controller, mock) = BuildController();
         mock.Setup(s => s.DeleteRestaurantAsync(It.IsAny<int>())).Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.DeleteRestaurant(0);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -674,19 +803,24 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task DeleteRestaurant_NegativeOrZeroId_Returns200AndCallsService()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.DeleteRestaurantAsync(-1)).Returns(Task.CompletedTask);
         mock.Setup(s => s.DeleteRestaurantAsync(0)).Returns(Task.CompletedTask);
 
+        // === THỰC THI (Act) ===
         var r1 = await controller.DeleteRestaurant(-1);
+        var r2 = await controller.DeleteRestaurant(0);
+
+        // === KIỂM TRA (Assert) ===
         var ok1 = Assert.IsType<OkObjectResult>(r1);
         Assert.Equal("Restaurant deleted successfully", ok1.Value);
 
-        var r2 = await controller.DeleteRestaurant(0);
         var ok2 = Assert.IsType<OkObjectResult>(r2);
         Assert.Equal("Restaurant deleted successfully", ok2.Value);
 
+        // Xác minh service thực sự được gọi
         mock.Verify(s => s.DeleteRestaurantAsync(-1), Times.Once);
         mock.Verify(s => s.DeleteRestaurantAsync(0), Times.Once);
     }
@@ -699,6 +833,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByAddress_AllFilters_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = new List<RestaurantDto>
@@ -706,16 +841,19 @@ public class RestaurantsControllerTests
             new RestaurantDto(new Restaurant { Id = 1, Name = "R1" }),
             new RestaurantDto(new Restaurant { Id = 2, Name = "R2" })
         };
+        // Cấu hình mock: nhận đúng 4 chuỗi tiêu chí địa chỉ
         mock.Setup(s => s.GetRestaurantsByAddressAsync("Hà Nội", "Cầu Giấy", "Dịch Vọng", "Duy Tân"))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants("Hà Nội", "Cầu Giấy", "Dịch Vọng", "Duy Tân");
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Equal(2, list.Count());
 
-        // Verify tham số
+        // Verify: xác nhận service được gọi chính xác với các tham số đầu vào
         mock.Verify(s => s.GetRestaurantsByAddressAsync("Hà Nội", "Cầu Giấy", "Dịch Vọng", "Duy Tân"), Times.Once);
     }
 
@@ -723,16 +861,21 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByAddress_NoCriteria_Returns200WithAllRestaurants()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = Enumerable.Range(1, 5)
             .Select(i => new RestaurantDto(new Restaurant { Id = i }))
             .ToList();
+        
+        // Khi tất cả các tham số đều null, service trả về tất cả nhà hàng
         mock.Setup(s => s.GetRestaurantsByAddressAsync(null, null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Equal(5, list.Count());
@@ -742,6 +885,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByAddress_OnlyCity_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = Enumerable.Range(1, 3)
@@ -750,11 +894,15 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsByAddressAsync("Đà Nẵng", null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants("Đà Nẵng", null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Equal(3, list.Count());
+        
+        // Kiểm chứng controller truyền đúng City, còn lại null
         mock.Verify(s => s.GetRestaurantsByAddressAsync("Đà Nẵng", null, null, null), Times.Once);
     }
 
@@ -762,15 +910,19 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByAddress_NoMatch_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantsByAddressAsync("Cần Thơ", null, null, null))
             .ReturnsAsync(Enumerable.Empty<RestaurantDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants("Cần Thơ", null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
+        // Trả về mảng rỗng nếu không tìm thấy
         Assert.False(list.Any());
     }
 
@@ -778,6 +930,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurantsByAddress_VietnameseFilters_PassedToServiceExactly()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantsByAddressAsync("Huế", "Phú Nhuận", null, null))
@@ -786,11 +939,15 @@ public class RestaurantsControllerTests
                 new RestaurantDto(new Restaurant { Id = 1, Name = "Bún Bò Huế Cô Ba" })
             });
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants("Huế", "Phú Nhuận", null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDto>>(okResult.Value);
         Assert.Single(list);
+        
+        // Đảm bảo không bị lỗi encoding khi truyền xuống service
         mock.Verify(s => s.GetRestaurantsByAddressAsync("Huế", "Phú Nhuận", null, null), Times.Once);
     }
 
@@ -802,6 +959,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_NoCriteria_Returns200WithAllRestaurants()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = Enumerable.Range(1, 5)
@@ -810,9 +968,11 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(null, null, null, null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             (int?)null, (int?)null, null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Equal(5, list.Count());
@@ -822,6 +982,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_FilterByCategoryId_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = new List<RestaurantDetailDto>
@@ -832,12 +993,16 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(1, null, null, null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             1, null, null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Equal(2, list.Count());
+        
+        // Xác minh chỉ categoryId được map, còn lại là null
         mock.Verify(s => s.GetRestaurantsAsync(1, null, null, null, null, null), Times.Once);
     }
 
@@ -845,6 +1010,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_FilterByUserId_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = Enumerable.Range(1, 3)
@@ -853,12 +1019,16 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(null, 100, null, null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             null, 100, null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Equal(3, list.Count());
+        
+        // Xác minh tham số userId
         mock.Verify(s => s.GetRestaurantsAsync(null, 100, null, null, null, null), Times.Once);
     }
 
@@ -866,6 +1036,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_FilterBySearchTerm_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = new List<RestaurantDetailDto>
@@ -876,12 +1047,16 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(null, null, "Phở", null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             null, null, "Phở", null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Equal(2, list.Count());
+        
+        // Xác minh tham số SearchTerm
         mock.Verify(s => s.GetRestaurantsAsync(null, null, "Phở", null, null, null), Times.Once);
     }
 
@@ -889,6 +1064,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_MultipleFilters_Returns200AndVerifyCall()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = new List<RestaurantDetailDto>
@@ -902,12 +1078,16 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(1, 100, "Phở", "Hà Nội", null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             1, 100, "Phở", "Hà Nội", null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Single(list);
+        
+        // Xác minh tổng hợp nhiều tham số kết hợp
         mock.Verify(s => s.GetRestaurantsAsync(1, 100, "Phở", "Hà Nội", null, null), Times.Once);
     }
 
@@ -915,14 +1095,17 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_NoResults_Returns200Empty()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantsAsync(null, null, null, "Cần Thơ", null, null))
             .ReturnsAsync(Enumerable.Empty<RestaurantDetailDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             null, null, null, "Cần Thơ", null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.False(list.Any());
@@ -935,16 +1118,19 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_NonIntQueryParamsRequireIntegrationTest()
     {
+        // === CHUẨN BỊ (Arrange) ===
         // Integration test: GET /api/restaurants/GetRestaurants?categoryId=abc → 400
-        // mock.Verify(s => s.GetRestaurantsAsync(...), Times.Never)
+        // Ở cấp độ unit test, ta mô phỏng một lệnh gọi không hợp lệ bằng cách bỏ qua validation
         var (controller, mock) = BuildController();
         mock.Setup(s => s.GetRestaurantsAsync(It.IsAny<int?>(), It.IsAny<int?>(),
                 It.IsAny<string?>(), It.IsAny<string?>(), It.IsAny<string?>(), It.IsAny<string?>()))
             .ReturnsAsync(Enumerable.Empty<RestaurantDetailDto>());
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             (int?)null, (int?)null, null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         Assert.IsType<OkObjectResult>(actionResult);
     }
 
@@ -952,6 +1138,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_SingleRestaurant_ContainsAllDetailFields()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         var fakeList = new List<RestaurantDetailDto>
@@ -967,13 +1154,17 @@ public class RestaurantsControllerTests
         mock.Setup(s => s.GetRestaurantsAsync(null, null, null, null, null, null))
             .ReturnsAsync(fakeList);
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             null, null, null, null, null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value).ToList();
         Assert.Single(list);
+        
         var r = list[0];
+        // Đảm bảo không bị mất data mapping giữa model nội bộ và DTO
         Assert.Equal(800, r.Id);
         Assert.Equal("Quán Hải Phòng", r.Name);
         Assert.Equal("Hải Phòng", r.Address!.City);
@@ -987,6 +1178,7 @@ public class RestaurantsControllerTests
     [Fact]
     public async Task GetRestaurants_VietnameseSearchTermAndCity_PassedToServiceExactly()
     {
+        // === CHUẨN BỊ (Arrange) ===
         var (controller, mock) = BuildController();
 
         mock.Setup(s => s.GetRestaurantsAsync(null, null, "Gánh", "Huế", null, null))
@@ -995,12 +1187,16 @@ public class RestaurantsControllerTests
                 new RestaurantDetailDto { Id = 1, Name = "Phở Gánh" }
             });
 
+        // === THỰC THI (Act) ===
         var actionResult = await controller.GetRestaurants(
             null, null, "Gánh", "Huế", null, null);
 
+        // === KIỂM TRA (Assert) ===
         var okResult = Assert.IsType<OkObjectResult>(actionResult);
         var list = Assert.IsAssignableFrom<IEnumerable<RestaurantDetailDto>>(okResult.Value);
         Assert.Single(list);
+        
+        // Xác minh UTF-8 được bảo toàn
         mock.Verify(s => s.GetRestaurantsAsync(null, null, "Gánh", "Huế", null, null), Times.Once);
     }
 }
