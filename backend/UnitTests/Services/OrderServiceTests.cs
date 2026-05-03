@@ -772,11 +772,16 @@ public class OrderServiceTests
         }
     }
 
-    private sealed class FakeFirebaseService : IFirebaseService
+    /// <summary>Stub Firebase — không gọi SDK; ghi lại topic đã gửi.</summary>
+    private sealed class FakeFirebaseService : FirebaseService
     {
         public List<string> SentTopics { get; } = new();
 
-        public Task<string> SendNotificationToTopicAsync(string topic, string title, string body)
+        public FakeFirebaseService() : base(skipInitialization: true)
+        {
+        }
+
+        public override Task<string> SendNotificationToTopicAsync(string topic, string title, string body)
         {
             SentTopics.Add(topic);
             return Task.FromResult("fake-message-id");

@@ -8,10 +8,6 @@ using Xunit;
 
 namespace UnitTests.Controllers;
 
-/// <summary>
-/// Unit test UserController — mock IUserService (không chỉnh production).
-/// Mapping TC-UC-* theo truong-hop-test-backend-chi-tiet.md.
-/// </summary>
 public class UserControllerTests
 {
     private static UserController CreateController(IUserService svc)

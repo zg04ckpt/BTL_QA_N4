@@ -11,10 +11,6 @@ using Xunit;
 
 namespace UnitTests.Services;
 
-/// <summary>
-/// Không chỉnh mã nguồn production để test pass — chỉ seed SQLite + ML loopback.
-/// AddReview gọi Firebase thực: nếu không có file cấu hình trong WebAPI thì các TC đó Skip.
-/// </summary>
 [CollectionDefinition("Review sequential", DisableParallelization = true)]
 public class ReviewSequentialCollection;
 

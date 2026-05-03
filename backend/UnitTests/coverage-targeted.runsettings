@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <SingleHit>false</SingleHit>
+          <!-- Instrument: toàn assembly BusinessLogicLayer + chỉ namespace WebAPI.Controllers (không Program.cs). -->
+          <Include>[BusinessLogicLayer]*|[WebAPI]WebAPI.Controllers.*</Include>
+          <!-- Không thu thập assembly test; DAL có thể vẫn có trong XML nếu test gọi repo — HTML lọc bằng scripts/coverage-bll-controllers.ps1 (ReportGenerator). -->
+          <Exclude>[UnitTests]*|[xunit.*]*</Exclude>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

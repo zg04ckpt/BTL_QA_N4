@@ -30,10 +30,10 @@ public class TestFirebaseService : FirebaseService
     public Exception? ThrowOnSend { get; set; }
 
     /// <summary>
-    /// Gọi constructor protected FirebaseService(skipInit: true)
+    /// Gọi constructor protected FirebaseService(skipInitialization: true)
     /// để bỏ qua việc đọc file credential và khởi tạo Firebase.
     /// </summary>
-    public TestFirebaseService() : base(skipInit: true) { }
+    public TestFirebaseService() : base(skipInitialization: true) { }
 
     public override Task<string> SendNotificationToTopicAsync(
         string topic, string title, string body)

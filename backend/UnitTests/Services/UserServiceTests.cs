@@ -10,10 +10,6 @@ using Xunit;
 
 namespace UnitTests.Services;
 
-/// <summary>
-/// Unit test UserService — SQLite seed + transaction rollback (mẫu), không chỉnh production.
-/// TC-USV-REG-004 / UU-009 / DU-003 cần mock repository → Skip (không đổi DI trong mã nguồn).
-/// </summary>
 public class UserServiceTests
 {
     private static IConfiguration JwtConfiguration =>

@@ -7,10 +7,7 @@ using Xunit;
 
 namespace UnitTests.Controllers;
 
-/// <summary>
-/// NotificationsController nhận FirebaseService cụ thể — không mock được qua Moq (method không virtual).
-/// Đặt <c>WebAPI/wwwroot/Configs/firebase-adminsdk.json</c> — các TC gọi FCM chạy khi có file; thiếu file thì Skip (không Fail).
-/// </summary>
+
 public class NotificationsControllerTests
 {
     private static string WebApiRoot =>
