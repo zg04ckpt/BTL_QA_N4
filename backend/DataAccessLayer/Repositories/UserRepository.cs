@@ -70,10 +70,20 @@ public class UserRepository
     }
     public async Task<User> UpdateAsync(User user)
     {
+        // UserService chỉnh entity đã track (GetUserById + mutate). SetValues(user) lại ghi AddressId = null từ user.AddressId.
+        if (_dbContext.Entry(user).State != EntityState.Detached)
+        {
+            await _dbContext.SaveChangesAsync();
+            return user;
+        }
+
         var existingUser = await _dbContext.Users.FindAsync(user.Id);
-        if (existingUser == null) return null; 
+        if (existingUser == null) return null;
 
         _dbContext.Entry(existingUser).CurrentValues.SetValues(user);
+        if (user.Address != null)
+            existingUser.Address = user.Address;
+
         await _dbContext.SaveChangesAsync();
         return existingUser;
     }

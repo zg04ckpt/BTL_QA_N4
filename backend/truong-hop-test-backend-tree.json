@@ -1,0 +1,169 @@
+{
+  "_ghiChu": "Tham chiếu report.pdf: xác thực JWT; quét QR xác nhận đã dùng dịch vụ; hạn 30 ngày; quy tắc nội dung đánh giá; MLServer kiểm duyệt; thông báo đẩy Firebase. Các trường hợp xây theo hộp đen: mô tả đầu vào và kết quả quan sát được, không suy diễn từ nhánh mã nguồn.",
+  "UserService.cs": {
+    "RegisterUserAsync": [
+      "+) User gửi đăng ký với Email và họ tên hợp lệ, Email chưa từng có trên hệ thống: hệ thống chấp nhận, tạo hồ sơ User hàng và xác nhận thành công.",
+      "+) Người đăng ký chọn vai trò quản trị trong request, Email hợp lệ và chưa trùng: hệ thống ghi nhận đúng vai trò quản trị và xác nhận thành công.",
+      "+) User gửi đăng ký nhưng Email đã gắn với tài khoản khác: hệ thống từ chối và báo trùng Email.",
+      "+) User gửi đăng ký hợp lệ nhưng sau thao tác lưu hồ sơ không được xác nhận (ví dụ lỗi hạ tầng): hệ thống báo không tạo được tài khoản."
+    ],
+    "LoginAsync": [
+      "+) Người dùng nhập đúng Email và mật khẩu, tài khoản đang hoạt động: hệ thống cấp mã xác thực an toàn theo báo cáo và thông báo đăng nhập thành công.",
+      "+) Email không khớp hồ sơ nào hoặc mật khẩu sai: không cấp mã xác thực; thông báo sai thông tin đăng nhập.",
+      "+) Email đúng nhưng tài khoản đang bị khóa: không cấp mã xác thực; thông báo cần liên hệ quản trị."
+    ],
+    "GetAllUsersAsync": [
+      "+) Hệ thống đang có nhiều người dùng: trả về danh sách đầy đủ cho các luồng nội bộ cần dữ liệu thô.",
+      "+) Chưa có người dùng nào: trả về danh sách rỗng."
+    ],
+    "GetAllUserSummariesForAdminAsync": [
+      "+) Quản trị xem danh sách khi mỗi hồ sơ có đủ thông tin và có địa chỉ: mỗi dòng hiển thị Email, họ tên, số điện thoại, vai trò, trạng thái, ảnh đại diện và địa chỉ đầy đủ.",
+      "+) Trong danh sách có người không có địa chỉ: phần địa chỉ trên bản tóm tắt để trống, không coi là lỗi hệ thống."
+    ],
+    "GetUserByIdAsync": [
+      "+) Tra cứu người dùng đã tồn tại và có địa chỉ: trả về thông tin chi tiết kèm địa chỉ.",
+      "+) Tra cứu người dùng đã tồn tại nhưng chưa có địa chỉ: trả về thông tin tài khoản; phần địa chỉ để trống.",
+      "+) Tra cứu mã người dùng không khớp hồ sơ nào: không trả về dữ liệu người dùng."
+    ],
+    "UpdateUserAsync": [
+      "+) Quản trị cập nhật trạng thái tài khoản cho hồ sơ đang tồn tại: trạng thái được đổi và xác nhận thành công.",
+      "+) Chỉ gửi họ tên mới: chỉ họ tên thay đổi; các thông tin khác giữ nguyên.",
+      "+) Chỉ gửi số điện thoại mới: chỉ số điện thoại thay đổi.",
+      "+) Chỉ gửi ảnh đại diện mới: chỉ ảnh đại diện thay đổi.",
+      "+) Hồ sơ đã có địa chỉ; gửi một phần thông tin địa chỉ mới: các trường được gửi được cập nhật; trường không gửi giữ nguyên.",
+      "+) Hồ sơ đã có địa chỉ; gửi tọa độ mới: tọa độ được cập nhật theo giá trị gửi.",
+      "+) Hồ sơ chưa có địa chỉ; gửi bộ thông tin địa chỉ: hệ thống tạo địa chỉ mới và gắn vào hồ sơ.",
+      "+) Cập nhật cho mã người dùng không tồn tại: từ chối và báo không có người dùng.",
+      "+) Hồ sơ tồn tại nhưng sau lần lưu không được xác nhận: báo cập nhật thất bại."
+    ],
+    "DeleteUserAsync": [
+      "+) Xóa khi hồ sơ người dùng tồn tại và thao tác xóa được xác nhận: báo xóa thành công.",
+      "+) Yêu cầu xóa nhưng không có hồ sơ khớp: từ chối và báo không có người dùng.",
+      "+) Hồ sơ tồn tại nhưng xóa không được xác nhận: báo xóa thất bại."
+    ]
+  },
+  "UserController.cs": {
+    "Register": [
+      "+) Gửi biểu mẫu đăng ký không đúng quy định kiểm tra dữ liệu: phản hồi lỗi yêu cầu kèm chi tiết trường sai.",
+      "+) Biểu mẫu hợp lệ và đăng ký nghiệp vụ thành công: phản hồi thành công kèm thông báo.",
+      "+) Biểu mẫu hợp lệ nhưng trùng email: phản hồi lỗi yêu cầu kèm thông báo nghiệp vụ.",
+      "+) Biểu mẫu hợp lệ nhưng trùng số điện thoại: phản hồi lỗi yêu cầu kèm thông báo nghiệp vụ."
+    ],
+    "Login": [
+      "+) Không gửi nội dung đăng nhập trong request: phản hồi lỗi yêu cầu và báo dữ liệu không hợp lệ.",
+      "+) Đăng nhập thành công theo nghiệp vụ: phản hồi thành công chỉ chứa mã xác thực.",
+      "+) Sai Email hoặc mật khẩu: không có mã xác thực; phản hồi không được phép kèm giải thích.",
+      "+) Tài khoản bị khóa: không có mã xác thực; phản hồi không được phép kèm thông báo khóa."
+    ],
+    "GetAllUsers": [
+      "+) Gọi danh sách phục vụ màn quản trị: luôn nhận phản hồi thành công kèm danh sách tóm tắt (có thể rỗng)."
+    ],
+    "GetUserById": [
+      "+) Tra cứu người dùng còn tồn tại: phản hồi thành công kèm dữ liệu chi tiết.",
+      "+) Tra cứu người dùng không tồn tại: phản hồi không có nội dung thân tin nhắn."
+    ],
+    "UpdateUser": [
+      "+) Biểu mẫu cập nhật không đúng quy định kiểm tra: phản hồi lỗi yêu cầu.",
+      "+) Biểu mẫu hợp lệ và cập nhật thành công: phản hồi thành công kèm thông báo.",
+      "+) Biểu mẫu hợp lệ nhưng không tìm thấy người hoặc lưu thất bại: phản hồi lỗi yêu cầu kèm thông báo.",
+      "+) Biểu mẫu hợp lệ nhưng trùng email: phản hồi lỗi yêu cầu kèm thông báo nghiệp vụ.",
+      "+) Biểu mẫu hợp lệ nhưng trùng số điện thoại: phản hồi lỗi yêu cầu kèm thông báo nghiệp vụ."
+    ],
+    "DeleteUser": [
+      "+) Xóa thành công theo nghiệp vụ: phản hồi thành công kèm thông báo.",
+      "+) Không tìm thấy người hoặc không xóa được: phản hồi không tìm thấy kèm thông báo."
+    ]
+  },
+  "ReviewService.cs": {
+    "AddReviewAsync": [
+      "+) Người đã trải nghiệm đủ điều kiện theo báo cáo (quét mã khi hệ thống bắt buộc); nội dung tuân quy tắc cộng đồng và vượt kiểm duyệt MLServer: đánh giá được lưu; chủ nhà hàng nhận thông báo đẩy về đánh giá mới; xác nhận thành công.",
+      "+) Hệ thống bắt buộc quét mã nhưng người dùng chưa có xác nhận quét tại đúng nhà hàng: không cho gửi đánh giá; báo cần quét mã trước.",
+      "+) Đã quét mã nhưng quá 30 ngày so với lần quét gần nhất (theo báo cáo): không cho gửi; yêu cầu quét lại.",
+      "+) Nội dung vi phạm chuẩn cộng đồng hoặc bị MLServer phân loại tiêu cực: không lưu; báo cần chỉnh sửa nội dung.",
+      "+) Chỉ nhập khoảng trắng hoặc để trống phần nhận xét chữ: vẫn xử lý theo quy ước nghiệp vụ (không coi là có nội dung có ý nghĩa) và không gọi kiểm tra ngôn ngữ nếu không có chữ để phân tích.",
+      "+) MLServer tạm không phản hồi hoặc báo lỗi giao thức: hệ thống không chặn vì lỗi ngoài; nếu lưu và thông báo đẩy thành công thì vẫn hoàn tất.",
+      "+) Lưu đánh giá hoặc gửi thông báo đẩy thất bại: trả thông báo thất bại kèm lý do cho người gửi.",
+      "+) Gửi đánh giá kèm nhiều ảnh minh họa hợp lệ: các ảnh được liên kết với cùng bản đánh giá sau khi lưu."
+    ],
+    "DeleteReviewAsync": [
+      "+) Xóa khi bản đánh giá còn tồn tại và thao tác xóa hoàn tất: báo xóa thành công.",
+      "+) Yêu cầu xóa bản đánh giá không còn trong hệ thống: báo không tìm thấy đánh giá.",
+      "+) Xảy ra sự cố khác khi xóa (ngoài trường hợp không tìm thấy): báo lỗi hệ thống chung."
+    ],
+    "UpdateReviewAsync": [
+      "+) Bản đánh giá tồn tại; nội dung và điểm mới hợp lệ và qua kiểm duyệt; có gửi danh sách ảnh mới: cập nhật thành công; ảnh thay theo danh sách mới.",
+      "+) Bản đánh giá tồn tại; nội dung mới hợp lệ; không gửi ảnh: cập nhật văn bản và điểm; ảnh xử lý theo quy ước nghiệp vụ.",
+      "+) Cập nhật cho bản đánh giá không tồn tại: từ chối; báo không có đánh giá.",
+      "+) Nội dung mới vi phạm hoặc bị phân loại tiêu cực: không cập nhật; báo nội dung không phù hợp.",
+      "+) Lỗi khi thực hiện cập nhật không phải do không tìm thấy: báo lỗi hệ thống."
+    ],
+    "GetAllReviewsAsync": [
+      "+) Có ít nhất một đánh giá trong hệ thống: trả danh sách kèm thông tin hiển thị cần cho quản trị (người viết, nhà hàng, điểm, báo cáo vi phạm, ảnh).",
+      "+) Không có đánh giá nào: trả danh sách rỗng."
+    ],
+    "GetReviewsByUserIdAsync": [
+      "+) Người dùng đã có ít nhất một đánh giá: trả đủ các đánh giá của người đó.",
+      "+) Người dùng chưa có đánh giá: trả danh sách rỗng."
+    ],
+    "GetReviewsByRestaurantIdAsync": [
+      "+) Nhà hàng có ít nhất một đánh giá: trả danh sách phục vụ trang chi tiết nhà hàng.",
+      "+) Nhà hàng chưa có đánh giá: trả danh sách rỗng."
+    ],
+    "GetReviewsWithHighReportsAsync": [
+      "+) Có đánh giá với số lần báo cáo vượt ngưỡng nhập vào: trả danh sách phục vụ kiểm duyệt hoặc báo cáo (theo luồng báo cáo đồ án).",
+      "+) Không có đánh giá nào vượt ngưỡng: trả danh sách rỗng."
+    ]
+  },
+  "ReviewController.cs": {
+    "AddReview": [
+      "+) Không gửi nội dung tin nhắn đánh giá: phản hồi lỗi yêu cầu.",
+      "+) Gửi đánh giá hợp lệ và nghiệp vụ chấp nhận: phản hồi thành công kèm thông báo.",
+      "+) Nghiệp vụ từ chối lưu sau kiểm tra (ví dụ nội dung không phù hợp): phản hồi lỗi máy chủ nội bộ kèm thông báo.",
+      "+) Nghiệp vụ báo lỗi nghiệp vụ dạng ngoại lệ (ví dụ chưa đủ điều kiện quét mã): phản hồi lỗi yêu cầu kèm thông báo giải thích."
+    ],
+    "DeleteReview": [
+      "+) Xóa thành công: phản hồi thành công kèm thông báo.",
+      "+) Không xóa được hoặc không tìm thấy đánh giá: phản hồi không tìm thấy kèm thông báo."
+    ],
+    "UpdateReview": [
+      "+) Cập nhật thành công: phản hồi thành công kèm thông báo.",
+      "+) Không tìm thấy hoặc cập nhật thất bại: phản hồi không tìm thấy kèm thông báo."
+    ],
+    "GetAllReviews": [
+      "+) Luôn nhận danh sách đánh giá kèm phản hồi thành công; có thể là danh sách rỗng."
+    ],
+    "GetReviewsByUserId": [
+      "+) Người dùng có ít nhất một đánh giá: phản hồi thành công kèm danh sách.",
+      "+) Người dùng không có đánh giá nào: phản hồi không tìm thấy kèm thông báo không có dữ liệu."
+    ],
+    "GetReviewsByRestaurantId": [
+      "+) Nhà hàng có đánh giá: phản hồi thành công kèm danh sách.",
+      "+) Nhà hàng không có đánh giá: phản hồi không tìm thấy kèm thông báo."
+    ],
+    "GetReviewsWithHighReports": [
+      "+) Gọi với ngưỡng báo cáo mặc định: phản hồi thành công; danh sách có thể rỗng.",
+      "+) Gọi với ngưỡng báo cáo tùy chỉnh trên truy vấn: phản hồi thành công; kết quả lọc theo ngưỡng đã gửi."
+    ]
+  },
+  "NotificationsController.cs": {
+    "TestFirebase": [
+      "+) Gửi thông báo thử tới kênh có tên hợp lệ; dịch vụ thông báo đẩy hoạt động: phản hồi thành công kèm mã định danh tin và tên kênh (kiểm chứng tích hợp Firebase theo báo cáo).",
+      "+) Tên kênh để trống hoặc chỉ khoảng trắng: phản hồi lỗi yêu cầu; yêu cầu nhập kênh.",
+      "+) Dịch vụ thông báo đẩy báo lỗi khi gửi: phản hồi lỗi máy chủ kèm thông báo lỗi."
+    ],
+    "SendNotification": [
+      "+) Gửi đủ kênh, tiêu đề và nội dung; dịch vụ gửi thành công: phản hồi thành công kèm mã định danh tin.",
+      "+) Thiếu kênh trong gói tin: phản hồi lỗi yêu cầu; báo gói tin không hợp lệ.",
+      "+) Thiếu tiêu đề: phản hồi lỗi yêu cầu; báo gói tin không hợp lệ.",
+      "+) Thiếu nội dung thân tin: phản hồi lỗi yêu cầu; báo gói tin không hợp lệ.",
+      "+) Đủ trường nhưng dịch vụ gửi báo lỗi: phản hồi lỗi máy chủ kèm thông báo lỗi."
+    ]
+  },
+  "PhotoController.cs": {
+    "UploadImage": [
+      "+) Người dùng gửi tệp ảnh hợp lệ và máy chủ lưu được vào kho ảnh tĩnh: phản hồi thành công kèm đường dẫn xem ảnh phục vụ minh họa nhà hàng và đánh giá như báo cáo.",
+      "+) Gửi tệp hợp lệ nhưng không ghi được ra đĩa (quyền thư mục, hết dung lượng): phản hồi lỗi máy chủ nội bộ.",
+      "+) Không đính kèm tệp trong yêu cầu: quan sát hành vi hệ thống hiện tại để ghi nhận rủi ro và cần kiểm thử hồi quy."
+    ]
+  }
+}
