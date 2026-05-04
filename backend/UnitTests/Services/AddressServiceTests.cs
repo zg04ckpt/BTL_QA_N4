@@ -101,10 +101,10 @@ public class AddressServiceTests
         {
             City = "Ha Noi",
             Lat = 91,
-            Lon = 89,
+            Lon = 85,
             Detail = "so nha 3",
             District = "Ha Noi",
-            Ward = "Hai Ba Trung"
+            Ward = "Kim Giang"
         };
 
         // Act + Assert
@@ -134,11 +134,11 @@ public class AddressServiceTests
         var invalidDto = new AddressDto
         {
             City = "Ha Noi",
-            Lat = 60,
+            Lat = 39,
             Lon = 181,
             Detail = "so nha 3",
-            District = "Ha Noi",
-            Ward = "Hai Ba Trung"
+            District = "Thanh Xuan",
+            Ward = "Kim Giang"
         };
 
         // Act + Assert
@@ -168,11 +168,11 @@ public class AddressServiceTests
         var invalidDto = new AddressDto
         {
             City = new string('A', 1001),
-            Lat = 60,
-            Lon = 181,
+            Lat = 91,
+            Lon = 85,
             Detail = "so nha 3",
-            District = "Ha Noi",
-            Ward = "Hai Ba Trung"
+            District = "Thanh Xuan",
+            Ward = "Kim Giang"
         };
 
         // Act + Assert
@@ -202,11 +202,11 @@ public class AddressServiceTests
         var invalidDto = new AddressDto
         {
             City = "Ha Noi",
-            Lat = 60,
-            Lon = 181,
+            Lat = 91,
+            Lon = 85,
             Detail = "so nha 3",
             District = new string('A', 1001),
-            Ward = "Hai Ba Trung"
+            Ward = "Kim Giang"
         };
 
         // Act + Assert
@@ -236,7 +236,7 @@ public class AddressServiceTests
         var invalidDto = new AddressDto
         {
             City = "Ha Noi",
-            Lat = 60, // Giữ tọa độ hợp lệ để khoanh vùng lỗi duy nhất là do Ward
+            Lat = 91, // Giữ tọa độ hợp lệ để khoanh vùng lỗi duy nhất là do Ward
             Lon = 85,
             Detail = "so nha 3",
             District = "Thanh Xuan",
@@ -271,7 +271,7 @@ public class AddressServiceTests
         var invalidDto = new AddressDto
         {
             City = "Ha Noi",
-            Lat = 60,
+            Lat = 91,
             Lon = 85,
             Detail = new string('A', 1001), // Chuỗi quá dài
             District = "Thanh Xuan",
@@ -493,7 +493,7 @@ public class AddressServiceTests
             Lat = 90,
             Lon = 85,
             Detail = "so nha 3",
-            District = "Thanh Xuan",
+            District = new string('A', 1001),
             Ward = "Kim Giang"
         };
 
@@ -616,7 +616,7 @@ public class AddressServiceTests
         var updateDto = new AddressDto
         {
             City = "Ha Noi",
-            District = "Quan 1",
+            District = "Thanh Xuan",
             Ward = null, // Cố tình để null
             Detail = null,
             Lat = null,
@@ -660,8 +660,8 @@ public class AddressServiceTests
         var updateDto = new AddressDto
         {
             City = "Ha Noi",
-            District = "Quan 1",
-            Ward = "Thanh Xuan", // Cố tình để null
+            District = "Thanh Xuan",
+            Ward = "Kim Giang", // Cố tình để null
             Detail = null,
             Lat = null,
             Lon = null
@@ -704,8 +704,8 @@ public class AddressServiceTests
         var updateDto = new AddressDto
         {
             City = "Ha Noi",
-            District = "Quan 1",
-            Ward = "Thanh Xuan", // Cố tình để null
+            District = "Thanh Xuan",
+            Ward = "Kim Giang", // Cố tình để null
             Detail = "So nha 3",
             Lat = null,
             Lon = null
@@ -749,11 +749,11 @@ public class AddressServiceTests
         var updateDto = new AddressDto
         {
             City = "Ha Noi",
-            District = "Quan 1",
-            Ward = "Thanh Xuan", // Cố tình để null
+            District = "Thanh Xuan",
+            Ward = "Kim Giang", 
             Detail = "So nha 3",
             Lat = null,
-            Lon = 76
+            Lon = 85
         };
 
         // Act
@@ -794,11 +794,11 @@ public class AddressServiceTests
         var updateDto = new AddressDto
         {
             City = "Ha Noi",
-            District = "Quan 1",
-            Ward = "Thanh Xuan", // Cố tình để null
+            District = "Thanh Xuan",
+            Ward = "Kim Giang", // Cố tình để null
             Detail = "So nha 3",
-            Lat = 57,
-            Lon = 76
+            Lat = 88,
+            Lon = 85
         };
 
         // Act
