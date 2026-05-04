@@ -46,8 +46,9 @@ public class PhotoControllerTests : IDisposable
         // Upload file JPEG hợp lệ, thư mục wwwroot/images đã ghi được (tạo trong constructor)
         var result = await controller.UploadImage(file);
 
-        // 200 + body có đường dẫn, file thật tồn tại trên đĩa
-        var ok = Assert.IsType<OkObjectResult>(result);
+        // 200 + body có đường dẫn, file thật tồn tại trên đĩa (ASP.NET có thể trả ObjectResult / OkObjectResult).
+        var ok = Assert.IsAssignableFrom<ObjectResult>(result);
+        Assert.Equal(200, ok.StatusCode);
         Assert.NotNull(ok.Value);
         var path = Path.Combine(_tempRoot, "wwwroot", "images");
         Assert.True(Directory.GetFiles(path).Length >= 1);

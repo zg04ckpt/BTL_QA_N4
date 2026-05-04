@@ -165,6 +165,7 @@ public class UserServiceTests
             var addr = await SeedAddressAsync(ar, SampleAddress());
             await ur.CreateAsync(new User
             {
+                Id = 100,
                 Email = "nguyenthianh@gmail.com",
                 Password = "old",
                 Role = "customer",
@@ -185,7 +186,15 @@ public class UserServiceTests
                 Name = "Nguyễn Thị Ánh",
                 PhoneNumber = "0912333444",
                 Role = "customer",
-                Address = SampleAddress("Hà Nội")
+                Address = new AddressDto
+                {
+                    City = "Hà Nội",
+                    District = "Đống Đa",
+                    Ward = "Khâm Thiên",
+                    Detail = "Ngõ 8 Khâm Thiên",
+                    Lat = 21.0189,
+                    Lon = 105.8366
+                }
             });
 
             // Từ chối, DB không tăng user, user cũ không bị ghi đè
@@ -350,6 +359,7 @@ public class UserServiceTests
             var a2 = await SeedAddressAsync(ar, SampleAddress("Huế"));
             await ur.CreateAsync(new User
             {
+                Id = 201,
                 Email = "phamvanan@mail.vn",
                 Name = "Phạm Văn An",
                 PhoneNumber = "0911112222",
@@ -360,6 +370,7 @@ public class UserServiceTests
             });
             await ur.CreateAsync(new User
             {
+                Id = 202,
                 Email = "hoangthibich@mail.vn",
                 Name = "Hoàng Thị Bích",
                 PhoneNumber = "0922223333",
@@ -373,10 +384,9 @@ public class UserServiceTests
             // Lấy toàn bộ danh sách user
             var list = (await svc.GetAllUsersAsync()).ToList();
 
-            // Count ≥ 2, có đủ email đã seed
             Assert.True(list.Count >= 2);
-            Assert.Contains(list, u => u.Email == "phamvanan@mail.vn");
-            Assert.Contains(list, u => u.Email == "hoangthibich@mail.vn");
+            Assert.Contains(list, u => u.Id == 201 && u.Email == "phamvanan@mail.vn");
+            Assert.Contains(list, u => u.Id == 202 && u.Email == "hoangthibich@mail.vn");
         }
         finally
         {
@@ -477,6 +487,7 @@ public class UserServiceTests
     //         var row = (await svc.GetAllUserSummariesForAdminAsync()).Single();
 
     //         Assert.Null(row.Address);
+    //         Assert.Equal("Vũ Thị Lan", row.Name);
     //     }
     //     finally
     //     {
@@ -498,8 +509,9 @@ public class UserServiceTests
         {
             var ur = new UserRepository(context);
             var ar = new AddressRepository(context);
-            var addr = await SeedAddressAsync(ar, new AddressDto
+            await ar.AddAddressAsync(new Address
             {
+                Id = 301,
                 City = "Huế",
                 District = "Thành phố Huế",
                 Ward = "Phú Hậu",
@@ -509,18 +521,18 @@ public class UserServiceTests
             });
             await ur.CreateAsync(new User
             {
+                Id = 1,
                 Email = "user1@test.vn",
                 Name = "Nguyễn Văn Một",
                 PhoneNumber = "0909123456",
                 Role = "customer",
                 Status = 1,
                 Password = "p",
-                AddressId = addr.Id
+                AddressId = 301
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            var dto = await svc.GetUserByIdAsync(id);
+            var dto = await svc.GetUserByIdAsync(1);
 
             Assert.NotNull(dto);
             Assert.Equal("Số 88 phố Huế", dto!.Address!.Detail);
@@ -545,6 +557,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 2,
                 Email = "khongdiachi@example.vn",
                 Name = "Trần Thị Hai",
                 PhoneNumber = "0912000333",
@@ -553,10 +566,9 @@ public class UserServiceTests
                 Password = "p",
                 AddressId = null
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            var dto = await svc.GetUserByIdAsync(id);
+            var dto = await svc.GetUserByIdAsync(2);
 
             Assert.NotNull(dto);
             Assert.Null(dto!.Address);
@@ -595,6 +607,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 10,
                 Email = "user10@test.vn",
                 Name = "Người Mười",
                 PhoneNumber = "0900101010",
@@ -602,15 +615,12 @@ public class UserServiceTests
                 Status = 1,
                 Password = "p"
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi chỉ Status=0, các field khác null
-            var result = await svc.UpdateUserAsync(id, new UserUpdateDTO { Status = 0 });
+            var result = await svc.UpdateUserAsync(10, new UserUpdateDTO { Status = 0 });
 
-            // Status đổi thành 0 trong DB
             Assert.True(result.Success);
-            Assert.Equal(0, (await context.Users.AsNoTracking().FirstAsync(u => u.Id == id)).Status);
+            Assert.Equal(0, (await context.Users.AsNoTracking().FirstAsync(u => u.Id == 10)).Status);
         }
         finally
         {
@@ -632,6 +642,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 11,
                 Email = "buivan@mail.vn",
                 Name = "Bùi Văn Cũ",
                 PhoneNumber = "0909111222",
@@ -639,15 +650,12 @@ public class UserServiceTests
                 Status = 1,
                 Password = "p"
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi chỉ Name mới
-            var result = await svc.UpdateUserAsync(id, new UserUpdateDTO { Name = "Bùi Văn Mới" });
+            var result = await svc.UpdateUserAsync(11, new UserUpdateDTO { Name = "Bùi Văn Mới" });
 
-            // Name đổi, Email + PhoneNumber giữ nguyên
             Assert.True(result.Success);
-            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == id);
+            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == 11);
             Assert.Equal("Bùi Văn Mới", u.Name);
             Assert.Equal("buivan@mail.vn", u.Email);
             Assert.Equal("0909111222", u.PhoneNumber);
@@ -672,6 +680,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 12,
                 Email = "user12@test.vn",
                 Name = "Lê Văn Mười Hai",
                 PhoneNumber = "0909000111",
@@ -679,15 +688,12 @@ public class UserServiceTests
                 Status = 1,
                 Password = "p"
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi chỉ PhoneNumber mới
-            var result = await svc.UpdateUserAsync(id, new UserUpdateDTO { PhoneNumber = "0987654321" });
+            var result = await svc.UpdateUserAsync(12, new UserUpdateDTO { PhoneNumber = "0987654321" });
 
-            // PhoneNumber đổi, Email giữ nguyên
             Assert.True(result.Success);
-            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == id);
+            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == 12);
             Assert.Equal("0987654321", u.PhoneNumber);
             Assert.Equal("user12@test.vn", u.Email);
         }
@@ -711,6 +717,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 13,
                 Email = "user13@test.vn",
                 Name = "Ảnh Cũ",
                 PhoneNumber = "0909131313",
@@ -719,17 +726,14 @@ public class UserServiceTests
                 Password = "p",
                 AvtImage = "/images/old.png"
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi chỉ AvtImage mới
-            var result = await svc.UpdateUserAsync(id,
+            var result = await svc.UpdateUserAsync(13,
                 new UserUpdateDTO { AvtImage = "/images/avatar_moi.png" });
 
-            // AvtImage cập nhật đúng
             Assert.True(result.Success);
             Assert.Equal("/images/avatar_moi.png",
-                (await context.Users.AsNoTracking().FirstAsync(x => x.Id == id)).AvtImage);
+                (await context.Users.AsNoTracking().FirstAsync(x => x.Id == 13)).AvtImage);
         }
         finally
         {
@@ -751,8 +755,9 @@ public class UserServiceTests
         {
             var ur = new UserRepository(context);
             var ar = new AddressRepository(context);
-            var addr = await SeedAddressAsync(ar, new AddressDto
+            await ar.AddAddressAsync(new Address
             {
+                Id = 50,
                 City = "Hà Nội",
                 District = "Hoàn Kiếm",
                 Ward = "Hàng Bài",
@@ -762,26 +767,24 @@ public class UserServiceTests
             });
             await ur.CreateAsync(new User
             {
+                Id = 14,
                 Email = "user14@test.vn",
                 Role = "customer",
                 Status = 1,
                 Password = "p",
                 Name = "U14",
-                AddressId = addr.Id
+                AddressId = 50
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi chỉ Address.District — merge partial
-            var result = await svc.UpdateUserAsync(id,
+            var result = await svc.UpdateUserAsync(14,
                 new UserUpdateDTO
                 {
                     Address = new AddressDto { District = "Ba Đình" }
                 });
 
-            // District đổi, Ward giữ nguyên (merge)
             Assert.True(result.Success);
-            var a = await context.Addresses.AsNoTracking().FirstAsync();
+            var a = await context.Addresses.AsNoTracking().FirstAsync(x => x.Id == 50);
             Assert.Equal("Ba Đình", a.District);
             Assert.Equal("Hàng Bài", a.Ward);
         }
@@ -805,9 +808,18 @@ public class UserServiceTests
         {
             var ur = new UserRepository(context);
             var ar = new AddressRepository(context);
-            var addr = await SeedAddressAsync(ar, SampleAddress());
+            var addr = await SeedAddressAsync(ar, new AddressDto
+            {
+                City = "Hà Nội",
+                District = "Cầu Giấy",
+                Ward = "Dịch Vọng",
+                Detail = "Ngõ 12, đường Xuân Thủy",
+                Lat = 21.00,
+                Lon = 105.80
+            });
             await ur.CreateAsync(new User
             {
+                Id = 15,
                 Email = "user15@test.vn",
                 Role = "customer",
                 Status = 1,
@@ -815,16 +827,13 @@ public class UserServiceTests
                 Name = "U15",
                 AddressId = addr.Id
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Gửi tọa độ Lon/Lat mới
-            var result = await svc.UpdateUserAsync(id,
+            var result = await svc.UpdateUserAsync(15,
                 new UserUpdateDTO { Address = new AddressDto { Lon = 105.85, Lat = 21.03 } });
 
-            // Lon/Lat trong bảng addresses đổi đúng
             Assert.True(result.Success);
-            var a = await context.Addresses.AsNoTracking().FirstAsync();
+            var a = await context.Addresses.AsNoTracking().FirstAsync(x => x.Id == addr.Id);
             Assert.Equal(105.85, a.Lon);
             Assert.Equal(21.03, a.Lat);
         }
@@ -848,6 +857,7 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 16,
                 Email = "user16@test.vn",
                 Role = "customer",
                 Status = 1,
@@ -855,11 +865,9 @@ public class UserServiceTests
                 Name = "U16",
                 AddressId = null
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // User chưa có địa chỉ — gửi Address đầy đủ
-            var result = await svc.UpdateUserAsync(id,
+            var result = await svc.UpdateUserAsync(16,
                 new UserUpdateDTO
                 {
                     Address = new AddressDto
@@ -875,7 +883,7 @@ public class UserServiceTests
 
             // AddressId được gán — Address mới đã được tạo và liên kết
             Assert.True(result.Success);
-            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == id);
+            var u = await context.Users.AsNoTracking().FirstAsync(x => x.Id == 16);
             Assert.NotNull(u.AddressId);
         }
         finally
@@ -924,17 +932,16 @@ public class UserServiceTests
         {
             await new UserRepository(context).CreateAsync(new User
             {
+                Id = 5,
                 Email = "canxoa@test.vn",
                 Name = "Người Bị Xóa",
                 Role = "customer",
                 Status = 1,
                 Password = "p"
             });
-            var id = (await context.Users.FirstAsync()).Id;
             var svc = CreateUserService(context);
 
-            // Xóa user tồn tại
-            var result = await svc.DeleteUserAsync(id);
+            var result = await svc.DeleteUserAsync(5);
 
             // Success, DB không còn user nào
             // SPEC: cũng cần kiểm tra Message = "User deleted successfully"

@@ -51,7 +51,7 @@ public class ReviewControllerTests
         {
             UserId = 1,
             RestaurantId = 3,
-            Content = "Món phở rất ngon",
+            Content = "Món phở rất ngon, phục vụ chu đáo.",
             Score = 5,
             CreateDate = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
             PhotoUrls = new List<string> { "/uploads/review1.jpg" }
@@ -76,7 +76,7 @@ public class ReviewControllerTests
         var result = await c.AddReview(new ReviewDto
         {
             UserId = 1,
-            RestaurantId = 1,
+            RestaurantId = 3,
             Content = "x",
             Score = 1,
             CreateDate = 1
@@ -139,7 +139,7 @@ public class ReviewControllerTests
         Assert.IsType<NotFoundObjectResult>(result);
     }
 
-    /// <summary>TC-RC-UPD-001 — cập nhật thành công => 200 + body có trường message.</summary>
+    /// <summary>TC-RC-UPD-001 — body như TC-RSV-UPD-001 (<c>truong-hop-test-backend-chi-tiet.md</c>).</summary>
     [Fact]
     public async Task UpdateReview_Success_TC_RC_UPD_001()
     {
@@ -148,7 +148,12 @@ public class ReviewControllerTests
             .ReturnsAsync((true, "Review updated successfully"));
         var c = CreateController(mock.Object);
 
-        var result = await c.UpdateReview(5, new ReviewDto { Content = "Sửa", Score = 5 });
+        var result = await c.UpdateReview(5, new ReviewDto
+        {
+            Content = "Đã chỉnh sửa, nội dung lành mạnh.",
+            Score = 5,
+            PhotoUrls = new List<string> { "/new1.jpg" }
+        });
 
         var ok = Assert.IsType<OkObjectResult>(result);
         var message = ok.Value!.GetType().GetProperty("message")?.GetValue(ok.Value) as string;
@@ -182,13 +187,17 @@ public class ReviewControllerTests
         Assert.IsType<OkObjectResult>(result);
     }
 
-    /// <summary>TC-RC-GUR-001</summary>
+    /// <summary>TC-RC-GUR-001 — dữ liệu mock khớp TC-RSV-GUR-001 (Review 41/42).</summary>
     [Fact]
     public async Task GetReviewsByUserId_HasData_TC_RC_GUR_001()
     {
         var mock = new Mock<IReviewService>();
         mock.Setup(s => s.GetReviewsByUserIdAsync(7))
-            .ReturnsAsync(new List<ReviewDto> { new() { Id = 1, UserId = 7, RestaurantId = 1, Content = "a", Score = 5 } });
+            .ReturnsAsync(new List<ReviewDto>
+            {
+                new() { Id = 41, UserId = 7, RestaurantId = 1, Content = "Một", Score = 5 },
+                new() { Id = 42, UserId = 7, RestaurantId = 2, Content = "Hai", Score = 4 }
+            });
         var c = CreateController(mock.Object);
 
         var result = await c.GetReviewsByUserId(7);
@@ -209,13 +218,16 @@ public class ReviewControllerTests
         Assert.IsType<NotFoundObjectResult>(result);
     }
 
-    /// <summary>TC-RC-GRR-001</summary>
+    /// <summary>TC-RC-GRR-001 — mock khớp TC-RSV-GRR-001 (Review 51 / Quán Bún).</summary>
     [Fact]
     public async Task GetReviewsByRestaurantId_HasData_TC_RC_GRR_001()
     {
         var mock = new Mock<IReviewService>();
         mock.Setup(s => s.GetReviewsByRestaurantIdAsync(4))
-            .ReturnsAsync(new List<ReviewDto> { new() { Id = 1, UserId = 1, RestaurantId = 4, Content = "a", Score = 5 } });
+            .ReturnsAsync(new List<ReviewDto>
+            {
+                new() { Id = 51, UserId = 3, RestaurantId = 4, Content = "Ngon", Score = 5 }
+            });
         var c = CreateController(mock.Object);
 
         var result = await c.GetReviewsByRestaurantId(4);
